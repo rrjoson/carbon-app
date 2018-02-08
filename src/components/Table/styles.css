@@ -1,0 +1,5 @@
+.table :global .ant-table-pagination.ant-pagination {
+  display: block;
+  float: none;
+  text-align: center;
+}

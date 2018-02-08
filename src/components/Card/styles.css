@@ -1,0 +1,8 @@
+.card  {
+  background-color: #ffffff;
+}
+
+.card :global .ant-card-bordered {
+  box-shadow: 0 2px 4px 0 rgba(233, 233, 233, 0.5);
+  border: solid 1px #f0f0f0;
+}

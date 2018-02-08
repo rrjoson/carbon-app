@@ -1,0 +1,12 @@
+.vendors {
+
+}
+
+.input {
+  max-width: 224px;
+  width: 100%;
+  border-radius: 4px;
+  background-color: #ffffff;
+  border: solid 1px rgba(0, 0, 0, 0.15);
+  margin-right: 19px;
+}

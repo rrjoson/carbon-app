@@ -1,0 +1,18 @@
+.dashboard :global .ant-progress-text {
+  font-size: 45px;
+  letter-spacing: 0.1px;
+  color: #26546c;
+}
+
+.dashboard :global .ant-progress-circle-path {
+  stroke: #4581f0;
+}
+
+.horizontalLine {
+  margin: 32px 0 9px;
+  border: 1px solid #f0f0f0;
+}
+
+.verticalLine {
+  border-right: solid 1px #f0f0f0;
+}

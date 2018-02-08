@@ -1,0 +1,13 @@
+.filter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 36px 0 24px;
+}
+
+.verticalLine {
+  display: inline-block;
+  height: 26px;
+  border-right: 1px solid #dddddd;
+  margin: 0 16px 0 11px;
+}

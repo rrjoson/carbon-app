@@ -1,0 +1,21 @@
+.activity {
+  position: relative;
+  overflow: hidden;
+  max-height: 50px;
+  width: 220px;
+  border: 1px solid red;
+}
+
+.open {
+  max-height: 1000px;
+  transition: all ease 1s;
+}
+
+.button {
+  background: white;
+  width: 100%;
+  display: block;
+  bottom: 0;
+  position: absolute;
+  margin-bottom: 0;
+}

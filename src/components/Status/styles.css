@@ -1,0 +1,29 @@
+.status {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.text {
+  text-transform: capitalize;
+}
+
+.red {
+  background-color: #f5222d;
+}
+
+.green {
+  background-color: #52c41a;
+}
+
+.gray {
+  background-color: rgba(0, 0, 0, 0.25);
+}

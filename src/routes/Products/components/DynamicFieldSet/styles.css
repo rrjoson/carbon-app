@@ -1,0 +1,22 @@
+.form {
+
+}
+
+.form :global .ant-row.ant-form-item {
+  margin-bottom: 14px;
+}
+
+.form :global .ant-form-item-control {
+  line-height: initial;
+}
+
+.title {
+  margin-bottom: 7px;
+  margin-top: 15px;
+}
+
+.divider {
+  width: 100%;
+  border-bottom: solid 1px #f0f0f0;
+  margin: 36px 0 32px;
+}

@@ -1,11 +1,14 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu, Icon, Row, Button } from 'antd';
 import { Link, withRouter } from 'dva/router';
+
+import { Typography } from './../components';
 
 import styles from './App.css';
 
 const { Header, Content, Sider } = Layout;
+const { H4 } = Typography;
 
 function App({ location, children }) {
   return (
@@ -36,8 +39,18 @@ function App({ location, children }) {
         </Menu>
       </Sider>
       <Layout>
-        <Header style={{ background: '#fff', padding: 0 }} />
-        <Content style={{ margin: '28px 23px' }}>
+        <Header className={styles.header}>
+          <Row type="flex" justify="space-between" align="middle">
+            <div>
+              <H4>{location.pathname}</H4>
+            </div>
+            <div>
+              <Button>New Case</Button>
+              <span className={styles.badge}>A</span>
+            </div>
+          </Row>
+        </Header>
+        <Content style={{ background: '#fff', padding: '28px 23px' }}>
           {children}
         </Content>
       </Layout>

@@ -1,3 +1,5 @@
+/* SIDER */
+
 .sider :global .ant-menu-item {
   margin: 0;
   height: 69px;
@@ -28,8 +30,29 @@
   line-height: 2;
 }
 
+/* SIDER */
+
 .logo {
   height: 55px;
   width: 55px;
   margin: 11px 8px 9px 8px;
+}
+
+.header {
+  line-height: 47px;
+  background-color: #ffffff;
+  border: solid 1px #f0f0f0;
+  padding: 9px 11px 8px 25px;
+}
+
+.badge {
+  display: inline-flex;
+  width: 31px;
+  height: 30px;
+  border-radius: 2px;
+  background-color: #d1707c;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin-left: 8px;
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 
-import { Card, Col, Row, Progress } from 'antd';
+import { Col, Row, Progress, Button } from 'antd';
 
 import DashboardTable from './components/DashboardTable';
-import { Typography, Link } from './../../components';
+import { Typography, Link, Card } from './../../components';
 
 import styles from './styles.css';
 
@@ -14,10 +14,11 @@ function Dashboard() {
   return (
     <div className={styles.dashboard}>
       <Row gutter={16}>
-        <Col span={8}>
+        <Col span={7}>
           <Card style={{ marginBottom: '20px' }}>
             <Row type="flex" justify="center">
               <Progress
+                style={{ marginBottom: '30px' }}
                 strokeWidth={4}
                 width={208}
                 type="circle"
@@ -26,8 +27,12 @@ function Dashboard() {
                   (percent) => {
                     return (
                       <Row>
-                        <H1>{percent}</H1>
-                        <H4>RESOLVED CASES</H4>
+                        <Row>
+                          <H1>{percent}</H1>
+                        </Row>
+                        <Row>
+                          <H4>RESOLVED CASES</H4>
+                        </Row>
                       </Row>
                     );
                   }
@@ -35,7 +40,7 @@ function Dashboard() {
               />
             </Row>
             <Row gutter={16} type="flex" justify="center">
-              <Col span={12}>
+              <Col span={12} className={styles.verticalLine}>
                 <Row type="flex" justify="center">
                   <H2>76</H2>
                 </Row>
@@ -53,31 +58,37 @@ function Dashboard() {
               </Col>
             </Row>
           </Card>
-          <Card style={{ marginBottom: '20px' }} bordered={false}>
+          <Card style={{ marginBottom: '20px' }}>
             <Row>
               <H1>16</H1>
             </Row>
             <Row>
               <H3>CASES OVERDUE</H3>
             </Row>
+            <div className={styles.horizontalLine} />
+            <Row type="flex" justify="end">
+              <Link>View More</Link>
+            </Row>
           </Card>
-          <Card style={{ marginBottom: '20px' }} bordered={false}>
+          <Card style={{ marginBottom: '20px' }}>
             <Row>
               <H1>12</H1>
             </Row>
             <Row>
               <H3>CASES RESOLVED THIS WEEK</H3>
             </Row>
+            <div className={styles.horizontalLine} />
             <Row type="flex" justify="end">
-              <hr />
               <Link>View More</Link>
             </Row>
           </Card>
         </Col>
-        <Col span={16}>
-          <Card style={{ padding: '0' }}>
-            <DashboardTable />
-          </Card>
+        <Col span={17}>
+          <Row>
+            <H2 style={{ marginRight: '18px' }}>My Cases</H2>
+            <Button>New Case</Button>
+          </Row>
+          <DashboardTable />
         </Col>
       </Row>
     </div>

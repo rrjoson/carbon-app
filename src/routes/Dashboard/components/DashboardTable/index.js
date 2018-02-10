@@ -2,23 +2,43 @@ import React, { Component } from 'react';
 import { Table } from 'antd';
 
 const columns = [{
-  title: 'Name',
-  dataIndex: 'name',
+  title: 'ID',
+  dataIndex: 'id',
 }, {
-  title: 'Age',
-  dataIndex: 'age',
+  title: 'Company',
+  dataIndex: 'company',
 }, {
-  title: 'Address',
-  dataIndex: 'address',
+  title: 'Status',
+  dataIndex: 'status',
+}, {
+  title: 'Activity',
+  dataIndex: 'activity',
+}, {
+  title: 'Issue / Purpose Of Visit',
+  dataIndex: 'issue',
+}, {
+  title: 'Open',
+  dataIndex: 'open',
+}, {
+  title: 'Last Updated',
+  dataIndex: 'last_updated',
+}, {
+  title: 'Actions',
+  dataIndex: 'actions',
 }];
 
 const data = [];
 for (let i = 0; i < 46; i += 1) {
   data.push({
     key: i,
-    name: `Edward King ${i}`,
-    age: 32,
-    address: `London, Park Lane no. ${i}`,
+    id: `A-${i}`,
+    company: 'Ateneo',
+    status: 'Overdue',
+    activity: 'Onsite',
+    issue: 'OS installation',
+    open: '3',
+    last_updated: '2017-12-31 • 6:24am',
+    actions: 'View Edit',
   });
 }
 
@@ -73,7 +93,9 @@ class DashboardTable extends Component {
       onSelection: this.onSelection,
     };
     return (
-      <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
+      <div>
+        <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
+      </div>
     );
   }
 }

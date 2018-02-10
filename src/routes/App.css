@@ -1,0 +1,35 @@
+.sider :global .ant-menu-item {
+  margin: 0;
+  height: 69px;
+  padding: 14px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sider :global .ant-menu-item.ant-menu-item-selected {
+  background-color: #f04545;
+}
+
+.sider :global .ant-menu-item .anticon {
+  margin: 0;
+  font-size: 21px;
+}
+
+.sider :global .ant-menu-item.ant-menu-item-selected .anticon {
+  color: white;
+}
+
+.sider :global .ant-menu-item a {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  line-height: 2;
+}
+
+.logo {
+  height: 55px;
+  width: 55px;
+  margin: 11px 8px 9px 8px;
+}

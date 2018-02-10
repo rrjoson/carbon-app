@@ -1,0 +1,52 @@
+.dashboard :global .ant-progress-text {
+  font-size: 45px;
+  letter-spacing: 0.1px;
+  color: #26546c;
+}
+
+.dashboard :global .ant-progress-circle-path {
+  stroke: #4581f0;
+}
+
+.cardSection {
+  margin-top: 30px;
+}
+
+.progressNumber {
+  font-size: 45px;
+  letter-spacing: 0.1px;
+  color: #26546c;
+  line-height: 38px;
+  margin-bottom: 7px;
+}
+
+.progressText {
+	font-size: 14px;
+	font-weight: 600;
+	letter-spacing: 0.1px;
+	text-align: center;
+	color: #94a0a9;
+}
+
+.dashboardNumber {
+  font-size: 32px;
+  letter-spacing: 0.1px;
+  text-align: center;
+  color: #26546c;
+}
+
+.dashboardText {
+	font-size: 14px;
+	font-weight: 600;
+	letter-spacing: 0.1px;
+	text-align: center;
+	color: #94a0a9;
+}
+
+.dashboardStats {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 30px;
+}

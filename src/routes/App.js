@@ -10,11 +10,11 @@ import styles from './App.css';
 const { Content, Sider } = Layout;
 
 const menuItems = [{
-  url: '/dashboard',
+  url: '/home',
   icon: 'home',
-  label: 'Dashboard',
+  label: 'Home',
 }, {
-  url: '/cases',
+  url: '/cases/all',
   icon: 'database',
   label: 'Cases',
 }, {
@@ -29,14 +29,19 @@ const menuItems = [{
   url: '/vendors',
   icon: 'shop',
   label: 'Vendors',
+}, {
+  url: '/licenses',
+  icon: 'safety',
+  label: 'Licenses',
 }];
 
 const getHeaderTitle = (pathname) => {
-  if (pathname === '/dashboard') return 'Dashboard';
+  if (pathname === '/home') return 'Home';
   if (pathname === '/cases') return 'Cases';
   if (pathname === '/clients') return 'Clients';
   if (pathname === '/products') return 'Products';
   if (pathname === '/vendors') return 'Vendors';
+  if (pathname === '/licenses') return 'Licenses';
 };
 
 function App({ location, children }) {

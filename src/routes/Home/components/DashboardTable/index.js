@@ -43,13 +43,19 @@ function HomeTable(props) {
   }, {
     title: 'Actions',
     dataIndex: 'actions',
-    render: action => <Link to="/">{action}</Link>,
+    render: (text, record) => (
+      <div>
+        <Link to={`/cases/${record.glocalid}`}>{text[0]} </Link>
+        <Link to={`/cases/${record.glocalid}/edit`}>{text[1]}</Link>
+      </div>
+    ),
   }];
 
   const dataSource = props.data.map((item, index) => {
     return (
       {
         key: index,
+        glocalid: item.glocalid,
         vendorcaseid: item.vendorcaseid,
         customer: item.customer,
         status: 'overdue',
@@ -60,7 +66,7 @@ function HomeTable(props) {
         open: '3 days ago',
         lastupdated: item.dateraised,
         dateraised: item.dateraised,
-        actions: 'View Edit',
+        actions: ['View', 'Edit'],
       }
     );
   })

@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'dva';
 // import PropTypes from 'prop-types';
 
 import { Col, Row, Progress } from 'antd';
@@ -10,7 +11,11 @@ import styles from './styles.css';
 
 const { H1, H2, H3, H4 } = Typography;
 
-function Dashboard() {
+function Dashboard(props) {
+  const {
+    cases
+  } = props;
+
   return (
     <div className={styles.dashboard}>
       <Row gutter={16}>
@@ -86,15 +91,23 @@ function Dashboard() {
         <Col span={18}>
           <Row>
             <H2 style={{ marginRight: '18px' }}>My Cases</H2>
-            <Button>New Case</Button>
+            <Link to="/cases/add"><Button>New Case</Button></Link>
           </Row>
-          <DashboardTable />
+          <DashboardTable
+            data={cases}
+          />
         </Col>
       </Row>
     </div>
   );
 }
 
+function mapStateToProps(state) {
+  return {
+    cases: state.cases.data,
+  };
+}
+
 Dashboard.propTypes = {};
 
-export default Dashboard;
+export default connect(mapStateToProps)(Dashboard);

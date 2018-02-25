@@ -8,39 +8,36 @@ import styles from './styles.css';
 const FormItem = Form.Item;
 const { H4 } = Typography;
 
-const vendors = [
-  { name: 'Veritas', products: ['Veritas 1', 'Veritas 2', 'Veritas 3'] },
-  { name: 'Symantec', products: ['Symantec 1', 'Symantec 2'] },
-  { name: 'ASG', products: [] },
-];
 let uuid = 1;
 
 class DynamicFieldSet extends Component {
 
   remove = (vendorName, k) => {
     const { form } = this.props;
-    const keys = form.getFieldValue(`keys-${vendorName}`);
+    const keys = form.getFieldValue(vendorName);
 
     if (keys.length === 1) return;
-    form.setFieldsValue({ [`keys-${vendorName}`]: keys.filter(key => key !== k) });
+    form.setFieldsValue({ [vendorName]: keys.filter(key => key !== k) });
   }
 
   add = (vendorName) => {
     const { form } = this.props;
-    const keys = form.getFieldValue(`keys-${vendorName}`);
+    const keys = form.getFieldValue(vendorName);
     const nextKeys = keys.concat(`New Product ${uuid}`);
 
     uuid += 1;
-    form.setFieldsValue({ [`keys-${vendorName}`]: nextKeys });
+    form.setFieldsValue({ [vendorName]: nextKeys });
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // this.props.form.validateFields((err, values) => {
-    //   if (!err) {
-    //     console.log('Received values of form: ', values);
-    //   }
-    // });
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values);
+      }
+
+      this.props.onSave(values);
+    });
   }
 
   render() {
@@ -63,17 +60,26 @@ class DynamicFieldSet extends Component {
       },
     };
 
+    const products = [];
+    this.props.vendors.forEach((vendor) => {
+      products.push(vendor.principal);
+    });
+
+    const vendors = [
+      { name: 'vendors', label: 'Vendors', products },
+    ];
+
     return (
       <Form className={styles.form} onSubmit={this.handleSubmit}>
         <Row>
           {
             vendors.map((vendor) => {
               getFieldDecorator(
-                `keys-${vendor.name}`,
+                vendor.name,
                 { initialValue: vendor.products },
               );
 
-              const keys = getFieldValue(`keys-${vendor.name}`);
+              const keys = getFieldValue(vendor.name);
 
               const formItems = keys.map((k, index) => {
                 return (
@@ -103,7 +109,7 @@ class DynamicFieldSet extends Component {
               return (
                 <Col span={6} key={vendor.name}>
                   <div className={styles.title}>
-                    <H4>{vendor.name}</H4>
+                    <H4>{vendor.label}</H4>
                   </div>
                   {formItems}
                   <FormItem {...formItemLayoutWithOutLabel}>

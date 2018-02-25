@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Input, Icon, Button, Row, Col, DatePicker, Select } from 'antd';
+import moment from 'moment';
 
 import { Link, Typography } from './../../../../components';
 
@@ -9,41 +10,46 @@ const FormItem = Form.Item;
 const Option = Select.Option;
 const { H4 } = Typography;
 
-const vendors = [
-  { name: 'Assigned System Engineer', products: ['Veritas 1', 'Veritas 2', 'Veritas 3'] },
-];
 let uuid = 1;
 
 class DynamicFieldSet extends Component {
 
   remove = (vendorName, k) => {
     const { form } = this.props;
-    const keys = form.getFieldValue(`keys-${vendorName}`);
+    const keys = form.getFieldValue(vendorName);
 
     if (keys.length === 1) return;
-    form.setFieldsValue({ [`keys-${vendorName}`]: keys.filter(key => key !== k) });
+    form.setFieldsValue({ [vendorName]: keys.filter(key => key !== k) });
   }
 
   add = (vendorName) => {
     const { form } = this.props;
-    const keys = form.getFieldValue(`keys-${vendorName}`);
-    const nextKeys = keys.concat(`New Product ${uuid}`);
+    const keys = form.getFieldValue(vendorName);
+    const nextKeys = keys.concat(`${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']} ${uuid}`);
 
     uuid += 1;
-    form.setFieldsValue({ [`keys-${vendorName}`]: nextKeys });
+    form.setFieldsValue({ [vendorName]: nextKeys });
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // this.props.form.validateFields((err, values) => {
-    //   if (!err) {
-    //     console.log('Received values of form: ', values);
-    //   }
-    // });
+
+    this.props.form.validateFields((err, values) => {
+      delete values.names
+      this.props.onSave(values)
+
+      if (!err) {
+        console.log('Received values of form: ', values);
+      }
+    });
   }
 
   render() {
     const { getFieldDecorator, getFieldValue } = this.props.form;
+
+    const vendors = [
+      { label: 'Assigned System Engineer', name: 'assignedSystemsEngineer', products: [`${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`] },
+    ];
 
     const formItemLayout = {
       labelCol: {
@@ -67,32 +73,40 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={3}>
             <FormItem label="Glocal ID">
-              {getFieldDecorator('password', {})(
-                <Input type="password" />
+              {getFieldDecorator('glocalId', {})(
+                <Input type="text" />
               )}
             </FormItem>
           </Col>
 
           <Col span={5}>
             <FormItem label="Vendor Case ID (Optional)">
-              {getFieldDecorator('password', {})(
-                <Input type="password" />
+              {getFieldDecorator('vendorCaseId', {})(
+                <Input type="text" />
               )}
             </FormItem>
           </Col>
 
           <Col span={3}>
             <FormItem label="Date ID Created">
-              {getFieldDecorator('date-picker')(
-                <DatePicker />
+              {getFieldDecorator('dateIdCreated')(
+                <DatePicker format={'MM/DD/YYYY'} />
               )}
             </FormItem>
           </Col>
 
           <Col span={3}>
             <FormItem label="Date Raised by Client">
-              {getFieldDecorator('date-picker')(
-                <DatePicker />
+              {getFieldDecorator('dateRaised')(
+                <DatePicker format={'MM/DD/YYYY'} />
+              )}
+            </FormItem>
+          </Col>
+
+          <Col span={5}>
+            <FormItem label="Assigned Account Manager (Hidden)">
+              {getFieldDecorator('assignedAccountManager', {})(
+                <Input type="text" />
               )}
             </FormItem>
           </Col>
@@ -101,25 +115,27 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={3}>
             <FormItem label="Case Title">
-              {getFieldDecorator('password', {})(
-                <Input type="password" />
+              {getFieldDecorator('caseTitle', {})(
+                <Input type="text" />
               )}
             </FormItem>
           </Col>
 
           <Col span={5}>
             <FormItem label="Description">
-              {getFieldDecorator('password', {})(
-                <Input type="password" />
+              {getFieldDecorator('caseDescription', {})(
+                <Input type="text" />
               )}
             </FormItem>
           </Col>
 
           <Col span={5}>
-            <FormItem label="Severity" hasFeedback>
-              {getFieldDecorator('select', {})(
-                <Select placeholder="Please select severity">
+            <FormItem label="Severity">
+              {getFieldDecorator('severity', {})(
+                <Select placeholder="severity">
                   <Option value="1">Level 1 - System Down</Option>
+                  <Option value="2">Level 2 - System Down</Option>
+                  <Option value="3">Level 3 - System Down</Option>
                 </Select>
               )}
             </FormItem>
@@ -130,40 +146,56 @@ class DynamicFieldSet extends Component {
 
         <Row gutter={12}>
           <Col span={5}>
-            <FormItem label="Vendor" hasFeedback>
-              {getFieldDecorator('select', {})(
-                <Select placeholder="Symantec">
-                  <Option value="1">Symantec</Option>
+            <FormItem label="Vendor">
+              {getFieldDecorator('vendor', {})(
+                <Select placeholder={this.props.vendors[0]['principal']}>
+                  {
+                    this.props.vendors.map((vendor) => {
+                      return <Option value={vendor.principal}>{vendor.principal}</Option>
+                    })
+                  }
                 </Select>
               )}
             </FormItem>
           </Col>
 
           <Col span={5}>
-           <FormItem label="Product Line" hasFeedback>
-              {getFieldDecorator('select', {})(
-                <Select placeholder="SFVVR">
-                  <Option value="1">SFVVR</Option>
+           <FormItem label="Product Line">
+              {getFieldDecorator('productName', {})(
+                <Select placeholder={this.props.products[0]['productname']}>
+                  {
+                    this.props.products.map((product) => {
+                      return <Option value={product.productname}>{product.productname}</Option>
+                    })
+                  }
                 </Select>
               )}
             </FormItem>
           </Col>
 
           <Col span={5}>
-            <FormItem label="Client" hasFeedback>
-              {getFieldDecorator('select', {})(
-                <Select placeholder="Bangko Sentral">
-                  <Option value="1">Bangko Sentral</Option>
+            <FormItem label="Client">
+              {getFieldDecorator('customer', {})(
+                <Select placeholder={this.props.clients[0]['accountname']}>
+                  {
+                    this.props.clients.map((client) => {
+                      return <Option value={client.accountname}>{client.accountname}</Option>
+                    })
+                  }
                 </Select>
               )}
             </FormItem>
           </Col>
 
           <Col span={5}>
-            <FormItem label="Customer Name" hasFeedback>
-              {getFieldDecorator('select', {})(
-                <Select placeholder="Mareeah Koochenera">
-                  <Option value="1">Mareeah Koochenera</Option>
+            <FormItem label="Customer Name">
+              {getFieldDecorator('customerName', {})(
+                <Select placeholder={this.props.customers[0]['contact_person']}>
+                  {
+                    this.props.customers.map((customer) => {
+                      return <Option value={customer.contact_person}>{customer.contact_person}</Option>
+                    })
+                  }
                 </Select>
               )}
             </FormItem>
@@ -176,11 +208,11 @@ class DynamicFieldSet extends Component {
           {
             vendors.map((vendor) => {
               getFieldDecorator(
-                `keys-${vendor.name}`,
+                vendor.name,
                 { initialValue: vendor.products },
               );
 
-              const keys = getFieldValue(`keys-${vendor.name}`);
+              const keys = getFieldValue(vendor.name);
 
               const formItems = keys.map((k, index) => {
                 return (
@@ -198,8 +230,12 @@ class DynamicFieldSet extends Component {
                         message: 'Please add a vendor name or delete this field.',
                       }],
                     })(
-                      <Select placeholder="Mareeah Koochenera" style={{ width: '224px', marginRight: 19 }}>
-                        <Option value="1">Mareeah Koochenera</Option>
+                      <Select placeholder={`${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`} style={{ width: '224px', marginRight: 19 }}>
+                        {
+                          this.props.engineers.map((engineer) => {
+                            return <Option value={`${engineer.firstname} ${engineer.lastname}`}>{`${engineer.firstname} ${engineer.lastname}`}</Option>
+                          })
+                        }
                       </Select>
                     )}
                     {keys.length > 1 ? (
@@ -212,7 +248,7 @@ class DynamicFieldSet extends Component {
               return (
                 <Col span={6} key={vendor.name}>
                   <div className={styles.title}>
-                    <H4>{vendor.name}</H4>
+                    <H4>{vendor.label}</H4>
                   </div>
                   {formItems}
                   <FormItem {...formItemLayoutWithOutLabel}>

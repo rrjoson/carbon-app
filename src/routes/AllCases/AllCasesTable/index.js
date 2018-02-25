@@ -30,7 +30,7 @@ function AllCasesTable(props) {
     dataIndex: 'casetitle',
   }, {
     title: 'Product',
-    dataIndex: 'productline',
+    dataIndex: 'productname',
   }, {
     title: 'Open',
     dataIndex: 'open',
@@ -43,26 +43,30 @@ function AllCasesTable(props) {
   }, {
     title: 'Actions',
     dataIndex: 'actions',
-    render: action => <Link to="/">{action}</Link>,
+    render: (text, record) => (
+      <div>
+        <Link to={`/cases/${record.glocalid}`}>{text[0]} </Link>
+        <Link to={`/cases/${record.glocalid}/edit`}>{text[1]}</Link>
+      </div>
+    ),
   }];
-
-  console.warn(props)
 
   const dataSource = props.data.map((item, index) => {
     return (
       {
         key: index,
+        glocalid: item.glocalid,
         vendorcaseid: item.vendorcaseid,
         customer: item.customer,
         status: 'overdue',
         assignedsystemsengineer: item.assignedsystemsengineer,
         severity: item.severity,
         casetitle: item.casetitle,
-        productline: item.productline,
+        productname: item.productname,
         open: '3 days ago',
         lastupdated: item.dateraised,
         dateraised: item.dateraised,
-        actions: 'View Edit',
+        actions: ['View', 'Edit']
       }
     );
   })

@@ -8,11 +8,6 @@ import styles from './styles.css';
 const FormItem = Form.Item;
 const { H4 } = Typography;
 
-const vendors = [
-  { name: 'Veritas', products: ['Veritas 1', 'Veritas 2', 'Veritas 3'] },
-  { name: 'Symantec', products: ['Symantec 1', 'Symantec 2'] },
-  { name: 'ASG', products: [] },
-];
 let uuid = 1;
 
 class DynamicFieldSet extends Component {
@@ -36,11 +31,22 @@ class DynamicFieldSet extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // this.props.form.validateFields((err, values) => {
-    //   if (!err) {
-    //     console.log('Received values of form: ', values);
-    //   }
-    // });
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        const data = Object.assign({}, values);
+
+
+
+
+
+        console.log('Received values of form: ', values);
+        console.log('Received data of form: ', data);
+
+
+
+        this.props.onSave(data);
+      }
+    });
   }
 
   render() {
@@ -63,6 +69,30 @@ class DynamicFieldSet extends Component {
       },
     };
 
+    const vendors = [];
+    console.warn(this.props.products, 'this.props.products')
+    this.props.products.map((product) => {
+      let found = false;
+      let vendorIndex = null;
+      for(let i = 0; i < vendors.length; i += 1) {
+        console.warn(this.props.products[i], vendors[i], 1111)
+        if (product.vendor === vendors[i]['name']) {
+          vendorIndex = i
+          found = true;
+          break;
+        }
+      }
+
+      if (found) {
+        vendors[vendorIndex].list.push({ name: product.productname });
+      } else {
+        vendors.push({
+          name: product.vendor,
+          list: [{ name: product.productname }]
+        });
+      }
+    });
+
     return (
       <Form className={styles.form} onSubmit={this.handleSubmit}>
         <Row>
@@ -70,20 +100,21 @@ class DynamicFieldSet extends Component {
             vendors.map((vendor) => {
               getFieldDecorator(
                 `keys-${vendor.name}`,
-                { initialValue: vendor.products },
+                { initialValue: vendor.list },
               );
 
               const keys = getFieldValue(`keys-${vendor.name}`);
 
               const formItems = keys.map((k, index) => {
+                console.warn(`${vendor.name}[${k.name ? k.name : index}]`, 2678902222)
                 return (
                   <FormItem
                     {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
                     required={false}
                     key={k}
                   >
-                    {getFieldDecorator(`names[${k}]`, {
-                      initialValue: k,
+                    {getFieldDecorator(`${vendor.name}[${k.name ? k.name : index}]`, {
+                      initialValue: k['name'],
                       validateTrigger: ['onChange', 'onBlur'],
                       rules: [{
                         required: true,

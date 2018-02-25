@@ -14,37 +14,43 @@ const Routers = ({ history, app }) => {
 
   const routes = [
     {
-      path: '/dashboard',
-      component: () => import('./routes/Dashboard'),
+      path: '/home',
+      component: () => import('./routes/Home'),
     }, {
       path: '/cases/all',
       component: () => import('./routes/AllCases'),
     }, {
-      path: '/cases',
+      path: '/cases/add',
       component: () => import('./routes/Cases'),
     }, {
-      path: '/cases/1',
+      path: '/cases/:caseId',
       component: () => import('./routes/ViewCase'),
     }, {
-      path: '/cases/1/activity/new',
+      path: '/cases/:caseId/activities/add',
       component: () => import('./routes/NewActivity'),
     }, {
       path: '/clients/',
       component: () => import('./routes/Clients'),
+    }, {
+      path: '/clients/add',
+      component: () => import('./routes/AddClient'),
     }, {
       path: '/products',
       component: () => import('./routes/Products'),
     }, {
       path: '/vendors',
       component: () => import('./routes/Vendors'),
-    },
+    }, {
+      path: '/licenses/add',
+      component: () => import('./routes/AddLicense'),
+    }
   ];
 
   return (
     <ConnectedRouter history={history}>
       <App>
         <Switch>
-          <Route exact path="/" render={() => (<Redirect to="/dashboard" />)} />
+          <Route exact path="/" render={() => (<Redirect to="/home" />)} />
           {
             routes.map(({ path, ...dynamics }, key) => (
               <Route

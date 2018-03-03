@@ -23,14 +23,21 @@ class ViewCase extends Component {
     dispatch({ type: 'cases/FETCH_CASE', payload: match.params.caseId });
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { dispatch } = this.props;
+
+    if (nextProps.selectedCase !== this.props.selectedCase) {
+      dispatch({ type: 'activities/FETCH_ACTIVITIES', payload: nextProps.selectedCase.glocalid });
+    }
+  }
+
   render() {
     const {
       selectedCase,
+      activities,
     } = this.props;
 
-    if (!selectedCase) return null;
-
-    console.warn(selectedCase)
+    if (!selectedCase || !activities) return null;
 
     return (
       <div className={styles.viewCase}>
@@ -49,7 +56,7 @@ class ViewCase extends Component {
           <SelectStatus />
         </Row>
         <Row>
-          <Activities />
+          <Activities data={activities} />
         </Row>
       </div>
     );
@@ -59,6 +66,7 @@ class ViewCase extends Component {
 function mapStateToProps(state) {
   return {
     selectedCase: state.cases.selected,
+    activities: state.activities.data,
   };
 }
 

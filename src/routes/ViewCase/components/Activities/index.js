@@ -8,12 +8,6 @@ import styles from './styles.css';
 const { H3 } = Typography;
 const Panel = Collapse.Panel;
 
-const list = [
-  { id: 1, content: 'HELLO WORLD 1' },
-  { id: 2, content: 'HELLO WORLD 2' },
-  { id: 3, content: 'HELLO WORLD 3' },
-];
-
 class Activities extends Component {
   constructor(props) {
     super(props)
@@ -24,25 +18,25 @@ class Activities extends Component {
   }
 
   handleClick = (item, index) => {
-    const selected = this.state.selected;
-    const isSelected = selected[index];
+    const { selected } = this.state;
 
-    if (isSelected)
+    if (selected[index]) {
       delete selected[index]
-    else
-    selected[index] = item;
-
-    console.warn(selected)
+    } else {
+      selected[index] = item;
+    }
 
     this.setState({ selected });
   }
 
   render() {
+    const { data } = this.props;
+
     return (
       <div>
         <H3>Activities</H3>
         {
-          list.map((item, index) => {
+          data.map((item, index) => {
             const activityStyle = classnames({
               [styles.activity]: true,
               [styles.open]: this.state.selected[index],
@@ -50,14 +44,13 @@ class Activities extends Component {
 
             return (
               <div className={activityStyle}>
-                {item.content}
-                {item.content}
-                {item.content}
-                {item.content}
-                {item.content}
-                {item.content}
-                {item.content}
-                {item.content}
+                {item.productname}
+                {item.productname}
+                {item.productname}
+                {item.productname}
+                {item.productname}
+                {item.productname}
+                {item.productname}
                 <p className={styles.button} onClick={() => this.handleClick(item, index)}>SEE MORE</p>
               </div>
             );

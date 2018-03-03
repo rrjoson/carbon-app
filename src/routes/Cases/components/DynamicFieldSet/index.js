@@ -83,9 +83,10 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={3}>
             <FormItem label="Glocal ID">
-              {getFieldDecorator('glocalId', {})(
+              {/* {getFieldDecorator('glocalId', {})(
                 <Input type="text" />
-              )}
+              )} */}
+              <Input type="text" />
             </FormItem>
           </Col>
 
@@ -151,9 +152,9 @@ class DynamicFieldSet extends Component {
             <FormItem label="Severity">
               {getFieldDecorator('severity', {})(
                 <Select placeholder="severity">
-                  <Option value="Level 1">Level 1</Option>
-                  <Option value="Level 2">Level 2</Option>
-                  <Option value="Level 3">Level 3</Option>
+                  <Option value={1}>1</Option>
+                  <Option value={2}>2</Option>
+                  <Option value={3}>3</Option>
                 </Select>
               )}
             </FormItem>

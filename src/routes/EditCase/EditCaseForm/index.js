@@ -173,9 +173,9 @@ class DynamicFieldSet extends Component {
                 initialValue: selectedCase.severity
               })(
                 <Select placeholder="severity">
-                  <Option value="Level 1">Level 1</Option>
-                  <Option value="Level 2">Level 2</Option>
-                  <Option value="Level 3">Level 3</Option>
+                  <Option value={1}>1</Option>
+                  <Option value={2}>2</Option>
+                  <Option value={3}>3</Option>
                 </Select>
               )}
             </FormItem>

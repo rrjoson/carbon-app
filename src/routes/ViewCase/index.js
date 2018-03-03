@@ -42,7 +42,7 @@ class ViewCase extends Component {
     return (
       <div className={styles.viewCase}>
         <Row>
-          <H2>SF VVR Uninstall activity</H2>
+          <H2>{selectedCase.casetitle}</H2>
           <Link to={`/cases/${selectedCase.glocalid}/activities/add`}><Button>Add Activity</Button></Link>
           <Button>Edit Case</Button>
         </Row>

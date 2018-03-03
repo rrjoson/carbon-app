@@ -132,8 +132,7 @@ class DynamicFieldSet extends Component {
           <Col span={5}>
             <FormItem label="Customer Name">
               {getFieldDecorator('contactCustomer', {
-                // initialValue: this.props.selectedCase.customername
-                initialValue: 'John Karlo'
+                initialValue: this.props.selectedCase.customername,
               })(
                 <Input disabled type="text" />
               )}

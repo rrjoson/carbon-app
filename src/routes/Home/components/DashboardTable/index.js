@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 
 import styles from './styles.css';
-import { Table, Link, Status } from './../../../../components';
+import { Table, Link, Status, Avatar } from './../../../../components';
 
 function HomeTable(props) {
   const columns = [{
@@ -21,7 +21,7 @@ function HomeTable(props) {
     dataIndex: 'assignedsystemsengineer',
     render: assignedsystemsengineer => {
       return assignedsystemsengineer.map((systemengineer) => {
-        return (<div>A</div>)
+        return (<Avatar>{systemengineer[0][0]}</Avatar>)
       });
     },
   }, {

@@ -4,7 +4,7 @@ import styles from './styles.css';
 
 import { H4 } from './../Typography';
 import Button from './../Button';
-import Badge from './../Badge';
+import Avatar from './../Avatar';
 
 const AntHeader = Layout.Header;
 
@@ -17,7 +17,7 @@ const Header = (props) => {
         </div>
         <div>
           <Button>New Case</Button>
-          <Badge>A</Badge>
+          <Avatar>A</Avatar>
         </div>
       </Row>
     </AntHeader>

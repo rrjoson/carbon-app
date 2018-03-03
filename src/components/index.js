@@ -7,6 +7,7 @@ import Badge from './Badge';
 import Status from './Status';
 import Filter from './Filter';
 import Table from './Table';
+import Avatar from './Avatar';
 
 export {
   Typography,
@@ -18,4 +19,5 @@ export {
   Status,
   Filter,
   Table,
+  Avatar,
 };

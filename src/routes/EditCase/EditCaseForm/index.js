@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Form, Input, Icon, Button, Row, Col, DatePicker, Select } from 'antd';
 import moment from 'moment';
 
-import { Link, Typography } from './../../../../components';
+import { Link, Typography } from './../../../components';
 
 import styles from './styles.css';
 
@@ -51,13 +51,17 @@ class DynamicFieldSet extends Component {
   }
 
   render() {
+    const { selectedCase } = this.props;
     const { getFieldDecorator, getFieldValue } = this.props.form;
+
 
     const vendors = [
       {
         label: 'Assigned System Engineer',
         name: 'assignedSystemsEngineer',
-        products: [[`${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`]]
+        products: selectedCase.assignedsystemsengineer.map((item) => {
+          return item
+        })
       },
     ];
 
@@ -83,15 +87,19 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={3}>
             <FormItem label="Glocal ID">
-              {getFieldDecorator('glocalId', {})(
-                <Input type="text" />
+              {getFieldDecorator('glocalId', {
+                initialValue: selectedCase.glocalid
+              })(
+                <Input type="text" disabled />
               )}
             </FormItem>
           </Col>
 
           <Col span={5}>
             <FormItem label="Vendor Case ID (Optional)">
-              {getFieldDecorator('vendorCaseId', {})(
+              {getFieldDecorator('vendorCaseId', {
+                initialValue: selectedCase.vendorcaseid
+              })(
                 <Input type="text" />
               )}
             </FormItem>
@@ -99,7 +107,9 @@ class DynamicFieldSet extends Component {
 
           <Col span={3}>
             <FormItem label="Date ID Created">
-              {getFieldDecorator('dateIdCreated')(
+              {getFieldDecorator('dateIdCreated', {
+                initialValue: moment(selectedCase.dateidcreated, "YYYY-MM-DD")
+              })(
                 <DatePicker format={'MM/DD/YYYY'} />
               )}
             </FormItem>
@@ -107,7 +117,9 @@ class DynamicFieldSet extends Component {
 
           <Col span={3}>
             <FormItem label="Date Raised by Client">
-              {getFieldDecorator('dateRaised')(
+              {getFieldDecorator('dateRaised', {
+                initialValue: moment(selectedCase.dateraised, "YYYY-MM-DD")
+              })(
                 <DatePicker format={'MM/DD/YYYY'} />
               )}
             </FormItem>
@@ -115,7 +127,9 @@ class DynamicFieldSet extends Component {
 
           <Col span={5}>
             <FormItem label="Assigned Account Manager (Hidden)">
-              {getFieldDecorator('assignedAccountManager', {})(
+              {getFieldDecorator('assignedAccountManager', {
+                initialValue: selectedCase.assignedaccountmanager
+              })(
                 <Input type="text" />
               )}
             </FormItem>
@@ -123,7 +137,9 @@ class DynamicFieldSet extends Component {
 
           <Col span={5}>
             <FormItem label="Case Status (Hidden)">
-              {getFieldDecorator('case_status', {})(
+              {getFieldDecorator('case_status', {
+                initialValue: selectedCase.case_status
+              })(
                 <Input type="text" />
               )}
             </FormItem>
@@ -133,7 +149,9 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={3}>
             <FormItem label="Case Title">
-              {getFieldDecorator('caseTitle', {})(
+              {getFieldDecorator('caseTitle', {
+                initialValue: selectedCase.casetitle
+              })(
                 <Input type="text" />
               )}
             </FormItem>
@@ -141,7 +159,9 @@ class DynamicFieldSet extends Component {
 
           <Col span={5}>
             <FormItem label="Description">
-              {getFieldDecorator('caseDescription', {})(
+              {getFieldDecorator('caseDescription', {
+                initialValue: selectedCase.casedescription
+              })(
                 <Input type="text" />
               )}
             </FormItem>
@@ -149,7 +169,9 @@ class DynamicFieldSet extends Component {
 
           <Col span={5}>
             <FormItem label="Severity">
-              {getFieldDecorator('severity', {})(
+              {getFieldDecorator('severity', {
+                initialValue: selectedCase.severity
+              })(
                 <Select placeholder="severity">
                   <Option value="Level 1">Level 1</Option>
                   <Option value="Level 2">Level 2</Option>
@@ -165,7 +187,9 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={5}>
             <FormItem label="Vendor">
-              {getFieldDecorator('vendor', {})(
+              {getFieldDecorator('vendor', {
+                initialValue: selectedCase.vendor
+              })(
                 <Select placeholder={this.props.vendors[0]['principal']}>
                   {
                     this.props.vendors.map((vendor) => {
@@ -179,7 +203,9 @@ class DynamicFieldSet extends Component {
 
           <Col span={5}>
            <FormItem label="Product Line">
-              {getFieldDecorator('productName', {})(
+              {getFieldDecorator('productName', {
+                initialValue: selectedCase.productname
+              })(
                 <Select placeholder={this.props.products[0]['productname']}>
                   {
                     this.props.products.map((product) => {
@@ -193,7 +219,9 @@ class DynamicFieldSet extends Component {
 
           <Col span={5}>
             <FormItem label="Client">
-              {getFieldDecorator('customer', {})(
+              {getFieldDecorator('customer', {
+                initialValue: selectedCase.customer
+              })(
                 <Select placeholder={this.props.clients[0]['accountname']}>
                   {
                     this.props.clients.map((client) => {
@@ -207,7 +235,9 @@ class DynamicFieldSet extends Component {
 
           <Col span={5}>
             <FormItem label="Customer Name">
-              {getFieldDecorator('customerName', {})(
+              {getFieldDecorator('customerName', {
+                initialValue: selectedCase.customername
+              })(
                 <Select placeholder={this.props.customers[0]['contact_person']}>
                   {
                     this.props.customers.map((customer) => {

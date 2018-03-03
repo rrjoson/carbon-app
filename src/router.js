@@ -26,6 +26,9 @@ const Routers = ({ history, app }) => {
       path: '/cases/:caseId',
       component: () => import('./routes/ViewCase'),
     }, {
+      path: '/cases/:caseId/edit',
+      component: () => import('./routes/EditCase'),
+    }, {
       path: '/cases/:caseId/activities/add',
       component: () => import('./routes/NewActivity'),
     }, {

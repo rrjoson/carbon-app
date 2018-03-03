@@ -2,6 +2,7 @@ import {
   fetchAllCases,
   fetchCase,
   createCase,
+  updateCase,
 } from './../../services/cases';
 
 export default {
@@ -41,6 +42,10 @@ export default {
 
     *CREATE_CASE({ payload }, { call, put }) {
       const data = yield call(createCase, payload);
+    },
+
+    *UPDATE_CASE({ payload }, { call, put }) {
+      const data = yield call(updateCase, payload);
     },
   },
 

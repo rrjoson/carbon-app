@@ -16,3 +16,9 @@ export function fetchCase(glocalId) {
 export function createCase(data) {
   return axios.post(CREATE_CASE, data);
 }
+
+export function updateCase(payload) {
+  console.warn(payload)
+  return axios.put(`${CREATE_CASE}/${payload.glocalId}`, payload);
+}
+

@@ -13,17 +13,17 @@ export default {
     setup({ dispatch, history }) {
       return history.listen(({ pathname, search }) => {
         if (pathname === '/cases/add') {
-          dispatch({ type: 'FETCH' });
+          dispatch({ type: 'FETCH_VENDORS' });
         }
         if (pathname === '/vendors') {
-          dispatch({ type: 'FETCH' });
+          dispatch({ type: 'FETCH_VENDORS' });
         }
       });
     },
   },
 
   effects: {
-    *FETCH({ payload }, { call, put }) {
+    *FETCH_VENDORS({ payload }, { call, put }) {
       const { data } = yield call(fetchVendors);
       yield put({ type: 'SAVE', payload: { data } });
     },

@@ -35,14 +35,8 @@ class DynamicFieldSet extends Component {
       if (!err) {
         const data = Object.assign({}, values);
 
-
-
-
-
         console.log('Received values of form: ', values);
         console.log('Received data of form: ', data);
-
-
 
         this.props.onSave(data);
       }
@@ -69,13 +63,14 @@ class DynamicFieldSet extends Component {
       },
     };
 
-    const vendors = [];
-    console.warn(this.props.products, 'this.props.products')
+    const vendors = this.props.vendors.map((vendor) => (
+      { name: vendor.principal, list: [] }
+    ));
+
     this.props.products.map((product) => {
       let found = false;
       let vendorIndex = null;
       for(let i = 0; i < vendors.length; i += 1) {
-        console.warn(this.props.products[i], vendors[i], 1111)
         if (product.vendor === vendors[i]['name']) {
           vendorIndex = i
           found = true;
@@ -83,14 +78,16 @@ class DynamicFieldSet extends Component {
         }
       }
 
-      if (found) {
-        vendors[vendorIndex].list.push({ name: product.productname });
-      } else {
-        vendors.push({
-          name: product.vendor,
-          list: [{ name: product.productname }]
-        });
-      }
+      vendors[vendorIndex].list.push({ name: product.productname });
+
+      // if (found) {
+
+      // } else {
+      //   vendors.push({
+      //     name: product.vendor,
+      //     list: [{ name: product.productname }]
+      //   });
+      // }
     });
 
     return (

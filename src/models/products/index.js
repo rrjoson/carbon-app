@@ -29,10 +29,19 @@ export default {
     },
 
     *SAVE_PRODUCTS({ payload }, { call, put, select, all }) {
-      const data = yield select(state => state.products.data);
+      const productsData = yield select(state => state.products.data);
+      const vendorsData = yield select(state => state.vendors.data);
       const original = {};
-      data.forEach((item) => {
-        original[item.vendor] = { [item.productname]: item.productname }
+
+      vendorsData.forEach((item) => {
+        original[item.principal] = {}
+      })
+
+      productsData.forEach((item) => {
+        original[item.vendor] = {
+          ...original[item.vendor],
+          [item.productname]: item.productname
+        }
       });
 
       const updated = payload;
@@ -43,7 +52,6 @@ export default {
           vendors.push(key);
         }
       );
-
 
       let numberOfVendors = vendors.length;
       let index = 0;
@@ -59,25 +67,6 @@ export default {
         index += 1;
         numberOfVendors -= 1;
       }
-
-      // Object.entries(original).forEach(
-      //   ([key, value]) => {
-      //     const list = getChanges(original[key], updated[key]);
-      //     const { toDelete, toCreate, toUpdate } = list;
-      //     // const hi = yield all(toCreate.map(item => call(createVendor, item.value)));
-      //     console.warn(list, key, 99999)
-      //   }
-      // );
-
-      // const list = getChanges(original, updated);
-      // const { toDelete, toCreate, toUpdate } = list;
-
-      // yield all(toCreate.map(item => call(createVendor, item.value)));
-      // yield all(toDelete.map(item => call(deleteVendor, item.value)));
-      // yield all(toUpdate.map(item => call(patchVendor, item.key, item.value)));
-
-      // const { data } = yield call(fetchVendors);
-      // yield put({ type: 'SAVE', payload: { data } });
     },
   },
 

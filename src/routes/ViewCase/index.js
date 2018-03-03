@@ -47,7 +47,7 @@ class ViewCase extends Component {
           <Link to={`/cases/${selectedCase.glocalid}/edit`}><Button>Edit Case</Button></Link>
         </Row>
         <Row>
-          Install new stuff
+          {selectedCase.casedescription}
         </Row>
         <Row>
           <DashboardTable data={[selectedCase]} />

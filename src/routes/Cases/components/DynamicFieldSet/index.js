@@ -83,10 +83,7 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={3}>
             <FormItem label="Glocal ID">
-              {/* {getFieldDecorator('glocalId', {})(
-                <Input type="text" />
-              )} */}
-              <Input type="text" />
+              <Input type="text" disabled value={this.props.nextId} />
             </FormItem>
           </Col>
 

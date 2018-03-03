@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'dva';
 
 import styles from './styles.css';
@@ -7,33 +7,61 @@ import DynamicFieldSet from './components/DynamicFieldSet';
 
 const { H2 } = Typography;
 
-function Cases(props) {
-  const {
-    dispatch,
-    vendors,
-    products,
-    clients,
-    customers,
-    engineers,
-  } = props;
+class Cases extends Component {
+  componentDidMount() {
+    const {
+      dispatch,
+      match,
+    } = this.props;
 
-  return (
-    <div>
-      <H2>New Case</H2>
-      <DynamicFieldSet
-        products={products}
-        customers={customers}
-        clients={clients}
-        vendors={vendors}
-        engineers={engineers}
-        onSave={(data) => dispatch({ type: 'cases/CREATE_CASE', payload: data })}
-      />
-    </div>
-  );
+    dispatch({ type: 'cases/FETCH_NEXT_ID' });
+    dispatch({ type: 'vendors/FETCH_VENDORS' });
+    dispatch({ type: 'products/FETCH_PRODUCTS' });
+    dispatch({ type: 'clients/FETCH_CLIENTS' });
+    dispatch({ type: 'customers/FETCH_CUSTOMERS' });
+    dispatch({ type: 'engineers/FETCH_ENGINEERS' });
+  }
+
+  render() {
+    const {
+      dispatch,
+      nextId,
+      vendors,
+      products,
+      clients,
+      customers,
+      engineers,
+    } = this.props;
+
+    if (
+      !nextId ||
+      !vendors.length ||
+      !products.length ||
+      !clients.length ||
+      !customers.length ||
+      !engineers.length
+    ) return null;
+
+    return (
+      <div>
+        <H2>New Case</H2>
+        <DynamicFieldSet
+          nextId={nextId}
+          products={products}
+          customers={customers}
+          clients={clients}
+          vendors={vendors}
+          engineers={engineers}
+          onSave={(data) => dispatch({ type: 'cases/CREATE_CASE', payload: data })}
+        />
+      </div>
+    );
+  }
 }
 
 function mapStateToProps(state) {
   return {
+    nextId: state.cases.nextId,
     vendors: state.vendors.data,
     clients: state.clients.data,
     products: state.products.data,
@@ -45,4 +73,3 @@ function mapStateToProps(state) {
 Cases.propTypes = {};
 
 export default connect(mapStateToProps)(Cases);
-

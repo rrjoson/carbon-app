@@ -3,6 +3,7 @@ import {
   fetchCase,
   createCase,
   updateCase,
+  fetchNextId,
 } from './../../services/cases';
 
 export default {
@@ -11,6 +12,7 @@ export default {
 
   state: {
     data: [],
+    nextId: null,
     selected: null,
   },
 
@@ -32,7 +34,13 @@ export default {
     *FETCH_CASE({ payload }, { call, put }) {
       const { data } = yield call(fetchCase, payload);
       yield put({ type: 'SAVE', payload: { selected: data[0] } });
-      console.warn('saved')
+
+    },
+
+    *FETCH_NEXT_ID({ payload }, { call, put }) {
+      const { data } = yield call(fetchNextId, payload);
+      yield put({ type: 'SAVE', payload: { nextId: data[0]['?column?'] } });
+
     },
 
     *FETCH_ALL_CASES({ payload }, { call, put }) {

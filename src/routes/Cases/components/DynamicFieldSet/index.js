@@ -112,14 +112,6 @@ class DynamicFieldSet extends Component {
           </Col>
 
           <Col span={5}>
-            <FormItem label="Assigned Account Manager (Hidden)">
-              {getFieldDecorator('assignedAccountManager', {})(
-                <Input type="text" />
-              )}
-            </FormItem>
-          </Col>
-
-          <Col span={5}>
             <FormItem label="Case Status (Hidden)">
               {getFieldDecorator('case_status', {})(
                 <Input type="text" />

@@ -70,6 +70,7 @@ function HomeTable(props) {
       <Table
         columns={columns}
         dataSource={dataSource}
+        pagination={false}
       />
     </div>
   );

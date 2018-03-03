@@ -1,4 +1,6 @@
 import React from 'react';
+import moment from 'moment';
+
 import styles from './styles.css';
 import { Table, Link, Status } from './../../../../components';
 
@@ -37,9 +39,11 @@ function HomeTable(props) {
   }, {
     title: 'Last Updated',
     dataIndex: 'lastupdated',
+    render: date => moment(date, "YYYY-MM-DD").format('DD/MM/YYYY')
   }, {
     title: 'Date Raised',
     dataIndex: 'dateraised',
+    render: date => moment(date, "YYYY-MM-DD").format('DD/MM/YYYY')
   }, {
     title: 'Actions',
     dataIndex: 'actions',

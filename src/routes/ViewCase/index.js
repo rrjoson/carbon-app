@@ -44,7 +44,7 @@ class ViewCase extends Component {
         <Row>
           <H2>{selectedCase.casetitle}</H2>
           <Link to={`/cases/${selectedCase.glocalid}/activities/add`}><Button>Add Activity</Button></Link>
-          <Button>Edit Case</Button>
+          <Link to={`/cases/${selectedCase.glocalid}/edit`}><Button>Edit Case</Button></Link>
         </Row>
         <Row>
           Install new stuff

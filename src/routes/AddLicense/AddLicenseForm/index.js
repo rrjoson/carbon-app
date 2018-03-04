@@ -61,6 +61,20 @@ class DynamicFieldSet extends Component {
 
         <Row gutter={12}>
           <Col span={3}>
+            <FormItem label="Client">
+              {getFieldDecorator('client', {})(
+                <Select placeholder={this.props.clients[0]['accountname']}>
+                  {
+                    this.props.clients.map((client) => {
+                      return <Option value={client.accountname}>{client.accountname}</Option>
+                    })
+                  }
+                </Select>
+              )}
+            </FormItem>
+          </Col>
+
+          <Col span={3}>
             <FormItem label="Vendor">
               {getFieldDecorator('vendor', {})(
                 <Select placeholder={this.props.vendors[0]['principal']}>
@@ -81,20 +95,6 @@ class DynamicFieldSet extends Component {
                   {
                     this.props.products.map((product) => {
                       return <Option value={product.productname}>{product.productname}</Option>
-                    })
-                  }
-                </Select>
-              )}
-            </FormItem>
-          </Col>
-
-          <Col span={3}>
-            <FormItem label="Client">
-              {getFieldDecorator('client', {})(
-                <Select placeholder={this.props.clients[0]['accountname']}>
-                  {
-                    this.props.clients.map((client) => {
-                      return <Option value={client.accountname}>{client.accountname}</Option>
                     })
                   }
                 </Select>

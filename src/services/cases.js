@@ -19,8 +19,33 @@ export function createCase(data) {
 }
 
 export function updateCase(payload) {
-  console.warn(payload)
   return axios.put(`${CREATE_CASE}/${payload.glocalId}`, payload);
+}
+
+export function updateCaseStatus(payload, selectedCase) {
+  const originalCase = {
+    vendorCaseId: selectedCase.vendorcaseid,
+    dateIdCreated: selectedCase.dateidcreated,
+    dateRaised: selectedCase.dateraised,
+    caseTitle: selectedCase.casetitle,
+    caseDescription: selectedCase.casedescription,
+    severity: selectedCase.severity,
+    vendor: selectedCase.vendor,
+    customer: selectedCase.customer,
+    productName: selectedCase.productname,
+    customerName: selectedCase.customername,
+    systemsEngineerLead: selectedCase.systemsengineerlead,
+    assignedAccountManager: selectedCase.assignedaccountmanager,
+    assignedSystemsEngineer: selectedCase.assignedsystemsengineer,
+    case_status: selectedCase.case_status,
+  };
+
+  const updatedCase = {
+    ...originalCase,
+    case_status: payload,
+  };
+
+  return axios.put(`${CREATE_CASE}/${selectedCase.glocalid}`, updatedCase);
 }
 
 export function fetchNextId() {

@@ -4,6 +4,7 @@ import {
   createCase,
   updateCase,
   fetchNextId,
+  updateCaseStatus,
 } from './../../services/cases';
 
 export default {
@@ -54,6 +55,11 @@ export default {
 
     *UPDATE_CASE({ payload }, { call, put }) {
       const data = yield call(updateCase, payload);
+    },
+
+    *UPDATE_STATUS({ payload }, { call, put, select }) {
+      const selectedCase = yield select(state => state.cases.selected);
+      const data = yield call(updateCaseStatus, payload, selectedCase);
     },
   },
 

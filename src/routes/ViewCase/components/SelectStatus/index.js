@@ -8,20 +8,21 @@ const { H3 } = Typography;
 const FormItem = Form.Item;
 
 class SelectStatus extends Component {
-  onSelectChange = (selectedRowKeys) => {
-    this.setState({ selectedRowKeys });
-  }
   render() {
-    const { getFieldDecorator } = this.props.form;
+    const { form, status, onSelectChange } = this.props;
+    const { getFieldDecorator } = form;
 
     return (
       <div>
         <Form onSubmit={this.handleSubmit}>
           <FormItem label="Status">
-            {getFieldDecorator('confirm', { initialValue: 'Pending (Client)' })(
-              <Select style={{ width: 200 }}>
-                <Option value="86">+86</Option>
-                <Option value="87">+87</Option>
+            {getFieldDecorator('confirm', {
+              initialValue: status
+            })(
+              <Select onChange={onSelectChange} style={{ width: 200 }}>
+                <Option value="Resolved">Resolved</Option>
+                <Option value="Ongoing">Ongoing</Option>
+                <Option value="Pending (Client)">Pending (Client)</Option>
               </Select>
             )}
           </FormItem>

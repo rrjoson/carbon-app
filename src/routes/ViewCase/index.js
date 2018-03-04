@@ -33,6 +33,7 @@ class ViewCase extends Component {
 
   render() {
     const {
+      dispatch,
       selectedCase,
       activities,
     } = this.props;
@@ -53,7 +54,10 @@ class ViewCase extends Component {
           <DashboardTable data={[selectedCase]} />
         </Row>
         <Row>
-          <SelectStatus />
+          <SelectStatus
+            status={selectedCase.case_status}
+            onSelectChange={(data) => dispatch({ type: 'cases/UPDATE_STATUS', payload: data })}
+          />
         </Row>
         <Row>
           <Activities data={activities} />

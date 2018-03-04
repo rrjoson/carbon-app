@@ -62,7 +62,7 @@ const Header = (props) => {
     if (path === '/products/edit') return 'New Case';
 
     if (path === '/clients/add') return 'New Case';
-    if (path === '/licenses') return 'New Case';
+    if (path === '/licenses/add') return 'New Case';
 
     return '';
   };

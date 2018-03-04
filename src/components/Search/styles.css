@@ -1,0 +1,7 @@
+.search :global .ant-input {
+  border: none;
+}
+
+.search :global .ant-input:focus {
+  box-shadow: none;
+}

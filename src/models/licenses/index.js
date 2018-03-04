@@ -21,7 +21,6 @@ export default {
   effects: {
     *ADD_LICENSE({ payload }, { call, put, select, all }) {
       const { data } = yield call(addLicense, payload);
-      console.warn(data)
     },
   },
 

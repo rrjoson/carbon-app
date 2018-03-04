@@ -38,10 +38,10 @@ const Routers = ({ history, app }) => {
       path: '/clients/add',
       component: () => import('./routes/AddClient'),
     }, {
-      path: '/products',
+      path: '/products/edit',
       component: () => import('./routes/Products'),
     }, {
-      path: '/vendors',
+      path: '/vendors/edit',
       component: () => import('./routes/Vendors'),
     }, {
       path: '/licenses/add',

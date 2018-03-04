@@ -15,7 +15,7 @@ export default {
         if (pathname === '/cases/add') {
           dispatch({ type: 'FETCH_VENDORS' });
         }
-        if (pathname === '/vendors') {
+        if (pathname === '/vendors/edit') {
           dispatch({ type: 'FETCH_VENDORS' });
         }
       });

@@ -7,6 +7,7 @@ import Status from './Status';
 import Filter from './Filter';
 import Table from './Table';
 import Avatar from './Avatar';
+import Search from './Search';
 
 export {
   Typography,
@@ -18,4 +19,5 @@ export {
   Filter,
   Table,
   Avatar,
+  Search,
 };

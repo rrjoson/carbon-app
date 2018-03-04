@@ -22,11 +22,11 @@ const menuItems = [{
   icon: 'idcard',
   label: 'Clients',
 }, {
-  url: '/products',
+  url: '/products/edit',
   icon: 'laptop',
   label: 'Products',
 }, {
-  url: '/vendors',
+  url: '/vendors/edit',
   icon: 'shop',
   label: 'Vendors',
 }, {
@@ -35,25 +35,33 @@ const menuItems = [{
   label: 'Licenses',
 }];
 
-const getHeaderTitle = (pathname) => {
-  if (pathname === '/home') return 'Home';
-  if (pathname === '/cases') return 'Cases';
-  if (pathname === '/clients') return 'Clients';
-  if (pathname === '/products') return 'Products';
-  if (pathname === '/vendors') return 'Vendors';
-  if (pathname === '/licenses') return 'Licenses';
-};
-
 function App({ location, children }) {
+  const selectedKeys = () => {
+    const keys = [];
+
+    menuItems.forEach((item) => {
+      if (location.pathname.includes(item.url.split('/')[1])) {
+        keys.push(item.label);
+      }
+    })
+
+    return keys;
+  }
+
+  console.warn('selectedKeys', selectedKeys())
+
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider className={styles.sider} width="70">
         <img src="http://antd-admin.zuiidea.com/logo.svg" className={styles.logo} role="presentation" alt="logo" />
-        <Menu theme="dark" defaultSelectedKeys={[location.pathname]}>
+        <Menu
+          theme="dark"
+          selectedKeys={selectedKeys()}
+        >
           {
             menuItems.map((item) => {
               return (
-                <Menu.Item key={item.url}>
+                <Menu.Item key={item.label}>
                   <Icon type={item.icon} />
                   <Link to={item.url || '#'}>{item.label}</Link>
                 </Menu.Item>
@@ -63,7 +71,10 @@ function App({ location, children }) {
         </Menu>
       </Sider>
       <Layout>
-        <Header title={getHeaderTitle(location.pathname)} type="default" />
+        <Header
+          pathname={location.pathname}
+          type="default"
+        />
         <Content style={{ background: '#fff', padding: '28px 23px' }}>
           {children}
         </Content>
@@ -74,6 +85,5 @@ function App({ location, children }) {
 
 App.propTypes = {
 };
-
 
 export default withRouter(connect(({ app, loading }) => ({ app, loading }))(App));

@@ -15,7 +15,7 @@ export default {
         if (pathname === '/cases/add') {
           dispatch({ type: 'FETCH_PRODUCTS' });
         }
-        if (pathname === '/products') {
+        if (pathname === '/products/edit') {
           dispatch({ type: 'FETCH_PRODUCTS' });
         }
       });

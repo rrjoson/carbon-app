@@ -44,7 +44,7 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={3}>
             <FormItem label="Date Start">
-              {getFieldDecorator('accountName', {})(
+              {getFieldDecorator('date_start', {})(
                 <DatePicker format={'MM/DD/YYYY'} />
               )}
             </FormItem>
@@ -52,7 +52,7 @@ class DynamicFieldSet extends Component {
 
           <Col span={3}>
             <FormItem label="Date End">
-              {getFieldDecorator('accountName', {})(
+              {getFieldDecorator('date_end', {})(
                 <DatePicker format={'MM/DD/YYYY'} />
               )}
             </FormItem>
@@ -62,9 +62,13 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={3}>
             <FormItem label="Vendor">
-              {getFieldDecorator('accountName', {})(
-                <Select placeholder={''}>
-                  <Option value={''}>TEST</Option>
+              {getFieldDecorator('vendor', {})(
+                <Select placeholder={this.props.vendors[0]['principal']}>
+                  {
+                    this.props.vendors.map((vendor) => {
+                      return <Option value={vendor.principal}>{vendor.principal}</Option>
+                    })
+                  }
                 </Select>
               )}
             </FormItem>
@@ -72,9 +76,13 @@ class DynamicFieldSet extends Component {
 
           <Col span={3}>
             <FormItem label="Product Name">
-              {getFieldDecorator('accountName', {})(
-                <Select placeholder={''}>
-                  <Option value={''}>TEST</Option>
+              {getFieldDecorator('productName', {})(
+                <Select placeholder={this.props.products[0]['productname']}>
+                  {
+                    this.props.products.map((product) => {
+                      return <Option value={product.productname}>{product.productname}</Option>
+                    })
+                  }
                 </Select>
               )}
             </FormItem>
@@ -82,9 +90,13 @@ class DynamicFieldSet extends Component {
 
           <Col span={3}>
             <FormItem label="Client">
-              {getFieldDecorator('accountName', {})(
-                <Select placeholder={''}>
-                  <Option value={''}>TEST</Option>
+              {getFieldDecorator('client', {})(
+                <Select placeholder={this.props.clients[0]['accountname']}>
+                  {
+                    this.props.clients.map((client) => {
+                      return <Option value={client.accountname}>{client.accountname}</Option>
+                    })
+                  }
                 </Select>
               )}
             </FormItem>
@@ -94,7 +106,7 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={24}>
             <FormItem label="Particulars">
-              {getFieldDecorator('activityPerformed', {})(
+              {getFieldDecorator('particulars', {})(
                 <Input.TextArea rows={4} />
               )}
             </FormItem>
@@ -110,9 +122,9 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={3}>
             <FormItem label="On-site">
-              {getFieldDecorator('accountName', {})(
+              {getFieldDecorator('on_site', {})(
                 <Select placeholder={''}>
-                  <Option value={''}>TEST</Option>
+                  <Option value={''}>8x5</Option>
                 </Select>
               )}
             </FormItem>
@@ -120,7 +132,7 @@ class DynamicFieldSet extends Component {
 
           <Col span={3}>
             <FormItem label="Date Start">
-              {getFieldDecorator('accountName', {})(
+              {getFieldDecorator('support_date_start', {})(
                 <DatePicker format={'MM/DD/YYYY'} />
               )}
             </FormItem>
@@ -128,7 +140,7 @@ class DynamicFieldSet extends Component {
 
           <Col span={3}>
             <FormItem label="Date End">
-              {getFieldDecorator('accountName', {})(
+              {getFieldDecorator('support_date_end', {})(
                 <DatePicker format={'MM/DD/YYYY'} />
               )}
             </FormItem>
@@ -142,7 +154,7 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={3}>
             <FormItem label="Number of Man-Days">
-              {getFieldDecorator('accountName', {})(
+              {getFieldDecorator('man_days', {})(
                 <Input />
               )}
             </FormItem>
@@ -150,7 +162,7 @@ class DynamicFieldSet extends Component {
 
           <Col span={3}>
             <FormItem label="Remaining Man-Days">
-              {getFieldDecorator('accountName', {})(
+              {getFieldDecorator('remaining_man_days', {})(
                 <Input />
               )}
             </FormItem>
@@ -162,7 +174,7 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={3}>
             <FormItem label="Quarterly HC">
-              {getFieldDecorator('accountName', {})(
+              {getFieldDecorator('quarterly_hc', {})(
                 <Select placeholder={''}>
                   <Option value={''}>8x5</Option>
                 </Select>
@@ -174,7 +186,7 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={24}>
             <FormItem label="Remarks">
-              {getFieldDecorator('activityPerformed', {})(
+              {getFieldDecorator('remarks', {})(
                 <Input.TextArea rows={4} />
               )}
             </FormItem>

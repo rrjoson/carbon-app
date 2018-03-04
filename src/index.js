@@ -26,6 +26,7 @@ app.model(require('./models/clients'));
 app.model(require('./models/customers'));
 app.model(require('./models/engineers'));
 app.model(require('./models/activities'));
+app.model(require('./models/licenses'));
 
 // 3. Router
 app.router(require('./router'));

@@ -7,8 +7,8 @@ import { Table, Link, Status, Avatar } from './../../../components';
 function AllCasesTable(props) {
   const columns = [{
     title: 'Glo-cal ID',
-    dataIndex: 'vendorcaseid',
-    render: vendorcaseid => <Link to="/">{vendorcaseid}</Link>,
+    dataIndex: 'glocalid',
+    render: glocalid => <Link to={`/cases/${glocalid}`}>{glocalid}</Link>,
   }, {
     title: 'Company',
     dataIndex: 'customer',
@@ -60,7 +60,6 @@ function AllCasesTable(props) {
       {
         key: index,
         glocalid: item.glocalid,
-        vendorcaseid: item.vendorcaseid,
         customer: item.customer,
         status: 'overdue',
         assignedsystemsengineer: item.assignedsystemsengineer,

@@ -5,8 +5,8 @@ import { Table, Link, Status } from './../../../../components';
 function HomeTable(props) {
   const columns = [{
     title: 'Glo-cal ID',
-    dataIndex: 'vendorcaseid',
-    render: vendorcaseid => <Link to="/">{vendorcaseid}</Link>,
+    dataIndex: 'glocalid',
+    render: glocalid => <Link to={`/cases/${glocalid}`}>{glocalid}</Link>,
   }, {
     title: 'Company',
     dataIndex: 'customer',
@@ -50,7 +50,7 @@ function HomeTable(props) {
     return (
       {
         key: index,
-        vendorcaseid: item.vendorcaseid,
+        glocalid: item.glocalid,
         customer: item.customer,
         status: 'overdue',
         assignedsystemsengineer: item.assignedsystemsengineer,

@@ -18,7 +18,7 @@ const menuItems = [{
   icon: 'database',
   label: 'Cases',
 }, {
-  url: '/clients',
+  url: '/clients/add',
   icon: 'idcard',
   label: 'Clients',
 }, {
@@ -30,7 +30,7 @@ const menuItems = [{
   icon: 'shop',
   label: 'Vendors',
 }, {
-  url: '/licenses',
+  url: '/licenses/add',
   icon: 'safety',
   label: 'Licenses',
 }];

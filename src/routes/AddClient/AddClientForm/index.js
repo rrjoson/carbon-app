@@ -13,7 +13,7 @@ const vendors = [
   {
     name: 'contact_details',
     items: [
-      { "Customer_Name": "Mareeah Koochenera", "Email": "marreah@gmail.com", "Contact_Number": "09178456789" }
+      { "Customer_Name": "", "Email": "", "Contact_Number": "" }
     ]
   }
 ];
@@ -35,7 +35,7 @@ class DynamicFieldSet extends Component {
     const keys = form.getFieldValue(`keys-${vendorName}`);
 
     console.warn(keys, 'keys')
-    const nextKeys = keys.concat({ "Customer_Name": "Mareeah Koochenera", "Email": "marreah@gmail.com", "Contact_Number": "09178456789" });
+    const nextKeys = keys.concat({ "Customer_Name": "", "Email": "", "Contact_Number": "" });
     console.warn(nextKeys, 'nextKeys')
 
     uuid += 1;

@@ -64,6 +64,7 @@ export default {
       let index = 0;
       while (numberOfVendors !== 0) {
         const vendor = vendors[index];
+
         const list = getChanges(original[vendor], updated[vendor]);
         const { toDelete, toCreate, toUpdate } = list;
 

@@ -4,7 +4,7 @@
 * @param {Object} original
 * @param {Object} updated
 */
-export function getChanges(original, updated) {
+export function getChanges(original, updated = {}) {
   const toCreate = [];
   const toDelete = [];
   const toUpdate = [];

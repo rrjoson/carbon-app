@@ -1,3 +1,5 @@
+import { notification } from 'antd';
+
 import {
   fetchProducts,
   addProduct,
@@ -5,7 +7,6 @@ import {
   patchProduct,
 } from './../../services/products';
 import { getChanges } from './../../utils/crud';
-import { notification } from 'antd';
 
 export default {
 

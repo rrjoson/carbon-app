@@ -1,4 +1,11 @@
-import { fetchVendors, createVendor, deleteVendor, patchVendor } from './../../services/vendors';
+import { notification } from 'antd';
+
+import {
+  fetchVendors,
+  createVendor,
+  deleteVendor,
+  patchVendor,
+} from './../../services/vendors';
 import { getChanges } from './../../utils/crud';
 
 export default {
@@ -44,6 +51,7 @@ export default {
 
       // const { data } = yield call(fetchVendors);
       // yield put({ type: 'SAVE', payload: { data } });
+      notification['success']({ message: 'Changes saved.', duration: 2 });
     },
   },
 

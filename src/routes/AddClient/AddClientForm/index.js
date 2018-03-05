@@ -181,7 +181,7 @@ class DynamicFieldSet extends Component {
                       </FormItem>
 
                     </Col>
-                    <Col span={4}>
+                    <Col span={4} className={styles.addClient__link}>
                       {keys.length > 1 ? (
                         <Link onClick={() => this.remove(vendor.name, k)} to="#">Delete</Link>
                       ) : null}

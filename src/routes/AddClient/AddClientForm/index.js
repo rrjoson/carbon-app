@@ -94,11 +94,16 @@ class DynamicFieldSet extends Component {
     };
 
     return (
-      <Form className={styles.form} onSubmit={this.handleSubmit}>
+      <Form className={styles.form} onSubmit={this.handleSubmit} hideRequiredMark>
         <Row gutter={12}>
           <Col span={3}>
             <FormItem label="Client">
-              {getFieldDecorator('accountName', {})(
+              {getFieldDecorator('accountName', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <Input type="text" />
               )}
             </FormItem>
@@ -114,10 +119,8 @@ class DynamicFieldSet extends Component {
               );
 
               const keys = getFieldValue(`keys-${vendor.name}`);
-              console.warn(keys)
 
               const formItems = keys.map((k, index) => {
-                console.warn(k)
                 return (
                   <Row gutter={12}>
                     <Col span={4}>
@@ -131,8 +134,7 @@ class DynamicFieldSet extends Component {
                           validateTrigger: ['onChange', 'onBlur'],
                           rules: [{
                             required: true,
-                            whitespace: true,
-                            message: 'Please add a vendor name or delete this field.',
+                            message: 'This is a required field',
                           }],
                         })(
                           <Input type="text" />
@@ -151,8 +153,7 @@ class DynamicFieldSet extends Component {
                           validateTrigger: ['onChange', 'onBlur'],
                           rules: [{
                             required: true,
-                            whitespace: true,
-                            message: 'Please add a vendor name or delete this field.',
+                            message: 'This is a required field',
                           }],
                         })(
                           <Input type="text" />
@@ -172,8 +173,7 @@ class DynamicFieldSet extends Component {
                           validateTrigger: ['onChange', 'onBlur'],
                           rules: [{
                             required: true,
-                            whitespace: true,
-                            message: 'Please add a vendor name or delete this field.',
+                            message: 'This is a required field',
                           }],
                         })(
                           <Input type="text" />
@@ -207,7 +207,12 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={12}>
             <FormItem label="Company Address">
-              {getFieldDecorator('company_address', {})(
+              {getFieldDecorator('company_address', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <Input.TextArea rows={4} />
               )}
             </FormItem>
@@ -219,7 +224,12 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={6}>
             <FormItem label="System Engineer Lead">
-              {getFieldDecorator('systemEngineerLead', {})(
+              {getFieldDecorator('systemEngineerLead', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <Select placeholder={`${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`}>
                   {
                     this.props.engineers.map((engineer) => {
@@ -233,7 +243,12 @@ class DynamicFieldSet extends Component {
 
           <Col span={6}>
             <FormItem label="Account Manager">
-              {getFieldDecorator('accountManager', {})(
+              {getFieldDecorator('accountManager', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <Select placeholder={`${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`}>
                   {
                     this.props.engineers.map((engineer) => {

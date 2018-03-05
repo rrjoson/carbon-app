@@ -83,7 +83,7 @@ class DynamicFieldSet extends Component {
     };
 
     return (
-      <Form className={styles.form} onSubmit={this.handleSubmit}>
+      <Form className={styles.form} onSubmit={this.handleSubmit} hideRequiredMark>
         <Row gutter={12}>
           <Col span={3}>
             <FormItem label="Glocal ID">
@@ -108,7 +108,11 @@ class DynamicFieldSet extends Component {
           <Col span={3}>
             <FormItem label="Date ID Created">
               {getFieldDecorator('dateIdCreated', {
-                initialValue: moment(selectedCase.dateidcreated, "YYYY-MM-DD")
+                initialValue: moment(selectedCase.dateidcreated, "YYYY-MM-DD"),
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
               })(
                 <DatePicker format={'MM/DD/YYYY'} />
               )}
@@ -118,7 +122,11 @@ class DynamicFieldSet extends Component {
           <Col span={3}>
             <FormItem label="Date Raised by Client">
               {getFieldDecorator('dateRaised', {
-                initialValue: moment(selectedCase.dateraised, "YYYY-MM-DD")
+                initialValue: moment(selectedCase.dateraised, "YYYY-MM-DD"),
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
               })(
                 <DatePicker format={'MM/DD/YYYY'} />
               )}
@@ -128,7 +136,7 @@ class DynamicFieldSet extends Component {
           <Col span={5} style={{ opacity: '0' }}>
             <FormItem label="Case Status (Hidden)">
               {getFieldDecorator('case_status', {
-                initialValue: selectedCase.case_status
+                initialValue: selectedCase.case_status,
               })(
                 <Input type="text" />
               )}
@@ -140,7 +148,11 @@ class DynamicFieldSet extends Component {
           <Col span={3}>
             <FormItem label="Case Title">
               {getFieldDecorator('caseTitle', {
-                initialValue: selectedCase.casetitle
+                initialValue: selectedCase.casetitle,
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
               })(
                 <Input type="text" />
               )}
@@ -150,7 +162,11 @@ class DynamicFieldSet extends Component {
           <Col span={5}>
             <FormItem label="Description">
               {getFieldDecorator('caseDescription', {
-                initialValue: selectedCase.casedescription
+                initialValue: selectedCase.casedescription,
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
               })(
                 <Input type="text" />
               )}
@@ -160,7 +176,11 @@ class DynamicFieldSet extends Component {
           <Col span={5}>
             <FormItem label="Severity">
               {getFieldDecorator('severity', {
-                initialValue: selectedCase.severity
+                initialValue: selectedCase.severity,
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
               })(
                 <Select placeholder="severity">
                   <Option value={1}>1</Option>
@@ -178,7 +198,11 @@ class DynamicFieldSet extends Component {
           <Col span={5}>
             <FormItem label="Vendor">
               {getFieldDecorator('vendor', {
-                initialValue: selectedCase.vendor
+                initialValue: selectedCase.vendor,
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
               })(
                 <Select placeholder={this.props.vendors[0]['principal']}>
                   {
@@ -194,7 +218,11 @@ class DynamicFieldSet extends Component {
           <Col span={5}>
            <FormItem label="Product Line">
               {getFieldDecorator('productName', {
-                initialValue: selectedCase.productname
+                initialValue: selectedCase.productname,
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
               })(
                 <Select placeholder={this.props.products[0]['productname']}>
                   {
@@ -210,7 +238,11 @@ class DynamicFieldSet extends Component {
           <Col span={5}>
             <FormItem label="Client">
               {getFieldDecorator('customer', {
-                initialValue: selectedCase.customer
+                initialValue: selectedCase.customer,
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
               })(
                 <Select placeholder={this.props.clients[0]['accountname']}>
                   {
@@ -226,7 +258,11 @@ class DynamicFieldSet extends Component {
           <Col span={5}>
             <FormItem label="Customer Name">
               {getFieldDecorator('customerName', {
-                initialValue: selectedCase.customername
+                initialValue: selectedCase.customername,
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
               })(
                 <Select placeholder={this.props.customers[0]['contact_person']}>
                   {

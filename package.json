@@ -16,6 +16,7 @@
     "classnames": "^2.2.5",
     "dva": "^2.1.0",
     "dva-loading": "^1.0.4",
+    "nprogress": "^0.2.0",
     "path-to-regexp": "^2.1.0",
     "query-string": "^5.1.0",
     "react": "^16.2.0",

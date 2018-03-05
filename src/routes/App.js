@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
+import NProgress from 'nprogress';
 import { Layout, Menu, Icon } from 'antd';
 import { Link, withRouter } from 'dva/router';
 
@@ -35,7 +36,26 @@ const menuItems = [{
   label: 'Licenses',
 }];
 
-function App({ location, children }) {
+let lastHref;
+
+function App({ location, children, loading }) {
+  const { href } = window.location;
+
+  window.NProgress = NProgress
+
+  console.warn(NProgress);
+  console.warn(loading);
+  console.warn(lastHref);
+
+  if (lastHref !== href) {
+    NProgress.start();
+
+    if (!loading.global) {
+      NProgress.done();
+      lastHref = href;
+    }
+  }
+
   const selectedKeys = () => {
     const keys = [];
 
@@ -47,8 +67,6 @@ function App({ location, children }) {
 
     return keys;
   }
-
-  console.warn('selectedKeys', selectedKeys())
 
   return (
     <Layout style={{ minHeight: '100vh' }}>

@@ -1,0 +1,134 @@
+.activity {
+  position: relative;
+  overflow: hidden;
+  max-height: 120px;
+  width: 610px;
+  box-shadow: 0 2px 4px 0 rgba(203, 203, 203, 0.5);
+  margin-bottom: 25px;
+  transition: all ease .1s;
+}
+
+.activityOpen {
+  max-height: 1000px;
+  transition: all ease 1s;
+}
+
+.activity__body {
+  padding: 29px 23px 23px;
+}
+
+.activity__section {
+  display: flex;
+}
+
+.activity__section:nth-child(1) {
+  margin-bottom: 9px;
+}
+
+.activity__section:nth-child(2) {
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.activity__sectionItem {
+  display: inline-flex;
+
+  border-right: solid 1px #f1f1f1;
+  height: 48px;
+}
+
+.activity__sectionItem:nth-child(1) {
+  width: 98px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.activity__sectionItem:nth-child(2) {
+  min-width: 239px;
+  padding-left: 28px;
+  padding-right: 26px;
+  flex-direction: column;
+}
+
+.activity__sectionItem:nth-child(3) {
+  width: 98px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.activity__sectionItem:nth-child(4) {
+  width: 98px;
+  border-right: 0;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.activity__avatar {
+  margin-right: 9px;
+}
+
+.activity__engineer {
+  font-size: 14px;
+  line-height: 1.57;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.activity__purpose {
+	font-size: 16px;
+	font-weight: 600;
+	color: #6f7c87;
+}
+
+.activity__time {
+  font-size: 14px;
+  line-height: 1.57;
+  color: rgba(65, 65, 65, 0.65);
+}
+
+.activity__serviceNumber {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1890ff;
+  margin-bottom: 5px;
+}
+
+.activity__type {
+  padding: 0 9px;
+  border-radius: 4px;
+  background-color: #e6f7ff;
+  border: solid 1px #91d5ff;
+  font-size: 12px;
+  line-height: 1.67;
+  color: #1890ff;
+}
+
+.activity__sectionTitle {
+  margin-bottom: 15px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6e6e6e;
+}
+
+.activity__sectionContent {
+  margin-bottom: 15px;
+}
+
+.activity__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  height: 32px;
+  width: 100%;
+  bottom: 0;
+  position: absolute;
+  margin-bottom: 0;
+  border-top: solid 1px #efefef;
+}
+
+.activity__buttonText {
+  font-size: 14px;
+  line-height: 1.57;
+  color: #66aaf6;
+}

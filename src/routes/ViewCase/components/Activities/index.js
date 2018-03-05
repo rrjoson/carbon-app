@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { Collapse } from 'antd';
-import { Typography, Link, Status } from './../../../../components';
-import classnames from 'classnames';
+import { Typography, Link, Status, Activity } from './../../../../components';
 
 import styles from './styles.css';
 
 const { H3 } = Typography;
-const Panel = Collapse.Panel;
 
 class Activities extends Component {
   constructor(props) {
@@ -37,22 +35,12 @@ class Activities extends Component {
         <H3>Activities</H3>
         {
           data.map((item, index) => {
-            const activityStyle = classnames({
-              [styles.activity]: true,
-              [styles.open]: this.state.selected[index],
-            });
-
             return (
-              <div className={activityStyle}>
-                {item.productname}
-                {item.productname}
-                {item.productname}
-                {item.productname}
-                {item.productname}
-                {item.productname}
-                {item.productname}
-                <p className={styles.button} onClick={() => this.handleClick(item, index)}>SEE MORE</p>
-              </div>
+              <Activity
+                item={item}
+                onClick={() => this.handleClick(item, index)}
+                open={this.state.selected[index]}
+              />
             );
           })
         }

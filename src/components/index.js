@@ -8,6 +8,7 @@ import Filter from './Filter';
 import Table from './Table';
 import Avatar from './Avatar';
 import Search from './Search';
+import Activity from './Activity';
 
 export {
   Typography,
@@ -20,4 +21,5 @@ export {
   Table,
   Avatar,
   Search,
+  Activity,
 };

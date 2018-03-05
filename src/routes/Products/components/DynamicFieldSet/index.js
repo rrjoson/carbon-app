@@ -136,7 +136,7 @@ class DynamicFieldSet extends Component {
                   {formItems}
                   <FormItem {...formItemLayoutWithOutLabel}>
                     <Button onClick={() => this.add(vendor.name)} style={{ width: '132px' }}>
-                      <Icon type="plus" /> Add Product
+                      <Icon type="plus" /> Add Vendor
                     </Button>
                   </FormItem>
                 </Col>

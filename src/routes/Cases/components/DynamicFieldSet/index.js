@@ -34,19 +34,19 @@ class DynamicFieldSet extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    this.props.form.validateFields((err, values) => {
+    this.props.form.validateFieldsAndScroll((err, values) => {
       const data = Object.assign({}, values);
 
       if (!err) {
         console.log('Received values of form: ', values);
-      }
 
-      delete data['keys-assignedSystemsEngineer']
-      data['assignedSystemsEngineer'] = values.assignedSystemsEngineer.map((item) => (
-        [item]
-      ))
-      console.log('Received values of form: ', data);
-      this.props.onSave(data)
+        delete data['keys-assignedSystemsEngineer']
+        data['assignedSystemsEngineer'] = values.assignedSystemsEngineer.map((item) => (
+          [item]
+        ))
+        console.log('Received values of form: ', data);
+        this.props.onSave(data)
+      }
     });
   }
 
@@ -79,7 +79,7 @@ class DynamicFieldSet extends Component {
     };
 
     return (
-      <Form className={styles.form} onSubmit={this.handleSubmit}>
+      <Form className={styles.form} onSubmit={this.handleSubmit} hideRequiredMark>
         <Row gutter={12}>
           <Col span={3}>
             <FormItem label="Glocal ID">
@@ -97,7 +97,12 @@ class DynamicFieldSet extends Component {
 
           <Col span={3}>
             <FormItem label="Date ID Created">
-              {getFieldDecorator('dateIdCreated')(
+              {getFieldDecorator('dateIdCreated', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <DatePicker format={'MM/DD/YYYY'} />
               )}
             </FormItem>
@@ -105,7 +110,12 @@ class DynamicFieldSet extends Component {
 
           <Col span={3}>
             <FormItem label="Date Raised by Client">
-              {getFieldDecorator('dateRaised')(
+              {getFieldDecorator('dateRaised', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <DatePicker format={'MM/DD/YYYY'} />
               )}
             </FormItem>
@@ -113,7 +123,9 @@ class DynamicFieldSet extends Component {
 
           <Col span={5}>
             <FormItem label="Case Status (Hidden)">
-              {getFieldDecorator('case_status', {})(
+              {getFieldDecorator('case_status', {
+                initialValue: 'Pending (Client)',
+              })(
                 <Input type="text" />
               )}
             </FormItem>
@@ -123,7 +135,12 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={3}>
             <FormItem label="Case Title">
-              {getFieldDecorator('caseTitle', {})(
+              {getFieldDecorator('caseTitle', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <Input type="text" />
               )}
             </FormItem>
@@ -131,7 +148,12 @@ class DynamicFieldSet extends Component {
 
           <Col span={5}>
             <FormItem label="Description">
-              {getFieldDecorator('caseDescription', {})(
+              {getFieldDecorator('caseDescription', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <Input type="text" />
               )}
             </FormItem>
@@ -139,7 +161,12 @@ class DynamicFieldSet extends Component {
 
           <Col span={5}>
             <FormItem label="Severity">
-              {getFieldDecorator('severity', {})(
+              {getFieldDecorator('severity', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <Select placeholder="severity">
                   <Option value={1}>1</Option>
                   <Option value={2}>2</Option>
@@ -155,7 +182,12 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={5}>
             <FormItem label="Vendor">
-              {getFieldDecorator('vendor', {})(
+              {getFieldDecorator('vendor', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <Select placeholder={this.props.vendors[0]['principal']}>
                   {
                     this.props.vendors.map((vendor) => {
@@ -169,7 +201,12 @@ class DynamicFieldSet extends Component {
 
           <Col span={5}>
            <FormItem label="Product Line">
-              {getFieldDecorator('productName', {})(
+              {getFieldDecorator('productName', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <Select placeholder={this.props.products[0]['productname']}>
                   {
                     this.props.products.map((product) => {
@@ -183,7 +220,12 @@ class DynamicFieldSet extends Component {
 
           <Col span={5}>
             <FormItem label="Client">
-              {getFieldDecorator('customer', {})(
+              {getFieldDecorator('customer', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <Select placeholder={this.props.clients[0]['accountname']}>
                   {
                     this.props.clients.map((client) => {
@@ -197,7 +239,12 @@ class DynamicFieldSet extends Component {
 
           <Col span={5}>
             <FormItem label="Customer Name">
-              {getFieldDecorator('customerName', {})(
+              {getFieldDecorator('customerName', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <Select placeholder={this.props.customers[0]['contact_person']}>
                   {
                     this.props.customers.map((customer) => {

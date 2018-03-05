@@ -28,7 +28,7 @@ function Vendors(props) {
 }
 
 function mapStateToProps(state) {
-  console.warn(state.loading.effects)
+
   return {
     loading: state.loading.effects['vendors/SAVE_VENDORS'],
     vendors: state.vendors.data,

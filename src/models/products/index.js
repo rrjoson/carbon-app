@@ -1,5 +1,11 @@
-import { fetchProducts, addProduct, deleteProduct, patchProduct } from './../../services/products';
+import {
+  fetchProducts,
+  addProduct,
+  deleteProduct,
+  patchProduct,
+} from './../../services/products';
 import { getChanges } from './../../utils/crud';
+import { notification } from 'antd';
 
 export default {
 
@@ -67,6 +73,8 @@ export default {
         index += 1;
         numberOfVendors -= 1;
       }
+
+      notification['success']({ message: 'Changes saved.', duration: 2 });
     },
   },
 

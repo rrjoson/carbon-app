@@ -20,6 +20,7 @@ class Products extends Component {
   render() {
     const {
       dispatch,
+      loading,
       products,
       vendors,
     } = this.props;
@@ -27,9 +28,10 @@ class Products extends Component {
     if (!products.length || !vendors.length) return null;
 
     return (
-      <div className={styles.vendors}>
+      <div className={styles.products}>
         <H2>Products</H2>
         <DynamicFieldSet
+          loading={loading}
           onSave={(data) => dispatch({ type: 'products/SAVE_PRODUCTS', payload: data })}
           products={products}
           vendors={vendors}
@@ -41,6 +43,7 @@ class Products extends Component {
 
 function mapStateToProps(state) {
   return {
+    loading: state.loading.effects['products/SAVE_PRODUCTS'],
     products: state.products.data,
     vendors: state.vendors.data,
   };

@@ -1,3 +1,5 @@
+import { routerRedux } from 'dva/router';
+
 import {
   fetchAllCases,
   fetchCase,
@@ -6,6 +8,7 @@ import {
   fetchNextId,
   updateCaseStatus,
 } from './../../services/cases';
+
 
 export default {
 
@@ -51,6 +54,7 @@ export default {
 
     *CREATE_CASE({ payload }, { call, put }) {
       const data = yield call(createCase, payload);
+      yield put(routerRedux.push('/cases/all'));
     },
 
     *UPDATE_CASE({ payload }, { call, put }) {

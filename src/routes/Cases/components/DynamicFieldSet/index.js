@@ -318,11 +318,13 @@ class DynamicFieldSet extends Component {
         </Row>
         <div className={styles.divider} />
         <FormItem {...formItemLayoutWithOutLabel}>
-          <Button type="primary" style={{ marginRight: 8 }} htmlType="submit">
-            <Icon type="save" />
+          <Button loading={this.props.loading} type="primary" style={{ marginRight: 8 }} htmlType="submit">
+            {!this.props.loading ? <Icon type="save" /> : null}
             Save
           </Button>
-          <Button>Cancel</Button>
+          <Link to="/cases/all">
+            <Button>Cancel</Button>
+          </Link>
         </FormItem>
       </Form>
     );

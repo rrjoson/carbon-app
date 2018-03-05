@@ -25,6 +25,7 @@ class Cases extends Component {
   render() {
     const {
       dispatch,
+      loading,
       nextId,
       vendors,
       products,
@@ -46,6 +47,7 @@ class Cases extends Component {
       <div>
         <H2>New Case</H2>
         <DynamicFieldSet
+          loading={loading}
           nextId={nextId}
           products={products}
           customers={customers}
@@ -61,6 +63,7 @@ class Cases extends Component {
 
 function mapStateToProps(state) {
   return {
+    loading: state.loading.effects['cases/CREATE_CASE'],
     nextId: state.cases.nextId,
     vendors: state.vendors.data,
     clients: state.clients.data,

@@ -8,3 +8,7 @@
   align-items: center;
   color: white;
 }
+
+.avatar:not(:first-child) {
+  margin-left: 5px;
+}

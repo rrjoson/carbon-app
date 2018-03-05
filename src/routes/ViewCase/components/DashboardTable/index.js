@@ -1,6 +1,8 @@
 import React from 'react';
+import moment from 'moment';
+
 import styles from './styles.css';
-import { Table, Link, Status } from './../../../../components';
+import { Table, Link, Status, Avatar } from './../../../../components';
 
 function HomeTable(props) {
   const columns = [{
@@ -19,15 +21,12 @@ function HomeTable(props) {
     dataIndex: 'assignedsystemsengineer',
     render: assignedsystemsengineer => {
       return assignedsystemsengineer.map((systemengineer) => {
-        return (<div>A</div>)
+        return (<Avatar>{systemengineer[0][0]}</Avatar>)
       });
     },
   }, {
     title: 'Severity',
     dataIndex: 'severity',
-  }, {
-    title: 'Case Title',
-    dataIndex: 'casetitle',
   }, {
     title: 'Product',
     dataIndex: 'productname',
@@ -35,15 +34,13 @@ function HomeTable(props) {
     title: 'Open',
     dataIndex: 'open',
   }, {
-    title: 'Last Updated',
-    dataIndex: 'lastupdated',
-  }, {
     title: 'Date Raised',
     dataIndex: 'dateraised',
+    render: date => moment(date, "YYYY-MM-DD").format('DD/MM/YYYY')
   }, {
-    title: 'Actions',
-    dataIndex: 'actions',
-    render: action => <Link to="/">{action}</Link>,
+    title: 'Assigned AM',
+    dataIndex: 'assignedaccountmanager',
+    render: assignedaccountmanager => (<Avatar>{assignedaccountmanager[0]}</Avatar>),
   }];
 
   const dataSource = props.data.map((item, index) => {
@@ -55,12 +52,10 @@ function HomeTable(props) {
         status: 'overdue',
         assignedsystemsengineer: item.assignedsystemsengineer,
         severity: item.severity,
-        casetitle: item.casetitle,
         productname: item.productname,
         open: '3 days ago',
-        lastupdated: item.dateraised,
         dateraised: item.dateraised,
-        actions: 'View Edit',
+        assignedaccountmanager: item.assignedaccountmanager,
       }
     );
   })

@@ -16,18 +16,34 @@ class DynamicFieldSet extends Component {
 
   remove = (vendorName, k) => {
     const { form } = this.props;
-    const keys = form.getFieldValue(vendorName);
+    console.warn(vendorName)
+    const keys = form.getFieldValue(`keys-${vendorName}`);
+    const nextKeys = [];
 
+    console.warn(222, keys)
     if (keys.length === 1) return;
-    form.setFieldsValue({ [`keys-${vendorName}`]: keys.filter(key => key !== k) });
+    keys.forEach((key) => {
+      console.warn(333, key, k)
+      if (key.id !== k.id) {
+        nextKeys.push(key);
+      }
+    });
+    form.setFieldsValue({ [`keys-${vendorName}`]: nextKeys });
   }
 
   add = (vendorName) => {
     const { form } = this.props;
     const keys = form.getFieldValue(`keys-${vendorName}`);
 
-    keys.push([`${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`]);
+    console.warn(keys)
+
+    // keys.push([`${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`]);
+    keys.push({
+      id: uuid,
+      name: `${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`,
+    });
     uuid += 1;
+    console.warn(keys)
     form.setFieldsValue({ [`keys-${vendorName}`]: keys });
   }
 
@@ -57,7 +73,9 @@ class DynamicFieldSet extends Component {
       {
         label: 'Assigned System Engineer',
         name: 'assignedSystemsEngineer',
-        products: [[`${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`]]
+        products: [
+          { name: `${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`, id: 0 }
+        ]
       },
     ];
 
@@ -268,16 +286,17 @@ class DynamicFieldSet extends Component {
               );
 
               const keys = getFieldValue(`keys-${vendor.name}`);
+              console.warn(keys, 8888)
 
               const formItems = keys.map((k, index) => {
                 return (
                   <FormItem
                     {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
                     required={false}
-                    key={k}
+                    key={k.id}
                   >
                     {getFieldDecorator(`${vendor.name}[${index}]`, {
-                      initialValue: k[0],
+                      initialValue: k.name,
                       validateTrigger: ['onChange', 'onBlur'],
                       rules: [{
                         required: true,

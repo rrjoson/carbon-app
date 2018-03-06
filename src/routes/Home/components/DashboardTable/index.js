@@ -6,7 +6,7 @@ import { Table, Link, Status, Avatar } from './../../../../components';
 
 function HomeTable(props) {
   const columns = [{
-    title: 'Glo-cal ID',
+    title: 'ID',
     dataIndex: 'glocalid',
     render: glocalid => <Link to={`/cases/${glocalid}`}>{glocalid}</Link>,
   }, {
@@ -16,14 +16,14 @@ function HomeTable(props) {
     title: 'Status',
     dataIndex: 'status',
     render: status => <Status type={status} />,
-  }, {
-    title: 'Assigned SE',
-    dataIndex: 'assignedsystemsengineer',
-    render: assignedsystemsengineer => {
-      return assignedsystemsengineer.map((systemengineer) => {
-        return (<Avatar>{systemengineer[0][0]}</Avatar>)
-      });
-    },
+  // }, {
+  //   title: 'Assigned SE',
+  //   dataIndex: 'assignedsystemsengineer',
+  //   render: assignedsystemsengineer => {
+  //     return assignedsystemsengineer.map((systemengineer) => {
+  //       return (<Avatar>{systemengineer[0][0]}</Avatar>)
+  //     });
+  //   },
   }, {
     title: 'Severity',
     dataIndex: 'severity',
@@ -40,10 +40,10 @@ function HomeTable(props) {
     title: 'Last Updated',
     dataIndex: 'lastupdated',
     render: date => moment(date, "YYYY-MM-DD").format('DD/MM/YYYY')
-  }, {
-    title: 'Date Raised',
-    dataIndex: 'dateraised',
-    render: date => moment(date, "YYYY-MM-DD").format('DD/MM/YYYY')
+  // }, {
+  //   title: 'Date Raised',
+  //   dataIndex: 'dateraised',
+  //   render: date => moment(date, "YYYY-MM-DD").format('DD/MM/YYYY')
   }, {
     title: 'Actions',
     dataIndex: 'actions',

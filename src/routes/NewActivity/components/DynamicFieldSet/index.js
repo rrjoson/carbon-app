@@ -95,10 +95,10 @@ class DynamicFieldSet extends Component {
             <FormItem label="Time In">
               {getFieldDecorator('timeIn')(
                 <DatePicker
-                  showTime={{use12Hours: true}}
                   style={{ width: '270px' }}
+                  showTime={{use12Hours: true, format: 'HH:mm'}}
                   placeholder="Select date and time"
-                  format="MM-DD-YYYY HH:mm:ss"
+                  format="MM-DD-YYYY LT"
                 />
               )}
             </FormItem>
@@ -108,10 +108,10 @@ class DynamicFieldSet extends Component {
             <FormItem label="Time Out">
               {getFieldDecorator('timeOuts')(
                 <DatePicker
-                  showTime={{use12Hours: true}}
                   style={{ width: '270px' }}
+                  showTime={{use12Hours: true, format: 'HH:mm'}}
                   placeholder="Select date and time"
-                  format="MM-DD-YYYY HH:mm:ss"
+                  format="MM-DD-YYYY LT"
                 />
               )}
             </FormItem>

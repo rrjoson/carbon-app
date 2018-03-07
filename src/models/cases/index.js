@@ -59,6 +59,7 @@ export default {
 
     *UPDATE_CASE({ payload }, { call, put }) {
       const data = yield call(updateCase, payload);
+      yield put(routerRedux.push('/cases/all'));
     },
 
     *UPDATE_STATUS({ payload }, { call, put, select }) {

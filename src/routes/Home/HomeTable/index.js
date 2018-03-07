@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 
 import styles from './styles.css';
-import { Table, Link, Status, Avatar } from './../../../../components';
+import { Table, Link, Status, Avatar } from './../../../components';
 
 function HomeTable(props) {
   const columns = [{

@@ -91,18 +91,28 @@ class DynamicFieldSet extends Component {
             </FormItem>
           </Col>
 
-          <Col span={3}>
+          <Col span={5}>
             <FormItem label="Time In">
               {getFieldDecorator('timeIn')(
-                <DatePicker format={'MM/DD/YYYY'} />
+                <DatePicker
+                  showTime={{use12Hours: true}}
+                  style={{ width: '270px' }}
+                  placeholder="Select date and time"
+                  format="MM-DD-YYYY HH:mm:ss"
+                />
               )}
             </FormItem>
           </Col>
 
-          <Col span={3}>
+          <Col span={5}>
             <FormItem label="Time Out">
               {getFieldDecorator('timeOuts')(
-                <DatePicker format={'MM/DD/YYYY'} />
+                <DatePicker
+                  showTime={{use12Hours: true}}
+                  style={{ width: '270px' }}
+                  placeholder="Select date and time"
+                  format="MM-DD-YYYY HH:mm:ss"
+                />
               )}
             </FormItem>
           </Col>

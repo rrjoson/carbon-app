@@ -61,7 +61,7 @@ function HomeTable(props) {
         key: index,
         glocalid: item.glocalid,
         customer: item.customer,
-        status: 'overdue',
+        status: item.case_status,
         assignedsystemsengineer: item.assignedsystemsengineer,
         severity: item.severity,
         casetitle: item.casetitle,

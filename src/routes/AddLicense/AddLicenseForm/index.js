@@ -40,11 +40,16 @@ class DynamicFieldSet extends Component {
     };
 
     return (
-      <Form className={styles.form} onSubmit={this.handleSubmit}>
+      <Form className={styles.form} onSubmit={this.handleSubmit} hideRequiredMark>
         <Row gutter={12}>
           <Col span={3}>
             <FormItem label="Date Start">
-              {getFieldDecorator('date_start', {})(
+              {getFieldDecorator('date_start', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <DatePicker format={'MM/DD/YYYY'} />
               )}
             </FormItem>
@@ -52,7 +57,12 @@ class DynamicFieldSet extends Component {
 
           <Col span={3}>
             <FormItem label="Date End">
-              {getFieldDecorator('date_end', {})(
+              {getFieldDecorator('date_end', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <DatePicker format={'MM/DD/YYYY'} />
               )}
             </FormItem>
@@ -62,7 +72,12 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={3}>
             <FormItem label="Client">
-              {getFieldDecorator('client', {})(
+              {getFieldDecorator('client', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <Select placeholder={this.props.clients[0]['accountname']}>
                   {
                     this.props.clients.map((client) => {
@@ -76,7 +91,12 @@ class DynamicFieldSet extends Component {
 
           <Col span={3}>
             <FormItem label="Vendor">
-              {getFieldDecorator('vendor', {})(
+              {getFieldDecorator('vendor', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <Select placeholder={this.props.vendors[0]['principal']}>
                   {
                     this.props.vendors.map((vendor) => {
@@ -90,7 +110,12 @@ class DynamicFieldSet extends Component {
 
           <Col span={3}>
             <FormItem label="Product Name">
-              {getFieldDecorator('productName', {})(
+              {getFieldDecorator('productName', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <Select placeholder={this.props.products[0]['productname']}>
                   {
                     this.props.products.map((product) => {
@@ -106,7 +131,12 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={24}>
             <FormItem label="Particulars">
-              {getFieldDecorator('particulars', {})(
+              {getFieldDecorator('particulars', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <Input.TextArea rows={4} />
               )}
             </FormItem>
@@ -122,7 +152,12 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={3}>
             <FormItem label="On-site">
-              {getFieldDecorator('on_site', {})(
+              {getFieldDecorator('on_site', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <Select placeholder={''}>
                   <Option value={''}>8x5</Option>
                 </Select>
@@ -132,7 +167,12 @@ class DynamicFieldSet extends Component {
 
           <Col span={3}>
             <FormItem label="Date Start">
-              {getFieldDecorator('support_date_start', {})(
+              {getFieldDecorator('support_date_start', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <DatePicker format={'MM/DD/YYYY'} />
               )}
             </FormItem>
@@ -140,7 +180,12 @@ class DynamicFieldSet extends Component {
 
           <Col span={3}>
             <FormItem label="Date End">
-              {getFieldDecorator('support_date_end', {})(
+              {getFieldDecorator('support_date_end', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <DatePicker format={'MM/DD/YYYY'} />
               )}
             </FormItem>
@@ -154,15 +199,25 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={3}>
             <FormItem label="Number of Man-Days">
-              {getFieldDecorator('man_days', {})(
+              {getFieldDecorator('man_days', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <Input />
               )}
             </FormItem>
           </Col>
 
           <Col span={3}>
-            <FormItem label="Remaining Man-Days">
-              {getFieldDecorator('remaining_man_days', {})(
+                <FormItem label="Remaining Man-Days">
+                  {getFieldDecorator('remaining_man_days', {
+                    rules: [{
+                      required: true,
+                      message: 'This is a required field',
+                    }],
+              })(
                 <Input />
               )}
             </FormItem>
@@ -174,7 +229,12 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={3}>
             <FormItem label="Quarterly HC">
-              {getFieldDecorator('quarterly_hc', {})(
+              {getFieldDecorator('quarterly_hc', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <Select placeholder={''}>
                   <Option value={''}>8x5</Option>
                 </Select>
@@ -186,7 +246,12 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={24}>
             <FormItem label="Remarks">
-              {getFieldDecorator('remarks', {})(
+              {getFieldDecorator('remarks', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <Input.TextArea rows={4} />
               )}
             </FormItem>

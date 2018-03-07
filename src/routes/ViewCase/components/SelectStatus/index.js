@@ -20,9 +20,10 @@ class SelectStatus extends Component {
               initialValue: status
             })(
               <Select onChange={onSelectChange} style={{ width: 200 }}>
-                <Option value="Resolved">Resolved</Option>
                 <Option value="Ongoing">Ongoing</Option>
+                <Option value="Resolved">Resolved</Option>
                 <Option value="Pending (Client)">Pending (Client)</Option>
+                <Option value="Pending (Glocal)">Pending (Glocal)</Option>
               </Select>
             )}
           </FormItem>

@@ -1,4 +1,5 @@
 import { routerRedux } from 'dva/router';
+import { notification } from 'antd';
 
 import {
   fetchAllCases,
@@ -55,11 +56,13 @@ export default {
     *CREATE_CASE({ payload }, { call, put }) {
       const data = yield call(createCase, payload);
       yield put(routerRedux.push('/cases/all'));
+      notification['success']({ message: 'Case created.', duration: 2 });
     },
 
     *UPDATE_CASE({ payload }, { call, put }) {
       const data = yield call(updateCase, payload);
       yield put(routerRedux.push('/cases/all'));
+      notification['success']({ message: 'Case updated.', duration: 2 });
     },
 
     *UPDATE_STATUS({ payload }, { call, put, select }) {

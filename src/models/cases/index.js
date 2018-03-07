@@ -45,7 +45,6 @@ export default {
     *FETCH_NEXT_ID({ payload }, { call, put }) {
       const { data } = yield call(fetchNextId, payload);
       yield put({ type: 'SAVE', payload: { nextId: data[0]['?column?'] } });
-
     },
 
     *FETCH_ALL_CASES({ payload }, { call, put }) {
@@ -68,6 +67,7 @@ export default {
     *UPDATE_STATUS({ payload }, { call, put, select }) {
       const selectedCase = yield select(state => state.cases.selected);
       const data = yield call(updateCaseStatus, payload, selectedCase);
+      notification['success']({ message: 'Status updated.', duration: 2 });
     },
   },
 

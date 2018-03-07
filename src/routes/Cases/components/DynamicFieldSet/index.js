@@ -142,7 +142,7 @@ class DynamicFieldSet extends Component {
           <Col span={5} style={{ opacity: '0' }}>
             <FormItem label="Case Status (Hidden)">
               {getFieldDecorator('case_status', {
-                initialValue: 'Pending (Client)',
+                initialValue: 'Ongoing',
               })(
                 <Input type="text" />
               )}

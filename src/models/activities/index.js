@@ -1,4 +1,5 @@
 import { routerRedux } from 'dva/router';
+import { notification } from 'antd';
 
 import {
   addActivity,
@@ -31,6 +32,7 @@ export default {
     *ADD_ACTIVITY({ payload }, { call, put }) {
       yield call(addActivity, payload);
       yield put(routerRedux.push(`/cases/${payload.trackingNo}`));
+      notification['success']({ message: 'Activity created.', duration: 2 });
     },
   },
 

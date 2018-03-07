@@ -208,6 +208,7 @@ class DynamicFieldSet extends Component {
                   <Option value={1}>1</Option>
                   <Option value={2}>2</Option>
                   <Option value={3}>3</Option>
+                  <Option value={4}>4</Option>
                 </Select>
               )}
             </FormItem>

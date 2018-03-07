@@ -365,7 +365,9 @@ class DynamicFieldSet extends Component {
             <Icon type="save" />
             Save
           </Button>
-          <Button>Cancel</Button>
+          <Link to="/cases/all">
+            <Button>Cancel</Button>
+          </Link>
         </FormItem>
       </Form>
     );

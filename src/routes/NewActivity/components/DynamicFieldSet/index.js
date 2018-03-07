@@ -35,7 +35,7 @@ class DynamicFieldSet extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         const engineers = this.props.engineers;
         const engineerIndex = values.engineerIndex;
@@ -73,7 +73,7 @@ class DynamicFieldSet extends Component {
     };
 
     return (
-      <Form className={styles.form} onSubmit={this.handleSubmit}>
+      <Form className={styles.form} onSubmit={this.handleSubmit} hideRequiredMark>
         <Row gutter={12}>
           <Col span={3}>
             <FormItem label="Glocal ID">
@@ -93,7 +93,12 @@ class DynamicFieldSet extends Component {
 
           <Col span={5}>
             <FormItem label="Time In">
-              {getFieldDecorator('timeIn')(
+              {getFieldDecorator('timeIn', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <DatePicker
                   style={{ width: '270px' }}
                   showTime={{use12Hours: true, format: 'HH:mm'}}
@@ -106,7 +111,12 @@ class DynamicFieldSet extends Component {
 
           <Col span={5}>
             <FormItem label="Time Out">
-              {getFieldDecorator('timeOuts')(
+              {getFieldDecorator('timeOuts', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <DatePicker
                   style={{ width: '270px' }}
                   showTime={{use12Hours: true, format: 'HH:mm'}}
@@ -152,7 +162,11 @@ class DynamicFieldSet extends Component {
           <Col span={5}>
             <FormItem label="Address">
               {getFieldDecorator('addres', {
-                initialValue: this.props.selectedClient.company_address
+                initialValue: this.props.selectedClient.company_address,
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
               })(
                 <Input disabled type="text" />
               )}
@@ -165,7 +179,13 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={24}>
             <FormItem label="Type of Activity">
-              {getFieldDecorator('typeOfActivity')(
+              {getFieldDecorator('typeOfActivity', {
+                initialValue: 'Onsite',
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <Radio.Group>
                   <Radio.Button value="Onsite">Onsite</Radio.Button>
                   <Radio.Button value="Implementation">Implementation</Radio.Button>
@@ -180,7 +200,12 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={24}>
             <FormItem label="Purpose of Visit">
-              {getFieldDecorator('purposeOfVisit', {})(
+              {getFieldDecorator('purposeOfVisit', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <Input type="text" />
               )}
             </FormItem>
@@ -190,7 +215,12 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={24}>
             <FormItem label="Activity Performed">
-              {getFieldDecorator('activityPerformed', {})(
+              {getFieldDecorator('activityPerformed', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <Input.TextArea rows={4} />
               )}
             </FormItem>
@@ -200,7 +230,12 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={24}>
             <FormItem label="Next Activity">
-              {getFieldDecorator('nextActivity', {})(
+              {getFieldDecorator('nextActivity', {
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
                 <Input.TextArea rows={4} />
               )}
             </FormItem>

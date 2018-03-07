@@ -18,13 +18,8 @@ function Dashboard(props) {
   return (
     <div className={styles.dashboard}>
       <Row gutter={16}>
-        <Col span={6}>
-          <HomeStats />
-        </Col>
-        <Col span={18}>
-          <HomeTableHeader />
-          <HomeTable data={cases} />
-        </Col>
+        <HomeTableHeader />
+        <HomeTable data={cases} />
       </Row>
     </div>
   );

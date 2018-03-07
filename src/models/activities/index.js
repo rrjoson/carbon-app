@@ -1,3 +1,5 @@
+import { routerRedux } from 'dva/router';
+
 import {
   addActivity,
   fetchActivities,
@@ -28,7 +30,7 @@ export default {
 
     *ADD_ACTIVITY({ payload }, { call, put }) {
       yield call(addActivity, payload);
-      // yield put({ type: 'SAVE', payload: { selected: data[0] } });
+      yield put(routerRedux.push(`/cases/${payload.trackingNo}`));
     },
   },
 

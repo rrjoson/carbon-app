@@ -116,7 +116,7 @@ class DynamicFieldSet extends Component {
                       rules: [{
                         required: true,
                         whitespace: true,
-                        message: 'Please add a vendor name or delete this field.',
+                        message: 'Please add a product name or delete this field.',
                       }],
                     })(
                       <Input placeholder="Product name" style={{ width: '224px', marginRight: 19 }} />,
@@ -136,7 +136,7 @@ class DynamicFieldSet extends Component {
                   {formItems}
                   <FormItem {...formItemLayoutWithOutLabel}>
                     <Button onClick={() => this.add(vendor.name)} style={{ width: '132px' }}>
-                      <Icon type="plus" /> Add Vendor
+                      <Icon type="plus" /> Add Product
                     </Button>
                   </FormItem>
                 </Col>

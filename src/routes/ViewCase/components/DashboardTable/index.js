@@ -37,10 +37,10 @@ function HomeTable(props) {
     title: 'Date Raised',
     dataIndex: 'dateraised',
     render: date => moment(date, "YYYY-MM-DD").format('DD/MM/YYYY')
-  }, {
-    title: 'Assigned AM',
-    dataIndex: 'assignedaccountmanager',
-    render: assignedaccountmanager => (<Avatar>{assignedaccountmanager[0]}</Avatar>),
+  // }, {
+  //   title: 'Assigned AM',
+  //   dataIndex: 'assignedaccountmanager',
+  //   render: assignedaccountmanager => (<Avatar>{assignedaccountmanager[0]}</Avatar>),
   }];
 
   const dataSource = props.data.map((item, index) => {

@@ -159,7 +159,7 @@ class DynamicFieldSet extends Component {
                 }],
               })(
                 <Select placeholder={''}>
-                  <Option value={''}>8x5</Option>
+                  <Option value={'8x5'}>8x5</Option>
                 </Select>
               )}
             </FormItem>
@@ -236,7 +236,7 @@ class DynamicFieldSet extends Component {
                 }],
               })(
                 <Select placeholder={''}>
-                  <Option value={''}>8x5</Option>
+                  <Option value={'8x5'}>8x5</Option>
                 </Select>
               )}
             </FormItem>

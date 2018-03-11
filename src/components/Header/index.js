@@ -25,7 +25,7 @@ const Header = (props) => {
     if (path === '/vendors/edit') return 'Vendor';
     if (path === '/products/edit') return 'Product';
 
-    if (path === '/clients/add') return 'Client';
+    if (path.includes('/clients')) return 'Client';
     if (path === '/licenses/add') return 'License';
 
     return '';
@@ -43,7 +43,7 @@ const Header = (props) => {
     if (path === '/vendors/edit') return '/cases/add';
     if (path === '/products/edit') return '/cases/add';
 
-    if (path === '/clients/add') return '/cases/add';
+    if (path.includes('/clients')) return '/cases/add';
     if (path === '/licenses/add') return '/cases/add';
 
     return '';
@@ -61,7 +61,7 @@ const Header = (props) => {
     if (path === '/vendors/edit') return 'New Case';
     if (path === '/products/edit') return 'New Case';
 
-    if (path === '/clients/add') return 'New Case';
+    if (path.includes('/clients')) return 'New Case';
     if (path === '/licenses/add') return 'New Case';
 
     return '';

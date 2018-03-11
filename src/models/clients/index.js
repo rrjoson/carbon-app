@@ -1,3 +1,5 @@
+import { notification } from 'antd';
+
 import {
   fetchClients,
   fetchClient,
@@ -42,12 +44,13 @@ export default {
     *UPDATE_CLIENT({ payload }, { call, put, select }) {
       const accountName = yield select(state => state.clients.selected.accountname);
       const { data } = yield call(updateClient, accountName, payload);
+      notification['success']({ message: 'Client updated.', duration: 2 });
     },
   },
 
   reducers: {
     SAVE(state, action) {
-      console.warn(state, action.payload)
+
       return { ...state, ...action.payload };
     },
   },

@@ -1,7 +1,8 @@
 import {
   fetchClients,
   fetchClient,
-  addClient
+  addClient,
+  updateClient,
 } from './../../services/clients';
 
 export default {
@@ -24,12 +25,12 @@ export default {
   },
 
   effects: {
-    *FETCH_CLIENTS({ payload }, { call, put, select }) {
+    *FETCH_CLIENTS({ payload }, { call, put }) {
       const { data } = yield call(fetchClients);
       yield put({ type: 'SAVE', payload: { data } });
     },
 
-    *FETCH_CLIENT({ payload }, { call, put, select }) {
+    *FETCH_CLIENT({ payload }, { call, put }) {
       const { data } = yield call(fetchClient, payload);
       yield put({ type: 'SAVE', payload: { selected: data[0] } });
     },
@@ -37,8 +38,12 @@ export default {
     *ADD_CLIENT({ payload }, { call, put }) {
       const { data } = yield call(addClient, payload);
     },
-  },
 
+    *UPDATE_CLIENT({ payload }, { call, put, select }) {
+      const accountName = yield select(state => state.clients.selected.accountname);
+      const { data } = yield call(updateClient, accountName, payload);
+    },
+  },
 
   reducers: {
     SAVE(state, action) {

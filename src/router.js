@@ -38,6 +38,9 @@ const Routers = ({ history, app }) => {
       path: '/clients/add',
       component: () => import('./routes/AddClient'),
     }, {
+      path: '/clients/:accountName/edit',
+      component: () => import('./routes/EditClient'),
+    }, {
       path: '/products/edit',
       component: () => import('./routes/Products'),
     }, {

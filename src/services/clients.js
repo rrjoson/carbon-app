@@ -15,3 +15,7 @@ export function fetchClient(name) {
 export function addClient(data) {
   return axios.post(ADD_CLIENT, data);
 }
+
+export function updateClient(accountName, payload) {
+  return axios.put(`${ADD_CLIENT}/${accountName}`, payload);
+}

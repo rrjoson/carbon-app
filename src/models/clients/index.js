@@ -39,6 +39,7 @@ export default {
 
     *ADD_CLIENT({ payload }, { call, put }) {
       const { data } = yield call(addClient, payload);
+      notification['success']({ message: 'Client added.', duration: 2 });
     },
 
     *UPDATE_CLIENT({ payload }, { call, put, select }) {

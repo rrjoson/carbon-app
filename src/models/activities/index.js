@@ -13,6 +13,7 @@ export default {
   state: {
     data: [],
     selected: null,
+    serviceReportNumber: null,
   },
 
   subscriptions: {
@@ -31,8 +32,16 @@ export default {
 
     *ADD_ACTIVITY({ payload }, { call, put }) {
       yield call(addActivity, payload);
-      yield put(routerRedux.push(`/cases/${payload.trackingNo}`));
-      notification['success']({ message: 'Activity created.', duration: 2 });
+      yield put({ type: 'SAVE', payload: { serviceReportNumber: 2 } });
+
+      // notification['success']({ message: 'Activity created.', duration: 2 });
+    },
+
+    *CLEAR_SERVICE_REPORT_NUMBER({ payload }, { call, put, select }) {
+      const glocalId = yield select(state => state.cases.selected.glocalid);
+
+      yield put({ type: 'SAVE', payload: { serviceReportNumber: null } });
+      yield put(routerRedux.push(`/cases/${glocalId}`));
     },
   },
 

@@ -4,6 +4,7 @@ import { connect } from 'dva';
 import styles from './styles.css';
 import { Typography } from './../../components';
 import DynamicFieldSet from './components/DynamicFieldSet';
+import AddActivityModal from './AddActivityModal';
 
 const { H2 } = Typography;
 
@@ -32,6 +33,7 @@ class NewActivity extends Component {
       engineers,
       selectedCase,
       selectedClient,
+      serviceReportNumber,
     } = this.props;
 
     if (!selectedCase || !selectedClient || !engineers.length) return null;
@@ -45,6 +47,11 @@ class NewActivity extends Component {
           selectedCase={selectedCase}
           selectedClient={selectedClient}
         />
+        <AddActivityModal
+          visible={serviceReportNumber}
+          serviceReportNumber={serviceReportNumber}
+          closeModal={() => dispatch({ type: 'activities/CLEAR_SERVICE_REPORT_NUMBER' })}
+        />
       </div>
     );
   }
@@ -55,6 +62,7 @@ function mapStateToProps(state) {
     engineers: state.engineers.data,
     selectedCase: state.cases.selected,
     selectedClient: state.clients.selected,
+    serviceReportNumber: state.activities.serviceReportNumber,
   };
 }
 

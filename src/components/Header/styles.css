@@ -1,6 +1,18 @@
 .header {
-  line-height: 47px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 47px;
+  line-height: normal;
   background-color: #ffffff;
   border: solid 1px #f0f0f0;
-  padding: 9px 11px 8px 25px;
+  padding: 0 11px 0 25px;
+}
+
+.headerTitle {
+  color: #94a0a9;
+}
+
+.headerButton {
+  display: inline-block;
 }

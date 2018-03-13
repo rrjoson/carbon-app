@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'dva';
 
-import styles from './styles.css';
-import { Typography } from './../../components';
+import AddClientHeader from './AddClientHeader';
 import AddClientForm from './AddClientForm';
 
-const { H2 } = Typography;
+import styles from './styles.css';
 
 function AddClient(props) {
   const {
@@ -15,7 +14,7 @@ function AddClient(props) {
 
   return (
     <div className={styles.addClients}>
-      <H2>Add Clients</H2>
+      <AddClientHeader />
       <AddClientForm
         onSave={(data) => dispatch({ type: 'clients/ADD_CLIENT', payload: data })}
         engineers={engineers}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Input, Icon, Button, Row, Col, DatePicker, Select, TimePicker, Radio } from 'antd';
 
-import { Link, Typography } from './../../../../components';
+import { Link, Typography } from './../../../components';
 
 import styles from './styles.css';
 

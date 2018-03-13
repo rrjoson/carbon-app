@@ -1,25 +1,29 @@
 .h1 {
 	font-size: 45px;
-	letter-spacing: 0.1px;
-	color: #26546c;
+  letter-spacing: 0.1px;
+  line-height: normal;
+  color: inherit;
 }
 
 .h2 {
   font-size: 32px;
   letter-spacing: 0.1px;
-  color: #26546c;
+  line-height: normal;
+  color: inherit;
 }
 
 .h3 {
   font-size: 16px;
   font-weight: 600;
   letter-spacing: 0.1px;
-  color: #94a0a9;
+  line-height: normal;
+  color: inherit;
 }
 
 .h4 {
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.1px;
-  color: #94a0a9;
+  line-height: normal;
+  color: inherit;
 }

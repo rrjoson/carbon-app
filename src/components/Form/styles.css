@@ -1,0 +1,27 @@
+.formItem :global .ant-form-item {
+  margin-bottom: 23px;
+}
+
+.formItem :global .ant-form-item-label {
+  padding: 0 0 5px;
+  line-height: 20px;
+}
+
+.formItem :global .ant-form-item-label label {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.43;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.formItem :global .ant-form-item-control {
+  line-height: 40px;
+}
+
+.formItem :global .ant-input {
+  height: 40px;
+  padding: 9px 12px;
+  font-size: 16px;
+  line-height: 1.38;
+  color: rgba(0, 0, 0, 0.65);
+}

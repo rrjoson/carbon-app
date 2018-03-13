@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Row } from 'antd';
+import { Layout } from 'antd';
 import styles from './styles.css';
 
 import { H4 } from './../Typography';
@@ -69,17 +69,17 @@ const Header = (props) => {
 
   return (
     <AntHeader className={styles.header}>
-      <Row type="flex" justify="space-between" align="middle">
-        <div>
-          <H4>{getHeaderTitle(pathname)}</H4>
-        </div>
-        <div>
+      <div className={styles.headerTitle}>
+        <H4>{getHeaderTitle(pathname)}</H4>
+      </div>
+      <div>
+        <div className={styles.headerButton}>
           <Link to={getHeaderButtonLink(pathname)}>
             <Button>{getHeaderButtonText(pathname)}</Button>
           </Link>
-          <Avatar>A</Avatar>
         </div>
-      </Row>
+        <Avatar>A</Avatar>
+      </div>
     </AntHeader>
   );
 };

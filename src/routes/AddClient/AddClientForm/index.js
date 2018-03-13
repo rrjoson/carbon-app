@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Form, Input, Icon, Button, Row, Col, DatePicker, Select, TimePicker, Radio } from 'antd';
+import { Input, Icon, Button, Row, Col, DatePicker, Select, TimePicker, Radio } from 'antd';
 
-import { Link, Typography } from './../../../components';
+import { Link, Typography, Form, Divider } from './../../../components';
 
 import styles from './styles.css';
 
@@ -20,8 +20,7 @@ const vendors = [
 
 let uuid = 1;
 
-class DynamicFieldSet extends Component {
-
+class AddClientForm extends Component {
   remove = (vendorName, k) => {
     const { form } = this.props;
     const keys = form.getFieldValue(`keys-${vendorName}`);
@@ -76,25 +75,8 @@ class DynamicFieldSet extends Component {
   render() {
     const { getFieldDecorator, getFieldValue } = this.props.form;
 
-    const formItemLayout = {
-      labelCol: {
-        xs: { span: 24 },
-        sm: { span: 24 },
-      },
-      wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 24 },
-      },
-    };
-    const formItemLayoutWithOutLabel = {
-      wrapperCol: {
-        xs: { span: 12 },
-        sm: { span: 24 },
-      },
-    };
-
     return (
-      <Form className={styles.form} onSubmit={this.handleSubmit} hideRequiredMark>
+      <Form className={styles.form} onSubmit={this.handleSubmit}>
         <Row gutter={12}>
           <Col span={3}>
             <FormItem label="Client">
@@ -181,7 +163,7 @@ class DynamicFieldSet extends Component {
                       </FormItem>
 
                     </Col>
-                    <Col span={4} className={styles.addClient__link}>
+                    <Col span={4} className={styles.addClientForm__link}>
                       {keys.length > 1 ? (
                         <Link onClick={() => this.remove(vendor.name, k)} to="#">Delete</Link>
                       ) : null}
@@ -193,7 +175,7 @@ class DynamicFieldSet extends Component {
               return (
                 <Col span={24} key={vendor.name}>
                   {formItems}
-                  <FormItem {...formItemLayoutWithOutLabel}>
+                  <FormItem>
                     <Button onClick={() => this.add(vendor.name)} style={{ width: '152px' }}>
                       <Icon type="plus" /> Add Customer
                     </Button>
@@ -213,13 +195,13 @@ class DynamicFieldSet extends Component {
                   message: 'This is a required field',
                 }],
               })(
-                <Input.TextArea rows={4} />
+                <Input.TextArea autosize={{ minRows: 4, maxRows: 6 }} />
               )}
             </FormItem>
           </Col>
         </Row>
 
-        <div className={styles.divider} />
+        <Divider />
 
         <Row gutter={12}>
           <Col span={6}>
@@ -261,21 +243,20 @@ class DynamicFieldSet extends Component {
           </Col>
         </Row>
 
-        <div className={styles.divider} />
+        <Divider />
 
-
-        <FormItem {...formItemLayoutWithOutLabel}>
-          <Button type="primary" style={{ marginRight: 8 }} htmlType="submit">
+        <FormItem>
+          <Button className={styles.addClientForm__save} type="primary" htmlType="submit">
             <Icon type="save" />
             Save
           </Button>
-          <Button>Cancel</Button>
+          <Button className={styles.addClientForm__cancel}>Cancel</Button>
         </FormItem>
       </Form>
     );
   }
 }
 
-const WrappedDynamicFieldSet = Form.create()(DynamicFieldSet);
+const WrappedAddClientForm = Form.create()(AddClientForm);
 
-export default WrappedDynamicFieldSet;
+export default WrappedAddClientForm;

@@ -97,7 +97,7 @@ class DynamicFieldSet extends Component {
     };
 
     return (
-      <Form className={styles.form} onSubmit={this.handleSubmit} hideRequiredMark>
+      <Form className={styles.form} onSubmit={this.handleSubmit}>
         <Row gutter={12}>
           <Col span={3}>
             <FormItem label="Glocal ID">

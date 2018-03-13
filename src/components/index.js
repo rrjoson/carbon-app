@@ -9,6 +9,8 @@ import Table from './Table';
 import Avatar from './Avatar';
 import Search from './Search';
 import Activity from './Activity';
+import Form from './Form';
+import Divider from './Divider';
 
 export {
   Typography,
@@ -22,4 +24,6 @@ export {
   Avatar,
   Search,
   Activity,
+  Form,
+  Divider,
 };

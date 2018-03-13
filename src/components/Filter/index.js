@@ -20,7 +20,9 @@ const menu = (
 function Filter(props) {
   return (
     <div className={styles.filter}>
-      <H3>Filter</H3>
+      <div className={styles.title}>
+        <H3>Filter</H3>
+      </div>
       <span className={styles.verticalLine} />
       <Button type="primary">All</Button>
 

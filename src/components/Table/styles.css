@@ -3,3 +3,12 @@
   float: none;
   text-align: center;
 }
+
+.table :global .ant-pagination-item-active {
+  border-color: #4581f0;
+  background-color: #4581f0;
+}
+
+.table :global .ant-pagination-item-active a {
+  color: white;
+}

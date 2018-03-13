@@ -5,6 +5,10 @@
   margin: 36px 0 24px;
 }
 
+.title {
+  color: #94a0a9;
+}
+
 .verticalLine {
   display: inline-block;
   height: 26px;

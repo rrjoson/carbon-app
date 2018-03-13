@@ -6,7 +6,8 @@ import { Col, Row } from 'antd';
 
 import HomeTable from './HomeTable';
 import HomeStats from './HomeStats';
-import HomeTableHeader from './HomeTableHeader';
+import HomeHeader from './HomeHeader';
+import HomeFilter from './HomeFilter';
 
 import styles from './styles.css';
 
@@ -17,10 +18,11 @@ function Dashboard(props) {
 
   return (
     <div className={styles.dashboard}>
-      <Row gutter={16}>
-        <HomeTableHeader />
-        <HomeTable data={cases} />
-      </Row>
+      <HomeHeader />
+      <HomeFilter />
+      <HomeTable
+        data={cases}
+      />
     </div>
   );
 }

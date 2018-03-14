@@ -136,7 +136,7 @@ class DynamicFieldSet extends Component {
                   message: 'This is a required field',
                 }],
               })(
-                <DatePicker format={'MM/DD/YYYY'} />
+                <DatePicker format={'MM/DD/YYYY'} disabled />
               )}
             </FormItem>
           </Col>

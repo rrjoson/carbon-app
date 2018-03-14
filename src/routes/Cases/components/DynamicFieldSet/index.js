@@ -116,12 +116,13 @@ class DynamicFieldSet extends Component {
           <Col span={3}>
             <FormItem label="Date ID Created">
               {getFieldDecorator('dateIdCreated', {
+                initialValue: moment(),
                 rules: [{
                   required: true,
                   message: 'This is a required field',
                 }],
               })(
-                <DatePicker format={'MM/DD/YYYY'} />
+                <DatePicker format={'MM/DD/YYYY'} disabled />
               )}
             </FormItem>
           </Col>

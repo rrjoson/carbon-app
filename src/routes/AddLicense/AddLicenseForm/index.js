@@ -264,14 +264,16 @@ class DynamicFieldSet extends Component {
           <Col span={3}>
             <FormItem label="Quarterly HC">
               {getFieldDecorator('quarterly_hc', {
+                initialValue: 'Yes',
                 rules: [{
                   required: true,
                   message: 'This is a required field',
                 }],
               })(
-                <Select placeholder={''}>
-                  <Option value={'8x5'}>8x5</Option>
-                </Select>
+                <Radio.Group>
+                  <Radio.Button value="Yes">Yes</Radio.Button>
+                  <Radio.Button value="No">No</Radio.Button>
+                </Radio.Group>
               )}
             </FormItem>
           </Col>

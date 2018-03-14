@@ -36,6 +36,7 @@ function AllCasesTable(props) {
   }, {
     title: 'Open',
     dataIndex: 'open',
+    render: date => `${Math.abs(moment(date).diff(moment(), 'days'))} days`,
   }, {
     title: 'Last Updated',
     dataIndex: 'lastupdated',
@@ -66,7 +67,7 @@ function AllCasesTable(props) {
         severity: item.severity,
         casetitle: item.casetitle,
         productname: item.productname,
-        open: '3 days ago',
+        open: item.dateraised,
         lastupdated: item.dateraised,
         dateraised: item.dateraised,
         actions: ['View', 'Edit']

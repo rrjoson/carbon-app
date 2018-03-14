@@ -33,6 +33,7 @@ function HomeTable(props) {
   }, {
     title: 'Open',
     dataIndex: 'open',
+    render: date => `${Math.abs(moment(date).diff(moment(), 'days'))} days`,
   }, {
     title: 'Date Raised',
     dataIndex: 'dateraised',
@@ -53,7 +54,7 @@ function HomeTable(props) {
         assignedsystemsengineer: item.assignedsystemsengineer,
         severity: item.severity,
         productname: item.productname,
-        open: '3 days ago',
+        open: item.dateraised,
         dateraised: item.dateraised,
         assignedaccountmanager: item.assignedaccountmanager,
       }

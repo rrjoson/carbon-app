@@ -12,3 +12,11 @@
 .table :global .ant-pagination-item-active a {
   color: white;
 }
+
+.table :global .ant-table-thead > tr > th,
+.table :global .ant-table-tbody > tr > td {
+  padding: 14px 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

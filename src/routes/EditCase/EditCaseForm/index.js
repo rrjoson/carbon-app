@@ -46,7 +46,6 @@ class DynamicFieldSet extends Component {
       name: `${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`,
     });
     uuid += 1;
-    console.warn(keys)
     form.setFieldsValue({ [`keys-${vendorName}`]: keys });
   }
 
@@ -209,11 +208,11 @@ class DynamicFieldSet extends Component {
                   message: 'This is a required field',
                 }],
               })(
-                <Select placeholder="severity">
-                  <Option value={1}>1</Option>
-                  <Option value={2}>2</Option>
-                  <Option value={3}>3</Option>
-                  <Option value={4}>4</Option>
+                <Select>
+                  <Option value={1}>1 - Emergency</Option>
+                  <Option value={2}>2 - Critical</Option>
+                  <Option value={3}>3 - Major</Option>
+                  <Option value={4}>4 - Minor</Option>
                 </Select>
               )}
             </FormItem>

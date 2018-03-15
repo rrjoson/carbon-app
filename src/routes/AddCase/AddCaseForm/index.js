@@ -184,11 +184,11 @@ class AddCaseForm extends Component {
                   message: 'This is a required field',
                 }],
               })(
-                <Select placeholder="severity">
-                  <Option value={1}>1</Option>
-                  <Option value={2}>2</Option>
-                  <Option value={3}>3</Option>
-                  <Option value={4}>4</Option>
+                <Select>
+                  <Option value={1}>1 - Emergency</Option>
+                  <Option value={2}>2 - Critical</Option>
+                  <Option value={3}>3 - Major</Option>
+                  <Option value={4}>4 - Minor</Option>
                 </Select>
               )}
             </FormItem>

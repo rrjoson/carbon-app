@@ -3,6 +3,7 @@ import { connect } from 'dva';
 import NProgress from 'nprogress';
 import { Layout, Menu, Icon } from 'antd';
 import { Link, withRouter } from 'dva/router';
+import logo from './../assets/logo.png';
 
 import { Header } from './../components';
 
@@ -71,7 +72,7 @@ function App({ location, children, loading }) {
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider className={styles.sider} width="70">
-        <img src="http://antd-admin.zuiidea.com/logo.svg" className={styles.logo} role="presentation" alt="logo" />
+        <img src={logo} className={styles.logo} role="presentation" alt="logo" />
         <Menu
           theme="dark"
           selectedKeys={selectedKeys()}

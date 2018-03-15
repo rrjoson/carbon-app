@@ -133,7 +133,6 @@ class EditProductsForm extends Component {
                       <Input placeholder="Product name" style={{ width: '224px', marginRight: 19 }} />,
                     )}
                     {keys.length > 1 ? (
-                      // <Link onClick={() => this.remove(vendor.name, k)} to="#">Delete</Link>
                     <Link onClick={() => this.showConfirmDeleteModal(vendor.name, k)} to="#">Delete</Link>
                     ) : null}
                   </FormItem>

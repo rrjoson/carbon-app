@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Icon, Button, Row, Col, DatePicker, Select, TimePicker, Radio } from 'antd';
+import { Input, Icon, Button, Row, Col, Select, Modal } from 'antd';
 
 import { Link, Typography, Form, Divider } from './../../../components';
 
@@ -7,15 +7,14 @@ import styles from './styles.css';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
-const { H4 } = Typography;
 
 const vendors = [
   {
     name: 'contact_details',
     items: [
       { "Customer_Name": "", "Email": "", "Contact_Number": "" }
-    ]
-  }
+    ],
+  },
 ];
 
 let uuid = 1;
@@ -33,9 +32,7 @@ class AddClientForm extends Component {
     const { form } = this.props;
     const keys = form.getFieldValue(`keys-${vendorName}`);
 
-    console.warn(keys, 'keys')
     const nextKeys = keys.concat({ "Customer_Name": "", "Email": "", "Contact_Number": "" });
-    console.warn(nextKeys, 'nextKeys')
 
     uuid += 1;
     form.setFieldsValue({ [`keys-${vendorName}`]: nextKeys });
@@ -69,6 +66,18 @@ class AddClientForm extends Component {
         console.log('Received values of form: ', data);
         this.props.onSave(data);
       }
+    });
+  }
+
+  showConfirmDeleteModal = (vendorName, k) => {
+    Modal.confirm({
+      title: 'Are you sure you want to delete ___ from ___?',
+      okText: 'Delete',
+      okType: 'danger',
+      cancelText: 'Cancel',
+      onOk: () => {
+        this.remove(vendorName, k);
+      },
     });
   }
 
@@ -165,7 +174,7 @@ class AddClientForm extends Component {
                     </Col>
                     <Col span={4} className={styles.addClientForm__link}>
                       {keys.length > 1 ? (
-                        <Link onClick={() => this.remove(vendor.name, k)} to="#">Delete</Link>
+                        <Link onClick={() => this.showConfirmDeleteModal(vendor.name, k)} to="#">Delete</Link>
                       ) : null}
                     </Col>
                   </Row>

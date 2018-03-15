@@ -78,7 +78,9 @@ const Header = (props) => {
             <Button>{getHeaderButtonText(pathname)}</Button>
           </Link>
         </div>
-        <Avatar>A</Avatar>
+        <span className={styles.headerAvatar}>
+          <Avatar>A</Avatar>
+        </span>
       </div>
     </AntHeader>
   );

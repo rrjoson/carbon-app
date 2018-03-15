@@ -16,3 +16,7 @@
 .headerButton {
   display: inline-block;
 }
+
+.headerAvatar {
+  margin-left: 5px;
+}

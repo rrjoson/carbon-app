@@ -1,14 +1,38 @@
 .avatar {
   display: inline-flex;
-  width: 31px;
-  height: 30px;
-  border-radius: 2px;
-  background-color: #d1707c;
+  position: relative;
+  width: 32px;
+  height: 31px;
+  border-radius: 50%;
+  background-color: #cccccc;
+  border: solid 2px #ffffff;
   justify-content: center;
   align-items: center;
   color: white;
+  line-height: 31px;
 }
 
-.avatar:not(:first-child) {
-  margin-left: 5px;
+/* HACK */
+.avatar:nth-child(1) {
+  background-color: #6970b4;
+}
+
+.avatar:nth-child(2) {
+  right: 10px;
+}
+
+.avatar:nth-child(3) {
+  right: 20px;
+}
+
+.avatar:nth-child(4) {
+  right: 30px;
+}
+
+.avatar:nth-child(5) {
+  right: 40px;
+}
+
+.avatar:nth-child(6) {
+  right: 50px;
 }

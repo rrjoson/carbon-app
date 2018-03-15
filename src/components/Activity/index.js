@@ -3,6 +3,8 @@ import classnames from 'classnames';
 
 import Avatar from '../Avatar';
 import Link from '../Link';
+import Tooltip from '../Tooltip';
+
 
 import styles from './styles.css';
 
@@ -24,9 +26,11 @@ const Activity = (props) => {
         <div className={styles.activity__section}>
           <div className={styles.activity__sectionItem}>
             <div className={styles.activity__avatar}>
-              <Avatar>
-                {item.engineersurname.split(' ')[0][0]}
-              </Avatar>
+              <Tooltip title={item.engineersurname}>
+                <Avatar>
+                  {item.engineersurname.split(' ')[0][0]}
+                </Avatar>
+              </Tooltip>
             </div>
             <div className={styles.name}>
               {item.engineersurname.split(' ')[0]}

@@ -11,6 +11,7 @@ import Search from './Search';
 import Activity from './Activity';
 import Form from './Form';
 import Divider from './Divider';
+import Tooltip from './Tooltip';
 
 export {
   Typography,
@@ -26,4 +27,5 @@ export {
   Activity,
   Form,
   Divider,
+  Tooltip,
 };

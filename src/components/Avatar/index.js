@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './styles.css';
-import { Tooltip } from 'antd';
 
 function getAlphabetPosition(text) {
   let result = "";
@@ -21,9 +20,7 @@ const Avatar = (props) => {
   const randomColor = colors[position % 2];
 
   return (
-    <Tooltip title="prompt text">
-      <span {...props} style={{ backgroundColor: randomColor }} className={styles.avatar}>{props.children}</span>
-    </Tooltip>
+    <span {...props} style={{ backgroundColor: randomColor }} className={styles.avatar}>{props.children}</span>
   );
 };
 

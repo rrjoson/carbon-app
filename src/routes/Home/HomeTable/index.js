@@ -16,14 +16,6 @@ function HomeTable(props) {
     title: 'Status',
     dataIndex: 'status',
     render: status => <Status type={status} />,
-  // }, {
-  //   title: 'Assigned SE',
-  //   dataIndex: 'assignedsystemsengineer',
-  //   render: assignedsystemsengineer => {
-  //     return assignedsystemsengineer.map((systemengineer) => {
-  //       return (<Avatar>{systemengineer[0][0]}</Avatar>)
-  //     });
-  //   },
   }, {
     title: 'Severity',
     dataIndex: 'severity',
@@ -40,11 +32,7 @@ function HomeTable(props) {
   }, {
     title: 'Last Updated',
     dataIndex: 'lastupdated',
-    render: date => moment(date, "YYYY-MM-DD").format('DD/MM/YYYY')
-  // }, {
-  //   title: 'Date Raised',
-  //   dataIndex: 'dateraised',
-  //   render: date => moment(date, "YYYY-MM-DD").format('DD/MM/YYYY')
+    render: date => moment(date, "YYYY-MM-DD").format('DD/MM/YYYY'),
   }, {
     title: 'Actions',
     dataIndex: 'actions',

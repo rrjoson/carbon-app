@@ -30,7 +30,7 @@ const Routers = ({ history, app }) => {
       component: () => import('./routes/EditCase'),
     }, {
       path: '/cases/:caseId/activities/add',
-      component: () => import('./routes/NewActivity'),
+      component: () => import('./routes/AddActivity'),
     }, {
       path: '/clients/',
       component: () => import('./routes/Clients'),

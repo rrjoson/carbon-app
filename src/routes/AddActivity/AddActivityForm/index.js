@@ -1,20 +1,16 @@
 import React, { Component } from 'react';
-import { Form, Input, Icon, Button, Row, Col, DatePicker, Select, TimePicker, Radio } from 'antd';
+import { Form, Input, Icon, Button, Row, Col, DatePicker, Select, Radio } from 'antd';
 
-import { Link, Typography } from './../../../../components';
+import { generatePDF } from './../../../utils/pdf';
 
 import styles from './styles.css';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
-const { H4 } = Typography;
 
-const vendors = [
-  { name: 'Assigned System Engineer', products: ['Richard'] },
-];
 let uuid = 1;
 
-class DynamicFieldSet extends Component {
+class AddActivityForm extends Component {
 
   remove = (vendorName, k) => {
     const { form } = this.props;
@@ -50,6 +46,15 @@ class DynamicFieldSet extends Component {
         this.props.onSave(data);
       }
     });
+  }
+
+  exportToPDF = () => {
+    this.props.form.validateFieldsAndScroll((err, values) => {
+      if (!err) {
+        generatePDF(values);
+      }
+    });
+
   }
 
   render() {
@@ -273,7 +278,7 @@ class DynamicFieldSet extends Component {
             <Icon type="save" />
             Save
           </Button>
-          <Button style={{ marginRight: 8 }}>
+          <Button style={{ marginRight: 8 }} onClick={this.exportToPDF}>
             <Icon type="download" />
             Export to PDF
           </Button>
@@ -284,6 +289,6 @@ class DynamicFieldSet extends Component {
   }
 }
 
-const WrappedDynamicFieldSet = Form.create()(DynamicFieldSet);
+const WrappedAddActivityForm = Form.create()(AddActivityForm);
 
-export default WrappedDynamicFieldSet;
+export default WrappedAddActivityForm;

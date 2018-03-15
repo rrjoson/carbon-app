@@ -42,11 +42,7 @@ let lastHref;
 function App({ location, children, loading }) {
   const { href } = window.location;
 
-  window.NProgress = NProgress
-
-  console.warn(NProgress);
-  console.warn(loading);
-  console.warn(lastHref);
+  window.NProgress = NProgress;
 
   if (lastHref !== href) {
     NProgress.start();

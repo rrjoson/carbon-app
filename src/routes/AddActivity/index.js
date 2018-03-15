@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 
 import styles from './styles.css';
-import { Typography } from './../../components';
-import DynamicFieldSet from './components/DynamicFieldSet';
+
+import AddActivityHeader from './AddActivityHeader';
+import AddActivityForm from './AddActivityForm';
 import AddActivityModal from './AddActivityModal';
 
-const { H2 } = Typography;
-
-class NewActivity extends Component {
+class AddActivity extends Component {
   componentDidMount() {
     const {
       dispatch,
@@ -40,8 +39,8 @@ class NewActivity extends Component {
 
     return (
       <div className={styles.vendors}>
-        <H2>New Activity</H2>
-        <DynamicFieldSet
+        <AddActivityHeader />
+        <AddActivityForm
           onSave={(data) => dispatch({ type: 'activities/ADD_ACTIVITY', payload: data })}
           engineers={engineers}
           selectedCase={selectedCase}
@@ -66,6 +65,6 @@ function mapStateToProps(state) {
   };
 }
 
-NewActivity.propTypes = {};
+AddActivity.propTypes = {};
 
-export default connect(mapStateToProps)(NewActivity);
+export default connect(mapStateToProps)(AddActivity);

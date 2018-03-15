@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Icon, Button, Row, Col } from 'antd';
+import { Form, Input, Icon, Button, Row, Col, Modal } from 'antd';
 
 import { Link, Typography } from './../../../../components';
 
@@ -40,6 +40,18 @@ class DynamicFieldSet extends Component {
 
         this.props.onSave(data);
       }
+    });
+  }
+
+  showConfirmDeleteModal = (vendorName, k) => {
+    Modal.confirm({
+      title: 'Are you sure you want to delete ___ from ___?',
+      okText: 'Delete',
+      okType: 'danger',
+      cancelText: 'Cancel',
+      onOk: () => {
+        this.remove(vendorName, k);
+      },
     });
   }
 
@@ -103,7 +115,6 @@ class DynamicFieldSet extends Component {
               const keys = getFieldValue(`keys-${vendor.name}`);
 
               const formItems = keys.map((k, index) => {
-                console.warn(`${vendor.name}[${k.name ? k.name : index}]`, 2678902222)
                 return (
                   <FormItem
                     {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
@@ -122,7 +133,8 @@ class DynamicFieldSet extends Component {
                       <Input placeholder="Product name" style={{ width: '224px', marginRight: 19 }} />,
                     )}
                     {keys.length > 1 ? (
-                      <Link onClick={() => this.remove(vendor.name, k)} to="#">Delete</Link>
+                      // <Link onClick={() => this.remove(vendor.name, k)} to="#">Delete</Link>
+                    <Link onClick={() => this.showConfirmDeleteModal(vendor.name, k)} to="#">Delete</Link>
                     ) : null}
                   </FormItem>
                 );

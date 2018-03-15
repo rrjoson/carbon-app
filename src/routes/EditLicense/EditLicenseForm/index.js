@@ -151,7 +151,7 @@ class DynamicFieldSet extends Component {
 
         <Row gutter={12}>
           <Col span={3}>
-            <FormItem label="On-site">
+            <FormItem label="On-Site Support">
               {getFieldDecorator('on_site', {
                 rules: [{
                   required: true,

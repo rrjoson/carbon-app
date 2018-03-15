@@ -110,6 +110,7 @@
 
 .activity__sectionContent {
   margin-bottom: 15px;
+  white-space: pre;
 }
 
 .activity__button {

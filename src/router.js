@@ -21,7 +21,7 @@ const Routers = ({ history, app }) => {
       component: () => import('./routes/AllCases'),
     }, {
       path: '/cases/add',
-      component: () => import('./routes/Cases'),
+      component: () => import('./routes/AddCase'),
     }, {
       path: '/cases/:caseId',
       component: () => import('./routes/ViewCase'),

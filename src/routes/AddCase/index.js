@@ -2,16 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 
 import styles from './styles.css';
-import { Typography } from './../../components';
-import DynamicFieldSet from './components/DynamicFieldSet';
-
-const { H2 } = Typography;
+import AddCaseHeader from './AddCaseHeader';
+import AddCaseForm from './AddCaseForm';
 
 class Cases extends Component {
   componentDidMount() {
     const {
       dispatch,
-      match,
     } = this.props;
 
     dispatch({ type: 'cases/FETCH_NEXT_ID' });
@@ -45,8 +42,8 @@ class Cases extends Component {
 
     return (
       <div>
-        <H2>New Case</H2>
-        <DynamicFieldSet
+        <AddCaseHeader />
+        <AddCaseForm
           loading={loading}
           nextId={nextId}
           products={products}
@@ -54,6 +51,7 @@ class Cases extends Component {
           clients={clients}
           vendors={vendors}
           engineers={engineers}
+          onSelectVendor={(data) => dispatch({ type: 'products/FETCH_PRODUCTS_OF_VENDOR', payload: data })}
           onSave={(data) => dispatch({ type: 'cases/CREATE_CASE', payload: data })}
         />
       </div>

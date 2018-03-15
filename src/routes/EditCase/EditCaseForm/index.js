@@ -50,6 +50,11 @@ class DynamicFieldSet extends Component {
     form.setFieldsValue({ [`keys-${vendorName}`]: keys });
   }
 
+  handleChangeVendor = (data) => {
+    this.props.form.setFieldsValue({ productName: '' });
+    this.props.onSelectVendor(data);
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
 
@@ -227,7 +232,7 @@ class DynamicFieldSet extends Component {
                   message: 'This is a required field',
                 }],
               })(
-                <Select placeholder={this.props.vendors[0]['principal']}>
+                <Select onChange={this.handleChangeVendor}>
                   {
                     this.props.vendors.map((vendor) => {
                       return <Option value={vendor.principal}>{vendor.principal}</Option>
@@ -247,7 +252,7 @@ class DynamicFieldSet extends Component {
                   message: 'This is a required field',
                 }],
               })(
-                <Select placeholder={this.props.products[0]['productname']}>
+                <Select disabled={!getFieldValue('vendor')}>
                   {
                     this.props.products.map((product) => {
                       return <Option value={product.productname}>{product.productname}</Option>

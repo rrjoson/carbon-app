@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Form, Input, Icon, Button, Row, Col, DatePicker, Select } from 'antd';
 import moment from 'moment';
 
-import { Link, Typography } from './../../../../components';
+import { Link, Typography } from './../../../components';
 
 import styles from './styles.css';
 
@@ -12,18 +12,15 @@ const { H4 } = Typography;
 
 let uuid = 1;
 
-class DynamicFieldSet extends Component {
+class AddCaseForm extends Component {
 
   remove = (vendorName, k) => {
     const { form } = this.props;
-    console.warn(vendorName)
     const keys = form.getFieldValue(`keys-${vendorName}`);
     const nextKeys = [];
 
-    console.warn(222, keys)
     if (keys.length === 1) return;
     keys.forEach((key) => {
-      console.warn(333, key, k)
       if (key.id !== k.id) {
         nextKeys.push(key);
       }
@@ -35,16 +32,17 @@ class DynamicFieldSet extends Component {
     const { form } = this.props;
     const keys = form.getFieldValue(`keys-${vendorName}`);
 
-    console.warn(keys)
-
-    // keys.push([`${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`]);
     keys.push({
       id: uuid,
       name: `${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`,
     });
     uuid += 1;
-    console.warn(keys)
     form.setFieldsValue({ [`keys-${vendorName}`]: keys });
+  }
+
+  handleChangeVendor = (data) => {
+    this.props.form.setFieldsValue({ productName: '' });
+    this.props.onSelectVendor(data);
   }
 
   handleSubmit = (e) => {
@@ -59,7 +57,7 @@ class DynamicFieldSet extends Component {
         delete data['keys-assignedSystemsEngineer']
         data['assignedSystemsEngineer'] = values.assignedSystemsEngineer.map((item) => (
           [item]
-        ))
+        ));
         console.log('Received values of form: ', data);
         this.props.onSave(data)
       }
@@ -208,7 +206,7 @@ class DynamicFieldSet extends Component {
                   message: 'This is a required field',
                 }],
               })(
-                <Select placeholder={this.props.vendors[0]['principal']}>
+                <Select onChange={this.handleChangeVendor}>
                   {
                     this.props.vendors.map((vendor) => {
                       return <Option value={vendor.principal}>{vendor.principal}</Option>
@@ -227,7 +225,7 @@ class DynamicFieldSet extends Component {
                   message: 'This is a required field',
                 }],
               })(
-                <Select placeholder={this.props.products[0]['productname']}>
+                <Select disabled={!getFieldValue('vendor')}>
                   {
                     this.props.products.map((product) => {
                       return <Option value={product.productname}>{product.productname}</Option>
@@ -288,7 +286,6 @@ class DynamicFieldSet extends Component {
               );
 
               const keys = getFieldValue(`keys-${vendor.name}`);
-              console.warn(keys, 8888)
 
               const formItems = keys.map((k, index) => {
                 return (
@@ -352,6 +349,6 @@ class DynamicFieldSet extends Component {
   }
 }
 
-const WrappedDynamicFieldSet = Form.create()(DynamicFieldSet);
+const WrappedAddCaseForm = Form.create()(AddCaseForm);
 
-export default WrappedDynamicFieldSet;
+export default WrappedAddCaseForm;

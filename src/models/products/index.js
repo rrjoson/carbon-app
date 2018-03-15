@@ -2,6 +2,7 @@ import { notification } from 'antd';
 
 import {
   fetchProducts,
+  fetchProductsOfVendor,
   addProduct,
   deleteProduct,
   patchProduct,
@@ -32,6 +33,11 @@ export default {
   effects: {
     *FETCH_PRODUCTS({ payload }, { call, put }) {
       const { data } = yield call(fetchProducts);
+      yield put({ type: 'SAVE', payload: { data } });
+    },
+
+    *FETCH_PRODUCTS_OF_VENDOR({ payload }, { call, put }) {
+      const { data } = yield call(fetchProductsOfVendor, payload);
       yield put({ type: 'SAVE', payload: { data } });
     },
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Input, Icon, Button, Row, Col, Modal } from 'antd';
 
-import { Link, Typography } from './../../../../components';
+import { Link, Typography } from './../../../components';
 
 import styles from './styles.css';
 
@@ -10,36 +10,33 @@ const { H4 } = Typography;
 
 let uuid = 1;
 
-class DynamicFieldSet extends Component {
+class EditVendorsForm extends Component {
 
   remove = (vendorName, k) => {
     const { form } = this.props;
-    const keys = form.getFieldValue(`keys-${vendorName}`);
+    const keys = form.getFieldValue(vendorName);
 
     if (keys.length === 1) return;
-    form.setFieldsValue({ [`keys-${vendorName}`]: keys.filter(key => key !== k) });
+    form.setFieldsValue({ [vendorName]: keys.filter(key => key !== k) });
   }
 
   add = (vendorName) => {
     const { form } = this.props;
-    const keys = form.getFieldValue(`keys-${vendorName}`);
+    const keys = form.getFieldValue(vendorName);
     const nextKeys = keys.concat(`New Product ${uuid}`);
 
     uuid += 1;
-    form.setFieldsValue({ [`keys-${vendorName}`]: nextKeys });
+    form.setFieldsValue({ [vendorName]: nextKeys });
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        const data = Object.assign({}, values);
-
         console.log('Received values of form: ', values);
-        console.log('Received data of form: ', data);
-
-        this.props.onSave(data);
       }
+
+      this.props.onSave(values);
     });
   }
 
@@ -75,32 +72,14 @@ class DynamicFieldSet extends Component {
       },
     };
 
-    const vendors = this.props.vendors.map((vendor) => (
-      { name: vendor.principal, list: [] }
-    ));
-
-    this.props.products.map((product) => {
-      let found = false;
-      let vendorIndex = null;
-      for(let i = 0; i < vendors.length; i += 1) {
-        if (product.vendor === vendors[i]['name']) {
-          vendorIndex = i
-          found = true;
-          break;
-        }
-      }
-
-      vendors[vendorIndex].list.push({ name: product.productname });
-
-      // if (found) {
-
-      // } else {
-      //   vendors.push({
-      //     name: product.vendor,
-      //     list: [{ name: product.productname }]
-      //   });
-      // }
+    const products = [];
+    this.props.vendors.forEach((vendor) => {
+      products.push(vendor.principal);
     });
+
+    const vendors = [
+      { name: 'vendors', label: 'Vendors', products },
+    ];
 
     return (
       <Form className={styles.form} onSubmit={this.handleSubmit}>
@@ -108,11 +87,11 @@ class DynamicFieldSet extends Component {
           {
             vendors.map((vendor) => {
               getFieldDecorator(
-                `keys-${vendor.name}`,
-                { initialValue: vendor.list },
+                vendor.name,
+                { initialValue: vendor.products },
               );
 
-              const keys = getFieldValue(`keys-${vendor.name}`);
+              const keys = getFieldValue(vendor.name);
 
               const formItems = keys.map((k, index) => {
                 return (
@@ -121,20 +100,19 @@ class DynamicFieldSet extends Component {
                     required={false}
                     key={k}
                   >
-                    {getFieldDecorator(`${vendor.name}[${k.name ? k.name : index}]`, {
-                      initialValue: k['name'],
+                    {getFieldDecorator(`names[${k}]`, {
+                      initialValue: k,
                       validateTrigger: ['onChange', 'onBlur'],
                       rules: [{
                         required: true,
                         whitespace: true,
-                        message: 'Please add a product name or delete this field.',
+                        message: 'Please add a vendor name or delete this field.',
                       }],
                     })(
                       <Input placeholder="Product name" style={{ width: '224px', marginRight: 19 }} />,
                     )}
                     {keys.length > 1 ? (
-                      // <Link onClick={() => this.remove(vendor.name, k)} to="#">Delete</Link>
-                    <Link onClick={() => this.showConfirmDeleteModal(vendor.name, k)} to="#">Delete</Link>
+                      <Link onClick={() => this.showConfirmDeleteModal(vendor.name, k)} to="#">Delete</Link>
                     ) : null}
                   </FormItem>
                 );
@@ -143,12 +121,12 @@ class DynamicFieldSet extends Component {
               return (
                 <Col span={6} key={vendor.name}>
                   <div className={styles.title}>
-                    <H4>{vendor.name}</H4>
+                    <H4>{vendor.label}</H4>
                   </div>
                   {formItems}
                   <FormItem {...formItemLayoutWithOutLabel}>
                     <Button onClick={() => this.add(vendor.name)} style={{ width: '132px' }}>
-                      <Icon type="plus" /> Add Product
+                      <Icon type="plus" /> Add Vendor
                     </Button>
                   </FormItem>
                 </Col>
@@ -169,6 +147,6 @@ class DynamicFieldSet extends Component {
   }
 }
 
-const WrappedDynamicFieldSet = Form.create()(DynamicFieldSet);
+const WrappedEditVendorsForm = Form.create()(EditVendorsForm);
 
-export default WrappedDynamicFieldSet;
+export default WrappedEditVendorsForm;

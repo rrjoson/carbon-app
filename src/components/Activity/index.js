@@ -32,7 +32,9 @@ const Activity = (props) => {
               {item.engineersurname.split(' ')[0]}
             </div>
           </div>
+        </div>
 
+        <div className={styles.activity__section}>
           <div className={styles.activity__sectionItem}>
             <div className={styles.activity__purpose}>
               {item.purposeofvisit}
@@ -55,8 +57,8 @@ const Activity = (props) => {
             <Link to="/">Edit</Link>
             <Link to="/">Delete</Link>
           </div>
-
         </div>
+
         <div className={styles.activity__section}>
           <div className={styles.activity__sectionTitle}>
             Activity Performed

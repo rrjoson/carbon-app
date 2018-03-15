@@ -42,10 +42,10 @@ const Routers = ({ history, app }) => {
       component: () => import('./routes/EditClient'),
     }, {
       path: '/products/edit',
-      component: () => import('./routes/Products'),
+      component: () => import('./routes/EditProducts'),
     }, {
       path: '/vendors/edit',
-      component: () => import('./routes/Vendors'),
+      component: () => import('./routes/EditVendors'),
     }, {
       path: '/licenses/add',
       component: () => import('./routes/AddLicense'),

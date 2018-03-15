@@ -3,7 +3,7 @@ import { connect } from 'dva';
 
 import styles from './styles.css';
 import { Typography } from './../../components';
-import DynamicFieldSet from './components/DynamicFieldSet';
+import EditVendorsForm from './EditVendorsForm';
 
 const { H2 } = Typography;
 
@@ -23,8 +23,6 @@ class Vendors extends Component {
       vendors,
     } = this.props;
 
-    console.warn(vendors)
-
     if (!vendors.length) {
       return null;
     }
@@ -32,7 +30,7 @@ class Vendors extends Component {
     return (
       <div className={styles.vendors}>
         <H2>New Vendor</H2>
-        <DynamicFieldSet
+        <EditVendorsForm
           loading={loading}
           vendors={vendors}
           onSave={(data) => dispatch({ type: 'vendors/SAVE_VENDORS', payload: data })}

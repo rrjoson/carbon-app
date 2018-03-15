@@ -3,7 +3,7 @@ import { connect } from 'dva';
 
 import styles from './styles.css';
 import { Typography } from './../../components';
-import DynamicFieldSet from './components/DynamicFieldSet';
+import EditProductsForm from './EditProductsForm';
 
 const { H2 } = Typography;
 
@@ -30,7 +30,7 @@ class Products extends Component {
     return (
       <div className={styles.products}>
         <H2>Products</H2>
-        <DynamicFieldSet
+        <EditProductsForm
           loading={loading}
           onSave={(data) => dispatch({ type: 'products/SAVE_PRODUCTS', payload: data })}
           products={products}

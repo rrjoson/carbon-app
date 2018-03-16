@@ -8,7 +8,7 @@ const { H2 } = Typography;
 function AddLicenseHeader(props) {
   return (
     <div className={styles.addLicenseHeader}>
-      <H2>New License</H2>
+      <H2>Edit License</H2>
     </div>
   );
 }

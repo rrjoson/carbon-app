@@ -9,6 +9,7 @@ class AddLicense extends Component {
   componentDidMount() {
     const {
       dispatch,
+      match,
     } = this.props;
 
     dispatch({ type: 'vendors/FETCH_VENDORS' });
@@ -32,8 +33,8 @@ class AddLicense extends Component {
 
     return (
       <div className={styles.addLicenseHeader}>
-        <AddLicenseHeader />
-        <AddLicenseForm
+        <EditLicenseHeader />
+        <EditLicenseForm
           vendors={vendors}
           products={products}
           clients={clients}

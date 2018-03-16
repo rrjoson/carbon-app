@@ -52,6 +52,9 @@ const Routers = ({ history, app }) => {
     }, {
       path: '/licenses/add',
       component: () => import('./routes/AddLicense'),
+    }, {
+      path: '/licenses/:id/edit',
+      component: () => import('./routes/EditLicense'),
     },
   ];
 

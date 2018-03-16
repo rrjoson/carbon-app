@@ -1,7 +1,8 @@
 import { notification } from 'antd';
 
 import {
-  addLicense
+  addLicense,
+  fetchLicenses,
 } from './../../services/licenses';
 
 export default {
@@ -21,6 +22,11 @@ export default {
   },
 
   effects: {
+    *FETCH_LICENSES({ payload }, { call, put }) {
+      const { data } = yield call(fetchLicenses);
+      yield put({ type: 'SAVE', payload: { data } });
+    },
+
     *ADD_LICENSE({ payload }, { call, put, select, all }) {
       const { data } = yield call(addLicense, payload);
       notification['success']({ message: 'License added.', duration: 2 });

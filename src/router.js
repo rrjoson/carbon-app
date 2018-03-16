@@ -47,9 +47,12 @@ const Routers = ({ history, app }) => {
       path: '/vendors/edit',
       component: () => import('./routes/EditVendors'),
     }, {
+      path: '/licenses',
+      component: () => import('./routes/ViewLicenses'),
+    }, {
       path: '/licenses/add',
       component: () => import('./routes/AddLicense'),
-    }
+    },
   ];
 
   return (

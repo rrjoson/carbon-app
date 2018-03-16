@@ -10,11 +10,11 @@ function ViewCasesHeader(props) {
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>
-        <H2>Clients</H2>
+        <H2>Licenses</H2>
       </div>
       <div>
-        <Link to="/clients/add">
-          <Button className={styles.button}>New Client</Button>
+        <Link to="/licenses/add">
+          <Button className={styles.button}>New License</Button>
         </Link>
       </div>
     </div>

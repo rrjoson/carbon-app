@@ -1,0 +1,21 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.title {
+  color: #7f7f7f;
+  margin-right: 21px;
+}
+
+.button {
+  width: 116px;
+  height: 30px;
+  border-radius: 2px;
+  border: solid 1px #eaeef0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  color: #94a0a9;
+}

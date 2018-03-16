@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { Form, Input, Icon, Button, Row, Col, DatePicker, Select, TimePicker, Radio } from 'antd';
+import { Input, Icon, Button, Row, Col, Select } from 'antd';
 
-import { Link, Typography } from './../../../components';
+import { Form, Link } from './../../../components';
 
 import styles from './styles.css';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
-const { H4 } = Typography;
 
 let vendors = [
   {
@@ -27,8 +26,6 @@ class DynamicFieldSet extends Component {
         { "Customer_Name": item[0], "Email": item[1], "Contact_Number": item[2] }
       );
     });
-
-    console.warn(vendors)
   }
 
   remove = (vendorName, k) => {
@@ -43,9 +40,7 @@ class DynamicFieldSet extends Component {
     const { form } = this.props;
     const keys = form.getFieldValue(`keys-${vendorName}`);
 
-    console.warn(keys, 'keys')
     const nextKeys = keys.concat({ "Customer_Name": "", "Email": "", "Contact_Number": "" });
-    console.warn(nextKeys, 'nextKeys')
 
     uuid += 1;
     form.setFieldsValue({ [`keys-${vendorName}`]: nextKeys });

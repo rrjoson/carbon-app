@@ -32,7 +32,7 @@ const menuItems = [{
   icon: 'shop',
   label: 'Vendors',
 }, {
-  url: '/licenses/add',
+  url: '/licenses',
   icon: 'safety',
   label: 'Licenses',
 }];

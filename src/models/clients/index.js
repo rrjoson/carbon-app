@@ -41,6 +41,7 @@ export default {
     *ADD_CLIENT({ payload }, { call, put }) {
       const { data } = yield call(addClient, payload);
       notification['success']({ message: 'Client added.', duration: 2 });
+      yield put(routerRedux.push('/clients'));
     },
 
     *UPDATE_CLIENT({ payload }, { call, put, select }) {

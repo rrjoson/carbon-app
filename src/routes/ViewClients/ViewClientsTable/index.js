@@ -13,8 +13,8 @@ function ViewCasesTable(props) {
     dataIndex: 'actions',
     render: (text, record) => (
       <div>
-        <Link to={`/cases/${record.accountname}`}>{text[0]} </Link>
-        <Link to={`/cases/${record.accountname}/edit`}>{text[1]}</Link>
+        <Link to={`/clients/${record.accountname}`}>{text[0]} </Link>
+        <Link to={`/clients/${record.accountname}/edit`}>{text[1]}</Link>
       </div>
     ),
   }];

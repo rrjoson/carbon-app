@@ -13,7 +13,7 @@ function ViewCasesHeader(props) {
         <H2>Glocal Cases</H2>
       </div>
       <div>
-        <Link to="/cases/add">
+        <Link to="/clients/add">
           <Button className={styles.button}>New Client</Button>
         </Link>
       </div>

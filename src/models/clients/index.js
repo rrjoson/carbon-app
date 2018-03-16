@@ -1,3 +1,4 @@
+import { routerRedux } from 'dva/router';
 import { notification } from 'antd';
 
 import {
@@ -46,6 +47,7 @@ export default {
       const accountName = yield select(state => state.clients.selected.accountname);
       const { data } = yield call(updateClient, accountName, payload);
       notification['success']({ message: 'Client updated.', duration: 2 });
+      yield put(routerRedux.push('/clients'));
     },
   },
 

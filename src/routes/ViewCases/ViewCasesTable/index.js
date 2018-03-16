@@ -5,7 +5,7 @@ import styles from './styles.css';
 import { Table, Link, Status, Avatar, Tooltip } from './../../../components';
 import { getSeverityValue } from './../../../utils/data';
 
-function AllCasesTable(props) {
+function ViewCasesTable(props) {
   const columns = [{
     title: 'ID',
     dataIndex: 'glocalid',
@@ -64,24 +64,22 @@ function AllCasesTable(props) {
     ),
   }];
 
-  const dataSource = props.data.map((item, index) => {
-    return (
-      {
-        key: index,
-        glocalid: item.glocalid,
-        customer: item.customer,
-        status: item.case_status,
-        assignedsystemsengineer: item.assignedsystemsengineer,
-        severity: item.severity,
-        casetitle: item.casetitle,
-        productname: item.productname,
-        open: item.dateraised,
-        lastupdated: item.dateraised,
-        dateraised: item.dateraised,
-        actions: ['View', 'Edit']
-      }
-    );
-  })
+  const dataSource = props.data.map((item, index) => (
+    {
+      key: index,
+      glocalid: item.glocalid,
+      customer: item.customer,
+      status: item.case_status,
+      assignedsystemsengineer: item.assignedsystemsengineer,
+      severity: item.severity,
+      casetitle: item.casetitle,
+      productname: item.productname,
+      open: item.dateraised,
+      lastupdated: item.dateraised,
+      dateraised: item.dateraised,
+      actions: ['View', 'Edit']
+    }
+  ));
 
   return (
     <div>
@@ -93,6 +91,6 @@ function AllCasesTable(props) {
   );
 }
 
-AllCasesTable.propTypes = {};
+ViewCasesTable.propTypes = {};
 
-export default AllCasesTable;
+export default ViewCasesTable;

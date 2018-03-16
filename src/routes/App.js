@@ -20,7 +20,7 @@ const menuItems = [{
   icon: 'database',
   label: 'Cases',
 }, {
-  url: '/clients/add',
+  url: '/clients',
   icon: 'idcard',
   label: 'Clients',
 }, {
@@ -60,10 +60,10 @@ function App({ location, children, loading }) {
       if (location.pathname.includes(item.url.split('/')[1])) {
         keys.push(item.label);
       }
-    })
+    });
 
     return keys;
-  }
+  };
 
   return (
     <Layout style={{ minHeight: '100vh' }}>

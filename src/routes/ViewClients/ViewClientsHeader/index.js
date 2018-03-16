@@ -6,21 +6,21 @@ import { Typography, Link } from './../../../components';
 
 const { H2 } = Typography;
 
-function AllCasesHeader(props) {
+function ViewCasesHeader(props) {
   return (
-    <div className={styles.allCasesHeader}>
+    <div className={styles.wrapper}>
       <div className={styles.title}>
         <H2>Glocal Cases</H2>
       </div>
       <div>
         <Link to="/cases/add">
-          <Button className={styles.button}>Add Case</Button>
+          <Button className={styles.button}>New Client</Button>
         </Link>
       </div>
     </div>
   );
 }
 
-AllCasesHeader.propTypes = {};
+ViewCasesHeader.propTypes = {};
 
-export default AllCasesHeader;
+export default ViewCasesHeader;

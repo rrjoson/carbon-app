@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './styles.css';
 import { Filter } from './../../../components';
 
-function AllCasesFilter(props) {
+function ViewCasesFilter(props) {
   return (
     <div>
       <Filter />
@@ -10,6 +10,6 @@ function AllCasesFilter(props) {
   );
 }
 
-AllCasesFilter.propTypes = {};
+ViewCasesFilter.propTypes = {};
 
-export default AllCasesFilter;
+export default ViewCasesFilter;

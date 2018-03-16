@@ -74,5 +74,3 @@ function mapStateToProps(state) {
 ViewCase.propTypes = {};
 
 export default connect(mapStateToProps)(ViewCase);
-
-

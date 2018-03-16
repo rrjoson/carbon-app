@@ -27,10 +27,6 @@ export default {
         if (pathname === '/home') {
           dispatch({ type: 'FETCH_ALL_CASES' });
         }
-
-        if (pathname === '/cases/all') {
-          dispatch({ type: 'FETCH_ALL_CASES' });
-        }
       });
     },
   },

@@ -18,7 +18,7 @@ const Routers = ({ history, app }) => {
       component: () => import('./routes/Home'),
     }, {
       path: '/cases/all',
-      component: () => import('./routes/AllCases'),
+      component: () => import('./routes/ViewCases'),
     }, {
       path: '/cases/add',
       component: () => import('./routes/AddCase'),
@@ -32,8 +32,8 @@ const Routers = ({ history, app }) => {
       path: '/cases/:caseId/activities/add',
       component: () => import('./routes/AddActivity'),
     }, {
-      path: '/clients/',
-      component: () => import('./routes/Clients'),
+      path: '/clients',
+      component: () => import('./routes/ViewClients'),
     }, {
       path: '/clients/add',
       component: () => import('./routes/AddClient'),

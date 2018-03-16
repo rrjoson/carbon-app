@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
-import { Collapse } from 'antd';
-import { Typography, Link, Status, Activity } from './../../../components';
+import { Typography, Link, Button, Activity } from './../../../components';
 
 import styles from './styles.css';
 
-const { H3 } = Typography;
+const { H2 } = Typography;
 
 class Activities extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      selected: {}
+      selected: {},
     };
   }
 
@@ -19,7 +18,7 @@ class Activities extends Component {
     const { selected } = this.state;
 
     if (selected[index]) {
-      delete selected[index]
+      delete selected[index];
     } else {
       selected[index] = item;
     }
@@ -28,11 +27,21 @@ class Activities extends Component {
   }
 
   render() {
-    const { data } = this.props;
+    const {
+      glocalId,
+      data,
+    } = this.props;
 
     return (
-      <div>
-        <H3>Activities</H3>
+      <div className={styles.viewCaseActivities}>
+        <div className={styles.viewCaseActivities__section}>
+          <div className={styles.viewCaseActivities__title}>
+            <H2>Activities</H2>
+          </div>
+          <div className={styles.viewCaseActivities__actions}>
+            <Link to={`/cases/${glocalId}/activities/add`}><Button>Add Activity</Button></Link>
+          </div>
+        </div>
         {
           data.map((item, index) => {
             return (

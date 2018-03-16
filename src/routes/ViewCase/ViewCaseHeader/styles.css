@@ -1,0 +1,25 @@
+.viewCaseHeader__section {
+  display: flex;
+  align-items: center;
+}
+
+.viewCaseHeader__section:first-child {
+  margin-bottom: 7px;
+}
+
+.viewCaseHeader__section:last-child {
+  margin-bottom: 29px;
+}
+
+.viewCaseHeader__title {
+  color: #7f7f7f;
+}
+
+.viewCaseHeader__actions {
+  margin-left: 16px;
+}
+
+.viewCaseHeader__description {
+  font-style: italic;
+  color: #7f7f7f;
+}

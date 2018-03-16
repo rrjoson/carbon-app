@@ -1,0 +1,17 @@
+.viewCaseActivities {
+
+}
+
+.viewCaseActivities__section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 38px;
+}
+
+.viewCaseActivities__title {
+  color: #7f7f7f;
+}
+
+.viewCaseActivities__actions {
+  margin-left: 16px;
+}

@@ -1,76 +1,60 @@
 .activity {
   position: relative;
   overflow: hidden;
-  max-height: 120px;
+  max-height: 186px;
   width: 610px;
   box-shadow: 0 2px 4px 0 rgba(203, 203, 203, 0.5);
   margin-bottom: 25px;
   transition: all ease .1s;
 }
 
-.activityOpen {
+.activity--open {
   max-height: 1000px;
   transition: all ease 1s;
 }
 
 .activity__body {
-  padding: 10px 0 23px;
+  padding: 10px 0 32px;
 }
 
-.activity__section {
-  display: flex;
-}
-
-.activity__section:nth-child(1) {
-  margin-bottom: 9px;
+.activity__engineers {
+  padding: 10px 25px 8px;
   border-bottom: solid 1px #efefef;
 }
 
-.activity__section:nth-child(3) {
-  flex-direction: column;
-  margin-bottom: 15px;
-}
-
-.activity__sectionItem {
+.activity__engineer {
   display: inline-flex;
+  align-items: center;
 
   border-right: solid 1px #f1f1f1;
-  height: 48px;
-}
+  height: 57px;
 
-.activity__section:nth-child(1) .activity__sectionItem:nth-child(1) {
-  width: 98px;
-  flex-direction: row;
-  align-items: center;
-}
-
-.activity__section:nth-child(2) .activity__sectionItem:nth-child(1) {
-  min-width: 239px;
-  flex-direction: column;
-}
-
-.activity__section:nth-child(2) .activity__sectionItem:nth-child(2) {
-  width: 98px;
-  flex-direction: column;
-  align-items: center;
-}
-
-.activity__section:nth-child(2) .activity__sectionItem:nth-child(3) {
-  width: 98px;
-  border-right: 0;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+  padding-right: 12px;
+  margin-right: 16px;
 }
 
 .activity__avatar {
-  margin-right: 9px;
+  margin-right: 8px;
 }
 
-.activity__engineer {
+.activity__engineerName {
   font-size: 14px;
   line-height: 1.57;
   color: rgba(0, 0, 0, 0.65);
+}
+
+.activity__info {
+  display: flex;
+  padding: 10px 25px;
+}
+
+.activity__meta {
+  display: flex;
+  flex: 1;
+}
+
+.activity__metaLeft {
+  flex: 1;
 }
 
 .activity__purpose {
@@ -85,21 +69,23 @@
   color: rgba(65, 65, 65, 0.65);
 }
 
-.activity__serviceNumber {
-  font-size: 14px;
-  font-weight: 600;
-  color: #1890ff;
-  margin-bottom: 5px;
+.activity__metaRight {
+  display: flex;
+  align-items: center;
+  padding-right: 24px;
 }
 
-.activity__type {
-  padding: 0 9px;
-  border-radius: 4px;
-  background-color: #e6f7ff;
-  border: solid 1px #91d5ff;
-  font-size: 12px;
-  line-height: 1.67;
-  color: #1890ff;
+.activity__actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 110px;
+  padding-left: 22px;
+  border-left: solid 1px #f1f1f1;
+}
+
+.activity__content {
+  padding: 0 25px;
 }
 
 .activity__sectionTitle {

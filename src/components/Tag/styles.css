@@ -1,0 +1,31 @@
+.tag {
+  padding: 0 9px;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 1.67;
+  background-color: #e6f7ff;
+  border: 1px solid #91d5ff;
+  color: #1890ff;
+}
+
+.remote {
+  background-color: #f9f0ff;
+  border-color: #d3adf7;
+  color: #722ed1;
+}
+
+.onsite {
+  background-color: #e6f7ff;
+  border-color: #91d5ff;
+  color: #1890ff;
+}
+
+.poc {
+
+}
+
+.implement {
+  background-color: #e6fffb;
+  border-color: #87e8de;
+  color: #13c2c2;
+}

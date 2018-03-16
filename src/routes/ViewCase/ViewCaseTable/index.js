@@ -68,7 +68,7 @@ function HomeTable(props) {
   })
 
   return (
-    <div>
+    <div className={styles.viewCaseTable}>
       <Table
         columns={columns}
         dataSource={dataSource}

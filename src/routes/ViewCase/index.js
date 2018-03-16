@@ -4,6 +4,7 @@ import { connect } from 'dva';
 
 import { Col, Row, Progress } from 'antd';
 
+import ViewCaseHeader from './ViewCaseHeader';
 import ViewCaseTable from './ViewCaseTable';
 import ViewCaseSelectStatus from './ViewCaseSelectStatus';
 import ViewCaseActivities from './ViewCaseActivities';
@@ -42,26 +43,22 @@ class ViewCase extends Component {
 
     return (
       <div className={styles.viewCase}>
-        <Row>
-          <H2>{selectedCase.casetitle}</H2>
-          <Link to={`/cases/${selectedCase.glocalid}/activities/add`}><Button>Add Activity</Button></Link>
-          <Link to={`/cases/${selectedCase.glocalid}/edit`}><Button>Edit Case</Button></Link>
-        </Row>
-        <Row>
-          {selectedCase.casedescription}
-        </Row>
-        <Row>
-          <ViewCaseTable data={[selectedCase]} />
-        </Row>
-        <Row>
-          <ViewCaseSelectStatus
-            status={selectedCase.case_status}
-            onSelectChange={(data) => dispatch({ type: 'cases/UPDATE_STATUS', payload: data })}
-          />
-        </Row>
-        <Row>
-          <ViewCaseActivities data={activities} />
-        </Row>
+        <ViewCaseHeader
+          glocalId={selectedCase.glocalid}
+          caseTitle={selectedCase.casetitle}
+          caseDescription={selectedCase.casedescription}
+        />
+        <ViewCaseTable
+          data={[selectedCase]}
+        />
+        <ViewCaseSelectStatus
+          status={selectedCase.case_status}
+          onSelectChange={(data) => dispatch({ type: 'cases/UPDATE_STATUS', payload: data })}
+        />
+        <ViewCaseActivities
+          data={activities}
+          glocalId={selectedCase.glocalid}
+        />
       </div>
     );
   }

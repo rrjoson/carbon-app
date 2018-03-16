@@ -2,11 +2,12 @@ import React from 'react';
 import moment from 'moment';
 
 import styles from './styles.css';
-import { Table, Link, Status, Avatar, Tooltip } from './../../../../components';
+import { Table, Link, Status, Avatar, Tooltip } from './../../../components';
+import { getSeverityValue } from './../../../utils/data';
 
 function HomeTable(props) {
   const columns = [{
-    title: 'Glo-cal ID',
+    title: 'ID',
     dataIndex: 'glocalid',
     render: glocalid => <Link to={`/cases/${glocalid}`}>{glocalid}</Link>,
   }, {
@@ -31,6 +32,7 @@ function HomeTable(props) {
   }, {
     title: 'Severity',
     dataIndex: 'severity',
+    render: severity => getSeverityValue(severity),
   }, {
     title: 'Product',
     dataIndex: 'productname',

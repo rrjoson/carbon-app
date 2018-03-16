@@ -14,7 +14,7 @@
 }
 
 .activity__body {
-  padding: 29px 23px 23px;
+  padding: 10px 0 23px;
 }
 
 .activity__section {
@@ -23,6 +23,7 @@
 
 .activity__section:nth-child(1) {
   margin-bottom: 9px;
+  border-bottom: solid 1px #efefef;
 }
 
 .activity__section:nth-child(3) {

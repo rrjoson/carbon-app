@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Table, Menu, Dropdown, Button, Icon, Select, Form } from 'antd';
-import { Typography, Link, Status } from './../../../../components';
+import { Typography, Link, Status } from './../../../components';
 
 import styles from './styles.css';
 

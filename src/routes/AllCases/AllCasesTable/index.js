@@ -3,10 +3,11 @@ import moment from 'moment';
 
 import styles from './styles.css';
 import { Table, Link, Status, Avatar, Tooltip } from './../../../components';
+import { getSeverityValue } from './../../../utils/data';
 
 function AllCasesTable(props) {
   const columns = [{
-    title: 'Glo-cal ID',
+    title: 'ID',
     dataIndex: 'glocalid',
     render: glocalid => <Link to={`/cases/${glocalid}`}>{glocalid}</Link>,
   }, {
@@ -19,6 +20,7 @@ function AllCasesTable(props) {
   }, {
     title: 'Assigned SE',
     dataIndex: 'assignedsystemsengineer',
+    width: '120px',
     render: assignedsystemsengineer => {
       return assignedsystemsengineer.map((systemengineer) => {
         return (
@@ -31,6 +33,8 @@ function AllCasesTable(props) {
   }, {
     title: 'Severity',
     dataIndex: 'severity',
+    width: '120px',
+    render: severity => getSeverityValue(severity),
   }, {
     title: 'Case Title',
     dataIndex: 'casetitle',

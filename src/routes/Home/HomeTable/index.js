@@ -3,6 +3,7 @@ import moment from 'moment';
 
 import styles from './styles.css';
 import { Table, Link, Status, Avatar } from './../../../components';
+import { getSeverityValue } from './../../../utils/data';
 
 function HomeTable(props) {
   const columns = [{
@@ -19,6 +20,7 @@ function HomeTable(props) {
   }, {
     title: 'Severity',
     dataIndex: 'severity',
+    render: severity => getSeverityValue(severity),
   }, {
     title: 'Case Title',
     dataIndex: 'casetitle',

@@ -17,13 +17,26 @@ const Activity = (props) => {
 
   const activityStyle = classnames({
     [styles.activity]: true,
-    [styles.activityOpen]: open,
+    [styles.activityOpen]: !open,
   });
 
   return (
     <div className={activityStyle}>
       <div className={styles.activity__body}>
         <div className={styles.activity__section}>
+          <div className={styles.activity__sectionItem}>
+            <div className={styles.activity__avatar}>
+              <Tooltip title={item.engineersurname}>
+                <Avatar>
+                  {item.engineersurname.split(' ')[0][0]}
+                </Avatar>
+              </Tooltip>
+            </div>
+            <div className={styles.name}>
+              {item.engineersurname.split(' ')[0]}
+            </div>
+          </div>
+
           <div className={styles.activity__sectionItem}>
             <div className={styles.activity__avatar}>
               <Tooltip title={item.engineersurname}>

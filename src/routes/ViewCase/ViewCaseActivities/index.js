@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Collapse } from 'antd';
-import { Typography, Link, Status, Activity } from './../../../../components';
+import { Typography, Link, Status, Activity } from './../../../components';
 
 import styles from './styles.css';
 

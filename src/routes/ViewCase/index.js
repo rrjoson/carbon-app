@@ -4,9 +4,9 @@ import { connect } from 'dva';
 
 import { Col, Row, Progress } from 'antd';
 
-import DashboardTable from './components/DashboardTable';
-import SelectStatus from './components/SelectStatus';
-import Activities from './components/Activities';
+import ViewCaseTable from './ViewCaseTable';
+import ViewCaseSelectStatus from './ViewCaseSelectStatus';
+import ViewCaseActivities from './ViewCaseActivities';
 import { Typography, Link, Card, Button } from './../../components';
 
 import styles from './styles.css';
@@ -51,16 +51,16 @@ class ViewCase extends Component {
           {selectedCase.casedescription}
         </Row>
         <Row>
-          <DashboardTable data={[selectedCase]} />
+          <ViewCaseTable data={[selectedCase]} />
         </Row>
         <Row>
-          <SelectStatus
+          <ViewCaseSelectStatus
             status={selectedCase.case_status}
             onSelectChange={(data) => dispatch({ type: 'cases/UPDATE_STATUS', payload: data })}
           />
         </Row>
         <Row>
-          <Activities data={activities} />
+          <ViewCaseActivities data={activities} />
         </Row>
       </div>
     );

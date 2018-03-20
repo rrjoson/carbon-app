@@ -50,16 +50,15 @@ function HomeTable(props) {
     return (
       {
         key: index,
-        glocalid: item.glocalid,
+        glocalid: item.glocalId,
         customer: item.customer,
         status: item.case_status,
-        assignedsystemsengineer: item.assignedsystemsengineer,
         severity: item.severity,
-        casetitle: item.casetitle,
-        productname: item.productname,
-        open: item.dateraised,
-        lastupdated: item.dateraised,
-        dateraised: item.dateraised,
+        casetitle: item.caseTitle,
+        productname: item.productName,
+        open: item.dateRaised,
+        lastupdated: item.dateRaised,
+        dateraised: item.dateRaised,
         actions: ['View', 'Edit'],
       }
     );

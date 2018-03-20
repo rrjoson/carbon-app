@@ -37,6 +37,8 @@ class AddLicense extends Component {
           vendors={vendors}
           products={products}
           clients={clients}
+          onSelectClient={(data) => dispatch({ type: 'vendors/FETCH_VENDORS_OF_CLIENT', payload: data })}
+          onSelectVendor={(data) => dispatch({ type: 'products/FETCH_PRODUCTS_OF_VENDOR', payload: data })}
           onSave={(data) => dispatch({ type: 'licenses/ADD_LICENSE', payload: data })}
         />
       </div>

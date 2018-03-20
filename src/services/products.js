@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:8000';
+const BASE_URL = 'https://iris-carbon-api.herokuapp.com';
 const FETCH_PRODUCTS = `${BASE_URL}/products`;
 const FETCH_PRODUCTS_OF_VENDOR = `${BASE_URL}/productvendor`;
 const ADD_PRODUCT = `${BASE_URL}/products`;

@@ -1,13 +1,18 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:8000';
+const BASE_URL = 'https://iris-carbon-api.herokuapp.com';
 const FETCH_VENDORS = `${BASE_URL}/vendor`;
+const FETCH_VENDORS_OF_CLIENT = `${BASE_URL}/vendor`;
 const CREATE_VENDOR = `${BASE_URL}/vendor`;
 const PATCH_VENDOR = `${BASE_URL}/vendor`;
 const DELETE_VENDOR = `${BASE_URL}/vendor`;
 
 export function fetchVendors() {
   return axios.get(FETCH_VENDORS);
+}
+
+export function fetchVendorsOfClient(client) {
+  return axios.get(`${FETCH_VENDORS_OF_CLIENT}/${client}`);
 }
 
 export function createVendor(name) {

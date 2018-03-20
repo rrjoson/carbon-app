@@ -45,7 +45,7 @@ export default {
     },
 
     *UPDATE_CLIENT({ payload }, { call, put, select }) {
-      const accountName = yield select(state => state.clients.selected.accountname);
+      const accountName = yield select(state => state.clients.selected.accountName);
       const { data } = yield call(updateClient, accountName, payload);
       notification['success']({ message: 'Client updated.', duration: 2 });
       yield put(routerRedux.push('/clients'));

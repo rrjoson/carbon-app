@@ -29,14 +29,14 @@ const Activity = (props) => {
         <div className={styles['activity__engineers']}>
           <div className={styles['activity__engineer']}>
             <div className={styles['activity__avatar']}>
-              <Tooltip title={item.engineersurname}>
+              <Tooltip title={item.engineerSurname}>
                 <Avatar>
-                  {item.engineersurname.split(' ')[0][0]}
+                  {item.engineerSurname.split(' ')[0][0]}
                 </Avatar>
               </Tooltip>
             </div>
             <div className={styles.activity__engineerName}>
-              {item.engineersurname.split(' ')[0]}
+              {item.engineerSurname.split(' ')[0]}
             </div>
           </div>
         </div>
@@ -48,7 +48,7 @@ const Activity = (props) => {
           <div className={styles.activity__meta}>
             <div className={styles.activity__metaLeft}>
               <div className={styles.activity__purpose}>
-                {item.purposeofvisit}
+                {item.purposeOfVisit}
               </div>
               <div className={styles.activity__time}>
                 2017-12-31 • 12:53pm • 4 hours
@@ -56,7 +56,7 @@ const Activity = (props) => {
             </div>
             <div className={styles.activity__metaRight}>
               <Tag>
-                {item.typeofactivity}
+                {item.typeOfActivity}
               </Tag>
             </div>
           </div>
@@ -74,7 +74,7 @@ const Activity = (props) => {
             Activity Performed
           </div>
           <div className={styles.activity__sectionContent}>
-            {item.activityperformed}
+            {item.activityPerformed}
           </div>
           <div className={styles.activity__sectionTitle}>
             Recommendation

@@ -103,7 +103,7 @@ class DynamicFieldSet extends Component {
           <Col span={3}>
             <FormItem label="Client">
               {getFieldDecorator('accountName', {
-                initialValue: this.props.client.accountname,
+                initialValue: this.props.client.accountName,
                 rules: [{
                   required: true,
                   message: 'This is a required field',
@@ -229,38 +229,18 @@ class DynamicFieldSet extends Component {
 
         <Row gutter={12}>
           <Col span={6}>
-            <FormItem label="System Engineer Lead">
-              {getFieldDecorator('systemEngineerLead', {
-                initialValue: this.props.client.systemengineerlead,
-                rules: [{
-                  required: true,
-                  message: 'This is a required field',
-                }],
-              })(
-                <Select placeholder={`${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`}>
-                  {
-                    this.props.engineers.map((engineer) => {
-                      return <Option value={`${engineer.firstname} ${engineer.lastname}`}>{`${engineer.firstname} ${engineer.lastname}`}</Option>
-                    })
-                  }
-                </Select>
-              )}
-            </FormItem>
-          </Col>
-
-          <Col span={6}>
             <FormItem label="Account Manager">
               {getFieldDecorator('accountManager', {
-                initialValue: this.props.client.accountmanager,
+                initialValue: this.props.client.accountManager,
                 rules: [{
                   required: true,
                   message: 'This is a required field',
                 }],
               })(
-                <Select placeholder={`${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`}>
+                <Select placeholder={`${this.props.engineers[0]['firstName']} ${this.props.engineers[0]['lastName']}`}>
                   {
                     this.props.engineers.map((engineer) => {
-                      return <Option value={`${engineer.firstname} ${engineer.lastname}`}>{`${engineer.firstname} ${engineer.lastname}`}</Option>
+                      return <Option value={`${engineer.firstName} ${engineer.lastName}`}>{`${engineer.firstName} ${engineer.lastName}`}</Option>
                     })
                   }
                 </Select>

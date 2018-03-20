@@ -10,6 +10,16 @@ const Option = Select.Option;
 const { H4, H5 } = Typography;
 
 class DynamicFieldSet extends Component {
+  handleChangeClient = (data) => {
+    this.props.form.setFieldsValue({ vendor: '' });
+    this.props.onSelectClient(data);
+  }
+
+  handleChangeVendor = (data) => {
+    this.props.form.setFieldsValue({ productName: '' });
+    this.props.onSelectVendor(data);
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -87,10 +97,10 @@ class DynamicFieldSet extends Component {
                   message: 'This is a required field',
                 }],
               })(
-                <Select placeholder={this.props.clients[0]['accountname']}>
+                <Select onChange={this.handleChangeClient}>
                   {
                     this.props.clients.map((client) => {
-                      return <Option value={client.accountname}>{client.accountname}</Option>
+                      return <Option value={client.accountName}>{client.accountName}</Option>
                     })
                   }
                 </Select>
@@ -106,7 +116,7 @@ class DynamicFieldSet extends Component {
                   message: 'This is a required field',
                 }],
               })(
-                <Select placeholder={this.props.vendors[0]['principal']}>
+                <Select disabled={!getFieldValue('client')} onChange={this.handleChangeVendor}>
                   {
                     this.props.vendors.map((vendor) => {
                       return <Option value={vendor.principal}>{vendor.principal}</Option>
@@ -125,10 +135,10 @@ class DynamicFieldSet extends Component {
                   message: 'This is a required field',
                 }],
               })(
-                <Select placeholder={this.props.products[0]['productname']}>
+                <Select disabled={!getFieldValue('vendor')}>
                   {
                     this.props.products.map((product) => {
-                      return <Option value={product.productname}>{product.productname}</Option>
+                      return <Option value={product.productName}>{product.productName}</Option>
                     })
                   }
                 </Select>

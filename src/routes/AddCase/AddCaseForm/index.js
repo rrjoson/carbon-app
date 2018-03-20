@@ -228,7 +228,7 @@ class AddCaseForm extends Component {
                 <Select disabled={!getFieldValue('vendor')}>
                   {
                     this.props.products.map((product) => {
-                      return <Option value={product.productname}>{product.productname}</Option>
+                      return <Option value={product.productName}>{product.productName}</Option>
                     })
                   }
                 </Select>
@@ -244,10 +244,10 @@ class AddCaseForm extends Component {
                   message: 'This is a required field',
                 }],
               })(
-                <Select placeholder={this.props.clients[0]['accountname']}>
+                <Select placeholder={this.props.clients[0]['accountName']}>
                   {
                     this.props.clients.map((client) => {
-                      return <Option value={client.accountname}>{client.accountname}</Option>
+                      return <Option value={client.accountName}>{client.accountName}</Option>
                     })
                   }
                 </Select>

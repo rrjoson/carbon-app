@@ -54,15 +54,15 @@ function HomeTable(props) {
     return (
       {
         key: index,
-        glocalid: item.glocalid,
+        glocalid: item.glocalId,
         customer: item.customer,
         status: item.case_status,
-        assignedsystemsengineer: item.assignedsystemsengineer,
+        assignedsystemsengineer: item.assignedSystemsEngineer,
         severity: item.severity,
-        productname: item.productname,
-        open: item.dateraised,
-        dateraised: item.dateraised,
-        assignedaccountmanager: item.assignedaccountmanager,
+        productname: item.productName,
+        open: item.dateRaised,
+        dateraised: item.dateRaised,
+        assignedaccountmanager: item.assignedAccountManager,
       }
     );
   })

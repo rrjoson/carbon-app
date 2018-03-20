@@ -214,25 +214,6 @@ class AddClientForm extends Component {
 
         <Row gutter={12}>
           <Col span={6}>
-            <FormItem label="System Engineer Lead">
-              {getFieldDecorator('systemEngineerLead', {
-                rules: [{
-                  required: true,
-                  message: 'This is a required field',
-                }],
-              })(
-                <Select placeholder={`${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`}>
-                  {
-                    this.props.engineers.map((engineer) => {
-                      return <Option value={`${engineer.firstname} ${engineer.lastname}`}>{`${engineer.firstname} ${engineer.lastname}`}</Option>
-                    })
-                  }
-                </Select>
-              )}
-            </FormItem>
-          </Col>
-
-          <Col span={6}>
             <FormItem label="Account Manager">
               {getFieldDecorator('accountManager', {
                 rules: [{
@@ -240,10 +221,10 @@ class AddClientForm extends Component {
                   message: 'This is a required field',
                 }],
               })(
-                <Select placeholder={`${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`}>
+                <Select placeholder={`${this.props.engineers[0]['firstName']} ${this.props.engineers[0]['lastName']}`}>
                   {
                     this.props.engineers.map((engineer) => {
-                      return <Option value={`${engineer.firstname} ${engineer.lastname}`}>{`${engineer.firstname} ${engineer.lastname}`}</Option>
+                      return <Option value={`${engineer.firstName} ${engineer.lastName}`}>{`${engineer.firstName} ${engineer.lastName}`}</Option>
                     })
                   }
                 </Select>

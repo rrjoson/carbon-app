@@ -6,8 +6,31 @@ import { Table, Link, Status, Avatar, Tooltip } from './../../../components';
 
 function ViewCasesTable(props) {
   const columns = [{
-    title: 'licenseid',
+    title: 'Client',
+    dataIndex: 'client',
+  }, {
+    title: 'Vendor',
+    dataIndex: 'vendor',
+  }, {
+    title: 'Product',
+    dataIndex: 'product',
+  }, {
+    title: 'Expiration',
     dataIndex: 'licenseid',
+  }, {
+    title: 'Date Start',
+    dataIndex: 'dateStart',
+    render: date => moment(date, 'YYYY-MM-DD').format('DD/MM/YYYY'),
+  }, {
+    title: 'Date End',
+    dataIndex: 'dateEnd',
+    render: date => moment(date, 'YYYY-MM-DD').format('DD/MM/YYYY'),
+  }, {
+    title: 'Particulars',
+    dataIndex: 'particulars',
+  }, {
+    title: 'Assigned AM',
+    dataIndex: 'assignedAccountManager',
   }, {
     title: 'Actions',
     dataIndex: 'actions',
@@ -22,8 +45,15 @@ function ViewCasesTable(props) {
   const dataSource = props.data.map((item, index) => (
     {
       key: index,
-      licenseid: item.licenseid,
-      actions: ['View', 'Edit']
+      client: item.client,
+      vendor: item.vendor,
+      product: item.productName,
+      expiration: 'This month',
+      dateStart: item.date_start,
+      dateEnd: item.date_end,
+      particulars: item.particulars,
+      assignedAccountManager: item.assignedAM,
+      actions: ['View', 'Edit'],
     }
   ));
 

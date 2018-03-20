@@ -15,9 +15,16 @@ class EditProductsForm extends Component {
   remove = (vendorName, k) => {
     const { form } = this.props;
     const keys = form.getFieldValue(`keys-${vendorName}`);
+    const nextKeys = [];
 
     if (keys.length === 1) return;
-    form.setFieldsValue({ [`keys-${vendorName}`]: keys.filter(key => key !== k) });
+    keys.forEach((key) => {
+      if (key.name !== k.name) {
+        nextKeys.push(key);
+      }
+    });
+
+    form.setFieldsValue({ [`keys-${vendorName}`]: nextKeys });
   }
 
   add = (vendorName) => {
@@ -90,7 +97,7 @@ class EditProductsForm extends Component {
         }
       }
 
-      vendors[vendorIndex].list.push({ name: product.productname });
+      vendors[vendorIndex].list.push({ name: product.productName });
 
       // if (found) {
 

@@ -40,7 +40,7 @@ export default {
 
     *FETCH_NEXT_ID({ payload }, { call, put }) {
       const { data } = yield call(fetchNextId, payload);
-      yield put({ type: 'SAVE', payload: { nextId: data[0]['?column?'] } });
+      yield put({ type: 'SAVE', payload: { nextId: data[0]['next_id'] } });
     },
 
     *FETCH_ALL_CASES({ payload }, { call, put }) {

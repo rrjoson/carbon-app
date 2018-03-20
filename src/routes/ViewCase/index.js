@@ -28,7 +28,7 @@ class ViewCase extends Component {
     const { dispatch } = this.props;
 
     if (nextProps.selectedCase !== this.props.selectedCase) {
-      dispatch({ type: 'activities/FETCH_ACTIVITIES', payload: nextProps.selectedCase.glocalid });
+      dispatch({ type: 'activities/FETCH_ACTIVITIES', payload: nextProps.selectedCase.glocalId });
     }
   }
 
@@ -44,9 +44,9 @@ class ViewCase extends Component {
     return (
       <div className={styles.viewCase}>
         <ViewCaseHeader
-          glocalId={selectedCase.glocalid}
-          caseTitle={selectedCase.casetitle}
-          caseDescription={selectedCase.casedescription}
+          glocalId={selectedCase.glocalId}
+          caseTitle={selectedCase.caseTitle}
+          caseDescription={selectedCase.caseDescription}
         />
         <ViewCaseTable
           data={[selectedCase]}
@@ -57,7 +57,7 @@ class ViewCase extends Component {
         />
         <ViewCaseActivities
           data={activities}
-          glocalId={selectedCase.glocalid}
+          glocalId={selectedCase.glocalId}
         />
       </div>
     );

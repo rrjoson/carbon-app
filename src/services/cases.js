@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:8000';
+const BASE_URL = 'https://iris-carbon-api.herokuapp.com';
 const FETCH_ALL_CASES = `${BASE_URL}/glocalid`;
 const FETCH_CASE = `${BASE_URL}/glocalid`;
 const CREATE_CASE = `${BASE_URL}/glocalid`;
@@ -24,19 +24,19 @@ export function updateCase(payload) {
 
 export function updateCaseStatus(payload, selectedCase) {
   const originalCase = {
-    vendorCaseId: selectedCase.vendorcaseid,
-    dateIdCreated: selectedCase.dateidcreated,
-    dateRaised: selectedCase.dateraised,
-    caseTitle: selectedCase.casetitle,
-    caseDescription: selectedCase.casedescription,
+    vendorCaseId: selectedCase.vendorCaseId,
+    dateIdCreated: selectedCase.dateIdCreated,
+    dateRaised: selectedCase.dateRaised,
+    caseTitle: selectedCase.caseTitle,
+    caseDescription: selectedCase.caseDescription,
     severity: selectedCase.severity,
     vendor: selectedCase.vendor,
     customer: selectedCase.customer,
-    productName: selectedCase.productname,
-    customerName: selectedCase.customername,
-    systemsEngineerLead: selectedCase.systemsengineerlead,
-    assignedAccountManager: selectedCase.assignedaccountmanager,
-    assignedSystemsEngineer: selectedCase.assignedsystemsengineer,
+    productName: selectedCase.productName,
+    customerName: selectedCase.customerName,
+    systemsEngineerLead: selectedCase.systemsEngineerLead,
+    assignedAccountManager: selectedCase.assignedAccountManager,
+    assignedSystemsEngineer: selectedCase.assignedSystemsEngineer,
     case_status: selectedCase.case_status,
   };
 
@@ -45,7 +45,7 @@ export function updateCaseStatus(payload, selectedCase) {
     case_status: payload,
   };
 
-  return axios.put(`${CREATE_CASE}/${selectedCase.glocalid}`, updatedCase);
+  return axios.put(`${CREATE_CASE}/${selectedCase.glocalId}`, updatedCase);
 }
 
 export function fetchNextId() {

@@ -262,10 +262,10 @@ class AddActivityForm extends Component {
             {getFieldDecorator('engineerIndex', {
               initialValue: 0,
             })(
-              <Select placeholder={`${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`} style={{ width: '224px', marginRight: 19 }}>
+              <Select placeholder={`${this.props.engineers[0]['firstName']} ${this.props.engineers[0]['lastName']}`} style={{ width: '224px', marginRight: 19 }}>
                 {
                   this.props.engineers.map((engineer, index) => {
-                    return <Option value={index}>{`${engineer.firstname} ${engineer.lastname}`}</Option>
+                    return <Option value={index}>{`${engineer.firstName} ${engineer.lastName}`}</Option>
                   })
                 }
               </Select>

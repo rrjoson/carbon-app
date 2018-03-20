@@ -53,7 +53,7 @@ export default {
       productsData.forEach((item) => {
         original[item.vendor] = {
           ...original[item.vendor],
-          [item.productname]: item.productname
+          [item.productName]: item.productName
         }
       });
 

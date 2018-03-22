@@ -32,6 +32,9 @@ const Routers = ({ history, app }) => {
       path: '/cases/:caseId/activities/add',
       component: () => import('./routes/AddActivity'),
     }, {
+      path: '/cases/:caseId/activities/:activityNo/edit',
+      component: () => import('./routes/EditActivity'),
+    }, {
       path: '/clients',
       component: () => import('./routes/ViewClients'),
     }, {

@@ -31,8 +31,6 @@ class Cases extends Component {
       engineers,
     } = this.props;
 
-    console.warn(this.props, 2222)
-
     if (
       !nextId ||
       !vendors.length ||

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Form, Input, Icon, Button, Row, Col, DatePicker, Select, TimePicker, Radio } from 'antd';
+import { Input, Icon, Button, Row, Col, DatePicker, Radio, Modal } from 'antd';
+import moment from 'moment';
 
-import { Link, Typography } from './../../../components';
+import { generatePDF } from './../../../utils/pdf';
+import { Form, Select, Link, Typography } from './../../../components';
 
 import styles from './styles.css';
 
@@ -15,45 +17,96 @@ const vendors = [
 let uuid = 1;
 
 class DynamicFieldSet extends Component {
+  componentDidMount() {
+    uuid = this.props.selectedActivity.assignedSystemsEngineer.length;
+  }
 
   remove = (vendorName, k) => {
     const { form } = this.props;
+    console.warn(vendorName)
     const keys = form.getFieldValue(`keys-${vendorName}`);
+    const nextKeys = [];
 
+    console.warn(222, keys)
     if (keys.length === 1) return;
-    form.setFieldsValue({ [`keys-${vendorName}`]: keys.filter(key => key !== k) });
+    keys.forEach((key) => {
+      console.warn(333, key, k)
+      if (key.id !== k.id) {
+        nextKeys.push(key);
+      }
+    });
+    form.setFieldsValue({ [`keys-${vendorName}`]: nextKeys });
   }
 
   add = (vendorName) => {
     const { form } = this.props;
     const keys = form.getFieldValue(`keys-${vendorName}`);
-    const nextKeys = keys.concat(`New Product ${uuid}`);
 
+    console.warn(keys)
+
+    // keys.push([`${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`]);
+    keys.push({
+      id: uuid,
+      name: `${this.props.engineers[0]['firstName']} ${this.props.engineers[0]['lastName']}`,
+    });
     uuid += 1;
-    form.setFieldsValue({ [`keys-${vendorName}`]: nextKeys });
+    form.setFieldsValue({ [`keys-${vendorName}`]: keys });
+  }
+
+  showConfirmDeleteModal = (vendorName, k) => {
+    Modal.confirm({
+      title: 'Are you sure you want to delete this?',
+      okText: 'Delete',
+      okType: 'danger',
+      cancelText: 'Cancel',
+      onOk: () => {
+        this.remove(vendorName, k);
+      },
+    });
+  }
+
+  exportToPDF = () => {
+    this.props.form.validateFieldsAndScroll((err, values) => {
+      if (!err) {
+        generatePDF(values);
+      }
+    });
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
+
+    this.props.form.validateFields((err, values) => {
+      const data = Object.assign({}, values);
+
       if (!err) {
-        const engineers = this.props.engineers;
-        const engineerIndex = values.engineerIndex;
-
-        const data = Object.assign({}, values);
-        data.engineerName = `${engineers[engineerIndex]['firstname']} ${engineers[engineerIndex]['lastname']}`;
-        data.engid = engineers[engineerIndex]['engid']
-        delete data.engineerIndex;
-
-        console.log('Received values of form: ', data);
-
-        this.props.onSave(data);
+        console.log('Received values of form: ', values);
       }
+
+      delete data['keys-assignedSystemsEngineer']
+      data['assignedSystemsEngineer'] = values.assignedSystemsEngineer.map((item) => (
+        [item]
+      ))
+      console.log('Received values of form: ', data);
+      this.props.onSave(data)
     });
   }
 
   render() {
     const { getFieldDecorator, getFieldValue } = this.props.form;
+
+    const vendors = [
+      {
+        label: 'Assigned System Engineer',
+        name: 'assignedSystemsEngineer',
+        products: this.props.selectedActivity.assignedSystemsEngineer.map((item, index) => {
+          return {
+            id: index,
+            name: item[0],
+          }
+        })
+      },
+    ];
 
     const formItemLayout = {
       labelCol: {
@@ -78,7 +131,7 @@ class DynamicFieldSet extends Component {
           <Col span={3}>
             <FormItem label="Glocal ID">
               {getFieldDecorator('trackingNo', {
-                initialValue: this.props.selectedCase.glocalid
+                initialValue: this.props.selectedActivity.trackingNo,
               })(
                 <Input disabled type="text" />
               )}
@@ -87,13 +140,14 @@ class DynamicFieldSet extends Component {
 
           <Col span={5}>
             <FormItem label="Vendor Case ID">
-              <Input disabled type="text" value={this.props.selectedCase.vendorcaseid} />
+              <Input disabled type="text" value={this.props.selectedCase.vendorCaseId} />
             </FormItem>
           </Col>
 
           <Col span={5}>
             <FormItem label="Time In">
               {getFieldDecorator('timeIn', {
+                initialValue: moment(this.props.selectedActivity.timeIn, 'YYYY-MM-DD'),
                 rules: [{
                   required: true,
                   message: 'This is a required field',
@@ -112,6 +166,7 @@ class DynamicFieldSet extends Component {
           <Col span={5}>
             <FormItem label="Time Out">
               {getFieldDecorator('timeOuts', {
+                initialValue: moment(this.props.selectedActivity.timeOuts, 'YYYY-MM-DD'),
                 rules: [{
                   required: true,
                   message: 'This is a required field',
@@ -132,7 +187,7 @@ class DynamicFieldSet extends Component {
           <Col span={3}>
             <FormItem label="Product Name">
               {getFieldDecorator('productName', {
-                initialValue: this.props.selectedCase.productname
+                initialValue: this.props.selectedActivity.productName,
               })(
                 <Input disabled type="text" />
               )}
@@ -142,17 +197,7 @@ class DynamicFieldSet extends Component {
           <Col span={5}>
             <FormItem label="Client">
               {getFieldDecorator('client', {
-                initialValue: this.props.selectedCase.customer
-              })(
-                <Input disabled type="text" />
-              )}
-            </FormItem>
-          </Col>
-
-          <Col span={5}>
-            <FormItem label="Customer Name">
-              {getFieldDecorator('contactCustomer', {
-                initialValue: this.props.selectedCase.customername,
+                initialValue: this.props.selectedActivity.client,
               })(
                 <Input disabled type="text" />
               )}
@@ -162,7 +207,7 @@ class DynamicFieldSet extends Component {
           <Col span={5}>
             <FormItem label="Address">
               {getFieldDecorator('addres', {
-                initialValue: this.props.selectedClient.company_address,
+                initialValue: this.props.selectedActivity.addres,
                 rules: [{
                   required: true,
                   message: 'This is a required field',
@@ -180,7 +225,7 @@ class DynamicFieldSet extends Component {
           <Col span={24}>
             <FormItem label="Type of Activity">
               {getFieldDecorator('typeOfActivity', {
-                initialValue: 'Onsite',
+                initialValue: this.props.selectedActivity.typeOfActivity,
                 rules: [{
                   required: true,
                   message: 'This is a required field',
@@ -201,6 +246,7 @@ class DynamicFieldSet extends Component {
           <Col span={24}>
             <FormItem label="Purpose of Visit">
               {getFieldDecorator('purposeOfVisit', {
+                initialValue: this.props.selectedActivity.purposeOfVisit,
                 rules: [{
                   required: true,
                   message: 'This is a required field',
@@ -216,6 +262,7 @@ class DynamicFieldSet extends Component {
           <Col span={24}>
             <FormItem label="Activity Performed">
               {getFieldDecorator('activityPerformed', {
+                initialValue: this.props.selectedActivity.activityPerformed,
                 rules: [{
                   required: true,
                   message: 'This is a required field',
@@ -231,6 +278,7 @@ class DynamicFieldSet extends Component {
           <Col span={24}>
             <FormItem label="Next Activity">
               {getFieldDecorator('nextActivity', {
+                initialValue: this.props.selectedActivity.nextActivity,
                 rules: [{
                   required: true,
                   message: 'This is a required field',
@@ -245,7 +293,9 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={24}>
             <FormItem label="Recommendation (Optional)">
-              {getFieldDecorator('recommendations', {})(
+              {getFieldDecorator('recommendations', {
+                initialValue: this.props.selectedActivity.recommendations,
+              })(
                 <Input.TextArea rows={4} />
               )}
             </FormItem>
@@ -253,27 +303,70 @@ class DynamicFieldSet extends Component {
         </Row>
 
         <Row>
-          <FormItem label="Assigned System Engineer">
-            {getFieldDecorator('engineerIndex', {
-              initialValue: 0,
-            })(
-              <Select placeholder={`${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`} style={{ width: '224px', marginRight: 19 }}>
-                {
-                  this.props.engineers.map((engineer, index) => {
-                    return <Option value={index}>{`${engineer.firstname} ${engineer.lastname}`}</Option>
-                  })
-                }
-              </Select>
-            )}
-          </FormItem>
+          {
+            vendors.map((vendor) => {
+              getFieldDecorator(
+                `keys-${vendor.name}`,
+                { initialValue: vendor.products },
+              );
+
+              const keys = getFieldValue(`keys-${vendor.name}`);
+
+              const formItems = keys.map((k, index) => {
+                return (
+                  <FormItem
+                    {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
+                    required={false}
+                    key={k.id}
+                  >
+                    {getFieldDecorator(`${vendor.name}[${index}]`, {
+                      initialValue: k.name,
+                      validateTrigger: ['onChange', 'onBlur'],
+                      rules: [{
+                        required: true,
+                        whitespace: true,
+                        message: 'Please add a vendor name or delete this field.',
+                      }],
+                    })(
+                      <Select placeholder={`${this.props.engineers[0]['firstName']} ${this.props.engineers[0]['lastName']}`} style={{ width: '224px', marginRight: 19 }}>
+                        {
+                          this.props.engineers.map((engineer) => {
+                            return <Option value={`${engineer.firstName} ${engineer.lastName}`}>{`${engineer.firstName} ${engineer.lastName}`}</Option>
+                          })
+                        }
+                      </Select>
+                    )}
+                    {keys.length > 1 ? (
+                      <Link onClick={() => this.showConfirmDeleteModal(vendor.name, k)} to="#">Delete</Link>
+                    ) : null}
+                  </FormItem>
+                );
+              });
+
+              return (
+                <Col span={6} key={vendor.name}>
+                  <div className={styles.title}>
+                    <H4>{vendor.label}</H4>
+                  </div>
+                  {formItems}
+                  <FormItem {...formItemLayoutWithOutLabel}>
+                    <Button onClick={() => this.add(vendor.name)} style={{ width: '132px' }}>
+                      <Icon type="plus" /> Add SE
+                    </Button>
+                  </FormItem>
+                </Col>
+              );
+            })
+          }
         </Row>
+
         <div className={styles.divider} />
         <FormItem {...formItemLayoutWithOutLabel}>
           <Button type="primary" style={{ marginRight: 8 }} htmlType="submit">
             <Icon type="save" />
             Save
           </Button>
-          <Button style={{ marginRight: 8 }}>
+          <Button style={{ marginRight: 8 }} onClick={this.exportToPDF}>
             <Icon type="download" />
             Export to PDF
           </Button>

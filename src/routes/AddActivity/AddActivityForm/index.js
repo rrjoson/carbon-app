@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Form, Input, Icon, Button, Row, Col, DatePicker, Select, Radio } from 'antd';
+import { Input, Icon, Button, Row, Col, DatePicker, Radio, Modal } from 'antd';
 
 import { generatePDF } from './../../../utils/pdf';
-import { Link, Typography } from './../../../components';
+import { Form, Select, Link, Typography } from './../../../components';
 
 import styles from './styles.css';
 
@@ -16,11 +16,14 @@ class AddActivityForm extends Component {
 
   remove = (vendorName, k) => {
     const { form } = this.props;
+    console.warn(vendorName)
     const keys = form.getFieldValue(`keys-${vendorName}`);
     const nextKeys = [];
 
+    console.warn(222, keys)
     if (keys.length === 1) return;
     keys.forEach((key) => {
+      console.warn(333, key, k)
       if (key.id !== k.id) {
         nextKeys.push(key);
       }
@@ -32,12 +35,35 @@ class AddActivityForm extends Component {
     const { form } = this.props;
     const keys = form.getFieldValue(`keys-${vendorName}`);
 
+    console.warn(keys)
+
+    // keys.push([`${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`]);
     keys.push({
       id: uuid,
       name: `${this.props.engineers[0]['firstName']} ${this.props.engineers[0]['lastName']}`,
     });
     uuid += 1;
     form.setFieldsValue({ [`keys-${vendorName}`]: keys });
+  }
+
+  showConfirmDeleteModal = (vendorName, k) => {
+    Modal.confirm({
+      title: 'Are you sure you want to delete this?',
+      okText: 'Delete',
+      okType: 'danger',
+      cancelText: 'Cancel',
+      onOk: () => {
+        this.remove(vendorName, k);
+      },
+    });
+  }
+
+  exportToPDF = () => {
+    this.props.form.validateFieldsAndScroll((err, values) => {
+      if (!err) {
+        generatePDF(values);
+      }
+    });
   }
 
   handleSubmit = (e) => {
@@ -58,15 +84,6 @@ class AddActivityForm extends Component {
         this.props.onSave(data);
       }
     });
-  }
-
-  exportToPDF = () => {
-    this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        generatePDF(values);
-      }
-    });
-
   }
 
   render() {
@@ -170,16 +187,6 @@ class AddActivityForm extends Component {
             <FormItem label="Client">
               {getFieldDecorator('client', {
                 initialValue: this.props.selectedCase.customer
-              })(
-                <Input disabled type="text" />
-              )}
-            </FormItem>
-          </Col>
-
-          <Col span={5}>
-            <FormItem label="Customer Name">
-              {getFieldDecorator('contactCustomer', {
-                initialValue: this.props.selectedCase.customer,
               })(
                 <Input disabled type="text" />
               )}
@@ -314,7 +321,7 @@ class AddActivityForm extends Component {
                       </Select>
                     )}
                     {keys.length > 1 ? (
-                      <Link onClick={() => this.remove(vendor.name, k)} to="#">Delete</Link>
+                      <Link onClick={() => this.showConfirmDeleteModal(vendor.name, k)} to="#">Delete</Link>
                     ) : null}
                   </FormItem>
                 );
@@ -337,21 +344,6 @@ class AddActivityForm extends Component {
           }
         </Row>
 
-        {/* <Row>
-          <FormItem label="Assigned System Engineer">
-            {getFieldDecorator('engineerIndex', {
-              initialValue: 0,
-            })(
-              <Select placeholder={`${this.props.engineers[0]['firstName']} ${this.props.engineers[0]['lastName']}`} style={{ width: '224px', marginRight: 19 }}>
-                {
-                  this.props.engineers.map((engineer, index) => {
-                    return <Option value={index}>{`${engineer.firstName} ${engineer.lastName}`}</Option>
-                  })
-                }
-              </Select>
-            )}
-          </FormItem>
-        </Row> */}
         <div className={styles.divider} />
         <FormItem {...formItemLayoutWithOutLabel}>
           <Button type="primary" style={{ marginRight: 8 }} htmlType="submit">

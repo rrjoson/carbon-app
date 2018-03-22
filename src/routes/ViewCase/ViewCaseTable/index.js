@@ -17,18 +17,18 @@ function HomeTable(props) {
     title: 'Status',
     dataIndex: 'status',
     render: status => <Status type={status} />,
-  // }, {
-  //   title: 'Assigned SE',
-  //   dataIndex: 'assignedsystemsengineer',
-  //   render: assignedsystemsengineer => {
-  //     return assignedsystemsengineer.map((systemengineer) => {
-  //       return (
-  //         <Tooltip title={systemengineer}>
-  //           <Avatar>{systemengineer[0][0]}</Avatar>
-  //         </Tooltip>
-  //       );
-  //     });
-  //   },
+  }, {
+    title: 'Assigned SE',
+    dataIndex: 'assignedsystemsengineer',
+    render: assignedsystemsengineer => {
+      return assignedsystemsengineer.map((systemengineer) => {
+        return (
+          <Tooltip title={systemengineer}>
+            <Avatar>{systemengineer[0][0]}</Avatar>
+          </Tooltip>
+        );
+      });
+    },
   }, {
     title: 'Severity',
     dataIndex: 'severity',
@@ -44,10 +44,10 @@ function HomeTable(props) {
     title: 'Date Raised',
     dataIndex: 'dateraised',
     render: date => moment(date, "YYYY-MM-DD").format('DD/MM/YYYY')
-  // }, {
-  //   title: 'Assigned AM',
-  //   dataIndex: 'assignedaccountmanager',
-  //   render: assignedaccountmanager => (<Avatar>{assignedaccountmanager[0]}</Avatar>),
+  }, {
+    title: 'Assigned AM',
+    dataIndex: 'assignedaccountmanager',
+    render: assignedaccountmanager => (<Avatar>{assignedaccountmanager}</Avatar>),
   }];
 
   const dataSource = props.data.map((item, index) => {
@@ -57,7 +57,7 @@ function HomeTable(props) {
       glocalid: item.glocalId,
       customer: item.customer,
       status: item.case_status,
-      // assignedsystemsengineer: item.assignedSystemsEngineer,
+      assignedsystemsengineer: item.assignedSystemsEngineer || [],
       severity: item.severity,
       productname: item.productName,
       open: item.dateRaised,

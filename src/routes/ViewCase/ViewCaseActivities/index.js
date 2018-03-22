@@ -47,6 +47,7 @@ class Activities extends Component {
             return (
               <Activity
                 item={item}
+                glocalId={glocalId}
                 onClick={() => this.handleClick(item, index)}
                 open={this.state.selected[index]}
               />

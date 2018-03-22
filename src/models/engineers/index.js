@@ -31,7 +31,6 @@ export default {
 
   reducers: {
     SAVE(state, action) {
-      console.warn(state, action.payload)
       return { ...state, ...action.payload };
     },
   },

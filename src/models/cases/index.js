@@ -35,7 +35,6 @@ export default {
     *FETCH_CASE({ payload }, { call, put }) {
       const { data } = yield call(fetchCase, payload);
       yield put({ type: 'SAVE', payload: { selected: data[0] } });
-
     },
 
     *FETCH_NEXT_ID({ payload }, { call, put }) {

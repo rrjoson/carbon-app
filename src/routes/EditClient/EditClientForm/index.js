@@ -137,8 +137,6 @@ class DynamicFieldSet extends Component {
                 { initialValue: vendor.items },
               );
 
-              console.warn(vendor)
-
               const keys = getFieldValue(`keys-${vendor.name}`);
 
               const formItems = keys.map((k, index) => {

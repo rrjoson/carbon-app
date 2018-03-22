@@ -13,8 +13,11 @@ const Activity = (props) => {
   const {
     item,
     open,
+    glocalId,
     onClick,
   } = props;
+
+  console.warn(2, props)
 
   const activityStyle = classnames({
     [styles['activity']]: true,
@@ -27,18 +30,22 @@ const Activity = (props) => {
 
         {/* ENGINEERS */}
         <div className={styles['activity__engineers']}>
-          <div className={styles['activity__engineer']}>
-            <div className={styles['activity__avatar']}>
-              <Tooltip title={item.engineerSurname}>
-                <Avatar>
-                  {item.engineerSurname.split(' ')[0][0]}
-                </Avatar>
-              </Tooltip>
-            </div>
-            <div className={styles.activity__engineerName}>
-              {item.engineerSurname.split(' ')[0]}
-            </div>
-          </div>
+          {item.assignedSystemsEngineer.map((engineer) => {
+            return (
+              <div className={styles['activity__engineer']}>
+                <div className={styles['activity__avatar']}>
+                  <Tooltip title={item.engineerSurname}>
+                    <Avatar>
+                      {engineer[0].split(' ')[0][0]}
+                    </Avatar>
+                  </Tooltip>
+                </div>
+                <div className={styles.activity__engineerName}>
+                  {engineer[0].split(' ')[0]}
+                </div>
+              </div>
+            );
+          })}
         </div>
 
         {/* INFO */}
@@ -63,7 +70,7 @@ const Activity = (props) => {
 
           {/* BUTTONS */}
           <div className={styles.activity__actions}>
-            <Link to="/">Edit</Link>
+            <Link to={`/cases/${glocalId}/activities/${item.activityNo}/edit`}>Edit</Link>
             <Link to="/">Delete</Link>
           </div>
         </div>

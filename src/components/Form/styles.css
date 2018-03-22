@@ -18,6 +18,8 @@
   line-height: 40px;
 }
 
+/* TODO: CREATE NEW INPUT COMPONENT */
+
 .formItem :global .ant-input {
   height: 40px;
   padding: 9px 12px;

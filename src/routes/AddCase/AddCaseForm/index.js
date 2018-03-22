@@ -240,7 +240,7 @@ class AddCaseForm extends Component {
 
         <Row>
           <Col span={5}>
-            <FormItem label="System Engineer Lead">
+            <FormItem label="Systems Engineer Lead">
               {getFieldDecorator('systemsEngineerLead', {
                 rules: [{
                   required: true,

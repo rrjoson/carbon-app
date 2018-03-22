@@ -1,54 +1,15 @@
 import React, { Component } from 'react';
-import { Form, Input, Icon, Button, Row, Col, DatePicker, Select } from 'antd';
+import { Input, Icon, Button, Row, Col, DatePicker, Divider } from 'antd';
 import moment from 'moment';
 
-import { Link, Typography } from './../../../components';
+import { Form, Link, Select } from './../../../components';
 
 import styles from './styles.css';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
-const { H4 } = Typography;
-
-let uuid = 1;
 
 class DynamicFieldSet extends Component {
-  componentDidMount() {
-    uuid = this.props.selectedCase.assignedsystemsengineer.length
-  }
-
-  remove = (vendorName, k) => {
-    const { form } = this.props;
-    console.warn(vendorName)
-    const keys = form.getFieldValue(`keys-${vendorName}`);
-    const nextKeys = [];
-
-    console.warn(222, keys)
-    if (keys.length === 1) return;
-    keys.forEach((key) => {
-      console.warn(333, key, k)
-      if (key.id !== k.id) {
-        nextKeys.push(key);
-      }
-    });
-    form.setFieldsValue({ [`keys-${vendorName}`]: nextKeys });
-  }
-
-  add = (vendorName) => {
-    const { form } = this.props;
-    const keys = form.getFieldValue(`keys-${vendorName}`);
-
-    console.warn(keys)
-
-    // keys.push([`${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`]);
-    keys.push({
-      id: uuid,
-      name: `${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`,
-    });
-    uuid += 1;
-    form.setFieldsValue({ [`keys-${vendorName}`]: keys });
-  }
-
   handleChangeVendor = (data) => {
     this.props.form.setFieldsValue({ productName: '' });
     this.props.onSelectVendor(data);
@@ -58,38 +19,13 @@ class DynamicFieldSet extends Component {
     e.preventDefault();
 
     this.props.form.validateFields((err, values) => {
-      const data = Object.assign({}, values);
-
-      if (!err) {
-        console.log('Received values of form: ', values);
-      }
-
-      delete data['keys-assignedSystemsEngineer']
-      data['assignedSystemsEngineer'] = values.assignedSystemsEngineer.map((item) => (
-        [item]
-      ))
-      console.log('Received values of form: ', data);
-      this.props.onSave(data)
+      this.props.onSave(values);
     });
   }
 
   render() {
     const { selectedCase } = this.props;
     const { getFieldDecorator, getFieldValue } = this.props.form;
-
-
-    const vendors = [
-      {
-        label: 'Assigned System Engineer',
-        name: 'assignedSystemsEngineer',
-        products: selectedCase.assignedsystemsengineer.map((item, index) => {
-          return {
-            id: index,
-            name: item[0],
-          }
-        })
-      },
-    ];
 
     const formItemLayout = {
       labelCol: {
@@ -114,7 +50,7 @@ class DynamicFieldSet extends Component {
           <Col span={3}>
             <FormItem label="Glocal ID">
               {getFieldDecorator('glocalId', {
-                initialValue: selectedCase.glocalid
+                initialValue: selectedCase.glocalId,
               })(
                 <Input type="text" disabled />
               )}
@@ -124,7 +60,7 @@ class DynamicFieldSet extends Component {
           <Col span={5}>
             <FormItem label="Vendor Case ID (Optional)">
               {getFieldDecorator('vendorCaseId', {
-                initialValue: selectedCase.vendorcaseid
+                initialValue: selectedCase.vendorCaseId,
               })(
                 <Input type="text" />
               )}
@@ -134,7 +70,7 @@ class DynamicFieldSet extends Component {
           <Col span={3}>
             <FormItem label="Date ID Created">
               {getFieldDecorator('dateIdCreated', {
-                initialValue: moment(selectedCase.dateidcreated, "YYYY-MM-DD"),
+                initialValue: moment(selectedCase.dateIdCreated, 'YYYY-MM-DD'),
                 rules: [{
                   required: true,
                   message: 'This is a required field',
@@ -148,7 +84,7 @@ class DynamicFieldSet extends Component {
           <Col span={3}>
             <FormItem label="Date Raised by Client">
               {getFieldDecorator('dateRaised', {
-                initialValue: moment(selectedCase.dateraised, "YYYY-MM-DD"),
+                initialValue: moment(selectedCase.dateRaised, "YYYY-MM-DD"),
                 rules: [{
                   required: true,
                   message: 'This is a required field',
@@ -174,7 +110,7 @@ class DynamicFieldSet extends Component {
           <Col span={3}>
             <FormItem label="Case Title">
               {getFieldDecorator('caseTitle', {
-                initialValue: selectedCase.casetitle,
+                initialValue: selectedCase.caseTitle,
                 rules: [{
                   required: true,
                   message: 'This is a required field',
@@ -188,7 +124,7 @@ class DynamicFieldSet extends Component {
           <Col span={5}>
             <FormItem label="Description">
               {getFieldDecorator('caseDescription', {
-                initialValue: selectedCase.casedescription,
+                initialValue: selectedCase.caseDescription,
                 rules: [{
                   required: true,
                   message: 'This is a required field',
@@ -219,7 +155,7 @@ class DynamicFieldSet extends Component {
           </Col>
         </Row>
 
-        <div className={styles.divider} />
+        <Divider />
 
         <Row gutter={12}>
           <Col span={5}>
@@ -245,7 +181,7 @@ class DynamicFieldSet extends Component {
           <Col span={5}>
            <FormItem label="Product Line">
               {getFieldDecorator('productName', {
-                initialValue: selectedCase.productname,
+                initialValue: selectedCase.productName,
                 rules: [{
                   required: true,
                   message: 'This is a required field',
@@ -254,7 +190,7 @@ class DynamicFieldSet extends Component {
                 <Select disabled={!getFieldValue('vendor')}>
                   {
                     this.props.products.map((product) => {
-                      return <Option value={product.productname}>{product.productname}</Option>
+                      return <Option value={product.productName}>{product.productName}</Option>
                     })
                   }
                 </Select>
@@ -271,99 +207,41 @@ class DynamicFieldSet extends Component {
                   message: 'This is a required field',
                 }],
               })(
-                <Select placeholder={this.props.clients[0]['accountname']}>
+                <Select placeholder={this.props.clients[0]['accountName']}>
                   {
                     this.props.clients.map((client) => {
-                      return <Option value={client.accountname}>{client.accountname}</Option>
+                      return <Option value={client.accountName}>{client.accountName}</Option>
                     })
                   }
                 </Select>
               )}
             </FormItem>
           </Col>
+        </Row>
 
+        <Divider />
+
+        <Row>
           <Col span={5}>
-            <FormItem label="Customer Name">
-              {getFieldDecorator('customerName', {
-                initialValue: selectedCase.customername,
+            <FormItem label="Systems Engineer Lead">
+              {getFieldDecorator('systemsEngineerLead', {
                 rules: [{
                   required: true,
                   message: 'This is a required field',
                 }],
               })(
-                <Select placeholder={this.props.customers[0]['contact_person']}>
+                <Select placeholder={`${this.props.engineers[0]['firstName']} ${this.props.engineers[0]['lastName']}`} style={{ width: '224px', marginRight: 19 }}>
                   {
-                    this.props.customers.map((customer) => {
-                      return <Option value={customer.contact_person}>{customer.contact_person}</Option>
+                    this.props.engineers.map((engineer) => {
+                      return <Option value={`${engineer.firstName} ${engineer.lastName}`}>{`${engineer.firstName} ${engineer.lastName}`}</Option>
                     })
                   }
-                </Select>
+                </Select>,
               )}
             </FormItem>
           </Col>
         </Row>
 
-        <div className={styles.divider} />
-
-        <Row>
-        {
-            vendors.map((vendor) => {
-              getFieldDecorator(
-                `keys-${vendor.name}`,
-                { initialValue: vendor.products },
-              );
-
-              const keys = getFieldValue(`keys-${vendor.name}`);
-              console.warn(keys, 8888)
-
-              const formItems = keys.map((k, index) => {
-                return (
-                  <FormItem
-                    {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
-                    required={false}
-                    key={k.id}
-                  >
-                    {getFieldDecorator(`${vendor.name}[${index}]`, {
-                      initialValue: k.name,
-                      validateTrigger: ['onChange', 'onBlur'],
-                      rules: [{
-                        required: true,
-                        whitespace: true,
-                        message: 'Please add a vendor name or delete this field.',
-                      }],
-                    })(
-                      <Select placeholder={`${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`} style={{ width: '224px', marginRight: 19 }}>
-                        {
-                          this.props.engineers.map((engineer) => {
-                            return <Option value={`${engineer.firstname} ${engineer.lastname}`}>{`${engineer.firstname} ${engineer.lastname}`}</Option>
-                          })
-                        }
-                      </Select>
-                    )}
-                    {keys.length > 1 ? (
-                      <Link onClick={() => this.remove(vendor.name, k)} to="#">Delete</Link>
-                    ) : null}
-                  </FormItem>
-                );
-              });
-
-              return (
-                <Col span={6} key={vendor.name}>
-                  <div className={styles.title}>
-                    <H4>{vendor.label}</H4>
-                  </div>
-                  {formItems}
-                  <FormItem {...formItemLayoutWithOutLabel}>
-                    <Button onClick={() => this.add(vendor.name)} style={{ width: '132px' }}>
-                      <Icon type="plus" /> Add SE
-                    </Button>
-                  </FormItem>
-                </Col>
-              );
-            })
-          }
-        </Row>
-        <div className={styles.divider} />
         <FormItem {...formItemLayoutWithOutLabel}>
           <Button type="primary" style={{ marginRight: 8 }} htmlType="submit">
             <Icon type="save" />

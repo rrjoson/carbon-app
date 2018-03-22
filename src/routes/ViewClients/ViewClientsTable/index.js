@@ -11,12 +11,27 @@ function ViewCasesTable(props) {
   }, {
     title: 'Customer Name',
     dataIndex: 'customerName',
+    render: (item) => {
+      return item[0].map((text) => (
+        <div>{text}</div>
+      ));
+    },
   }, {
     title: 'Email',
     dataIndex: 'email',
+    render: (item) => {
+      return item[0].map((text) => (
+        <div>{text}</div>
+      ));
+    },
   }, {
     title: 'Contact No',
     dataIndex: 'contactNumber',
+    render: (item) => {
+      return item[0].map((text) => (
+        <div>{text}</div>
+      ));
+    },
   }, {
     title: 'Company Address',
     dataIndex: 'companyAddress',

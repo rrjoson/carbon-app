@@ -44,14 +44,12 @@ class AddClientForm extends Component {
       if (!err) {
         const data = Object.assign({}, values);
 
-        const contact_details = values['keys-contact_details'].map((item, index) => {
-          return (
-            [
-              values[`contact_details-${index}-Customer_Name`],
-              values[`contact_details-${index}-Email`],
-              values[`contact_details-${index}-Contact_Number`],
-            ]
-          );
+        data.contact_details = [[], [], []];
+
+        values['keys-contact_details'].forEach((item, index) => {
+          data.contact_details[0].push(values[`contact_details-${index}-Customer_Name`]);
+          data.contact_details[1].push(values[`contact_details-${index}-Email`]);
+          data.contact_details[2].push(values[`contact_details-${index}-Contact_Number`]);
         });
 
         values['keys-contact_details'].forEach((item, index) => {
@@ -60,8 +58,7 @@ class AddClientForm extends Component {
           delete data[`contact_details-${index}-Contact_Number`]
         });
 
-        data.contact_details = contact_details;
-        delete data['keys-contact_details']
+        delete data['keys-contact_details'];
 
         console.log('Received values of form: ', data);
         this.props.onSave(data);

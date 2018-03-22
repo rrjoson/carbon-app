@@ -9,6 +9,7 @@ import styles from './styles.css';
 function AddClient(props) {
   const {
     dispatch,
+    loading,
     engineers,
   } = props;
 
@@ -16,6 +17,7 @@ function AddClient(props) {
     <div className={styles.addClients}>
       <AddClientHeader />
       <AddClientForm
+        loading={loading}
         onSave={(data) => dispatch({ type: 'clients/ADD_CLIENT', payload: data })}
         engineers={engineers}
       />
@@ -25,6 +27,7 @@ function AddClient(props) {
 
 function mapStateToProps(state) {
   return {
+    loading: state.loading.effects['clients/ADD_CLIENT'],
     engineers: state.engineers.data,
   };
 }

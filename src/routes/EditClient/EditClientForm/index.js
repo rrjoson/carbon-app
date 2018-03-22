@@ -53,7 +53,7 @@ class DynamicFieldSet extends Component {
 
   showConfirmDeleteModal = (vendorName, k) => {
     Modal.confirm({
-      title: 'Are you sure you want to delete this?',title: 'Are you sure you want to delete this?',
+      title: 'Are you sure you want to delete this?',
       okText: 'Delete',
       okType: 'danger',
       cancelText: 'Cancel',
@@ -268,8 +268,8 @@ class DynamicFieldSet extends Component {
         <div className={styles.divider} />
 
         <FormItem {...formItemLayoutWithOutLabel}>
-          <Button type="primary" style={{ marginRight: 8 }} htmlType="submit">
-            <Icon type="save" />
+          <Button loading={this.props.loading} type="primary" style={{ marginRight: 8 }} htmlType="submit">
+            {!this.props.loading ? <Icon type="save" /> : null}
             Save
           </Button>
           <Button>Cancel</Button>

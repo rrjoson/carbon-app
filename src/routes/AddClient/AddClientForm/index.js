@@ -233,8 +233,8 @@ class AddClientForm extends Component {
         <Divider />
 
         <FormItem>
-          <Button className={styles.addClientForm__save} type="primary" htmlType="submit">
-            <Icon type="save" />
+          <Button className={styles.addClientForm__save} loading={this.props.loading} type="primary" style={{ marginRight: 8 }} htmlType="submit">
+            {!this.props.loading ? <Icon type="save" /> : null}
             Save
           </Button>
           <Button className={styles.addClientForm__cancel}>Cancel</Button>

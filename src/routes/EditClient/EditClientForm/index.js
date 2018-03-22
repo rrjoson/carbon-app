@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Icon, Button, Row, Col } from 'antd';
+import { Input, Icon, Button, Row, Col, Modal } from 'antd';
 
 import { Form, Link, Select } from './../../../components';
 
@@ -49,6 +49,18 @@ class DynamicFieldSet extends Component {
 
     uuid += 1;
     form.setFieldsValue({ [`keys-${vendorName}`]: nextKeys });
+  }
+
+  showConfirmDeleteModal = (vendorName, k) => {
+    Modal.confirm({
+      title: 'Are you sure you want to delete ___ from ___?',
+      okText: 'Delete',
+      okType: 'danger',
+      cancelText: 'Cancel',
+      onOk: () => {
+        this.remove(vendorName, k);
+      },
+    });
   }
 
   handleSubmit = (e) => {
@@ -192,7 +204,7 @@ class DynamicFieldSet extends Component {
                     </Col>
                     <Col span={4} className={styles.addClient__link}>
                       {keys.length > 1 ? (
-                        <Link onClick={() => this.remove(vendor.name, k)} to="#">Delete</Link>
+                        <Link onClick={() => this.showConfirmDeleteModal(vendor.name, k)} to="#">Delete</Link>
                       ) : null}
                     </Col>
                   </Row>

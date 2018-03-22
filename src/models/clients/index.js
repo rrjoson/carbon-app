@@ -20,9 +20,7 @@ export default {
   subscriptions: {
     setup({ dispatch, history }) {
       return history.listen(({ pathname, search }) => {
-        if (pathname === '/cases/add') {
-          dispatch({ type: 'FETCH_CLIENTS' });
-        }
+
       });
     },
   },

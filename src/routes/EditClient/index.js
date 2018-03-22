@@ -15,20 +15,20 @@ class EditClient extends Component {
     } = this.props;
 
     dispatch({ type: 'clients/FETCH_CLIENT', payload: match.params.accountName });
-    dispatch({ type: 'engineers/FETCH_ENGINEERS' });
+    dispatch({ type: 'accountManagers/FETCH_ACCOUNT_MANAGERS' });
   }
 
   render() {
     const {
       dispatch,
       loading,
-      engineers,
+      accountManagers,
       client,
     } = this.props;
 
     if (
       !client ||
-      !engineers.length
+      !accountManagers.length
     ) return null;
 
     return (
@@ -37,7 +37,7 @@ class EditClient extends Component {
         <EditClientForm
           loading={loading}
           onSave={data => dispatch({ type: 'clients/UPDATE_CLIENT', payload: data })}
-          engineers={engineers}
+          accountManagers={accountManagers}
           client={client}
         />
       </div>
@@ -48,7 +48,7 @@ class EditClient extends Component {
 function mapStateToProps(state) {
   return {
     loading: state.loading.effects['clients/UPDATE_CLIENT'],
-    engineers: state.engineers.data,
+    accountManagers: state.accountManagers.data,
     client: state.clients.selected,
   };
 }

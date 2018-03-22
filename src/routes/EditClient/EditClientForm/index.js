@@ -253,10 +253,10 @@ class DynamicFieldSet extends Component {
                   message: 'This is a required field',
                 }],
               })(
-                <Select placeholder={`${this.props.engineers[0]['firstName']} ${this.props.engineers[0]['lastName']}`}>
+                <Select>
                   {
-                    this.props.engineers.map((engineer) => {
-                      return <Option value={`${engineer.firstName} ${engineer.lastName}`}>{`${engineer.firstName} ${engineer.lastName}`}</Option>
+                    this.props.accountManagers.map((accountManager) => {
+                      return <Option value={accountManager}>{accountManager}</Option>
                     })
                   }
                 </Select>

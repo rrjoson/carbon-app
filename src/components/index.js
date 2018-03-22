@@ -12,6 +12,7 @@ import Activity from './Activity';
 import Form from './Form';
 import Divider from './Divider';
 import Tooltip from './Tooltip';
+import Select from './Select';
 
 export {
   Typography,
@@ -28,4 +29,5 @@ export {
   Form,
   Divider,
   Tooltip,
+  Select,
 };

@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { Input, Icon, Button, Row, Col, DatePicker, Select } from 'antd';
+import { Input, Icon, Button, Row, Col, DatePicker } from 'antd';
 import moment from 'moment';
 
-import { Form, Link, Typography } from './../../../components';
+import { Form, Link, Select, Divider } from './../../../components';
 
 import styles from './styles.css';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
-const { H4 } = Typography;
 
 let uuid = 1;
 
@@ -49,33 +48,14 @@ class AddCaseForm extends Component {
     e.preventDefault();
 
     this.props.form.validateFieldsAndScroll((err, values) => {
-      const data = Object.assign({}, values);
-
       if (!err) {
-        console.log('Received values of form: ', values);
-
-        delete data['keys-assignedSystemsEngineer']
-        data['assignedSystemsEngineer'] = values.assignedSystemsEngineer.map((item) => (
-          [item]
-        ));
-        console.log('Received values of form: ', data);
-        this.props.onSave(data)
+        this.props.onSave(values);
       }
     });
   }
 
   render() {
     const { getFieldDecorator, getFieldValue } = this.props.form;
-
-    const vendors = [
-      {
-        label: 'Assigned System Engineer',
-        name: 'assignedSystemsEngineer',
-        products: [
-          { name: `${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`, id: 0 }
-        ]
-      },
-    ];
 
     const formItemLayout = {
       labelCol: {
@@ -195,7 +175,7 @@ class AddCaseForm extends Component {
           </Col>
         </Row>
 
-        <div className={styles.divider} />
+        <Divider />
 
         <Row gutter={12}>
           <Col span={5}>
@@ -254,87 +234,31 @@ class AddCaseForm extends Component {
               )}
             </FormItem>
           </Col>
+        </Row>
 
+        <Divider />
+
+        <Row>
           <Col span={5}>
-            <FormItem label="Customer Name">
-              {getFieldDecorator('customerName', {
+            <FormItem label="System Engineer Lead">
+              {getFieldDecorator('systemsEngineerLead', {
                 rules: [{
                   required: true,
                   message: 'This is a required field',
                 }],
               })(
-                <Select placeholder={this.props.customers[0]['contact_person']}>
+                <Select placeholder={`${this.props.engineers[0]['firstName']} ${this.props.engineers[0]['lastName']}`} style={{ width: '224px', marginRight: 19 }}>
                   {
-                    this.props.customers.map((customer) => {
-                      return <Option value={customer.contact_person}>{customer.contact_person}</Option>
+                    this.props.engineers.map((engineer) => {
+                      return <Option value={`${engineer.firstName} ${engineer.lastName}`}>{`${engineer.firstName} ${engineer.lastName}`}</Option>
                     })
                   }
-                </Select>
+                </Select>,
               )}
             </FormItem>
           </Col>
         </Row>
 
-        <div className={styles.divider} />
-
-        <Row>
-          {
-            vendors.map((vendor) => {
-              getFieldDecorator(
-                `keys-${vendor.name}`,
-                { initialValue: vendor.products },
-              );
-
-              const keys = getFieldValue(`keys-${vendor.name}`);
-
-              const formItems = keys.map((k, index) => {
-                return (
-                  <FormItem
-                    {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
-                    required={false}
-                    key={k.id}
-                  >
-                    {getFieldDecorator(`${vendor.name}[${index}]`, {
-                      initialValue: k.name,
-                      validateTrigger: ['onChange', 'onBlur'],
-                      rules: [{
-                        required: true,
-                        whitespace: true,
-                        message: 'Please add a vendor name or delete this field.',
-                      }],
-                    })(
-                      <Select placeholder={`${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`} style={{ width: '224px', marginRight: 19 }}>
-                        {
-                          this.props.engineers.map((engineer) => {
-                            return <Option value={`${engineer.firstname} ${engineer.lastname}`}>{`${engineer.firstname} ${engineer.lastname}`}</Option>
-                          })
-                        }
-                      </Select>
-                    )}
-                    {keys.length > 1 ? (
-                      <Link onClick={() => this.remove(vendor.name, k)} to="#">Delete</Link>
-                    ) : null}
-                  </FormItem>
-                );
-              });
-
-              return (
-                <Col span={6} key={vendor.name}>
-                  <div className={styles.title}>
-                    <H4>{vendor.label}</H4>
-                  </div>
-                  {formItems}
-                  <FormItem {...formItemLayoutWithOutLabel}>
-                    <Button onClick={() => this.add(vendor.name)} style={{ width: '132px' }}>
-                      <Icon type="plus" /> Add SE
-                    </Button>
-                  </FormItem>
-                </Col>
-              );
-            })
-          }
-        </Row>
-        <div className={styles.divider} />
         <FormItem {...formItemLayoutWithOutLabel}>
           <Button loading={this.props.loading} type="primary" style={{ marginRight: 8 }} htmlType="submit">
             {!this.props.loading ? <Icon type="save" /> : null}

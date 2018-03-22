@@ -25,7 +25,7 @@ function AddClient(props) {
 
 function mapStateToProps(state) {
   return {
-    engineers: state.engineers.data
+    engineers: state.engineers.data,
   };
 }
 

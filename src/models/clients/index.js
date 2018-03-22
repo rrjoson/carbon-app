@@ -34,6 +34,7 @@ export default {
     },
 
     *FETCH_CLIENT({ payload }, { call, put }) {
+      yield put({ type: 'SAVE', payload: { selected: null } });
       const { data } = yield call(fetchClient, payload);
       yield put({ type: 'SAVE', payload: { selected: data[0] } });
     },

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Input, Icon, Button, Row, Col, Select } from 'antd';
+import { Input, Icon, Button, Row, Col } from 'antd';
 
-import { Form, Link } from './../../../components';
+import { Form, Link, Select } from './../../../components';
 
 import styles from './styles.css';
 
@@ -21,11 +21,16 @@ let uuid = 1;
 
 class DynamicFieldSet extends Component {
   componentDidMount() {
-    vendors[0].items = this.props.client.contact_details.map((item) => {
-      return (
-        { "Customer_Name": item[0], "Email": item[1], "Contact_Number": item[2] }
-      );
-    });
+    const { client } = this.props;
+
+    vendors[0].items = [];
+    for (let i = 0; i < client.contact_details[0].length; i += 1) {
+      vendors[0].items[i] = {
+        Customer_Name: client.contact_details[0][i],
+        Email: client.contact_details[1][i],
+        Contact_Number: client.contact_details[2][i],
+      };
+    }
   }
 
   remove = (vendorName, k) => {
@@ -52,14 +57,12 @@ class DynamicFieldSet extends Component {
       if (!err) {
         const data = Object.assign({}, values);
 
-        const contact_details = values['keys-contact_details'].map((item, index) => {
-          return (
-            [
-              values[`contact_details-${index}-Customer_Name`],
-              values[`contact_details-${index}-Email`],
-              values[`contact_details-${index}-Contact_Number`],
-            ]
-          );
+        data.contact_details = [[], [], []];
+
+        values['keys-contact_details'].forEach((item, index) => {
+          data.contact_details[0].push(values[`contact_details-${index}-Customer_Name`]);
+          data.contact_details[1].push(values[`contact_details-${index}-Email`]);
+          data.contact_details[2].push(values[`contact_details-${index}-Contact_Number`]);
         });
 
         values['keys-contact_details'].forEach((item, index) => {
@@ -68,8 +71,7 @@ class DynamicFieldSet extends Component {
           delete data[`contact_details-${index}-Contact_Number`]
         });
 
-        data.contact_details = contact_details;
-        delete data['keys-contact_details']
+        delete data['keys-contact_details'];
 
         console.log('Received values of form: ', data);
         this.props.onSave(data);
@@ -123,6 +125,8 @@ class DynamicFieldSet extends Component {
                 { initialValue: vendor.items },
               );
 
+              console.warn(vendor)
+
               const keys = getFieldValue(`keys-${vendor.name}`);
 
               const formItems = keys.map((k, index) => {
@@ -130,7 +134,7 @@ class DynamicFieldSet extends Component {
                   <Row gutter={12}>
                     <Col span={4}>
                       <FormItem
-                        label='Customer Name'
+                        label="Customer Name"
                         required={false}
                         key={k}
                       >
@@ -250,7 +254,6 @@ class DynamicFieldSet extends Component {
         </Row>
 
         <div className={styles.divider} />
-
 
         <FormItem {...formItemLayoutWithOutLabel}>
           <Button type="primary" style={{ marginRight: 8 }} htmlType="submit">

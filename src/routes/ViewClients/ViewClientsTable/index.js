@@ -44,12 +44,12 @@ function ViewCasesTable(props) {
     {
       key: index,
       client: item.accountName,
-      customerName: item.Customer_Name,
-      email: item.Email,
-      contactNumber: item.Contact_Number,
+      customerName: item.customer_name,
+      email: item.email,
+      contactNumber: item.contact_number,
       companyAddress: item.company_address,
       accountManager: item.Assigned_AM,
-      actions: ['View', 'Edit']
+      actions: ['View', 'Edit'],
     }
   ));
 

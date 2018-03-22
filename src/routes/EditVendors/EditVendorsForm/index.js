@@ -42,7 +42,7 @@ class EditVendorsForm extends Component {
 
   showConfirmDeleteModal = (vendorName, k) => {
     Modal.confirm({
-      title: 'Are you sure you want to delete ___ from ___?',
+      title: 'Are you sure you want to delete this?',
       okText: 'Delete',
       okType: 'danger',
       cancelText: 'Cancel',

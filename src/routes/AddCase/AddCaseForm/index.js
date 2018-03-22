@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Form, Input, Icon, Button, Row, Col, DatePicker, Select } from 'antd';
+import { Input, Icon, Button, Row, Col, DatePicker, Select } from 'antd';
 import moment from 'moment';
 
-import { Link, Typography } from './../../../components';
+import { Form, Link, Typography } from './../../../components';
 
 import styles from './styles.css';
 

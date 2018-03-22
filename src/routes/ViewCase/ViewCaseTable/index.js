@@ -17,18 +17,18 @@ function HomeTable(props) {
     title: 'Status',
     dataIndex: 'status',
     render: status => <Status type={status} />,
-  }, {
-    title: 'Assigned SE',
-    dataIndex: 'assignedsystemsengineer',
-    render: assignedsystemsengineer => {
-      return assignedsystemsengineer.map((systemengineer) => {
-        return (
-          <Tooltip title={systemengineer}>
-            <Avatar>{systemengineer[0][0]}</Avatar>
-          </Tooltip>
-        );
-      });
-    },
+  // }, {
+  //   title: 'Assigned SE',
+  //   dataIndex: 'assignedsystemsengineer',
+  //   render: assignedsystemsengineer => {
+  //     return assignedsystemsengineer.map((systemengineer) => {
+  //       return (
+  //         <Tooltip title={systemengineer}>
+  //           <Avatar>{systemengineer[0][0]}</Avatar>
+  //         </Tooltip>
+  //       );
+  //     });
+  //   },
   }, {
     title: 'Severity',
     dataIndex: 'severity',
@@ -52,20 +52,20 @@ function HomeTable(props) {
 
   const dataSource = props.data.map((item, index) => {
     return (
-      {
-        key: index,
-        glocalid: item.glocalId,
-        customer: item.customer,
-        status: item.case_status,
-        assignedsystemsengineer: item.assignedSystemsEngineer,
-        severity: item.severity,
-        productname: item.productName,
-        open: item.dateRaised,
-        dateraised: item.dateRaised,
-        assignedaccountmanager: item.assignedAccountManager,
-      }
+    {
+      key: index,
+      glocalid: item.glocalId,
+      customer: item.customer,
+      status: item.case_status,
+      // assignedsystemsengineer: item.assignedSystemsEngineer,
+      severity: item.severity,
+      productname: item.productName,
+      open: item.dateRaised,
+      dateraised: item.dateRaised,
+      assignedaccountmanager: item.assignedAccountManager,
+    }
     );
-  })
+  });
 
   return (
     <div className={styles.viewCaseTable}>

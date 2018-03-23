@@ -40,7 +40,7 @@ function ViewCasesTable(props) {
     dataIndex: 'accountManager',
     render: accountManager => (
       <Tooltip title={accountManager}>
-        <Avatar>{accountManager[0]}</Avatar>
+        <Avatar>{accountManager}</Avatar>
       </Tooltip>
     ),
   }, {

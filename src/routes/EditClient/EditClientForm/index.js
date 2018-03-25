@@ -19,16 +19,30 @@ let vendors = [
 
 let uuid = 1;
 
-class DynamicFieldSet extends Component {
+class EditClientForm extends Component {
   componentDidMount() {
     const { client } = this.props;
 
     vendors[0].items = [];
-    for (let i = 0; i < client.contact_details[0].length; i += 1) {
+
+    for (let i = 0; i < client.customer_name[0].length; i += 1) {
       vendors[0].items[i] = {
-        Customer_Name: client.contact_details[0][i],
-        Email: client.contact_details[1][i],
-        Contact_Number: client.contact_details[2][i],
+        ...vendors[0].items[i],
+        Customer_Name: client.customer_name[0][i],
+      };
+    }
+
+    for (let i = 0; i < client.email[0].length; i += 1) {
+      vendors[0].items[i] = {
+        ...vendors[0].items[i],
+        Email: client.email[0][i],
+      };
+    }
+
+    for (let i = 0; i < client.contact_number[0].length; i += 1) {
+      vendors[0].items[i] = {
+        ...vendors[0].items[i],
+        Contact_Number: client.contact_number[0][i],
       };
     }
   }
@@ -277,6 +291,6 @@ class DynamicFieldSet extends Component {
   }
 }
 
-const WrappedDynamicFieldSet = Form.create()(DynamicFieldSet);
+const WrappedEditClientForm = Form.create()(EditClientForm);
 
-export default WrappedDynamicFieldSet;
+export default WrappedEditClientForm;

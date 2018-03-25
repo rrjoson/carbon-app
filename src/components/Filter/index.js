@@ -7,7 +7,7 @@ import Status from './../Status';
 
 import styles from './styles.css';
 
-const { H3 } = Typography;
+const { H4 } = Typography;
 
 const menu = (
   <Menu>
@@ -33,7 +33,7 @@ function Filter(props) {
   return (
     <div className={styles.filter}>
       <div className={styles.title}>
-        <H3>Filter</H3>
+        <H4>Filter</H4>
       </div>
       <span className={styles.verticalLine} />
       <Button type="primary">All</Button>

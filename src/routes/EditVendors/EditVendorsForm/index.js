@@ -6,7 +6,7 @@ import { Link, Typography } from './../../../components';
 import styles from './styles.css';
 
 const FormItem = Form.Item;
-const { H4 } = Typography;
+const { H5 } = Typography;
 
 let uuid = 1;
 
@@ -121,7 +121,7 @@ class EditVendorsForm extends Component {
               return (
                 <Col span={6} key={vendor.name}>
                   <div className={styles.title}>
-                    <H4>{vendor.label}</H4>
+                    <H5>{vendor.label}</H5>
                   </div>
                   {formItems}
                   <FormItem {...formItemLayoutWithOutLabel}>

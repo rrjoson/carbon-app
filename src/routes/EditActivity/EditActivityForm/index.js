@@ -9,7 +9,7 @@ import styles from './styles.css';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
-const { H4 } = Typography;
+const { H5 } = Typography;
 
 const vendors = [
   { name: 'Assigned System Engineer', products: ['Richard'] },
@@ -346,7 +346,7 @@ class DynamicFieldSet extends Component {
               return (
                 <Col span={6} key={vendor.name}>
                   <div className={styles.title}>
-                    <H4>{vendor.label}</H4>
+                    <H5>{vendor.label}</H5>
                   </div>
                   {formItems}
                   <FormItem {...formItemLayoutWithOutLabel}>

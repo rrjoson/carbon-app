@@ -2,7 +2,7 @@ import React from 'react';
 import { Layout } from 'antd';
 import styles from './styles.css';
 
-import { H4 } from './../Typography';
+import { H5 } from './../Typography';
 import Button from './../Button';
 import Avatar from './../Avatar';
 import Link from './../Link';
@@ -70,7 +70,7 @@ const Header = (props) => {
   return (
     <AntHeader className={styles.header}>
       <div className={styles.headerTitle}>
-        <H4>{getHeaderTitle(pathname)}</H4>
+        <H5>{getHeaderTitle(pathname)}</H5>
       </div>
       <div>
         <div className={styles.headerButton}>

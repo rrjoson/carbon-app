@@ -3,11 +3,11 @@ import React from 'react';
 
 import { Col, Row, Progress } from 'antd';
 
-import { Typography, Link, Card, Button } from './../../../components';
+import { Typography, Link, Card } from './../../../components';
 
 import styles from './styles.css';
 
-const { H1, H2, H3, H4 } = Typography;
+const { H1, H2, H4, H5 } = Typography;
 
 function HomeStats(props) {
   return (
@@ -28,7 +28,7 @@ function HomeStats(props) {
                       <H1>{percent}</H1>
                     </Row>
                     <Row>
-                      <H4>RESOLVED CASES</H4>
+                      <H5>RESOLVED CASES</H5>
                     </Row>
                   </Row>
                 );
@@ -42,7 +42,7 @@ function HomeStats(props) {
               <H2>76</H2>
             </Row>
             <Row type="flex" justify="center">
-              <H4>OPEN CASES</H4>
+              <H5>OPEN CASES</H5>
             </Row>
           </Col>
           <Col span={12}>
@@ -50,7 +50,7 @@ function HomeStats(props) {
               <H2>100</H2>
             </Row>
             <Row type="flex" justify="center">
-              <H4>TOTAL CASES</H4>
+              <H5>TOTAL CASES</H5>
             </Row>
           </Col>
         </Row>
@@ -60,7 +60,7 @@ function HomeStats(props) {
           <H1>16</H1>
         </Row>
         <Row>
-          <H3>CASES OVERDUE</H3>
+          <H4>CASES OVERDUE</H4>
         </Row>
         <div className={styles.horizontalLine} />
         <Row type="flex" justify="end">
@@ -72,7 +72,7 @@ function HomeStats(props) {
           <H1>12</H1>
         </Row>
         <Row>
-          <H3>CASES RESOLVED THIS WEEK</H3>
+          <H4>CASES RESOLVED THIS WEEK</H4>
         </Row>
         <div className={styles.horizontalLine} />
         <Row type="flex" justify="end">

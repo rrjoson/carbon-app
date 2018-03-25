@@ -35,6 +35,10 @@ const menuItems = [{
   url: '/licenses',
   icon: 'safety',
   label: 'Licenses',
+}, {
+  url: '/reports',
+  icon: 'area-chart',
+  label: 'Reports',
 }];
 
 let lastHref;

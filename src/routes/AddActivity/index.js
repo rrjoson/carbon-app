@@ -29,6 +29,7 @@ class AddActivity extends Component {
   render() {
     const {
       dispatch,
+      loading,
       engineers,
       selectedCase,
       selectedClient,
@@ -41,6 +42,7 @@ class AddActivity extends Component {
       <div className={styles.vendors}>
         <AddActivityHeader />
         <AddActivityForm
+          loading={loading}
           onSave={(data) => dispatch({ type: 'activities/ADD_ACTIVITY', payload: data })}
           engineers={engineers}
           selectedCase={selectedCase}
@@ -58,6 +60,7 @@ class AddActivity extends Component {
 
 function mapStateToProps(state) {
   return {
+    loading: state.loading.effects['activities/ADD_ACTIVITY'],
     engineers: state.engineers.data,
     selectedCase: state.cases.selected,
     selectedClient: state.clients.selected,

@@ -346,8 +346,8 @@ class AddActivityForm extends Component {
 
         <div className={styles.divider} />
         <FormItem {...formItemLayoutWithOutLabel}>
-          <Button type="primary" style={{ marginRight: 8 }} htmlType="submit">
-            <Icon type="save" />
+          <Button loading={this.props.loading} type="primary" style={{ marginRight: 8 }} htmlType="submit">
+            {!this.props.loading ? <Icon type="save" /> : null}
             Save
           </Button>
           <Button style={{ marginRight: 8 }} onClick={this.exportToPDF}>

@@ -40,7 +40,7 @@ function ViewCasesTable(props) {
     dataIndex: 'accountManager',
     render: accountManager => (
       <Tooltip title={accountManager}>
-        <Avatar>{accountManager}</Avatar>
+        <Avatar>{accountManager[0]}</Avatar>
       </Tooltip>
     ),
   }, {
@@ -63,7 +63,7 @@ function ViewCasesTable(props) {
       email: item.email,
       contactNumber: item.contact_number,
       companyAddress: item.company_address,
-      accountManager: item.Assigned_AM,
+      accountManager: item.accountManager,
       actions: ['View', 'Edit'],
     }
   ));

@@ -1,3 +1,4 @@
+import { routerRedux } from 'dva/router';
 import { notification } from 'antd';
 
 import {
@@ -29,6 +30,7 @@ export default {
 
     *ADD_LICENSE({ payload }, { call, put, select, all }) {
       const { data } = yield call(addLicense, payload);
+      yield put(routerRedux.push('/licenses'));
       notification['success']({ message: 'License added.', duration: 2 });
     },
   },

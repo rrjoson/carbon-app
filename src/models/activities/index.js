@@ -50,7 +50,7 @@ export default {
     },
 
     *CLEAR_SERVICE_REPORT_NUMBER({ payload }, { call, put, select }) {
-      const glocalId = yield select(state => state.cases.selected.glocalid);
+      const glocalId = yield select(state => state.cases.selected.glocalId);
 
       yield put({ type: 'SAVE', payload: { serviceReportNumber: null } });
       yield put(routerRedux.push(`/cases/${glocalId}`));

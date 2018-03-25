@@ -18,6 +18,18 @@ const menu = (
 );
 
 function Filter(props) {
+  const { clients, onFilterCases } = props;
+
+  const clientsDropdown = (
+    <Menu onClick={({ item }) => onFilterCases({ key: 'customer', value: item.props.children })}>
+      {
+        clients.map((client, index) => {
+          return <Menu.Item key={index}>{client.accountName}</Menu.Item>;
+        })
+      }
+    </Menu>
+  );
+
   return (
     <div className={styles.filter}>
       <div className={styles.title}>
@@ -26,7 +38,7 @@ function Filter(props) {
       <span className={styles.verticalLine} />
       <Button type="primary">All</Button>
 
-      <Dropdown overlay={menu}>
+      <Dropdown overlay={clientsDropdown}>
         <Button style={{ marginLeft: 8 }}>
           Client <Icon type="down" />
         </Button>

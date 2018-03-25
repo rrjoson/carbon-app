@@ -5,14 +5,19 @@ const FETCH_ALL_CASES = `${BASE_URL}/glocalid`;
 const FETCH_CASE = `${BASE_URL}/glocalid`;
 const CREATE_CASE = `${BASE_URL}/glocalid`;
 const FETCH_CASES_BY_QUERY = `${BASE_URL}/glocalid/search`;
+const FETCH_CASES_BY_FILTER = `${BASE_URL}/glocalid/filter`;
 const FETCH_NEXT_ID = `${BASE_URL}/nextid`;
 
 export function fetchAllCases() {
   return axios.get(FETCH_ALL_CASES);
 }
 
-export function fetchCasesByQuery(query) {
-  return axios.get(`${FETCH_CASES_BY_QUERY}?q=${query}`);
+export function fetchCasesByQuery(searchQuery) {
+  return axios.get(`${FETCH_CASES_BY_QUERY}?q=${searchQuery}`);
+}
+
+export function fetchCasesByFilter(filterQuery) {
+  return axios.get(`${FETCH_CASES_BY_FILTER}?${filterQuery}`);
 }
 
 export function fetchCase(glocalId) {

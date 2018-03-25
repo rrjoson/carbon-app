@@ -4,6 +4,7 @@ import { notification } from 'antd';
 import {
   fetchAllCases,
   fetchCasesByQuery,
+  fetchCasesByFilter,
   fetchCase,
   createCase,
   updateCase,
@@ -18,6 +19,7 @@ export default {
 
   state: {
     data: [],
+    filters: {},
     nextId: null,
     selected: null,
   },
@@ -40,6 +42,12 @@ export default {
 
     *FETCH_CASES_BY_QUERY({ payload }, { call, put }) {
       const { data } = yield call(fetchCasesByQuery, payload);
+      yield put({ type: 'SAVE', payload: { data } });
+    },
+
+    *FETCH_CASES_BY_FITLER({ payload }, { call, put }) {
+      const filter = `${payload.key}=${payload.value}`;
+      const { data } = yield call(fetchCasesByFilter, filter);
       yield put({ type: 'SAVE', payload: { data } });
     },
 

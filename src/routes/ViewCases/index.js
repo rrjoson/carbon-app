@@ -14,19 +14,28 @@ class ViewCases extends Component {
     } = this.props;
 
     dispatch({ type: 'cases/FETCH_ALL_CASES', payload: match.params.caseId });
+    dispatch({ type: 'clients/FETCH_CLIENTS' });
   }
 
   render() {
     const {
+      dispatch,
       cases,
+      clients,
     } = this.props;
 
-    if (!cases.length) return null;
+    if (
+      !cases.length ||
+      !clients.length
+    ) return null;
 
     return (
       <div className={styles.viewCases}>
         <ViewCasesHeader />
-        <ViewCasesFilter />
+        <ViewCasesFilter
+          onFilterCases={data => dispatch({ type: 'cases/FETCH_CASES_BY_FITLER', payload: data })}
+          clients={clients}
+        />
         <ViewCasesTable
           data={cases}
         />
@@ -38,6 +47,7 @@ class ViewCases extends Component {
 function mapStateToProps(state) {
   return {
     cases: state.cases.data,
+    clients: state.clients.data,
   };
 }
 

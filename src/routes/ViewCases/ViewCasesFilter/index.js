@@ -3,9 +3,17 @@ import styles from './styles.css';
 import { Filter } from './../../../components';
 
 function ViewCasesFilter(props) {
+  const {
+    clients,
+    onFilterCases,
+   } = props;
+
   return (
     <div>
-      <Filter />
+      <Filter
+        onFilterCases={onFilterCases}
+        clients={clients}
+      />
     </div>
   );
 }

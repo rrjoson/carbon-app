@@ -4,10 +4,15 @@ const BASE_URL = 'https://iris-carbon-api.herokuapp.com';
 const FETCH_ALL_CASES = `${BASE_URL}/glocalid`;
 const FETCH_CASE = `${BASE_URL}/glocalid`;
 const CREATE_CASE = `${BASE_URL}/glocalid`;
+const FETCH_CASES_BY_QUERY = `${BASE_URL}/glocalid/search`;
 const FETCH_NEXT_ID = `${BASE_URL}/nextid`;
 
 export function fetchAllCases() {
   return axios.get(FETCH_ALL_CASES);
+}
+
+export function fetchCasesByQuery(query) {
+  return axios.get(`${FETCH_CASES_BY_QUERY}?q=${query}`);
 }
 
 export function fetchCase(glocalId) {

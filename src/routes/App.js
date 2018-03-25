@@ -43,7 +43,14 @@ const menuItems = [{
 
 let lastHref;
 
-function App({ location, children, loading }) {
+function App(props) {
+  const {
+    dispatch,
+    location,
+    children,
+    loading,
+  } = props;
+
   const { href } = window.location;
 
   window.NProgress = NProgress;
@@ -91,6 +98,7 @@ function App({ location, children, loading }) {
       </Sider>
       <Layout>
         <Header
+          onSearchCases={data => dispatch({ type: 'cases/FETCH_CASES_BY_QUERY', payload: data })}
           pathname={location.pathname}
           type="default"
         />

@@ -1,18 +1,17 @@
 import React from 'react';
 import { Input, Icon } from 'antd';
-import classnames from 'classnames';
 
 import styles from './styles.css';
 
 const Search = (props) => {
-  const { onTextChange } = props
+  const { onTextChange } = props;
 
   return (
     <span className={styles.search}>
       <Icon type="search" />
       <Input
         placeholder="Search a case..."
-        onChange={(e) => this.onTextChange(e)}
+        onChange={e => onTextChange(e.target.value)}
         style={{ width: 200 }}
       />
     </span>

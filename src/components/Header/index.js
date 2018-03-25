@@ -11,12 +11,12 @@ import Search from './../Search';
 const AntHeader = Layout.Header;
 
 const Header = (props) => {
-  const { pathname } = props;
+  const { pathname, onSearchCases } = props;
 
   const getHeaderTitle = (path) => {
     if (path === '/home') return 'Home';
 
-    if (path === '/cases/all') return <Search onTextChange={(i) => {console.warn(i)}} />;
+    if (path === '/cases/all') return <Search onTextChange={text => onSearchCases(text)} />;
     if (path === '/cases/add') return 'Cases';
 
     if (path.includes('/activities/add')) return 'Cases';

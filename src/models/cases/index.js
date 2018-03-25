@@ -3,6 +3,7 @@ import { notification } from 'antd';
 
 import {
   fetchAllCases,
+  fetchCasesByQuery,
   fetchCase,
   createCase,
   updateCase,
@@ -35,6 +36,11 @@ export default {
     *FETCH_CASE({ payload }, { call, put }) {
       const { data } = yield call(fetchCase, payload);
       yield put({ type: 'SAVE', payload: { selected: data[0] } });
+    },
+
+    *FETCH_CASES_BY_QUERY({ payload }, { call, put }) {
+      const { data } = yield call(fetchCasesByQuery, payload);
+      yield put({ type: 'SAVE', payload: { data } });
     },
 
     *FETCH_NEXT_ID({ payload }, { call, put }) {

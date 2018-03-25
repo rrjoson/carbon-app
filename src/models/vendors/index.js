@@ -2,7 +2,6 @@ import { notification } from 'antd';
 
 import {
   fetchVendors,
-  fetchVendorsOfClient,
   createVendor,
   deleteVendor,
   patchVendor,
@@ -30,11 +29,6 @@ export default {
   effects: {
     *FETCH_VENDORS({ payload }, { call, put }) {
       const { data } = yield call(fetchVendors);
-      yield put({ type: 'SAVE', payload: { data } });
-    },
-
-    *FETCH_VENDORS_OF_CLIENT({ payload }, { call, put }) {
-      const { data } = yield call(fetchVendorsOfClient, payload);
       yield put({ type: 'SAVE', payload: { data } });
     },
 

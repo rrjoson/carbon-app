@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Input, Icon, Button, Row, Col, DatePicker, Select, Radio } from 'antd';
+import { Input, Icon, Button, Row, Col, DatePicker, Radio } from 'antd';
 
-import { Typography, Form, Divider } from './../../../components';
+import { Select, Typography, Form, Divider } from './../../../components';
 
 import styles from './styles.css';
 
@@ -9,12 +9,7 @@ const FormItem = Form.Item;
 const Option = Select.Option;
 const { H3 } = Typography;
 
-class DynamicFieldSet extends Component {
-  handleChangeClient = (data) => {
-    this.props.form.setFieldsValue({ vendor: '' });
-    this.props.onSelectClient(data);
-  }
-
+class AddLicenseForm extends Component {
   handleChangeVendor = (data) => {
     this.props.form.setFieldsValue({ productName: '' });
     this.props.onSelectVendor(data);
@@ -97,7 +92,7 @@ class DynamicFieldSet extends Component {
                   message: 'This is a required field',
                 }],
               })(
-                <Select onChange={this.handleChangeClient}>
+                <Select>
                   {
                     this.props.clients.map((client) => {
                       return <Option value={client.accountName}>{client.accountName}</Option>
@@ -116,7 +111,7 @@ class DynamicFieldSet extends Component {
                   message: 'This is a required field',
                 }],
               })(
-                <Select disabled={!getFieldValue('client')} onChange={this.handleChangeVendor}>
+                <Select onChange={this.handleChangeVendor}>
                   {
                     this.props.vendors.map((vendor) => {
                       return <Option value={vendor.principal}>{vendor.principal}</Option>
@@ -278,15 +273,15 @@ class DynamicFieldSet extends Component {
           <Col span={3}>
             <FormItem label="Quarterly HC">
               {getFieldDecorator('quarterly_hc', {
-                initialValue: 'Yes',
+                initialValue: true,
                 rules: [{
                   required: true,
                   message: 'This is a required field',
                 }],
               })(
                 <Radio.Group>
-                  <Radio.Button value="Yes">Yes</Radio.Button>
-                  <Radio.Button value="No">No</Radio.Button>
+                  <Radio.Button value={true}>Yes</Radio.Button>
+                  <Radio.Button value={false}>No</Radio.Button>
                 </Radio.Group>
               )}
             </FormItem>
@@ -320,6 +315,6 @@ class DynamicFieldSet extends Component {
   }
 }
 
-const WrappedDynamicFieldSet = Form.create()(DynamicFieldSet);
+const WrappedAddLicenseForm = Form.create()(AddLicenseForm);
 
-export default WrappedDynamicFieldSet;
+export default WrappedAddLicenseForm;

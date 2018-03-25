@@ -11,6 +11,8 @@ const Button = (props) => {
     [styles.button]: true,
   });
 
+  if (!children) return null;
+
   return (
     <AntButton
       {...customProps}

@@ -13,6 +13,7 @@ import Form from './Form';
 import Divider from './Divider';
 import Tooltip from './Tooltip';
 import Select from './Select';
+import Expiration from './Expiration';
 
 export {
   Typography,
@@ -30,4 +31,5 @@ export {
   Divider,
   Tooltip,
   Select,
+  Expiration,
 };

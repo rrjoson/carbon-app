@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Form, Input, Icon, Button, Row, Col, DatePicker, Select, TimePicker, Radio } from 'antd';
+import { Input, Icon, Button, Row, Col, DatePicker, Select } from 'antd';
 
-import { Link, Typography } from './../../../components';
+import { Form, Typography, Divider } from './../../../components';
 
 import styles from './styles.css';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
-const { H4, H5 } = Typography;
+const { H3 } = Typography;
 
 class DynamicFieldSet extends Component {
   handleSubmit = (e) => {
@@ -143,10 +143,12 @@ class DynamicFieldSet extends Component {
           </Col>
         </Row>
 
-        <div className={styles.divider} />
+        <Divider />
 
         <Row gutter={12}>
-          <H5>Level of Support</H5>
+          <div className={styles.addLicenseForm__sectionTitle}>
+            <H3>Level of Support</H3>
+          </div>
         </Row>
 
         <Row gutter={12}>
@@ -193,7 +195,9 @@ class DynamicFieldSet extends Component {
         </Row>
 
         <Row gutter={12}>
-          <H5>Pre-paid Support</H5>
+          <div className={styles.addLicenseForm__sectionTitle}>
+            <H3>Pre-paid Support</H3>
+          </div>
         </Row>
 
         <Row gutter={12}>
@@ -224,7 +228,7 @@ class DynamicFieldSet extends Component {
           </Col>
         </Row>
 
-        <div className={styles.divider} />
+        <Divider />
 
         <Row gutter={12}>
           <Col span={3}>

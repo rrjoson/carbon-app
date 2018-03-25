@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 
 import styles from './styles.css';
-import { Table, Link, Status, Avatar, Tooltip } from './../../../components';
+import { Table, Link, Status, Avatar, Tooltip, Expiration } from './../../../components';
 
 function ViewCasesTable(props) {
   const columns = [{
@@ -16,7 +16,8 @@ function ViewCasesTable(props) {
     dataIndex: 'product',
   }, {
     title: 'Expiration',
-    dataIndex: 'licenseid',
+    dataIndex: 'dateEnd',
+    render: dateEnd => <Expiration date={dateEnd} />,
   }, {
     title: 'Date Start',
     dataIndex: 'dateStart',

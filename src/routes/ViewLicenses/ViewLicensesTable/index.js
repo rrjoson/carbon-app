@@ -37,8 +37,8 @@ function ViewCasesTable(props) {
     dataIndex: 'actions',
     render: (text, record) => (
       <div>
-        <Link to={`/licenses/${record.licenseid}`}>{text[0]} </Link>
-        <Link to={`/licenses/${record.licenseid}/edit`}>{text[1]}</Link>
+        <Link to={`/licenses/${record.licenseId}`}>{text[0]} </Link>
+        <Link to={`/licenses/${record.licenseId}/edit`}>{text[1]}</Link>
       </div>
     ),
   }];
@@ -46,6 +46,7 @@ function ViewCasesTable(props) {
   const dataSource = props.data.map((item, index) => (
     {
       key: index,
+      licenseId: item.licenseId,
       client: item.client,
       vendor: item.vendor,
       product: item.productName,

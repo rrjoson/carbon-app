@@ -19,13 +19,13 @@ function ViewCasesTable(props) {
     render: status => <Status type={status} />,
   }, {
     title: 'Assigned SE',
-    dataIndex: 'assignedsystemsengineer',
+    dataIndex: 'assignedSystemsEngineer',
     width: '120px',
-    render: assignedsystemsengineer => {
-      return assignedsystemsengineer.map((systemengineer) => {
+    render: (assignedSystemsEngineer) => {
+      return assignedSystemsEngineer.map((systemsEngineer) => {
         return (
-          <Tooltip title={systemengineer}>
-            <Avatar>{systemengineer[0][0]}</Avatar>
+          <Tooltip title={systemsEngineer}>
+            <Avatar>{systemsEngineer[0][0]}</Avatar>
           </Tooltip>
         );
       });
@@ -70,7 +70,9 @@ function ViewCasesTable(props) {
       glocalid: item.glocalId,
       customer: item.customer,
       status: item.case_status,
-      assignedsystemsengineer: item.assignedSystemsEngineer || [],
+      assignedSystemsEngineer: item.assignedSystemsEngineer
+        ? [[item.systemsEngineerLead]].concat(...item.assignedSystemsEngineer)
+        : [[item.systemsEngineerLead]],
       severity: item.severity,
       casetitle: item.caseTitle,
       productname: item.productName,

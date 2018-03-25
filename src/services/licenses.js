@@ -10,3 +10,7 @@ export function addLicense(payload) {
 export function fetchLicenses() {
   return axios.get(ADD_LICENSE);
 }
+
+export function fetchLicense(licenseId) {
+  return axios.get(`${ADD_LICENSE}/${licenseId}`);
+}

@@ -14,8 +14,6 @@ class NewActivity extends Component {
       match,
     } = this.props;
 
-    console.warn(match, 222)
-
     dispatch({ type: 'activities/FETCH_ACTIVITY', payload: match.params.activityNo });
     dispatch({ type: 'cases/FETCH_CASE', payload: match.params.caseId });
     dispatch({ type: 'engineers/FETCH_ENGINEERS' });

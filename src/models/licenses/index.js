@@ -4,6 +4,7 @@ import { notification } from 'antd';
 import {
   addLicense,
   fetchLicenses,
+  fetchLicense,
 } from './../../services/licenses';
 
 export default {
@@ -12,6 +13,7 @@ export default {
 
   state: {
     data: [],
+    selected: null,
   },
 
   subscriptions: {
@@ -26,6 +28,11 @@ export default {
     *FETCH_LICENSES({ payload }, { call, put }) {
       const { data } = yield call(fetchLicenses);
       yield put({ type: 'SAVE', payload: { data } });
+    },
+
+    *FETCH_LICENSE({ payload }, { call, put }) {
+      const { data } = yield call(fetchLicense, payload);
+      yield put({ type: 'SAVE', payload: { selected: data[0] } });
     },
 
     *ADD_LICENSE({ payload }, { call, put, select, all }) {

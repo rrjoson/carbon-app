@@ -12,6 +12,7 @@ class AddLicense extends Component {
       match,
     } = this.props;
 
+    dispatch({ type: 'licenses/FETCH_LICENSE', payload: match.params.licenseId });
     dispatch({ type: 'vendors/FETCH_VENDORS' });
     dispatch({ type: 'products/FETCH_PRODUCTS' });
     dispatch({ type: 'clients/FETCH_CLIENTS' });
@@ -20,6 +21,7 @@ class AddLicense extends Component {
   render() {
     const {
       dispatch,
+      selectedLicense,
       vendors,
       products,
       clients,
@@ -35,9 +37,11 @@ class AddLicense extends Component {
       <div className={styles.addLicenseHeader}>
         <EditLicenseHeader />
         <EditLicenseForm
+          selectedLicense={selectedLicense}
           vendors={vendors}
           products={products}
           clients={clients}
+          onSelectVendor={(data) => dispatch({ type: 'products/FETCH_PRODUCTS_OF_VENDOR', payload: data })}
           onSave={(data) => dispatch({ type: 'licenses/ADD_LICENSE', payload: data })}
         />
       </div>
@@ -47,6 +51,7 @@ class AddLicense extends Component {
 
 function mapStateToProps(state) {
   return {
+    selectedLicense: state.licenses.selected,
     vendors: state.vendors.data,
     clients: state.clients.data,
     products: state.products.data,

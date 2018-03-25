@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 
 import styles from './styles.css';
-import { Table, Link, Status, Avatar, Tooltip, Expiration } from './../../../components';
+import { Table, Link, Expiration } from './../../../components';
 
 function ViewCasesTable(props) {
   const columns = [{
@@ -50,7 +50,6 @@ function ViewCasesTable(props) {
       client: item.client,
       vendor: item.vendor,
       product: item.productName,
-      expiration: 'This month',
       dateStart: item.date_start,
       dateEnd: item.date_end,
       particulars: item.particulars,

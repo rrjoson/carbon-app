@@ -32,6 +32,7 @@ class EditCase extends Component {
   render() {
     const {
       dispatch,
+      loading,
       selectedCase,
       vendors,
       products,
@@ -53,6 +54,7 @@ class EditCase extends Component {
       <div>
         <EditCaseHeader />
         <EditCaseForm
+          loading={loading}
           selectedCase={selectedCase}
           products={products}
           customers={customers}
@@ -69,6 +71,7 @@ class EditCase extends Component {
 
 function mapStateToProps(state) {
   return {
+    loading: state.loading.effects['cases/UPDATE_CASE'],
     selectedCase: state.cases.selected,
     vendors: state.vendors.data,
     clients: state.clients.data,

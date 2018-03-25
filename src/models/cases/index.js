@@ -53,9 +53,10 @@ export default {
       notification['success']({ message: 'Case created.', duration: 2 });
     },
 
-    *UPDATE_CASE({ payload }, { call, put }) {
+    *UPDATE_CASE({ payload }, { call, put, select }) {
+      const selectedCase = yield select(state => state.cases.selected);
       const data = yield call(updateCase, payload);
-      yield put(routerRedux.push('/cases/all'));
+      yield put(routerRedux.push(`/cases/${selectedCase.glocalId}`));
       notification['success']({ message: 'Case updated.', duration: 2 });
     },
 

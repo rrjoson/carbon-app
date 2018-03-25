@@ -225,18 +225,19 @@ class DynamicFieldSet extends Component {
           <Col span={5}>
             <FormItem label="Systems Engineer Lead">
               {getFieldDecorator('systemsEngineerLead', {
+                initialValue: selectedCase.systemsEngineerLead,
                 rules: [{
                   required: true,
                   message: 'This is a required field',
                 }],
               })(
-                <Select placeholder={`${this.props.engineers[0]['firstName']} ${this.props.engineers[0]['lastName']}`} style={{ width: '224px', marginRight: 19 }}>
+                <Select placeholder={`${this.props.engineers[0].firstName} ${this.props.engineers[0].lastName}`}>
                   {
                     this.props.engineers.map((engineer) => {
                       return <Option value={`${engineer.firstName} ${engineer.lastName}`}>{`${engineer.firstName} ${engineer.lastName}`}</Option>
                     })
                   }
-                </Select>,
+                </Select>
               )}
             </FormItem>
           </Col>

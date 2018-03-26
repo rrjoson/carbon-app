@@ -47,22 +47,20 @@ function HomeTable(props) {
   }];
 
   const dataSource = props.data.map((item, index) => {
-    return (
-      {
-        key: index,
-        glocalid: item.glocalId,
-        customer: item.customer,
-        status: item.case_status,
-        severity: item.severity,
-        casetitle: item.caseTitle,
-        productname: item.productName,
-        open: item.dateRaised,
-        lastupdated: item.dateRaised,
-        dateraised: item.dateRaised,
-        actions: ['View', 'Edit'],
-      }
-    );
-  })
+    return {
+      key: index,
+      glocalid: item.glocalId,
+      customer: item.customer,
+      status: item.case_status,
+      severity: item.severity,
+      casetitle: item.caseTitle,
+      productname: item.productName,
+      open: item.dateRaised,
+      lastupdated: item.date_last_updated || item.dateRaised,
+      dateraised: item.dateRaised,
+      actions: ['View', 'Edit'],
+    };
+  });
 
   return (
     <div>

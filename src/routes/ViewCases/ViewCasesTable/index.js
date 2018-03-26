@@ -77,9 +77,9 @@ function ViewCasesTable(props) {
       casetitle: item.caseTitle,
       productname: item.productName,
       open: item.dateRaised,
-      lastupdated: item.dateRaised,
+      lastupdated: item.date_last_updated || item.dateRaised,
       dateraised: item.dateRaised,
-      actions: ['View', 'Edit']
+      actions: ['View', 'Edit'],
     }
   ));
 

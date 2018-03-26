@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 
 import styles from './styles.css';
-import ViewEngineerHeader from './ViewEngineerHeader';
-import ViewEngineerActivities from './ViewEngineerActivities';
+import ViewActivitiesHeader from './ViewActivitiesHeader';
+import ViewActivitiesList from './ViewActivitiesList';
 
 class ViewEngineer extends Component {
   componentDidMount() {
@@ -12,20 +12,25 @@ class ViewEngineer extends Component {
       match,
     } = this.props;
 
-    dispatch({ type: 'engineers/FETCH_ENGINEER', payload: match.params.engineerId });
+    dispatch({ type: 'activities/FETCH_ACTIVITIES_BY_ENGINEER_NAME', payload: match.params.engineerName });
   }
 
   render() {
     const {
-      selectedEngineer,
+      activities,
+      match,
     } = this.props;
 
-    if (!selectedEngineer) return null;
+    if (!activities.length) return null;
 
     return (
       <div className={styles.viewEngineer}>
-        <ViewEngineerHeader />
-        <ViewEngineerActivities />
+        <ViewActivitiesHeader
+          name={match.params.engineerName}
+        />
+        <ViewActivitiesList
+          data={activities}
+        />
       </div>
     );
   }
@@ -33,7 +38,7 @@ class ViewEngineer extends Component {
 
 function mapStateToProps(state) {
   return {
-    selectedEngineer: state.engineers.selected,
+    activities: state.activities.data,
   };
 }
 

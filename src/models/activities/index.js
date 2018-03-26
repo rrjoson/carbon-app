@@ -6,6 +6,7 @@ import {
   updateActivity,
   fetchActivity,
   fetchActivities,
+  fetchActivitiesByEngineerName,
 } from './../../services/activities';
 
 export default {
@@ -29,6 +30,11 @@ export default {
   effects: {
     *FETCH_ACTIVITIES({ payload }, { call, put }) {
       const { data } = yield call(fetchActivities, payload);
+      yield put({ type: 'SAVE', payload: { data } });
+    },
+
+    *FETCH_ACTIVITIES_BY_ENGINEER_NAME({ payload }, { call, put }) {
+      const { data } = yield call(fetchActivitiesByEngineerName, payload);
       yield put({ type: 'SAVE', payload: { data } });
     },
 

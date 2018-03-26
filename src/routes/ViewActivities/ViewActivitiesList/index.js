@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './styles.css';
 
-function ViewEngineerActivities(props) {
+function ViewActivitiesList(props) {
   return (
     <div className={styles.wrapper}>
       List of Activities
@@ -9,6 +9,6 @@ function ViewEngineerActivities(props) {
   );
 }
 
-ViewEngineerActivities.propTypes = {};
+ViewActivitiesList.propTypes = {};
 
-export default ViewEngineerActivities;
+export default ViewActivitiesList;

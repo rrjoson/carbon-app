@@ -1,6 +1,6 @@
 import request from '../utils/request';
+import { BASE_URL } from '../constants/api';
 
-const BASE_URL = 'https://iris-carbon-api.herokuapp.com';
 const FETCH_ENGINEERS = `${BASE_URL}/engineer`;
 
 export function fetchEngineers() {

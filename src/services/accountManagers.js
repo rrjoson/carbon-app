@@ -1,6 +1,6 @@
 import request from '../utils/request';
+import { BASE_URL } from '../constants/api';
 
-const BASE_URL = 'https://iris-carbon-api.herokuapp.com';
 const FETCH_ACCOUNT_MANAGERS = `${BASE_URL}/accountmanager`;
 
 export function fetchAccountManagers() {

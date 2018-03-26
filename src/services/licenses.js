@@ -1,6 +1,6 @@
 import axios from 'axios';
+import { BASE_URL } from '../constants/api';
 
-const BASE_URL = 'https://iris-carbon-api.herokuapp.com';
 const ADD_LICENSE = `${BASE_URL}/license`;
 
 export function addLicense(payload) {

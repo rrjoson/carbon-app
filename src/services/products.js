@@ -1,6 +1,6 @@
 import axios from 'axios';
+import { BASE_URL } from '../constants/api';
 
-const BASE_URL = 'https://iris-carbon-api.herokuapp.com';
 const FETCH_PRODUCTS = `${BASE_URL}/products`;
 const FETCH_PRODUCTS_OF_VENDOR = `${BASE_URL}/productvendor`;
 const ADD_PRODUCT = `${BASE_URL}/products`;
@@ -15,23 +15,24 @@ export function fetchProductsOfVendor(vendor) {
   return axios.get(`${FETCH_PRODUCTS_OF_VENDOR}/${vendor}`);
 }
 
-export function addProduct(vendor, productname) {
+export function addProduct(vendor, productName) {
   const data = {
-    'productName': productname,
-    'vendor': vendor,
+    productName,
+    vendor,
   };
+
   return axios.post(ADD_PRODUCT, data);
 }
 
-export function patchProduct(vendor, original, productname) {
+export function patchProduct(vendor, original, productName) {
   const data = {
-    'productName': productname,
-    'vendor': vendor,
+    productName,
+    vendor,
   };
 
   return axios.put(`${PATCH_PRODUCT}/${encodeURIComponent(original)}`, data);
 }
 
-export function deleteProduct(productname) {
-  return axios.delete(`${DELETE_PRODUCT}/${encodeURIComponent(productname)}`);
+export function deleteProduct(productName) {
+  return axios.delete(`${DELETE_PRODUCT}/${encodeURIComponent(productName)}`);
 }

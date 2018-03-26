@@ -1,6 +1,6 @@
 import axios from 'axios';
+import { BASE_URL } from '../constants/api';
 
-const BASE_URL = 'https://iris-carbon-api.herokuapp.com';
 const FETCH_VENDORS = `${BASE_URL}/vendor`;
 const CREATE_VENDOR = `${BASE_URL}/vendor`;
 const PATCH_VENDOR = `${BASE_URL}/vendor`;

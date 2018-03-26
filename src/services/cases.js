@@ -1,6 +1,6 @@
 import axios from 'axios';
+import { BASE_URL } from '../constants/api';
 
-const BASE_URL = 'https://iris-carbon-api.herokuapp.com';
 const FETCH_ALL_CASES = `${BASE_URL}/glocalid`;
 const FETCH_CASE = `${BASE_URL}/glocalid`;
 const CREATE_CASE = `${BASE_URL}/glocalid`;

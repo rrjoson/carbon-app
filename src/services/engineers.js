@@ -1,8 +1,12 @@
-import request from '../utils/request';
+import axios from 'axios';
 import { BASE_URL } from '../constants/api';
 
 const FETCH_ENGINEERS = `${BASE_URL}/engineer`;
 
 export function fetchEngineers() {
-  return request(FETCH_ENGINEERS);
+  return axios.get(FETCH_ENGINEERS);
+}
+
+export function fetchEngineer(engineerId) {
+  return axios.get(`${FETCH_ENGINEERS}/${engineerId}`);
 }

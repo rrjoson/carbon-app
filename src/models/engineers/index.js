@@ -1,4 +1,7 @@
-import { fetchEngineers } from './../../services/engineers';
+import {
+  fetchEngineers,
+  fetchEngineer,
+} from './../../services/engineers';
 
 export default {
 
@@ -6,6 +9,7 @@ export default {
 
   state: {
     data: [],
+    selected: null,
   },
 
   subscriptions: {
@@ -25,6 +29,11 @@ export default {
     *FETCH_ENGINEERS({ payload }, { call, put }) {
       const { data } = yield call(fetchEngineers);
       yield put({ type: 'SAVE', payload: { data } });
+    },
+
+    *FETCH_ENGINEER({ payload }, { call, put }) {
+      const { data } = yield call(fetchEngineer, payload);
+      yield put({ type: 'SAVE', payload: { selected: data } });
     },
   },
 

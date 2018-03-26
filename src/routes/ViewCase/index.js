@@ -2,17 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 // import PropTypes from 'prop-types';
 
-import { Col, Row, Progress } from 'antd';
-
 import ViewCaseHeader from './ViewCaseHeader';
 import ViewCaseTable from './ViewCaseTable';
 import ViewCaseSelectStatus from './ViewCaseSelectStatus';
 import ViewCaseActivities from './ViewCaseActivities';
-import { Typography, Link, Card, Button } from './../../components';
 
 import styles from './styles.css';
-
-const { H1, H2, H3, H4 } = Typography;
 
 class ViewCase extends Component {
   componentDidMount() {
@@ -53,7 +48,7 @@ class ViewCase extends Component {
         />
         <ViewCaseSelectStatus
           status={selectedCase.case_status}
-          onSelectChange={(data) => dispatch({ type: 'cases/UPDATE_STATUS', payload: data })}
+          onSelectChange={data => dispatch({ type: 'cases/UPDATE_STATUS', payload: data })}
         />
         <ViewCaseActivities
           data={activities}

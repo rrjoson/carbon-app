@@ -35,7 +35,7 @@ export default {
     *SAVE_VENDORS({ payload }, { call, put, select, all }) {
       const data = yield select(state => state.vendors.data);
       const original = {};
-      data.forEach((item) => { original[item.principal] = item.principal });
+      data.forEach((item) => { original[item.principal] = item.principal; });
 
       const updated = payload.names;
 

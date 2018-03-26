@@ -1,0 +1,10 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.title {
+  color: #7f7f7f;
+  margin-right: 21px;
+}

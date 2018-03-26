@@ -1,7 +1,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 
-import { Row, Button } from 'antd';
+import { Button } from 'antd';
 import { Link, Typography } from './../../../components';
 
 import styles from './styles.css';
@@ -21,12 +21,6 @@ function HomeHeader(props) {
       </div>
     </div>
   );
-}
-
-function mapStateToProps(state) {
-  return {
-    cases: state.cases.data,
-  };
 }
 
 HomeHeader.propTypes = {};

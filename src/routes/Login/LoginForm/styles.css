@@ -1,0 +1,47 @@
+.loginForm {
+	width: 399px;
+	height: 309px;
+	border-radius: 8px;
+	background-color: #ffffff;
+  border: solid 1px #f0f0f0;
+  padding: 18px;
+}
+
+.loginForm__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+
+  margin-bottom: 14px;
+}
+
+.loginForm__logo {
+  width: 41px;
+  height: 39px;
+}
+
+.loginForm__app {
+  margin-left: 19px;
+  padding-left: 12px;
+  border-left: 1px solid #eaeaea;
+}
+
+.loginForm__appIcon {
+  display: inline-block;
+  font-size: 22px;
+  color: #d83b3c;
+  margin-right: 1px;
+}
+
+.loginForm__appName {
+  display: inline-block;
+  font-size: 24px;
+}
+
+.loginForm__button {
+  width: 341px;
+  height: 44px;
+  border-radius: 4px;
+  background-color: #4581f0;
+}

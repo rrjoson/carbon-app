@@ -1,3 +1,4 @@
+/* global window */
 import React from 'react';
 import { connect } from 'dva';
 import NProgress from 'nprogress';
@@ -6,8 +7,10 @@ import { Link, withRouter } from 'dva/router';
 import logo from './../assets/logo.png';
 
 import { Header } from './../components';
-
+import config from './../constants/config';
 import styles from './App.css';
+
+const { publicPages } = config;
 
 const { Content, Sider } = Layout;
 
@@ -51,6 +54,9 @@ function App(props) {
     loading,
   } = props;
 
+  let { pathname } = location;
+  pathname = pathname.startsWith('/') ? pathname : `/${pathname}`;
+
   const { href } = window.location;
 
   window.NProgress = NProgress;
@@ -75,6 +81,13 @@ function App(props) {
 
     return keys;
   };
+
+  if (publicPages && publicPages.includes(pathname)) {
+    return (<div>
+      {/* <Loader fullScreen spinning={loading.effects['app/query']} /> */}
+      {children}
+    </div>);
+  }
 
   return (
     <Layout style={{ minHeight: '100vh' }}>

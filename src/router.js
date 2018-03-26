@@ -61,6 +61,9 @@ const Routers = ({ history, app }) => {
     }, {
       path: '/engineers/:engineerId',
       component: () => import('./routes/ViewEngineer'),
+    }, {
+      path: '/login',
+      component: () => import('./routes/Login'),
     },
   ];
 

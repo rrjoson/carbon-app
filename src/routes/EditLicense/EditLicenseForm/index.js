@@ -192,7 +192,7 @@ class EditLicenseForm extends Component {
         </Row>
 
         {
-          (onSite === 'Other')
+          (getFieldValue('on_site') === 'Other')
           ? <Row gutter={12}>
               <Col span={3}>
                 <FormItem label="Customized Support">

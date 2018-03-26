@@ -5,7 +5,7 @@ import styles from './styles.css';
 import EditLicenseHeader from './EditLicenseHeader';
 import EditLicenseForm from './EditLicenseForm';
 
-class AddLicense extends Component {
+class EditLicense extends Component {
   componentDidMount() {
     const {
       dispatch,
@@ -28,6 +28,7 @@ class AddLicense extends Component {
     } = this.props;
 
     if (
+      !selectedLicense ||
       !vendors.length ||
       !products.length ||
       !clients.length
@@ -58,6 +59,6 @@ function mapStateToProps(state) {
   };
 }
 
-AddLicense.propTypes = {};
+EditLicense.propTypes = {};
 
-export default connect(mapStateToProps)(AddLicense);
+export default connect(mapStateToProps)(EditLicense);

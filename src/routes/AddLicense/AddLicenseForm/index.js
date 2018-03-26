@@ -34,8 +34,6 @@ class AddLicenseForm extends Component {
   render() {
     const { getFieldDecorator, getFieldValue } = this.props.form;
 
-    const onSite = getFieldValue('on_site');
-
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
@@ -187,7 +185,7 @@ class AddLicenseForm extends Component {
         </Row>
 
         {
-          (onSite === 'Other')
+          (getFieldValue('on_site') === 'Other')
           ? <Row gutter={12}>
               <Col span={3}>
                 <FormItem label="Customized Support">

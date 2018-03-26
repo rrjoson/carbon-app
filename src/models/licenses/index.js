@@ -32,7 +32,7 @@ export default {
 
     *FETCH_LICENSE({ payload }, { call, put }) {
       const { data } = yield call(fetchLicense, payload);
-      yield put({ type: 'SAVE', payload: { selected: data[0] } });
+      yield put({ type: 'SAVE', payload: { selected: data } });
     },
 
     *ADD_LICENSE({ payload }, { call, put, select, all }) {

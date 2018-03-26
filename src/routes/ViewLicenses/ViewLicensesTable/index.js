@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 
 import styles from './styles.css';
-import { Table, Link, Expiration } from './../../../components';
+import { Table, Link, Expiration, Avatar, Tooltip } from './../../../components';
 
 function ViewCasesTable(props) {
   const columns = [{
@@ -32,6 +32,11 @@ function ViewCasesTable(props) {
   }, {
     title: 'Assigned AM',
     dataIndex: 'assignedAccountManager',
+    render: assignedaccountmanager => (
+      <Tooltip title={assignedaccountmanager}>
+        <Avatar>{assignedaccountmanager[0]}</Avatar>
+      </Tooltip>
+    ),
   }, {
     title: 'Actions',
     dataIndex: 'actions',

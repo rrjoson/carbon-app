@@ -1,38 +1,57 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'dva';
-// import PropTypes from 'prop-types';
-
-import { Col, Row } from 'antd';
 
 import HomeTable from './HomeTable';
-import HomeStats from './HomeStats';
 import HomeHeader from './HomeHeader';
 import HomeFilter from './HomeFilter';
 
 import styles from './styles.css';
 
-function Dashboard(props) {
-  const {
-    cases
-  } = props;
+class Home extends Component {
+  componentDidMount() {
+    const {
+      dispatch,
+      match,
+    } = this.props;
 
-  return (
-    <div className={styles.dashboard}>
-      <HomeHeader />
-      <HomeFilter />
-      <HomeTable
-        data={cases}
-      />
-    </div>
-  );
+    dispatch({ type: 'cases/FETCH_ALL_CASES', payload: match.params.caseId });
+    dispatch({ type: 'clients/FETCH_CLIENTS' });
+  }
+
+  render() {
+    const {
+      dispatch,
+      cases,
+      clients,
+    } = this.props;
+
+    if (
+      !cases.length ||
+      !clients.length
+    ) return null;
+
+    return (
+      <div className={styles.dashboard}>
+        <HomeHeader />
+        <HomeFilter
+          onFilterCases={data => dispatch({ type: 'cases/FETCH_CASES_BY_FITLER', payload: data })}
+          clients={clients}
+        />
+        <HomeTable
+          data={cases}
+        />
+      </div>
+    );
+  }
 }
 
 function mapStateToProps(state) {
   return {
     cases: state.cases.data,
+    clients: state.clients.data,
   };
 }
 
-Dashboard.propTypes = {};
+Home.propTypes = {};
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps)(Home);

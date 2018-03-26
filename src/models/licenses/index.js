@@ -5,6 +5,7 @@ import {
   addLicense,
   fetchLicenses,
   fetchLicense,
+  updateLicense,
 } from './../../services/licenses';
 
 export default {
@@ -35,10 +36,17 @@ export default {
       yield put({ type: 'SAVE', payload: { selected: data } });
     },
 
-    *ADD_LICENSE({ payload }, { call, put, select, all }) {
+    *ADD_LICENSE({ payload }, { call, put }) {
       const { data } = yield call(addLicense, payload);
       yield put(routerRedux.push('/licenses'));
       notification['success']({ message: 'License added.', duration: 2 });
+    },
+
+    *UPDATE_LICENSE({ payload }, { call, put, select }) {
+      const licenseId = yield select(state => state.licenses.selected.licenseId);
+      const { data } = yield call(updateLicense, licenseId, payload);
+      yield put(routerRedux.push('/licenses'));
+      notification['success']({ message: 'License updated.', duration: 2 });
     },
   },
 

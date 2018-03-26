@@ -42,8 +42,8 @@ class EditLicense extends Component {
           vendors={vendors}
           products={products}
           clients={clients}
-          onSelectVendor={(data) => dispatch({ type: 'products/FETCH_PRODUCTS_OF_VENDOR', payload: data })}
-          onSave={(data) => dispatch({ type: 'licenses/ADD_LICENSE', payload: data })}
+          onSelectVendor={data => dispatch({ type: 'products/FETCH_PRODUCTS_OF_VENDOR', payload: data })}
+          onSave={data => dispatch({ type: 'licenses/UPDATE_LICENSE', payload: data })}
         />
       </div>
     );

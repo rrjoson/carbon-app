@@ -7,6 +7,10 @@ export function addLicense(payload) {
   return axios.post(ADD_LICENSE, payload);
 }
 
+export function updateLicense(licenseId, payload) {
+  return axios.put(`${ADD_LICENSE}/${licenseId}`, payload);
+}
+
 export function fetchLicenses() {
   return axios.get(ADD_LICENSE);
 }

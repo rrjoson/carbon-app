@@ -174,7 +174,7 @@ class EditLicenseForm extends Component {
           <Col span={24}>
             <FormItem label="On-Site Support">
               {getFieldDecorator('on_site', {
-                initialValue: '8x5',
+                initialValue: this.props.selectedLicense.on_site,
                 rules: [{
                   required: true,
                   message: 'This is a required field',
@@ -214,7 +214,7 @@ class EditLicenseForm extends Component {
           <Col span={3}>
             <FormItem label="Date Start">
               {getFieldDecorator('support_date_start', {
-                initialValue: this.props.selectedLicense.support_date_start,
+                initialValue: moment(this.props.selectedLicense.support_date_start, 'YYYY-MM-DD'),
                 rules: [{
                   required: true,
                   message: 'This is a required field',
@@ -228,7 +228,7 @@ class EditLicenseForm extends Component {
           <Col span={3}>
             <FormItem label="Date End">
               {getFieldDecorator('support_date_end', {
-                initialValue: this.props.selectedLicense.support_date_end,
+                initialValue: moment(this.props.selectedLicense.support_date_end, 'YYYY-MM-DD'),
                 rules: [{
                   required: true,
                   message: 'This is a required field',
@@ -282,7 +282,7 @@ class EditLicenseForm extends Component {
           <Col span={3}>
             <FormItem label="Quarterly HC">
               {getFieldDecorator('quarterly_hc', {
-                initialValue: true,
+                initialValue: this.props.selectedLicense.quarterly_hc,
                 rules: [{
                   required: true,
                   message: 'This is a required field',

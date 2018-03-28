@@ -26,7 +26,7 @@ const Header = (props) => {
     if (path === '/products/edit') return 'Product';
 
     if (path.includes('/clients')) return 'Client';
-    if (path === '/licenses/add') return 'License';
+    if (path.includes('licenses')) return 'License';
 
     return '';
   };
@@ -44,7 +44,7 @@ const Header = (props) => {
     if (path === '/products/edit') return '/cases/add';
 
     if (path.includes('/clients')) return '/cases/add';
-    if (path === '/licenses/add') return '/cases/add';
+    if (path.includes('licenses')) return '/cases/add';
 
     return '';
   };
@@ -62,7 +62,7 @@ const Header = (props) => {
     if (path === '/products/edit') return 'New Case';
 
     if (path.includes('/clients')) return 'New Case';
-    if (path === '/licenses/add') return 'New Case';
+    if (path.includes('licenses')) return 'New Case';
 
     return '';
   };

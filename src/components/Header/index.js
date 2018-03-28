@@ -19,13 +19,14 @@ const Header = (props) => {
     if (path === '/cases/all') return <Search onTextChange={text => onSearchCases(text)} />;
     if (path === '/cases/add') return 'Cases';
 
-    if (path.includes('/activities/add')) return 'Cases';
+    if (path.includes('/activities')) return 'Activity';
     if (path.includes('/cases/')) return 'View Case';
 
     if (path === '/vendors/edit') return 'Vendor';
     if (path === '/products/edit') return 'Product';
 
     if (path.includes('/clients')) return 'Client';
+
     if (path.includes('licenses')) return 'License';
 
     return '';
@@ -37,13 +38,14 @@ const Header = (props) => {
     if (path === '/cases/all') return '/cases/add';
     if (path === '/cases/add') return '/cases/add';
 
-    if (path.includes('/activities/add')) return '/cases/add';
+    if (path.includes('/activities')) return '/cases/add';
     if (path.includes('/cases/')) return `${path}/activities/add`
 
     if (path === '/vendors/edit') return '/cases/add';
     if (path === '/products/edit') return '/cases/add';
 
     if (path.includes('/clients')) return '/cases/add';
+
     if (path.includes('licenses')) return '/cases/add';
 
     return '';
@@ -55,13 +57,14 @@ const Header = (props) => {
     if (path === '/cases/all') return 'New Case';
     if (path === '/cases/add') return 'New Case';
 
-    if (path.includes('/activities/add')) return 'New Case';
+    if (path.includes('/activities')) return 'New Case';
     if (path.includes('/cases/')) return 'New Activity';
 
     if (path === '/vendors/edit') return 'New Case';
     if (path === '/products/edit') return 'New Case';
 
     if (path.includes('/clients')) return 'New Case';
+
     if (path.includes('licenses')) return 'New Case';
 
     return '';

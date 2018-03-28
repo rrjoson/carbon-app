@@ -33,7 +33,7 @@ class AddCaseForm extends Component {
 
     keys.push({
       id: uuid,
-      name: `${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`,
+      name: this.props.engineers[0].fullName,
     });
     uuid += 1;
     form.setFieldsValue({ [`keys-${vendorName}`]: keys });
@@ -247,10 +247,10 @@ class AddCaseForm extends Component {
                   message: 'This is a required field',
                 }],
               })(
-                <Select placeholder={`${this.props.engineers[0]['firstName']} ${this.props.engineers[0]['lastName']}`} style={{ width: '224px', marginRight: 19 }}>
+                <Select placeholder={this.props.engineers[0].fullName} style={{ width: '224px', marginRight: 19 }}>
                   {
                     this.props.engineers.map((engineer) => {
-                      return <Option value={`${engineer.firstName} ${engineer.lastName}`}>{`${engineer.firstName} ${engineer.lastName}`}</Option>
+                      return <Option value={engineer.fullName}>{engineer.fullName}</Option>;
                     })
                   }
                 </Select>,

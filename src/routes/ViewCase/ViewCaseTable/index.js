@@ -49,7 +49,11 @@ function HomeTable(props) {
   }, {
     title: 'Assigned AM',
     dataIndex: 'accountManager',
-    render: accountManager => (<Avatar>{accountManager[0]}</Avatar>),
+    render: accountManager => (
+      <Tooltip title={accountManager}>
+        <Avatar>{accountManager[0]}</Avatar>
+      </Tooltip>
+    ),
   }];
 
   const dataSource = props.data.map((item, index) => {

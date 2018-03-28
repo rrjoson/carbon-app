@@ -89,13 +89,13 @@ class AddActivityForm extends Component {
   render() {
     const { getFieldDecorator, getFieldValue } = this.props.form;
 
-     const vendors = [
+    const vendors = [
       {
         label: 'Assigned System Engineer',
         name: 'assignedSystemsEngineer',
         products: [
-          { name: `${this.props.engineers[0]['firstName']} ${this.props.engineers[0]['lastName']}`, id: 0 }
-        ]
+          { name: this.props.engineers[0]['fullName'], id: 0 },
+        ],
       },
     ];
 
@@ -312,10 +312,10 @@ class AddActivityForm extends Component {
                         message: 'Please add a vendor name or delete this field.',
                       }],
                     })(
-                      <Select placeholder={`${this.props.engineers[0]['firstName']} ${this.props.engineers[0]['lastName']}`} style={{ width: '224px', marginRight: 19 }}>
+                      <Select placeholder={this.props.engineers[0].fullName} style={{ width: '224px', marginRight: 19 }}>
                         {
                           this.props.engineers.map((engineer) => {
-                            return <Option value={`${engineer.firstName} ${engineer.lastName}`}>{`${engineer.firstName} ${engineer.lastName}`}</Option>
+                            return <Option value={engineer.fullName}>{engineer.fullName}</Option>;
                           })
                         }
                       </Select>

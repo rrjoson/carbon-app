@@ -237,7 +237,7 @@ class DynamicFieldSet extends Component {
         </Row>
 
         <Row gutter={12}>
-          <Col span={24}>
+          <Col span={5}>
             <FormItem label="Purpose of Visit">
               {getFieldDecorator('purposeOfVisit', {
                 initialValue: this.props.selectedActivity.purposeOfVisit,

@@ -230,7 +230,7 @@ class AddActivityForm extends Component {
         </Row>
 
         <Row gutter={12}>
-          <Col span={24}>
+          <Col span={5}>
             <FormItem label="Purpose of Visit">
               {getFieldDecorator('purposeOfVisit', {
                 rules: [{

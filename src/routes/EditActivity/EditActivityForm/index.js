@@ -23,14 +23,11 @@ class DynamicFieldSet extends Component {
 
   remove = (vendorName, k) => {
     const { form } = this.props;
-    console.warn(vendorName)
     const keys = form.getFieldValue(`keys-${vendorName}`);
     const nextKeys = [];
 
-    console.warn(222, keys)
     if (keys.length === 1) return;
     keys.forEach((key) => {
-      console.warn(333, key, k)
       if (key.id !== k.id) {
         nextKeys.push(key);
       }
@@ -42,12 +39,9 @@ class DynamicFieldSet extends Component {
     const { form } = this.props;
     const keys = form.getFieldValue(`keys-${vendorName}`);
 
-    console.warn(keys)
-
-    // keys.push([`${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`]);
     keys.push({
       id: uuid,
-      name: `${this.props.engineers[0]['firstName']} ${this.props.engineers[0]['lastName']}`,
+      name: this.props.engineers[0].fullName,
     });
     uuid += 1;
     form.setFieldsValue({ [`keys-${vendorName}`]: keys });

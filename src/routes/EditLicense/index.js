@@ -21,6 +21,7 @@ class EditLicense extends Component {
   render() {
     const {
       dispatch,
+      loading,
       selectedLicense,
       vendors,
       products,
@@ -38,6 +39,7 @@ class EditLicense extends Component {
       <div className={styles.addLicenseHeader}>
         <EditLicenseHeader />
         <EditLicenseForm
+          loading={loading}
           selectedLicense={selectedLicense}
           vendors={vendors}
           products={products}
@@ -52,6 +54,7 @@ class EditLicense extends Component {
 
 function mapStateToProps(state) {
   return {
+    loading: state.loading.effects['licenses/UPDATE_LICENSE'],
     selectedLicense: state.licenses.selected,
     vendors: state.vendors.data,
     clients: state.clients.data,

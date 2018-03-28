@@ -207,7 +207,7 @@ class DynamicFieldSet extends Component {
           <Col span={5}>
             <FormItem label="Address">
               {getFieldDecorator('addres', {
-                initialValue: this.props.selectedActivity.addres,
+                initialValue: this.props.selectedActivity.address,
                 rules: [{
                   required: true,
                   message: 'This is a required field',

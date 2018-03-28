@@ -53,6 +53,9 @@ const Routers = ({ history, app }) => {
       path: '/licenses',
       component: () => import('./routes/ViewLicenses'),
     }, {
+      path: '/licenses/:licenseId',
+      component: () => import('./routes/ViewLicense'),
+    }, {
       path: '/licenses/add',
       component: () => import('./routes/AddLicense'),
     }, {

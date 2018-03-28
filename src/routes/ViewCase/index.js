@@ -53,6 +53,7 @@ class ViewCase extends Component {
         <ViewCaseActivities
           data={activities}
           glocalId={selectedCase.glocalId}
+          onDelete={data => dispatch({ type: 'activities/DELETE_ACTIVITY', payload: data })}
         />
       </div>
     );

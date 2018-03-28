@@ -18,6 +18,7 @@ class ViewEngineer extends Component {
   render() {
     const {
       activities,
+      dispatch,
       match,
     } = this.props;
 
@@ -30,6 +31,7 @@ class ViewEngineer extends Component {
         />
         <ViewActivitiesList
           data={activities}
+          onDelete={data => dispatch({ type: 'activities/DELETE_ACTIVITY', payload: data })}
         />
       </div>
     );

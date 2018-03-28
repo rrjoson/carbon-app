@@ -4,6 +4,7 @@ import { notification } from 'antd';
 import {
   addActivity,
   updateActivity,
+  deleteActivity,
   fetchActivity,
   fetchActivities,
   fetchActivitiesByEngineerName,
@@ -58,7 +59,17 @@ export default {
       notification.success({ message: 'Activity updated.', duration: 2 });
     },
 
-    *CLEAR_SERVICE_REPORT_NUMBER({ payload }, { call, put, select }) {
+    *DELETE_ACTIVITY({ payload }, { call, put, select }) {
+      const activities = yield select(state => state.activities.data);
+      const data = activities.filter(item => item.activityNo !== payload);
+
+      yield call(deleteActivity, payload);
+      yield put({ type: 'SAVE', payload: { data } });
+
+      notification.success({ message: 'Activity deleted.', duration: 2 });
+    },
+
+    *CLEAR_SERVICE_REPORT_NUMBER({ payload }, { put, select }) {
       const glocalId = yield select(state => state.cases.selected.glocalId);
 
       yield put({ type: 'SAVE', payload: { serviceReportNumber: null } });

@@ -24,3 +24,8 @@ export function fetchActivitiesByEngineerName(engineerName) {
 export function addActivity(data) {
   return axios.post(ACTIVITIES_URL, data);
 }
+
+export function deleteActivity(activityNo) {
+  return axios.delete(`${ACTIVITIES_URL}/${activityNo}`);
+}
+

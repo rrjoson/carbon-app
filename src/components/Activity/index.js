@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import { Icon } from 'antd';
+import { Icon, Modal } from 'antd';
 
 import Avatar from '../Avatar';
 import Link from '../Link';
@@ -18,9 +18,21 @@ const Activity = (props) => {
   } = props;
 
   const activityStyle = classnames({
-    [styles['activity']]: true,
+    [styles.activity]: true,
     [styles['activity--open']]: open,
   });
+
+  const showConfirmDeleteModal = () => {
+    Modal.confirm({
+      title: 'Are you sure you want to delete this?',
+      okText: 'Delete',
+      okType: 'danger',
+      cancelText: 'Cancel',
+      onOk: () => {
+        props.onDelete();
+      },
+    });
+  };
 
   return (
     <div className={activityStyle}>
@@ -69,7 +81,7 @@ const Activity = (props) => {
           {/* BUTTONS */}
           <div className={styles.activity__actions}>
             <Link to={`/cases/${glocalId}/activities/${item.activityNo}/edit`}>Edit</Link>
-            <Link to="/">Delete</Link>
+            <Link onClick={() => showConfirmDeleteModal()} to="#">Delete</Link>
           </div>
         </div>
 

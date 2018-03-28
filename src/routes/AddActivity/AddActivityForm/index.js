@@ -35,9 +35,6 @@ class AddActivityForm extends Component {
     const { form } = this.props;
     const keys = form.getFieldValue(`keys-${vendorName}`);
 
-    console.warn(keys)
-
-    // keys.push([`${this.props.engineers[0]['firstname']} ${this.props.engineers[0]['lastname']}`]);
     keys.push({
       id: uuid,
       name: `${this.props.engineers[0]['firstName']} ${this.props.engineers[0]['lastName']}`,

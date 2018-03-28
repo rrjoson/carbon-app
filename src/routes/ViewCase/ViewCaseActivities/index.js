@@ -14,6 +14,10 @@ class Activities extends Component {
     };
   }
 
+  handleDelete = (data) => {
+    this.props.onDelete(data);
+  }
+
   handleClick = (item, index) => {
     const { selected } = this.state;
 
@@ -49,6 +53,7 @@ class Activities extends Component {
                 item={item}
                 glocalId={glocalId}
                 onClick={() => this.handleClick(item, index)}
+                onDelete={() => this.handleDelete(item.activityNo)}
                 open={this.state.selected[index]}
               />
             );

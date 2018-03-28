@@ -22,7 +22,8 @@
     "query-string": "^5.1.0",
     "react": "^16.2.0",
     "react-autobind": "^1.0.6",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-helmet": "^5.2.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",

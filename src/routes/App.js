@@ -4,6 +4,7 @@ import { connect } from 'dva';
 import NProgress from 'nprogress';
 import { Layout, Menu, Icon } from 'antd';
 import { Link, withRouter } from 'dva/router';
+import { Helmet } from 'react-helmet';
 import logo from './../assets/logo.png';
 
 import { Header } from './../components';
@@ -91,6 +92,9 @@ function App(props) {
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
+      <Helmet>
+        <link rel="icon" href={logo} type="image/x-icon" />
+      </Helmet>
       <Sider className={styles.sider} width="70">
         <img src={logo} className={styles.logo} role="presentation" alt="logo" />
         <Menu

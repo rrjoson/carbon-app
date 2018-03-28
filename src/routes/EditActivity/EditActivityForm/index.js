@@ -130,7 +130,7 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={3}>
             <FormItem label="Glocal ID">
-              {getFieldDecorator('glocalId', {
+              {getFieldDecorator('trackingNo', {
                 initialValue: this.props.selectedActivity.glocalId,
               })(
                 <Input disabled type="text" />

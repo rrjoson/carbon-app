@@ -19,13 +19,7 @@ export default {
   effects: {
     *FETCH_ACCOUNT_MANAGERS({ payload }, { call, put }) {
       const { data } = yield call(fetchAccountManagers);
-      const accountManagers = [];
-      data.forEach((item) => {
-        if (!accountManagers.includes(item.accountManager)) {
-          accountManagers.push(item.accountManager);
-        }
-      });
-      yield put({ type: 'SAVE', payload: { data: accountManagers } });
+      yield put({ type: 'SAVE', payload: { data } });
     },
   },
 

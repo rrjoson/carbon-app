@@ -221,7 +221,7 @@ class AddClientForm extends Component {
                 <Select>
                   {
                     this.props.accountManagers.map((accountManager) => {
-                      return <Option value={accountManager}>{accountManager}</Option>
+                      return <Option value={accountManager.fullName}>{accountManager.fullName}</Option>
                     })
                   }
                 </Select>,

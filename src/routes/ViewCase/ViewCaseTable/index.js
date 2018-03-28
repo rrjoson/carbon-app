@@ -24,7 +24,9 @@ function HomeTable(props) {
       return assignedSystemsEngineer.map((systemsEngineer) => {
         return (
           <Tooltip title={systemsEngineer}>
-            <Avatar>{systemsEngineer[0][0]}</Avatar>
+            <Avatar>
+              <Link to={`/activities/${systemsEngineer}`}>{systemsEngineer[0][0]}</Link>
+            </Avatar>
           </Tooltip>
         );
       });

@@ -79,6 +79,10 @@ class AddActivityForm extends Component {
         // data.engid = engineers[engineerIndex]['engId'];
         delete data['keys-assignedSystemsEngineer'];
 
+        data.assignedSystemsEngineer = data.assignedSystemsEngineer.map((item) => {
+          return [item];
+        });
+
         console.log('Received values of form: ', data);
 
         this.props.onSave(data);

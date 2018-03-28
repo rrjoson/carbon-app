@@ -88,7 +88,7 @@ class DynamicFieldSet extends Component {
         [item]
       ))
       console.log('Received values of form: ', data);
-      this.props.onSave(data)
+      this.props.onSave(data);
     });
   }
 
@@ -130,8 +130,8 @@ class DynamicFieldSet extends Component {
         <Row gutter={12}>
           <Col span={3}>
             <FormItem label="Glocal ID">
-              {getFieldDecorator('trackingNo', {
-                initialValue: this.props.selectedActivity.trackingNo,
+              {getFieldDecorator('glocalId', {
+                initialValue: this.props.selectedActivity.glocalId,
               })(
                 <Input disabled type="text" />
               )}

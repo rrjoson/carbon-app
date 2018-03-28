@@ -19,6 +19,7 @@ class AddLicense extends Component {
   render() {
     const {
       dispatch,
+      loading,
       vendors,
       products,
       clients,
@@ -34,6 +35,7 @@ class AddLicense extends Component {
       <div className={styles.addLicenseHeader}>
         <AddLicenseHeader />
         <AddLicenseForm
+          loading={loading}
           vendors={vendors}
           products={products}
           clients={clients}
@@ -47,6 +49,7 @@ class AddLicense extends Component {
 
 function mapStateToProps(state) {
   return {
+    loading: state.loading.effects['licenses/ADD_LICENSE'],
     vendors: state.vendors.data,
     clients: state.clients.data,
     products: state.products.data,

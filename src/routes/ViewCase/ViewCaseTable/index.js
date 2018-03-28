@@ -8,8 +8,8 @@ import { getSeverityValue } from './../../../utils/data';
 function HomeTable(props) {
   const columns = [{
     title: 'ID',
-    dataIndex: 'glocalid',
-    render: glocalid => <Link to={`/cases/${glocalid}`}>{glocalid}</Link>,
+    dataIndex: 'glocalId',
+    render: glocalId => <Link to={`/cases/${glocalId}`}>{glocalId}</Link>,
   }, {
     title: 'Company',
     dataIndex: 'customer',
@@ -19,12 +19,12 @@ function HomeTable(props) {
     render: status => <Status type={status} />,
   }, {
     title: 'Assigned SE',
-    dataIndex: 'assignedsystemsengineer',
-    render: assignedsystemsengineer => {
-      return assignedsystemsengineer.map((systemengineer) => {
+    dataIndex: 'assignedSystemsEngineer',
+    render: (assignedSystemsEngineer) => {
+      return assignedSystemsEngineer.map((systemsEngineer) => {
         return (
-          <Tooltip title={systemengineer}>
-            <Avatar>{systemengineer[0][0]}</Avatar>
+          <Tooltip title={systemsEngineer}>
+            <Avatar>{systemsEngineer[0][0]}</Avatar>
           </Tooltip>
         );
       });
@@ -35,34 +35,36 @@ function HomeTable(props) {
     render: severity => getSeverityValue(severity),
   }, {
     title: 'Product',
-    dataIndex: 'productname',
+    dataIndex: 'productName',
   }, {
     title: 'Open',
     dataIndex: 'open',
     render: date => `${Math.abs(moment(date).diff(moment(), 'days'))} days`,
   }, {
     title: 'Date Raised',
-    dataIndex: 'dateraised',
-    render: date => moment(date, "YYYY-MM-DD").format('DD/MM/YYYY')
+    dataIndex: 'dateRaised',
+    render: date => moment(date, 'YYYY-MM-DD').format('DD/MM/YYYY')
   }, {
     title: 'Assigned AM',
-    dataIndex: 'assignedaccountmanager',
-    render: assignedaccountmanager => (<Avatar>{assignedaccountmanager}</Avatar>),
+    dataIndex: 'accountManager',
+    render: accountManager => (<Avatar>{accountManager[0]}</Avatar>),
   }];
 
   const dataSource = props.data.map((item, index) => {
     return (
     {
       key: index,
-      glocalid: item.glocalId,
+      glocalId: item.glocalId,
       customer: item.customer,
       status: item.case_status,
-      assignedsystemsengineer: item.assignedSystemsEngineer || [],
+      assignedSystemsEngineer: item.assignedSystemsEngineer
+        ? [[item.systemsEngineerLead]].concat(...item.assignedSystemsEngineer)
+        : [[item.systemsEngineerLead]],
       severity: item.severity,
-      productname: item.productName,
+      productName: item.productName,
       open: item.dateRaised,
-      dateraised: item.dateRaised,
-      assignedaccountmanager: item.assignedAccountManager,
+      dateRaised: item.dateRaised,
+      accountManager: item.accountManager,
     }
     );
   });

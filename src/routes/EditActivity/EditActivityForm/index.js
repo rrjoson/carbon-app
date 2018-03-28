@@ -11,14 +11,26 @@ const FormItem = Form.Item;
 const Option = Select.Option;
 const { H5 } = Typography;
 
-const vendors = [
-  { name: 'Assigned System Engineer', products: ['Richard'] },
-];
 let uuid = 1;
+
+let vendors = [
+  {
+    label: 'Assigned System Engineer',
+    name: 'assignedSystemsEngineer',
+    products: [],
+  },
+];
 
 class DynamicFieldSet extends Component {
   componentDidMount() {
     uuid = this.props.selectedActivity.assignedSystemsEngineer.length;
+
+    vendors[0].products = this.props.selectedActivity.assignedSystemsEngineer.map((item, index) => {
+      return {
+        id: index,
+        name: item[0],
+      };
+    });
   }
 
   remove = (vendorName, k) => {
@@ -32,6 +44,7 @@ class DynamicFieldSet extends Component {
         nextKeys.push(key);
       }
     });
+
     form.setFieldsValue({ [`keys-${vendorName}`]: nextKeys });
   }
 
@@ -74,33 +87,30 @@ class DynamicFieldSet extends Component {
       const data = Object.assign({}, values);
 
       if (!err) {
-        console.log('Received values of form: ', values);
-      }
+        data.assignedSystemsEngineer = [];
 
-      delete data['keys-assignedSystemsEngineer']
-      data['assignedSystemsEngineer'] = values.assignedSystemsEngineer.map((item) => (
-        [item]
-      ))
-      console.log('Received values of form: ', data);
-      this.props.onSave(data);
+        values['keys-assignedSystemsEngineer'].forEach((item, index) => {
+          data.assignedSystemsEngineer[index] = [values[`assignedSystemsEngineer-${index}`]];
+        });
+
+        for (const [key] of Object.entries(values)) {
+          if (key.includes('assignedSystemsEngineer-')) {
+            delete data[key];
+          }
+        }
+
+        delete data['keys-assignedSystemsEngineer'];
+
+        console.log('Received values of form: ', values);
+        console.log('Received values of form: ', data);
+
+        this.props.onSave(data);
+      }
     });
   }
 
   render() {
     const { getFieldDecorator, getFieldValue } = this.props.form;
-
-    const vendors = [
-      {
-        label: 'Assigned System Engineer',
-        name: 'assignedSystemsEngineer',
-        products: this.props.selectedActivity.assignedSystemsEngineer.map((item, index) => {
-          return {
-            id: index,
-            name: item[0],
-          }
-        })
-      },
-    ];
 
     const formItemLayout = {
       labelCol: {
@@ -313,7 +323,7 @@ class DynamicFieldSet extends Component {
                     required={false}
                     key={k.id}
                   >
-                    {getFieldDecorator(`${vendor.name}[${index}]`, {
+                    {getFieldDecorator(`${vendor.name}-${index}`, {
                       initialValue: k.name,
                       validateTrigger: ['onChange', 'onBlur'],
                       rules: [{

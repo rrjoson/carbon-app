@@ -17,8 +17,6 @@ const Activity = (props) => {
     onClick,
   } = props;
 
-  console.warn(2, props)
-
   const activityStyle = classnames({
     [styles['activity']]: true,
     [styles['activity--open']]: open,
@@ -29,14 +27,14 @@ const Activity = (props) => {
       <div className={styles.activity__body}>
 
         {/* ENGINEERS */}
-        <div className={styles['activity__engineers']}>
+        <div className={styles.activity__engineers}>
           {item.assignedSystemsEngineer.map((engineer) => {
             return (
-              <div className={styles['activity__engineer']}>
-                <div className={styles['activity__avatar']}>
-                  <Tooltip title={item.engineerSurname}>
+              <div className={styles.activity__engineer}>
+                <div className={styles.activity__avatar}>
+                  <Tooltip title={engineer[0]}>
                     <Avatar>
-                      {engineer[0].split(' ')[0][0]}
+                      <Link to={`/activities/${engineer[0]}`}>{engineer[0].split(' ')[0][0]}</Link>
                     </Avatar>
                   </Tooltip>
                 </div>

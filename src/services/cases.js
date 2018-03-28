@@ -45,8 +45,6 @@ export function updateCaseStatus(payload, selectedCase) {
     productName: selectedCase.productName,
     customerName: selectedCase.customerName,
     systemsEngineerLead: selectedCase.systemsEngineerLead,
-    assignedAccountManager: selectedCase.assignedAccountManager,
-    assignedSystemsEngineer: selectedCase.assignedSystemsEngineer,
     case_status: selectedCase.case_status,
   };
 

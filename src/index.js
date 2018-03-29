@@ -19,6 +19,7 @@ const app = dva({
 
 // 2. Model
 app.model(require('./models/app'));
+app.model(require('./models/auth'));
 app.model(require('./models/cases'));
 app.model(require('./models/vendors'));
 app.model(require('./models/products'));

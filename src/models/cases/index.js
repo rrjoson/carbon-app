@@ -40,10 +40,10 @@ export default {
       yield put({ type: 'SAVE', payload: { selected: data[0] } });
     },
 
-    *FETCH_CASES_BY_QUERY({ payload }, { call, put }) {
+    FETCH_CASES_BY_QUERY: [function* ({ payload }, { call, put }) {
       const { data } = yield call(fetchCasesByQuery, payload);
       yield put({ type: 'SAVE', payload: { data } });
-    },
+    }, { type: 'throttle', ms: 500 }],
 
     *FETCH_CASES_BY_FITLER({ payload }, { call, put }) {
       const filter = `${payload.key}=${payload.value}`;

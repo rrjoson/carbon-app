@@ -18,17 +18,10 @@ const menu = (
 );
 
 function Filter(props) {
-  const { clients, onFilterCases } = props;
-
-  const clientsDropdown = (
-    <Menu onClick={({ item }) => onFilterCases({ key: 'customer', value: item.props.children })}>
-      {
-        clients.map((client, index) => {
-          return <Menu.Item key={index}>{client.accountName}</Menu.Item>;
-        })
-      }
-    </Menu>
-  );
+  const {
+    clients,
+    onFilterCases,
+  } = props;
 
   return (
     <div className={styles.filter}>
@@ -38,15 +31,34 @@ function Filter(props) {
       <span className={styles.verticalLine} />
       <Button type="primary">All</Button>
 
-      <Dropdown overlay={clientsDropdown}>
+      <Dropdown
+        overlay={
+          <Menu onClick={({ item }) => onFilterCases({ key: 'customer', value: item.props.children })}>
+            {
+              clients.map((client, index) => {
+                return <Menu.Item key={index}>{client.accountName}</Menu.Item>;
+              })
+            }
+          </Menu>
+        }
+      >
         <Button style={{ marginLeft: 8 }}>
           Client <Icon type="down" />
         </Button>
       </Dropdown>
 
-      <Dropdown overlay={menu}>
+      <Dropdown
+        overlay={
+          <Menu onClick={({ item }) => onFilterCases({ key: 'customer', value: item.props.children })}>
+            <Menu.Item key="Ongoing">Ongoing</Menu.Item>
+            <Menu.Item key="Resolved">Resolved</Menu.Item>
+            <Menu.Item key="Pending (Client)">Pending (Client)</Menu.Item>
+            <Menu.Item key="Pending (Glocal)">Pending (Glocal)</Menu.Item>
+          </Menu>
+        }
+      >
         <Button style={{ marginLeft: 8 }}>
-        Status <Icon type="down" />
+          Status <Icon type="down" />
         </Button>
       </Dropdown>
 

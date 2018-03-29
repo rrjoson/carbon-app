@@ -4,6 +4,7 @@ import { Filter } from './../../../components';
 
 function ViewCasesFilter(props) {
   const {
+    filters,
     clients,
     engineers,
     vendors,
@@ -15,6 +16,7 @@ function ViewCasesFilter(props) {
     <div>
       <Filter
         onFilterCases={onFilterCases}
+        filters={filters}
         clients={clients}
         engineers={engineers}
         vendors={vendors}

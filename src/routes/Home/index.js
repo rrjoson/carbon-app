@@ -25,6 +25,7 @@ class Home extends Component {
     const {
       dispatch,
       cases,
+      filters,
       clients,
       engineers,
       vendors,
@@ -36,6 +37,7 @@ class Home extends Component {
         <HomeHeader />
         <HomeFilter
           onFilterCases={data => dispatch({ type: 'cases/FETCH_CASES_BY_FITLER', payload: data })}
+          filters={filters}
           clients={clients}
           engineers={engineers}
           vendors={vendors}
@@ -52,6 +54,7 @@ class Home extends Component {
 function mapStateToProps(state) {
   return {
     cases: state.cases.data,
+    filters: state.cases.filters,
     clients: state.clients.data,
     engineers: state.engineers.data,
     vendors: state.vendors.data,

@@ -47,13 +47,13 @@ export default {
     }, { type: 'throttle', ms: 500 }],
 
     *FETCH_CASES_BY_FITLER({ payload }, { call, put, select }) {
-      const currentFilter = yield select(state => state.cases.filter);
-      const updatedFilter = { ...currentFilter, [payload.key]: payload.value };
+      const currentFilters = yield select(state => state.cases.filters);
+      const updatedFilters = { ...currentFilters, [payload.key]: payload.value };
 
-      const { data } = yield call(fetchCasesByFilter, serialize(updatedFilter));
+      const { data } = yield call(fetchCasesByFilter, serialize(updatedFilters));
 
       yield put({ type: 'SAVE', payload: { data } });
-      yield put({ type: 'SAVE', payload: { filter: updatedFilter } });
+      yield put({ type: 'SAVE', payload: { filters: updatedFilters } });
     },
 
     *FETCH_NEXT_ID({ payload }, { call, put }) {

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Table, Menu, Dropdown, Button, Icon } from 'antd';
 
+import { getSeverityValue } from './../../utils/data';
+
 import Typography from './../Typography';
 import Link from './../Link';
 import Status from './../Status';
@@ -19,6 +21,7 @@ const menu = (
 
 function Filter(props) {
   const {
+    filters,
     clients,
     engineers,
     vendors,
@@ -32,7 +35,12 @@ function Filter(props) {
         <H4>Filter</H4>
       </div>
       <span className={styles.verticalLine} />
-      <Button type="primary">All</Button>
+
+      {
+        (Object.entries(filters).length)
+        ? <Button>All</Button>
+        : <Button type="primary">All</Button>
+      }
 
       <Dropdown
         overlay={
@@ -45,9 +53,15 @@ function Filter(props) {
           </Menu>
         }
       >
-        <Button style={{ marginLeft: 8 }}>
-          Client <Icon type="down" />
-        </Button>
+        {
+          (filters.customer)
+          ? <Button style={{ marginLeft: 8 }} type="primary">
+            {filters.customer} <Icon type="down" />
+          </Button>
+          : <Button style={{ marginLeft: 8 }}>
+            Client <Icon type="down" />
+          </Button>
+        }
       </Dropdown>
 
       <Dropdown
@@ -60,9 +74,15 @@ function Filter(props) {
           </Menu>
         }
       >
-        <Button style={{ marginLeft: 8 }}>
-          Status <Icon type="down" />
-        </Button>
+        {
+          (filters.case_status)
+          ? <Button style={{ marginLeft: 8 }} type="primary">
+            {filters.case_status} <Icon type="down" />
+          </Button>
+          : <Button style={{ marginLeft: 8 }}>
+            Status <Icon type="down" />
+          </Button>
+        }
       </Dropdown>
 
       <Dropdown
@@ -76,9 +96,15 @@ function Filter(props) {
           </Menu>
         }
       >
-        <Button style={{ marginLeft: 8 }}>
-          Assigned SE <Icon type="down" />
-        </Button>
+        {
+          (filters.assignedSystemsEngineer)
+          ? <Button style={{ marginLeft: 8 }} type="primary">
+            {filters.assignedSystemsEngineer} <Icon type="down" />
+          </Button>
+          : <Button style={{ marginLeft: 8 }}>
+            Assigned SE <Icon type="down" />
+          </Button>
+        }
       </Dropdown>
 
       <Dropdown
@@ -91,9 +117,15 @@ function Filter(props) {
           </Menu>
         }
       >
-        <Button style={{ marginLeft: 8 }}>
-          Severity <Icon type="down" />
-        </Button>
+        {
+          (filters.severity)
+          ? <Button style={{ marginLeft: 8 }} type="primary">
+            {getSeverityValue(filters.severity)} <Icon type="down" />
+          </Button>
+          : <Button style={{ marginLeft: 8 }}>
+            Severity <Icon type="down" />
+          </Button>
+        }
       </Dropdown>
 
       <Dropdown
@@ -107,9 +139,15 @@ function Filter(props) {
           </Menu>
         }
       >
-        <Button style={{ marginLeft: 8 }}>
-          Vendor <Icon type="down" />
-        </Button>
+        {
+          (filters.vendor)
+          ? <Button style={{ marginLeft: 8 }} type="primary">
+            {filters.vendor} <Icon type="down" />
+          </Button>
+          : <Button style={{ marginLeft: 8 }}>
+            Vendor <Icon type="down" />
+          </Button>
+        }
       </Dropdown>
 
       <Dropdown
@@ -123,9 +161,15 @@ function Filter(props) {
           </Menu>
         }
       >
-        <Button style={{ marginLeft: 8 }}>
-          Product <Icon type="down" />
-        </Button>
+        {
+          (filters.productName)
+          ? <Button style={{ marginLeft: 8 }} type="primary">
+            {filters.productName} <Icon type="down" />
+          </Button>
+          : <Button style={{ marginLeft: 8 }}>
+            Product <Icon type="down" />
+          </Button>
+        }
       </Dropdown>
 
       <Dropdown overlay={menu}>

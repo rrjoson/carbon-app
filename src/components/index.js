@@ -14,6 +14,7 @@ import Divider from './Divider';
 import Tooltip from './Tooltip';
 import Select from './Select';
 import Expiration from './Expiration';
+import Loader from './Loader';
 
 export {
   Typography,
@@ -32,4 +33,5 @@ export {
   Tooltip,
   Select,
   Expiration,
+  Loader,
 };

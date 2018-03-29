@@ -7,7 +7,7 @@ import { Link, withRouter } from 'dva/router';
 import { Helmet } from 'react-helmet';
 import logo from './../assets/logo.png';
 
-import { Header } from './../components';
+import { Header, Loader } from './../components';
 import config from './../constants/config';
 import styles from './App.css';
 
@@ -92,6 +92,7 @@ function App(props) {
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
+      <Loader fullScreen spinning={loading.effects['app/INITIALIZE']} />
       <Helmet>
         <link rel="icon" href={logo} type="image/x-icon" />
       </Helmet>

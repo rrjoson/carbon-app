@@ -5,6 +5,7 @@ export default {
   namespace: 'app',
 
   state: {
+    initialized: false,
     locationPathname: '',
     locationQuery: {},
   },
@@ -21,13 +22,20 @@ export default {
         });
       });
     },
+
     setup({ dispatch, history }) {  // eslint-disable-line
+      dispatch({ type: 'INITIALIZE' });
     },
   },
 
   effects: {
-    *fetch({ payload }, { call, put }) {  // eslint-disable-line
-      yield put({ type: 'save' });
+    *INITIALIZE({ payload }, { call, put }) {  // eslint-disable-line
+      yield call((timeout) => {
+        return new Promise((resolve) => {
+          setTimeout(resolve, timeout);
+        });
+      }, 2000);
+      yield put({ type: 'save', payload: { initialized: true } });
     },
   },
 

@@ -24,11 +24,6 @@ class ViewCases extends Component {
       clients,
     } = this.props;
 
-    if (
-      !cases.length ||
-      !clients.length
-    ) return null;
-
     return (
       <div className={styles.viewCases}>
         <ViewCasesHeader />

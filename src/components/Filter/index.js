@@ -78,7 +78,8 @@ function Filter(props) {
 
       <Dropdown
         overlay={
-          <Menu onClick={({ item }) => onFilterCases({ key: 'assignedSystemsEngineer', value: item.props.children })}>
+          {/* HACK */}
+          <Menu onClick={({ item }) => onFilterCases({ key: 'assignedSystemsEngineer', value: `{${item.props.children}}` })}>
             {
               engineers.map((engineer, index) => {
                 return <Menu.Item key={index}>{engineer.fullName}</Menu.Item>;
@@ -90,7 +91,8 @@ function Filter(props) {
         {
           (filters.assignedSystemsEngineer)
           ? <Button style={{ marginLeft: 8 }} type="primary">
-            {filters.assignedSystemsEngineer} <Icon type="down" />
+            {/* HACK */}
+            {filters.assignedSystemsEngineer.replace(/[{()}]/g, '')} <Icon type="down" />
           </Button>
           : <Button style={{ marginLeft: 8 }}>
             Assigned SE <Icon type="down" />

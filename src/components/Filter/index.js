@@ -1,23 +1,13 @@
 import React from 'react';
-import { Table, Menu, Dropdown, Button, Icon } from 'antd';
+import { Menu, Dropdown, Button, Icon, DatePicker } from 'antd';
 
 import { getSeverityValue } from './../../utils/data';
 
 import Typography from './../Typography';
-import Link from './../Link';
-import Status from './../Status';
 
 import styles from './styles.css';
 
 const { H4 } = Typography;
-
-const menu = (
-  <Menu>
-    <Menu.Item key="1">1st menu item</Menu.Item>
-    <Menu.Item key="2">2nd menu item</Menu.Item>
-    <Menu.Item key="3">3rd item</Menu.Item>
-  </Menu>
-);
 
 function Filter(props) {
   const {
@@ -172,9 +162,15 @@ function Filter(props) {
         }
       </Dropdown>
 
-      <Dropdown overlay={menu}>
+      <Dropdown
+        overlay={
+          <div>
+            <DatePicker format={'MM/DD/YYYY'} />
+          </div>
+        }
+      >
         <Button style={{ marginLeft: 8 }}>
-        Date Raised <Icon type="down" />
+          Date Raised <Icon type="down" />
         </Button>
       </Dropdown>
     </div>

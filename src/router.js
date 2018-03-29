@@ -41,6 +41,9 @@ const Routers = ({ history, app }) => {
       path: '/clients/add',
       component: () => import('./routes/AddClient'),
     }, {
+      path: '/clients/:accountName',
+      component: () => import('./routes/ViewClient'),
+    }, {
       path: '/clients/:accountName/edit',
       component: () => import('./routes/EditClient'),
     }, {

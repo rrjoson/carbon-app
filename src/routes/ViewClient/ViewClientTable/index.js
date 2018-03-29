@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './styles.css';
 import { Table, Link, Avatar, Tooltip } from './../../../components';
 
-function ViewCasesTable(props) {
+function ViewClientTable(props) {
   const columns = [{
     title: 'Client',
     dataIndex: 'client',
@@ -72,11 +72,12 @@ function ViewCasesTable(props) {
       <Table
         columns={columns}
         dataSource={dataSource}
+        pagination={false}
       />
     </div>
   );
 }
 
-ViewCasesTable.propTypes = {};
+ViewClientTable.propTypes = {};
 
-export default ViewCasesTable;
+export default ViewClientTable;

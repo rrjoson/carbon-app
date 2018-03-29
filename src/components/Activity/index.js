@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import moment from 'moment';
 import { Icon, Modal } from 'antd';
 
 import Avatar from '../Avatar';
@@ -68,7 +69,8 @@ const Activity = (props) => {
                 {item.purposeOfVisit}
               </div>
               <div className={styles.activity__time}>
-                2017-12-31 • 12:53pm • 4 hours
+                {/* TODO: REFACTOR */}
+                {moment(item.timeIn).format('YYYY-MM-DD • hh:mma')} • {Math.floor(moment.duration(moment(item.timeOuts).diff(moment(item.timeIn))).asHours())} hours
               </div>
             </div>
             <div className={styles.activity__metaRight}>

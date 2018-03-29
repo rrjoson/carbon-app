@@ -28,9 +28,7 @@ export default {
   subscriptions: {
     setup({ dispatch, history }) {
       return history.listen(({ pathname, search }) => {
-        if (pathname === '/home') {
-          dispatch({ type: 'FETCH_ALL_CASES' });
-        }
+
       });
     },
   },
@@ -48,12 +46,19 @@ export default {
 
     *FETCH_CASES_BY_FITLER({ payload }, { call, put, select }) {
       const currentFilters = yield select(state => state.cases.filters);
+
       const updatedFilters = { ...currentFilters, [payload.key]: payload.value };
+      yield put({ type: 'SAVE', payload: { filters: updatedFilters } });
 
       const { data } = yield call(fetchCasesByFilter, serialize(updatedFilters));
-
       yield put({ type: 'SAVE', payload: { data } });
-      yield put({ type: 'SAVE', payload: { filters: updatedFilters } });
+    },
+
+    *RESET_FILTERS({ payload }, { call, put }) {
+      yield put({ type: 'SAVE', payload: { filters: {} } });
+
+      const { data } = yield call(fetchAllCases);
+      yield put({ type: 'SAVE', payload: { data } });
     },
 
     *FETCH_NEXT_ID({ payload }, { call, put }) {

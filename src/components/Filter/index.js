@@ -17,6 +17,7 @@ function Filter(props) {
     vendors,
     products,
     onFilterCases,
+    onResetFilters,
   } = props;
 
   return (
@@ -28,8 +29,8 @@ function Filter(props) {
 
       {
         (Object.entries(filters).length)
-        ? <Button>All</Button>
-        : <Button type="primary">All</Button>
+        ? <Button onClick={() => onResetFilters()}>All</Button>
+        : <Button onClick={() => onResetFilters()} type="primary">All</Button>
       }
 
       <Dropdown

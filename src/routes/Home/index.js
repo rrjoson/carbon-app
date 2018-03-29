@@ -11,10 +11,9 @@ class Home extends Component {
   componentDidMount() {
     const {
       dispatch,
-      match,
     } = this.props;
 
-    dispatch({ type: 'cases/FETCH_ALL_CASES', payload: match.params.caseId });
+    dispatch({ type: 'cases/FETCH_ALL_CASES' });
     dispatch({ type: 'clients/FETCH_CLIENTS' });
     dispatch({ type: 'engineers/FETCH_ENGINEERS' });
     dispatch({ type: 'vendors/FETCH_VENDORS' });
@@ -37,6 +36,7 @@ class Home extends Component {
         <HomeHeader />
         <HomeFilter
           onFilterCases={data => dispatch({ type: 'cases/FETCH_CASES_BY_FITLER', payload: data })}
+          onResetFilters={() => dispatch({ type: 'cases/RESET_FILTERS' })}
           filters={filters}
           clients={clients}
           engineers={engineers}

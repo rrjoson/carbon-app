@@ -36,6 +36,7 @@ class ViewCases extends Component {
         <ViewCasesHeader />
         <ViewCasesFilter
           onFilterCases={data => dispatch({ type: 'cases/FETCH_CASES_BY_FITLER', payload: data })}
+          onResetFilters={() => dispatch({ type: 'cases/RESET_FILTERS' })}
           filters={filters}
           clients={clients}
           engineers={engineers}

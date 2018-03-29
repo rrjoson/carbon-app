@@ -10,12 +10,14 @@ function ViewCasesFilter(props) {
     vendors,
     products,
     onFilterCases,
+    onResetFilters,
   } = props;
 
   return (
     <div>
       <Filter
         onFilterCases={onFilterCases}
+        onResetFilters={onResetFilters}
         filters={filters}
         clients={clients}
         engineers={engineers}

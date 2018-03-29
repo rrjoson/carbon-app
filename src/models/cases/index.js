@@ -1,5 +1,6 @@
 import { routerRedux } from 'dva/router';
 import { notification } from 'antd';
+import { serialize } from './../../utils/query';
 
 import {
   fetchAllCases,
@@ -45,11 +46,14 @@ export default {
       yield put({ type: 'SAVE', payload: { data } });
     }, { type: 'throttle', ms: 500 }],
 
-    *FETCH_CASES_BY_FITLER({ payload }, { call, put }) {
-      console.warn(payload)
-      const filter = `${payload.key}=${payload.value}`;
-      const { data } = yield call(fetchCasesByFilter, filter);
+    *FETCH_CASES_BY_FITLER({ payload }, { call, put, select }) {
+      const currentFilter = yield select(state => state.cases.filter);
+      const updatedFilter = { ...currentFilter, [payload.key]: payload.value };
+
+      const { data } = yield call(fetchCasesByFilter, serialize(updatedFilter));
+
       yield put({ type: 'SAVE', payload: { data } });
+      yield put({ type: 'SAVE', payload: { filter: updatedFilter } });
     },
 
     *FETCH_NEXT_ID({ payload }, { call, put }) {

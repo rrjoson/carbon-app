@@ -7,6 +7,7 @@ function HomeFilter(props) {
     clients,
     engineers,
     vendors,
+    products,
     onFilterCases,
   } = props;
 
@@ -17,6 +18,7 @@ function HomeFilter(props) {
         clients={clients}
         engineers={engineers}
         vendors={vendors}
+        products={products}
       />
     </div>
   );

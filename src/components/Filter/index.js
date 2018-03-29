@@ -22,6 +22,7 @@ function Filter(props) {
     clients,
     engineers,
     vendors,
+    products,
     onFilterCases,
   } = props;
 
@@ -51,7 +52,7 @@ function Filter(props) {
 
       <Dropdown
         overlay={
-          <Menu onClick={({ item }) => onFilterCases({ key: 'status', value: item.props.children })}>
+          <Menu onClick={({ item }) => onFilterCases({ key: 'case_status', value: item.props.children })}>
             <Menu.Item key="Ongoing">Ongoing</Menu.Item>
             <Menu.Item key="Resolved">Resolved</Menu.Item>
             <Menu.Item key="Pending (Client)">Pending (Client)</Menu.Item>
@@ -82,7 +83,7 @@ function Filter(props) {
 
       <Dropdown
         overlay={
-          <Menu onClick={({ item }) => onFilterCases({ key: 'severity', value: item.props.children })}>
+          <Menu onClick={({ item }) => onFilterCases({ key: 'severity', value: item.props.eventKey })}>
             <Menu.Item key={1}>1 - Emergency</Menu.Item>
             <Menu.Item key={2}>2 - Critical</Menu.Item>
             <Menu.Item key={3}>3 - Major</Menu.Item>
@@ -111,9 +112,19 @@ function Filter(props) {
         </Button>
       </Dropdown>
 
-      <Dropdown overlay={menu}>
+      <Dropdown
+        overlay={
+          <Menu onClick={({ item }) => onFilterCases({ key: 'productName', value: item.props.children })}>
+            {
+              products.map((product, index) => {
+                return <Menu.Item key={index}>{product.productName}</Menu.Item>;
+              })
+            }
+          </Menu>
+        }
+      >
         <Button style={{ marginLeft: 8 }}>
-        Product <Icon type="down" />
+          Product <Icon type="down" />
         </Button>
       </Dropdown>
 

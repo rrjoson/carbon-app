@@ -46,6 +46,7 @@ export default {
     }, { type: 'throttle', ms: 500 }],
 
     *FETCH_CASES_BY_FITLER({ payload }, { call, put }) {
+      console.warn(payload)
       const filter = `${payload.key}=${payload.value}`;
       const { data } = yield call(fetchCasesByFilter, filter);
       yield put({ type: 'SAVE', payload: { data } });

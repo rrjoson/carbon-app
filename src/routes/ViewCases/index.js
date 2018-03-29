@@ -17,6 +17,7 @@ class ViewCases extends Component {
     dispatch({ type: 'clients/FETCH_CLIENTS' });
     dispatch({ type: 'engineers/FETCH_ENGINEERS' });
     dispatch({ type: 'vendors/FETCH_VENDORS' });
+    dispatch({ type: 'products/FETCH_PRODUCTS' });
   }
 
   render() {
@@ -26,6 +27,7 @@ class ViewCases extends Component {
       clients,
       engineers,
       vendors,
+      products,
     } = this.props;
 
     return (
@@ -36,6 +38,7 @@ class ViewCases extends Component {
           clients={clients}
           engineers={engineers}
           vendors={vendors}
+          products={products}
         />
         <ViewCasesTable
           data={cases}
@@ -51,6 +54,7 @@ function mapStateToProps(state) {
     clients: state.clients.data,
     engineers: state.engineers.data,
     vendors: state.vendors.data,
+    products: state.products.data,
   };
 }
 

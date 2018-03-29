@@ -79,11 +79,21 @@ function Filter(props) {
         </Button>
       </Dropdown>
 
-      <Dropdown overlay={menu}>
+      <Dropdown
+        overlay={
+          <Menu onClick={({ item }) => onFilterCases({ key: 'severity', value: item.props.children })}>
+            <Menu.Item key={1}>1 - Emergency</Menu.Item>
+            <Menu.Item key={2}>2 - Critical</Menu.Item>
+            <Menu.Item key={3}>3 - Major</Menu.Item>
+            <Menu.Item key={4}>4 - Minor</Menu.Item>
+          </Menu>
+        }
+      >
         <Button style={{ marginLeft: 8 }}>
-        Severity <Icon type="down" />
+          Severity <Icon type="down" />
         </Button>
       </Dropdown>
+
 
       <Dropdown overlay={menu}>
         <Button style={{ marginLeft: 8 }}>

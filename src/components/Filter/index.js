@@ -20,6 +20,7 @@ const menu = (
 function Filter(props) {
   const {
     clients,
+    engineers,
     onFilterCases,
   } = props;
 
@@ -49,7 +50,7 @@ function Filter(props) {
 
       <Dropdown
         overlay={
-          <Menu onClick={({ item }) => onFilterCases({ key: 'customer', value: item.props.children })}>
+          <Menu onClick={({ item }) => onFilterCases({ key: 'status', value: item.props.children })}>
             <Menu.Item key="Ongoing">Ongoing</Menu.Item>
             <Menu.Item key="Resolved">Resolved</Menu.Item>
             <Menu.Item key="Pending (Client)">Pending (Client)</Menu.Item>
@@ -62,9 +63,19 @@ function Filter(props) {
         </Button>
       </Dropdown>
 
-      <Dropdown overlay={menu}>
+      <Dropdown
+        overlay={
+          <Menu onClick={({ item }) => onFilterCases({ key: 'assignedSystemsEngineer', value: item.props.children })}>
+            {
+              engineers.map((engineer, index) => {
+                return <Menu.Item key={index}>{engineer.fullName}</Menu.Item>;
+              })
+            }
+          </Menu>
+        }
+      >
         <Button style={{ marginLeft: 8 }}>
-        Assigned SE <Icon type="down" />
+          Assigned SE <Icon type="down" />
         </Button>
       </Dropdown>
 

@@ -22,7 +22,8 @@ export default {
 
   effects: {
     *LOGIN({ payload }, { call, put }) {
-      const { data } = yield call(login, payload);
+      const data = yield call(login, payload);
+      console.warn(data)
       yield put({ type: 'SAVE', payload: { data } });
     },
   },

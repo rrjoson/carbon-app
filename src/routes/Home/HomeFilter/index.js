@@ -5,6 +5,7 @@ import { Filter } from './../../../components';
 function HomeFilter(props) {
   const {
     clients,
+    engineers,
     onFilterCases,
   } = props;
 
@@ -13,6 +14,7 @@ function HomeFilter(props) {
       <Filter
         onFilterCases={onFilterCases}
         clients={clients}
+        engineers={engineers}
       />
     </div>
   );

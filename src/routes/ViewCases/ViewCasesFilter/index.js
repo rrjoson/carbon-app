@@ -5,14 +5,16 @@ import { Filter } from './../../../components';
 function ViewCasesFilter(props) {
   const {
     clients,
+    engineers,
     onFilterCases,
-   } = props;
+  } = props;
 
   return (
     <div>
       <Filter
         onFilterCases={onFilterCases}
         clients={clients}
+        engineers={engineers}
       />
     </div>
   );

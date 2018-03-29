@@ -16,6 +16,7 @@ class Home extends Component {
 
     dispatch({ type: 'cases/FETCH_ALL_CASES', payload: match.params.caseId });
     dispatch({ type: 'clients/FETCH_CLIENTS' });
+    dispatch({ type: 'engineers/FETCH_ENGINEERS' });
   }
 
   render() {
@@ -23,11 +24,13 @@ class Home extends Component {
       dispatch,
       cases,
       clients,
+      engineers,
     } = this.props;
 
     if (
       !cases.length ||
-      !clients.length
+      !clients.length ||
+      !engineers.length
     ) return null;
 
     return (
@@ -36,6 +39,7 @@ class Home extends Component {
         <HomeFilter
           onFilterCases={data => dispatch({ type: 'cases/FETCH_CASES_BY_FITLER', payload: data })}
           clients={clients}
+          engineers={engineers}
         />
         <HomeTable
           data={cases}
@@ -49,6 +53,7 @@ function mapStateToProps(state) {
   return {
     cases: state.cases.data,
     clients: state.clients.data,
+    engineers: state.engineers.data,
   };
 }
 

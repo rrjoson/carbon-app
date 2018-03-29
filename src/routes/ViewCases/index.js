@@ -16,6 +16,7 @@ class ViewCases extends Component {
     dispatch({ type: 'cases/FETCH_ALL_CASES', payload: match.params.caseId });
     dispatch({ type: 'clients/FETCH_CLIENTS' });
     dispatch({ type: 'engineers/FETCH_ENGINEERS' });
+    dispatch({ type: 'vendors/FETCH_VENDORS' });
   }
 
   render() {
@@ -24,6 +25,7 @@ class ViewCases extends Component {
       cases,
       clients,
       engineers,
+      vendors,
     } = this.props;
 
     return (
@@ -33,6 +35,7 @@ class ViewCases extends Component {
           onFilterCases={data => dispatch({ type: 'cases/FETCH_CASES_BY_FITLER', payload: data })}
           clients={clients}
           engineers={engineers}
+          vendors={vendors}
         />
         <ViewCasesTable
           data={cases}
@@ -47,6 +50,7 @@ function mapStateToProps(state) {
     cases: state.cases.data,
     clients: state.clients.data,
     engineers: state.engineers.data,
+    vendors: state.vendors.data,
   };
 }
 

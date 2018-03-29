@@ -6,6 +6,7 @@ function ViewCasesFilter(props) {
   const {
     clients,
     engineers,
+    vendors,
     onFilterCases,
   } = props;
 
@@ -15,6 +16,7 @@ function ViewCasesFilter(props) {
         onFilterCases={onFilterCases}
         clients={clients}
         engineers={engineers}
+        vendors={vendors}
       />
     </div>
   );

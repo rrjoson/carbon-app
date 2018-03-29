@@ -21,6 +21,7 @@ function Filter(props) {
   const {
     clients,
     engineers,
+    vendors,
     onFilterCases,
   } = props;
 
@@ -94,10 +95,19 @@ function Filter(props) {
         </Button>
       </Dropdown>
 
-
-      <Dropdown overlay={menu}>
+      <Dropdown
+        overlay={
+          <Menu onClick={({ item }) => onFilterCases({ key: 'vendor', value: item.props.children })}>
+            {
+              vendors.map((vendor, index) => {
+                return <Menu.Item key={index}>{vendor.principal}</Menu.Item>;
+              })
+            }
+          </Menu>
+        }
+      >
         <Button style={{ marginLeft: 8 }}>
-        Vendor <Icon type="down" />
+          Vendor <Icon type="down" />
         </Button>
       </Dropdown>
 

@@ -23,7 +23,7 @@ class EditVendorsForm extends Component {
   add = (vendorName) => {
     const { form } = this.props;
     const keys = form.getFieldValue(vendorName);
-    const nextKeys = keys.concat(`New Product ${uuid}`);
+    const nextKeys = keys.concat(`New Vendor ${uuid}`);
 
     uuid += 1;
     form.setFieldsValue({ [vendorName]: nextKeys });

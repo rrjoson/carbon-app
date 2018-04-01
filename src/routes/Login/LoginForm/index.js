@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { Input, Icon, Button, Row, Col } from 'antd';
 
-import { Form, Typography, Select } from './../../../components';
+import { Form } from './../../../components';
 import logo from './../../../assets/logo.png';
 
 import styles from './styles.css';
 
 const FormItem = Form.Item;
-const Option = Select.Option;
-const { H3 } = Typography;
 
 class EditLicenseForm extends Component {
   handleChangeVendor = (data) => {
@@ -28,7 +26,7 @@ class EditLicenseForm extends Component {
   }
 
   render() {
-    const { getFieldDecorator, getFieldValue } = this.props.form;
+    const { getFieldDecorator } = this.props.form;
 
     return (
       <Form className={styles.loginForm} onSubmit={this.handleSubmit}>
@@ -73,7 +71,7 @@ class EditLicenseForm extends Component {
           </Col>
         </Row>
         <FormItem>
-          <Button type="primary" className={styles.loginForm__button} style={{ width: '100%' }} htmlType="submit">
+          <Button loading={this.props.loading} type="primary" className={styles.loginForm__button} style={{ width: '100%' }} htmlType="submit">
             Log in
           </Button>
         </FormItem>

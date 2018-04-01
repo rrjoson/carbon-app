@@ -28,7 +28,10 @@ export default {
   subscriptions: {
     setup({ dispatch, history }) {
       return history.listen(({ pathname, search }) => {
-        dispatch({ type: 'RESET_FILTERS' });
+        if (pathname === '/home' || pathname === '/cases/all') {
+          // TODO: REFACTOR
+          dispatch({ type: 'RESET_FILTERS' });
+        }
       });
     },
   },

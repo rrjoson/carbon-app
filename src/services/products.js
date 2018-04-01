@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { request } from '../utils/request';
 import { BASE_URL } from '../constants/api';
 
 const FETCH_PRODUCTS = `${BASE_URL}/products`;
@@ -8,11 +8,11 @@ const PATCH_PRODUCT = `${BASE_URL}/products`;
 const DELETE_PRODUCT = `${BASE_URL}/products`;
 
 export function fetchProducts() {
-  return axios.get(FETCH_PRODUCTS);
+  return request.get(FETCH_PRODUCTS);
 }
 
 export function fetchProductsOfVendor(vendor) {
-  return axios.get(`${FETCH_PRODUCTS_OF_VENDOR}/${vendor}`);
+  return request.get(`${FETCH_PRODUCTS_OF_VENDOR}/${vendor}`);
 }
 
 export function addProduct(vendor, productName) {
@@ -21,7 +21,7 @@ export function addProduct(vendor, productName) {
     vendor,
   };
 
-  return axios.post(ADD_PRODUCT, data);
+  return request.post(ADD_PRODUCT, data);
 }
 
 export function patchProduct(vendor, original, productName) {
@@ -30,9 +30,9 @@ export function patchProduct(vendor, original, productName) {
     vendor,
   };
 
-  return axios.put(`${PATCH_PRODUCT}/${encodeURIComponent(original)}`, data);
+  return request.put(`${PATCH_PRODUCT}/${encodeURIComponent(original)}`, data);
 }
 
 export function deleteProduct(productName) {
-  return axios.delete(`${DELETE_PRODUCT}/${encodeURIComponent(productName)}`);
+  return request.delete(`${DELETE_PRODUCT}/${encodeURIComponent(productName)}`);
 }

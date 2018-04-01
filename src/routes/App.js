@@ -1,5 +1,5 @@
 /* global window */
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'dva';
 import NProgress from 'nprogress';
 import { Layout, Menu, Icon } from 'antd';
@@ -43,6 +43,10 @@ const menuItems = [{
   url: '/reports',
   icon: 'area-chart',
   label: 'Reports',
+}, {
+  url: '/logout',
+  icon: 'logout',
+  label: 'Logout',
 }];
 
 let lastHref;
@@ -83,47 +87,46 @@ function App(props) {
     return keys;
   };
 
-  if (publicPages && publicPages.includes(pathname)) {
-    return (<div>
-      {/* <Loader fullScreen spinning={loading.effects['app/query']} /> */}
-      {children}
-    </div>);
-  }
-
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Loader fullScreen spinning={loading.effects['app/INITIALIZE']} />
       <Helmet>
         <link rel="icon" href={logo} type="image/x-icon" />
       </Helmet>
-      <Sider className={styles.sider} width="70">
-        <img src={logo} className={styles.logo} role="presentation" alt="logo" />
-        <Menu
-          theme="dark"
-          selectedKeys={selectedKeys()}
-        >
-          {
-            menuItems.map((item) => {
-              return (
-                <Menu.Item key={item.label}>
-                  <Icon type={item.icon} />
-                  <Link to={item.url || '#'}>{item.label}</Link>
-                </Menu.Item>
-              );
-            })
-          }
-        </Menu>
-      </Sider>
-      <Layout>
-        <Header
-          onSearchCases={data => dispatch({ type: 'cases/FETCH_CASES_BY_QUERY', payload: data })}
-          pathname={location.pathname}
-          type="default"
-        />
-        <Content style={{ background: '#fff', padding: '28px 23px' }}>
-          {children}
-        </Content>
-      </Layout>
+      {
+        (publicPages && publicPages.includes(pathname))
+        ? <div>{children}</div>
+        : <Fragment>
+          <Sider className={styles.sider} width="70">
+            <img src={logo} className={styles.logo} role="presentation" alt="logo" />
+            <Menu
+              theme="dark"
+              selectedKeys={selectedKeys()}
+            >
+              {
+                menuItems.map((item) => {
+                  return (
+                    <Menu.Item key={item.label}>
+                      <Icon type={item.icon} />
+                      <Link to={item.url || '#'}>{item.label}</Link>
+                    </Menu.Item>
+                  );
+                })
+              }
+            </Menu>
+          </Sider>
+          <Layout>
+            <Header
+              onSearchCases={data => dispatch({ type: 'cases/FETCH_CASES_BY_QUERY', payload: data })}
+              pathname={location.pathname}
+              type="default"
+            />
+            <Content style={{ background: '#fff', padding: '28px 23px' }}>
+              {children}
+            </Content>
+          </Layout>
+        </Fragment>
+      }
     </Layout>
   );
 }

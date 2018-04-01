@@ -1,4 +1,5 @@
 import queryString from 'query-string';
+import { routerRedux } from 'dva/router';
 
 export default {
 
@@ -23,18 +24,20 @@ export default {
       });
     },
 
-    setup({ dispatch, history }) {  // eslint-disable-line
+    setup({ dispatch, history }) {
       dispatch({ type: 'INITIALIZE' });
+      dispatch({ type: 'user/CHECK_IF_USER_IS_LOGGED_IN' });
     },
   },
 
   effects: {
-    *INITIALIZE({ payload }, { call, put }) {  // eslint-disable-line
+    *INITIALIZE({ payload }, { call, put }) {
       yield call((timeout) => {
         return new Promise((resolve) => {
           setTimeout(resolve, timeout);
         });
       }, 2000);
+
       yield put({ type: 'save', payload: { initialized: true } });
     },
   },

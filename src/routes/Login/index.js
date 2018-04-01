@@ -11,12 +11,14 @@ class Login extends Component {
   render() {
     const {
       dispatch,
+      loading,
     } = this.props;
 
     return (
       <div className={styles.login}>
         <LoginForm
-          onLogin={data => dispatch({ type: 'auth/LOGIN', payload: data })}
+          loading={loading}
+          onLogin={data => dispatch({ type: 'user/LOGIN', payload: data })}
         />
       </div>
     );
@@ -25,8 +27,7 @@ class Login extends Component {
 
 function mapStateToProps(state) {
   return {
-    cases: state.cases.data,
-    clients: state.clients.data,
+    loading: state.loading.effects['user/LOGIN'],
   };
 }
 

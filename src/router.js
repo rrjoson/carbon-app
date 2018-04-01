@@ -70,6 +70,9 @@ const Routers = ({ history, app }) => {
     }, {
       path: '/login',
       component: () => import('./routes/Login'),
+    }, {
+      path: '/logout',
+      component: () => import('./routes/Logout'),
     },
   ];
 

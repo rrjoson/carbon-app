@@ -1,3 +1,4 @@
 module.exports = {
-  publicPages: ['/login'],
+  prefix: 'iris',
+  publicPages: ['/login', '/logout'],
 };

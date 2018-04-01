@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { request } from '../utils/request';
 import {
   ACTIVITIES_URL,
   ACTIVITIES_BY_ENGINEER_NAME_URL,
@@ -6,26 +6,26 @@ import {
 } from './../constants/api';
 
 export function updateActivity(activityNo, payload) {
-  return axios.put(`${ACTIVITIES_URL}/${activityNo}`, payload);
+  return request.put(`${ACTIVITIES_URL}/${activityNo}`, payload);
 }
 
 export function fetchActivity(activityNo) {
-  return axios.get(`${ACTIVITIES_URL}/${activityNo}`);
+  return request.get(`${ACTIVITIES_URL}/${activityNo}`);
 }
 
 export function fetchActivities(glocalId) {
-  return axios.get(`${ACTIVITIES_BY_GLOCAL_ID_URL}/${glocalId}`);
+  return request.get(`${ACTIVITIES_BY_GLOCAL_ID_URL}/${glocalId}`);
 }
 
 export function fetchActivitiesByEngineerName(engineerName) {
-  return axios.get(`${ACTIVITIES_BY_ENGINEER_NAME_URL}/{${engineerName}}`);
+  return request.get(`${ACTIVITIES_BY_ENGINEER_NAME_URL}/{${engineerName}}`);
 }
 
 export function addActivity(data) {
-  return axios.post(ACTIVITIES_URL, data);
+  return request.post(ACTIVITIES_URL, data);
 }
 
 export function deleteActivity(activityNo) {
-  return axios.delete(`${ACTIVITIES_URL}/${activityNo}`);
+  return request.delete(`${ACTIVITIES_URL}/${activityNo}`);
 }
 

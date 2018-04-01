@@ -4,8 +4,8 @@ import { BASE_URL } from '../constants/api';
 const FETCH_ALL_CASES = `${BASE_URL}/glocalid`;
 const FETCH_CASE = `${BASE_URL}/glocalid`;
 const CREATE_CASE = `${BASE_URL}/glocalid`;
-const FETCH_CASES_BY_QUERY = `${BASE_URL}/glocalid/search`;
-const FETCH_CASES_BY_FILTER = `${BASE_URL}/glocalid/filter`;
+const FETCH_CASES_BY_QUERY = `${BASE_URL}/glocalid`;
+const FETCH_CASES_BY_FILTER = `${BASE_URL}/glocalid`;
 const FETCH_NEXT_ID = `${BASE_URL}/nextid`;
 
 export function fetchAllCases() {

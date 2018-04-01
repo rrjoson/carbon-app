@@ -22,8 +22,6 @@ class ViewEngineer extends Component {
       match,
     } = this.props;
 
-    if (!activities.length) return null;
-
     return (
       <div className={styles.viewEngineer}>
         <ViewActivitiesHeader

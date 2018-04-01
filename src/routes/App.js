@@ -43,10 +43,6 @@ const menuItems = [{
   url: '/reports',
   icon: 'area-chart',
   label: 'Reports',
-}, {
-  url: '/logout',
-  icon: 'logout',
-  label: 'Logout',
 }];
 
 let lastHref;

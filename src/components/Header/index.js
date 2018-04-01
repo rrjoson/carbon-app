@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout } from 'antd';
+import { Layout, Icon } from 'antd';
 import styles from './styles.css';
 
 import { H5 } from './../Typography';
@@ -11,7 +11,10 @@ import Search from './../Search';
 const AntHeader = Layout.Header;
 
 const Header = (props) => {
-  const { pathname, onSearchCases } = props;
+  const {
+    pathname,
+    onSearchCases,
+  } = props;
 
   const getHeaderTitle = (path) => {
     if (path === '/home') return 'Home';
@@ -79,6 +82,10 @@ const Header = (props) => {
         <div className={styles.headerButton}>
           <Link to={getHeaderButtonLink(pathname)}>
             <Button>{getHeaderButtonText(pathname)}</Button>
+
+          </Link>
+          <Link to="/logout">
+            <Button style={{ marginLeft: '5px' }}><Icon type="logout" /> Logout</Button>
           </Link>
         </div>
         <span className={styles.headerAvatar}>

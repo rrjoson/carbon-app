@@ -9,18 +9,22 @@ function ViewCasesTable(props) {
   const columns = [{
     title: 'ID',
     dataIndex: 'glocalid',
+    sorter: (a, b) => a.glocalid - b.glocalid,
     render: glocalid => <Link to={`/cases/${glocalid}`}>{glocalid}</Link>,
   }, {
     title: 'Company',
     dataIndex: 'customer',
+    sorter: (a, b) => a.customer.length - b.customer.length,
   }, {
     title: 'Status',
     dataIndex: 'status',
+    sorter: (a, b) => a.status.length - b.status.length,
     render: status => <Status type={status} />,
   }, {
     title: 'Assigned SE',
     dataIndex: 'assignedSystemsEngineer',
     width: '120px',
+    sorter: (a, b) => a.assignedSystemsEngineer.length - b.assignedSystemsEngineer.length,
     render: (assignedSystemsEngineer) => {
       return assignedSystemsEngineer.map((systemsEngineer) => {
         return (
@@ -36,24 +40,30 @@ function ViewCasesTable(props) {
     title: 'Severity',
     dataIndex: 'severity',
     width: '120px',
+    sorter: (a, b) => a.severity - b.severity,
     render: severity => getSeverityValue(severity),
   }, {
     title: 'Case Title',
     dataIndex: 'casetitle',
+    sorter: (a, b) => a.casetitle.length - b.casetitle.length,
   }, {
     title: 'Product',
     dataIndex: 'productname',
+    sorter: (a, b) => a.productname.length - b.productname.length,
   }, {
     title: 'Open',
     dataIndex: 'open',
+    sorter: (a, b) => Math.abs(moment(a.open).diff(moment(), 'days')) - Math.abs(moment(b.open).diff(moment(), 'days')),
     render: date => `${Math.abs(moment(date).diff(moment(), 'days'))} days`,
   }, {
     title: 'Last Updated',
     dataIndex: 'lastupdated',
+    sorter: (a, b) => moment(a.lastupdated, 'YYYY-MM-DD').diff(moment(b.lastupdated, 'YYYY-MM-DD')),
     render: date => moment(date, "YYYY-MM-DD").format('DD/MM/YYYY')
   }, {
     title: 'Date Raised',
     dataIndex: 'dateraised',
+    sorter: (a, b) => moment(a.dateraised, 'YYYY-MM-DD').diff(moment(b.dateraised, 'YYYY-MM-DD')),
     render: date => moment(date, "YYYY-MM-DD").format('DD/MM/YYYY')
   }, {
     title: 'Actions',

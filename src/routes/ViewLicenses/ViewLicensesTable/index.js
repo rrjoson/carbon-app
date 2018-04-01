@@ -8,30 +8,38 @@ function ViewCasesTable(props) {
   const columns = [{
     title: 'Client',
     dataIndex: 'client',
+    sorter: (a, b) => a.client.length - b.client.length,
   }, {
     title: 'Vendor',
     dataIndex: 'vendor',
+    sorter: (a, b) => a.vendor.length - b.vendor.length,
   }, {
     title: 'Product',
     dataIndex: 'product',
+    sorter: (a, b) => a.product.length - b.product.length,
   }, {
     title: 'Expiration',
     dataIndex: 'dateEnd',
+    sorter: (a, b) => moment(a.dateEnd, 'YYYY-MM-DD').diff(moment(b.dateEnd, 'YYYY-MM-DD')),
     render: dateEnd => <Expiration date={dateEnd} />,
   }, {
     title: 'Date Start',
     dataIndex: 'dateStart',
+    sorter: (a, b) => moment(a.dateStart, 'YYYY-MM-DD').diff(moment(b.dateStart, 'YYYY-MM-DD')),
     render: date => moment(date, 'YYYY-MM-DD').format('DD/MM/YYYY'),
   }, {
     title: 'Date End',
     dataIndex: 'dateEnd',
+    sorter: (a, b) => moment(a.dateEnd, 'YYYY-MM-DD').diff(moment(b.dateEnd, 'YYYY-MM-DD')),
     render: date => moment(date, 'YYYY-MM-DD').format('DD/MM/YYYY'),
   }, {
     title: 'Particulars',
     dataIndex: 'particulars',
+    sorter: (a, b) => a.particulars.length - b.particulars.length,
   }, {
     title: 'Assigned AM',
     dataIndex: 'assignedAccountManager',
+    sorter: (a, b) => a.assignedAccountManager.length - b.assignedAccountManager.length,
     render: assignedaccountmanager => (
       <Tooltip title={assignedaccountmanager}>
         <Avatar>{assignedaccountmanager[0]}</Avatar>

@@ -36,7 +36,7 @@ export const restrictions = {
     'DELETE_ACTIVITY',
 
     'ADD_CLIENT',
-    'EDIT_CLIENT',
+    'UPDATE_CLIENT',
     'DELETE_CLIENT',
 
     'ADD_LICENSE',
@@ -58,7 +58,7 @@ export const restrictions = {
     'DELETE_ACTIVITY',
 
     'ADD_CLIENT',
-    'EDIT_CLIENT',
+    'UPDATE_CLIENT',
     'DELETE_CLIENT',
 
     'ADD_LICENSE',

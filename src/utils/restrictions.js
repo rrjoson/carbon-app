@@ -3,10 +3,13 @@ export const restrictions = {
     'ADD_CASE',
     'EDIT_CASE',
     'DELETE_CASE',
+
     'ADD_ASSIGNED_SE',
+
     'ADD_ACTIVITY',
     'EXPORT_ACTIVITY',
-    'EDIT_ACTIVITY',
+    'UPDATE_ACTIVITY',
+
     'DELETE_ACTIVITY',
     'DELETE_PRODUCT',
     'DELETE_VENDOR',
@@ -15,44 +18,57 @@ export const restrictions = {
     'ADD_CASE',
     'EDIT_CASE',
     'DELETE_CASE',
+
     'ADD_ASSIGNED_SE',
+
     'ADD_ACTIVITY',
     'EXPORT_ACTIVITY',
-    'EDIT_ACTIVITY',
+    'UPDATE_ACTIVITY',
     'DELETE_ACTIVITY',
+
     'DELETE_PRODUCT',
     'DELETE_VENDOR',
   ],
   'Technical Manager': [
     'DELETE_CASE',
-    'EDIT_ACTIVITY',
+
+    'UPDATE_ACTIVITY',
     'DELETE_ACTIVITY',
+
     'ADD_CLIENT',
     'EDIT_CLIENT',
     'DELETE_CLIENT',
+
     'ADD_LICENSE',
     'EDIT_LICENSE',
     'DELETE_LICENSE',
+
     'ADD_PRODUCT',
     'EDIT_PRODUCT',
     'DELETE_PRODUCT',
+
     'ADD_VENDOR',
     'EDIT_VENDOR',
     'DELETE_VENDOR',
   ],
   'System Engineer': [
     'DELETE_CASE',
-    'EDIT_ACTIVITY',
+
+    'UPDATE_ACTIVITY',
     'DELETE_ACTIVITY',
+
     'ADD_CLIENT',
     'EDIT_CLIENT',
     'DELETE_CLIENT',
+
     'ADD_LICENSE',
     'EDIT_LICENSE',
     'DELETE_LICENSE',
+
     'ADD_PRODUCT',
     'EDIT_PRODUCT',
     'DELETE_PRODUCT',
+
     'ADD_VENDOR',
     'EDIT_VENDOR',
     'DELETE_VENDOR',

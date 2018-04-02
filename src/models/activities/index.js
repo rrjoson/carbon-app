@@ -1,5 +1,6 @@
 import { routerRedux } from 'dva/router';
-import { notification } from 'antd';
+import { Modal, notification } from 'antd';
+import { restrictions } from './../../utils/restrictions';
 
 import {
   addActivity,
@@ -44,12 +45,18 @@ export default {
       yield put({ type: 'SAVE', payload: { selected: data[0] } });
     },
 
-    *ADD_ACTIVITY({ payload }, { call, put }) {
+    *ADD_ACTIVITY({ payload }, { call, put, select }) {
+      const { position } = yield select(state => state.user.data);
+      if (restrictions[position].includes('ADD_ACTIVITY')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
+
       const { data } = yield call(addActivity, payload);
       yield put({ type: 'SAVE', payload: { serviceReportNumber: data.activity[0].activityNo } });
     },
 
     *UPDATE_ACTIVITY({ payload }, { call, put, select }) {
+      const { position } = yield select(state => state.user.data);
+      if (restrictions[position].includes('UPDATE_ACTIVITY')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
+
       const glocalId = yield select(state => state.cases.selected.glocalId);
       const activityNo = yield select(state => state.activities.selected.activityNo);
 
@@ -60,6 +67,9 @@ export default {
     },
 
     *DELETE_ACTIVITY({ payload }, { call, put, select }) {
+      const { position } = yield select(state => state.user.data);
+      if (restrictions[position].includes('DELETE_ACTIVITY')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
+
       const activities = yield select(state => state.activities.data);
       const data = activities.filter(item => item.activityNo !== payload);
 

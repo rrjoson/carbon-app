@@ -40,7 +40,7 @@ export const restrictions = {
     'DELETE_CLIENT',
 
     'ADD_LICENSE',
-    'EDIT_LICENSE',
+    'UPDATE_LICENSE',
     'DELETE_LICENSE',
 
     'ADD_PRODUCT',
@@ -62,7 +62,7 @@ export const restrictions = {
     'DELETE_CLIENT',
 
     'ADD_LICENSE',
-    'EDIT_LICENSE',
+    'UPDATE_LICENSE',
     'DELETE_LICENSE',
 
     'ADD_PRODUCT',

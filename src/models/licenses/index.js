@@ -1,5 +1,6 @@
 import { routerRedux } from 'dva/router';
-import { notification } from 'antd';
+import { Modal, notification } from 'antd';
+import { restrictions } from './../../utils/restrictions';
 
 import {
   addLicense,
@@ -37,12 +38,18 @@ export default {
     },
 
     *ADD_LICENSE({ payload }, { call, put }) {
+      const { position } = yield select(state => state.user.data);
+      if (restrictions[position].includes('ADD_LICENSE')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
+
       const { data } = yield call(addLicense, payload);
       yield put(routerRedux.push('/licenses'));
       notification['success']({ message: 'License added.', duration: 2 });
     },
 
     *UPDATE_LICENSE({ payload }, { call, put, select }) {
+      const { position } = yield select(state => state.user.data);
+      if (restrictions[position].includes('UPDATE_LICENSE')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
+
       const licenseId = yield select(state => state.licenses.selected.licenseId);
       const { data } = yield call(updateLicense, licenseId, payload);
       yield put(routerRedux.push('/licenses'));

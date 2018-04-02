@@ -23,7 +23,7 @@ class SelectStatus extends Component {
                 <Option value="Ongoing">Ongoing</Option>
                 <Option value="Resolved">Resolved</Option>
                 <Option value="Pending (Client)">Pending (Client)</Option>
-                <Option value="Pending (Glocal)">Pending (Glocal)</Option>
+                <Option value="Pending (Glo-cal)">Pending (Glo-cal)</Option>
               </Select>
             )}
           </FormItem>

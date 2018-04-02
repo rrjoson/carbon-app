@@ -61,7 +61,7 @@ function Filter(props) {
             <Menu.Item key="Ongoing">Ongoing</Menu.Item>
             <Menu.Item key="Resolved">Resolved</Menu.Item>
             <Menu.Item key="Pending (Client)">Pending (Client)</Menu.Item>
-            <Menu.Item key="Pending (Glocal)">Pending (Glocal)</Menu.Item>
+            <Menu.Item key="Pending (Glo-cal)">Pending (Glo-cal)</Menu.Item>
           </Menu>
         }
       >

@@ -1,7 +1,7 @@
 import { request } from '../utils/request';
 import { BASE_URL } from '../constants/api';
 
-const FETCH_ENGINEERS = `${BASE_URL}/user`;
+const FETCH_ENGINEERS = `${BASE_URL}/position/systemEngineer`;
 
 export function fetchEngineers() {
   return request.get(FETCH_ENGINEERS);

@@ -1,10 +1,11 @@
 import { routerRedux } from 'dva/router';
-import { message } from 'antd';
+import { message, notification } from 'antd';
 import config from '../../constants/config';
 
 import {
   login,
   logout,
+  addUser,
 } from './../../services/user';
 
 export default {
@@ -61,6 +62,12 @@ export default {
       } else if (locationPathname === '/login') {
         yield put(routerRedux.push('/home'));
       }
+    },
+
+
+    *ADD_USER({ payload }, { call, put }) {
+      const { data } = yield call(addUser, payload);
+      notification['success']({ message: 'User added.', duration: 2 });
     },
   },
 

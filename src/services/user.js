@@ -4,6 +4,8 @@ import { request } from '../utils/request';
 const LOGIN_URL = `${BASE_URL}/auth/login`;
 const LOGOUT_URL = `${BASE_URL}/auth/logout`;
 
+const ADD_USER_URL = `${BASE_URL}/auth/signup`;
+
 export function login(payload) {
   const headers = new Headers();
   headers.append('Content-Type', 'application/json');
@@ -25,4 +27,8 @@ export function login(payload) {
 
 export function logout() {
   return request.get(LOGOUT_URL);
+}
+
+export function addUser(payload) {
+  return request.post(ADD_USER_URL, payload);
 }

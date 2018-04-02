@@ -43,6 +43,10 @@ const menuItems = [{
   url: '/reports',
   icon: 'area-chart',
   label: 'Reports',
+}, {
+  url: '/users/add',
+  icon: 'team',
+  label: 'Accounts',
 }];
 
 let lastHref;

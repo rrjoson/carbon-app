@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { Menu, Dropdown, Button, Icon, DatePicker } from 'antd';
 
 import { getSeverityValue } from './../../utils/data';
@@ -167,13 +168,23 @@ function Filter(props) {
       <Dropdown
         overlay={
           <div>
-            <DatePicker format={'MM/DD/YYYY'} />
+            <DatePicker
+              allowClear={false}
+              onChange={date => onFilterCases({ key: 'dateRaised', value: moment(date).format('MM/DD/YYYY') })}
+              format={'MM/DD/YYYY'}
+            />
           </div>
         }
       >
-        <Button style={{ marginLeft: 8 }}>
-          Date Raised <Icon type="down" />
-        </Button>
+        {
+          (filters.dateRaised)
+          ? <Button style={{ marginLeft: 8 }} type="primary">
+            {filters.dateRaised} <Icon type="down" />
+          </Button>
+          : <Button style={{ marginLeft: 8 }}>
+            Date Raised <Icon type="down" />
+          </Button>
+        }
       </Dropdown>
     </div>
   );

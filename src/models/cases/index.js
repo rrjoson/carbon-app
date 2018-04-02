@@ -1,6 +1,7 @@
 import { routerRedux } from 'dva/router';
-import { notification } from 'antd';
+import { notification, Modal } from 'antd';
 import { serialize } from './../../utils/query';
+import { restrictions } from './../../utils/restrictions';
 
 import {
   fetchAllCases,
@@ -74,15 +75,21 @@ export default {
       yield put({ type: 'SAVE', payload: { data } });
     },
 
-    *CREATE_CASE({ payload }, { call, put }) {
-      const data = yield call(createCase, payload);
+    *CREATE_CASE({ payload }, { call, put, select }) {
+      const { position } = yield select(state => state.user.data);
+      if (restrictions[position].includes('ADD_CASE')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
+
+      yield call(createCase, payload);
       yield put(routerRedux.push('/cases/all'));
       notification['success']({ message: 'Case created.', duration: 2 });
     },
 
     *UPDATE_CASE({ payload }, { call, put, select }) {
+      const { position } = yield select(state => state.user.data);
+      if (restrictions[position].includes('EDIT_CASE')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
+
       const selectedCase = yield select(state => state.cases.selected);
-      const data = yield call(updateCase, payload);
+      yield call(updateCase, payload);
       yield put(routerRedux.push(`/cases/${selectedCase.glocalId}`));
       notification['success']({ message: 'Case updated.', duration: 2 });
     },

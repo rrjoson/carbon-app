@@ -1,6 +1,10 @@
 import React, { Component, Fragment } from 'react';
+import { Icon } from 'antd';
 import { connect } from 'dva';
 import { restrictions } from '../../utils/restrictions';
+
+import { H3 } from './../../components/Typography';
+
 import styles from './styles.css';
 
 class RestrictedPage extends Component {
@@ -13,8 +17,9 @@ class RestrictedPage extends Component {
 
     if (restrictions[user.position].includes(action)) {
       return (
-        <div className={styles.center}>
-          Sorry, but you can't access this page.
+        <div className={styles.restrictedPage}>
+          <Icon type="frown-o" style={{ fontSize: 50 }} />
+          <H3>Sorry, but you can't access this page.</H3>
         </div>
       );
     }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Input, Icon, Button, Row, Col, Modal } from 'antd';
 
-import { Link, Typography } from './../../../components';
+import { Link, Typography, RestrictedComponent } from './../../../components';
 
 import styles from './styles.css';
 
@@ -111,9 +111,11 @@ class EditVendorsForm extends Component {
                     })(
                       <Input placeholder="Product name" style={{ width: '224px', marginRight: 19 }} />,
                     )}
+                    <RestrictedComponent action="DELETE_VENDOR">
                     {keys.length > 1 ? (
                       <Link onClick={() => this.showConfirmDeleteModal(vendor.name, k)} to="#">Delete</Link>
                     ) : null}
+                    </RestrictedComponent>
                   </FormItem>
                 );
               });

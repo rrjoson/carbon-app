@@ -3,6 +3,7 @@ import { Layout, Icon } from 'antd';
 import styles from './styles.css';
 
 import { H5 } from './../Typography';
+
 import Button from './../Button';
 import Avatar from './../Avatar';
 import Link from './../Link';
@@ -14,6 +15,7 @@ const Header = (props) => {
   const {
     pathname,
     onSearchCases,
+    user,
   } = props;
 
   const getHeaderTitle = (path) => {
@@ -95,7 +97,7 @@ const Header = (props) => {
           </Link>
         </div>
         <span className={styles.headerAvatar}>
-          <Avatar>A</Avatar>
+          <Avatar>{user.fullName[0]}</Avatar>
         </span>
       </div>
     </AntHeader>

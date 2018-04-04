@@ -57,6 +57,7 @@ function App(props) {
     location,
     children,
     loading,
+    user,
   } = props;
 
   let { pathname } = location;
@@ -117,6 +118,7 @@ function App(props) {
           </Sider>
           <Layout>
             <Header
+              user={user.data}
               onSearchCases={data => dispatch({ type: 'cases/FETCH_CASES_BY_QUERY', payload: data })}
               pathname={location.pathname}
               type="default"
@@ -134,4 +136,4 @@ function App(props) {
 App.propTypes = {
 };
 
-export default withRouter(connect(({ app, loading }) => ({ app, loading }))(App));
+export default withRouter(connect(({ app, loading, user }) => ({ app, loading, user }))(App));

@@ -15,7 +15,7 @@ import Tooltip from './Tooltip';
 import Select from './Select';
 import Expiration from './Expiration';
 import Loader from './Loader';
-import Restricted from './Restricted';
+import RestrictedComponent from './RestrictedComponent';
 import RestrictedPage from './RestrictedPage';
 
 export {
@@ -36,6 +36,6 @@ export {
   Select,
   Expiration,
   Loader,
-  Restricted,
+  RestrictedComponent,
   RestrictedPage,
 };

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import { restrictions } from '../../utils/restrictions';
 
-class Restrict extends Component {
+class RestrictedComponent extends Component {
 
   render() {
     const {
@@ -27,6 +27,6 @@ function mapStateToProps(state) {
   };
 }
 
-Restrict.propTypes = {};
+RestrictedComponent.propTypes = {};
 
-export default connect(mapStateToProps)(Restrict);
+export default connect(mapStateToProps)(RestrictedComponent);

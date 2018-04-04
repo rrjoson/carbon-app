@@ -9,6 +9,8 @@ import Avatar from './../Avatar';
 import Link from './../Link';
 import Search from './../Search';
 
+import RestrictedComponent from './../RestrictedComponent';
+
 const AntHeader = Layout.Header;
 
 const Header = (props) => {
@@ -18,6 +20,7 @@ const Header = (props) => {
     user,
   } = props;
 
+  // TODO: REFACTOR
   const getHeaderTitle = (path) => {
     if (path === '/home') return 'Home';
 
@@ -39,6 +42,7 @@ const Header = (props) => {
     return '';
   };
 
+  // TODO: REFACTOR
   const getHeaderButtonLink = (path) => {
     if (path === '/home') return '/cases/add';
 
@@ -60,6 +64,7 @@ const Header = (props) => {
     return '';
   };
 
+  // TODO: REFACTOR
   const getHeaderButtonText = (path) => {
     if (path === '/home') return 'New Case';
 
@@ -88,10 +93,11 @@ const Header = (props) => {
       </div>
       <div>
         <div className={styles.headerButton}>
-          <Link to={getHeaderButtonLink(pathname)}>
-            <Button>{getHeaderButtonText(pathname)}</Button>
-
-          </Link>
+          <RestrictedComponent action="ADD_CASE">
+            <Link to={getHeaderButtonLink(pathname)}>
+              <Button>{getHeaderButtonText(pathname)}</Button>
+            </Link>
+          </RestrictedComponent>
           <Link to="/logout">
             <Button style={{ marginLeft: '5px' }}><Icon type="logout" /> Logout</Button>
           </Link>

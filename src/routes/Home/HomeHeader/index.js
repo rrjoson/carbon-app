@@ -2,7 +2,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 
 import { Button } from 'antd';
-import { Link, Typography, Restricted } from './../../../components';
+import { Link, Typography, RestrictedComponent } from './../../../components';
 
 import styles from './styles.css';
 
@@ -14,13 +14,13 @@ function HomeHeader(props) {
       <div className={styles.title}>
         <H2>My Cases</H2>
       </div>
-      <Restricted action="ADD_CASE">
+      <RestrictedComponent action="ADD_CASE">
         <div>
           <Link to="/cases/add">
             <Button className={styles.button}>New Case</Button>
           </Link>
         </div>
-      </Restricted>
+      </RestrictedComponent>
     </div>
   );
 }

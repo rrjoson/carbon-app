@@ -15,6 +15,7 @@ import Tooltip from './Tooltip';
 import Select from './Select';
 import Expiration from './Expiration';
 import Loader from './Loader';
+import Restricted from './Restricted';
 
 export {
   Typography,
@@ -34,4 +35,5 @@ export {
   Select,
   Expiration,
   Loader,
+  Restricted,
 };

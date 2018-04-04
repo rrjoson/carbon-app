@@ -8,10 +8,10 @@ class Restrict extends Component {
     const {
       user,
       children,
-      permission,
+      action,
     } = this.props;
 
-    if (restrictions[user.position].includes(permission)) return null;
+    if (restrictions[user.position].includes(action)) return null;
 
     return (
       <div>

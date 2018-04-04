@@ -32,6 +32,8 @@ const Header = (props) => {
 
     if (path.includes('licenses')) return 'License';
 
+    if (path.includes('users')) return 'Accounts';
+
     return '';
   };
 
@@ -51,6 +53,8 @@ const Header = (props) => {
 
     if (path.includes('licenses')) return '/cases/add';
 
+    if (path.includes('users')) return '/cases/add';
+
     return '';
   };
 
@@ -69,6 +73,8 @@ const Header = (props) => {
     if (path.includes('/clients')) return 'New Case';
 
     if (path.includes('licenses')) return 'New Case';
+
+    if (path.includes('users')) return 'New Case';
 
     return '';
   };

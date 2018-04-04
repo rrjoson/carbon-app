@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Typography, Link, Button, Activity } from './../../../components';
+import { Typography, Link, Button, Activity, RestrictedComponent } from './../../../components';
 
 import styles from './styles.css';
 
@@ -42,9 +42,11 @@ class Activities extends Component {
           <div className={styles.viewCaseActivities__title}>
             <H2>Activities</H2>
           </div>
-          <div className={styles.viewCaseActivities__actions}>
-            <Link to={`/cases/${glocalId}/activities/add`}><Button>Add Activity</Button></Link>
-          </div>
+          <RestrictedComponent action="ADD_ACTIVITY">
+            <div className={styles.viewCaseActivities__actions}>
+              <Link to={`/cases/${glocalId}/activities/add`}><Button>Add Activity</Button></Link>
+            </div>
+          </RestrictedComponent>
         </div>
         {
           data.map((item, index) => {

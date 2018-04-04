@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Input, Icon, Button, Row, Col, Modal } from 'antd';
 
-import { Link, Typography } from './../../../components';
+import { Link, Typography, RestrictedComponent } from './../../../components';
 
 import styles from './styles.css';
 
@@ -139,7 +139,9 @@ class EditProductsForm extends Component {
                     })(
                       <Input placeholder="Product name" style={{ width: '224px', marginRight: 19 }} />,
                     )}
-                    <Link onClick={() => this.showConfirmDeleteModal(vendor.name, k)} to="#">Delete</Link>
+                    <RestrictedComponent action="DELETE_PRODUCT">
+                      <Link onClick={() => this.showConfirmDeleteModal(vendor.name, k)} to="#">Delete</Link>
+                    </RestrictedComponent>
                   </FormItem>
                 );
               });
@@ -150,24 +152,28 @@ class EditProductsForm extends Component {
                     <H5>{vendor.name}</H5>
                   </div>
                   {formItems}
-                  <FormItem {...formItemLayoutWithOutLabel}>
-                    <Button onClick={() => this.add(vendor.name)} style={{ width: '132px' }}>
-                      <Icon type="plus" /> Add Product
-                    </Button>
-                  </FormItem>
+                  <RestrictedComponent action="ADD_PRODUCT">
+                    <FormItem {...formItemLayoutWithOutLabel}>
+                      <Button onClick={() => this.add(vendor.name)} style={{ width: '132px' }}>
+                        <Icon type="plus" /> Add Product
+                      </Button>
+                    </FormItem>
+                  </RestrictedComponent>
                 </Col>
               );
             })
           }
         </Row>
-        <div className={styles.divider} />
-        <FormItem {...formItemLayoutWithOutLabel}>
-          <Button loading={this.props.loading} type="primary" style={{ marginRight: 8 }} htmlType="submit">
-            {!this.props.loading ? <Icon type="save" /> : null}
-            Save
-          </Button>
-          <Button>Cancel</Button>
-        </FormItem>
+        <RestrictedComponent action="EDIT_PRODUCT">
+          <div className={styles.divider} />
+          <FormItem {...formItemLayoutWithOutLabel}>
+            <Button loading={this.props.loading} type="primary" style={{ marginRight: 8 }} htmlType="submit">
+              {!this.props.loading ? <Icon type="save" /> : null}
+              Save
+            </Button>
+            <Button>Cancel</Button>
+          </FormItem>
+        </RestrictedComponent>
       </Form>
     );
   }

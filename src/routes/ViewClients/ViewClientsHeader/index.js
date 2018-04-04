@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './styles.css';
 import { Button } from 'antd';
 
-import { Typography, Link } from './../../../components';
+import { Typography, Link, RestrictedComponent } from './../../../components';
 
 const { H2 } = Typography;
 
@@ -12,11 +12,13 @@ function ViewCasesHeader(props) {
       <div className={styles.title}>
         <H2>Clients</H2>
       </div>
-      <div>
-        <Link to="/clients/add">
-          <Button className={styles.button}>New Client</Button>
-        </Link>
-      </div>
+      <RestrictedComponent action="ADD_CLIENT">
+        <div>
+          <Link to="/clients/add">
+            <Button className={styles.button}>New Client</Button>
+          </Link>
+        </div>
+      </RestrictedComponent>
     </div>
   );
 }

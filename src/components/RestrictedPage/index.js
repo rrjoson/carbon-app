@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'dva';
 import { restrictions } from '../../utils/restrictions';
 import styles from './styles.css';
@@ -20,9 +20,9 @@ class RestrictedPage extends Component {
     }
 
     return (
-      <div>
+      <Fragment>
         {children}
-      </div>
+      </Fragment>
     );
   }
 }

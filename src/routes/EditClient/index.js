@@ -5,6 +5,8 @@ import styles from './styles.css';
 import { Typography } from './../../components';
 import EditClientForm from './EditClientForm';
 
+import { RestrictedPage } from './../../components';
+
 const { H2 } = Typography;
 
 class EditClient extends Component {
@@ -32,15 +34,17 @@ class EditClient extends Component {
     ) return null;
 
     return (
-      <div className={styles.addClients}>
-        <H2>Edit Client</H2>
-        <EditClientForm
-          loading={loading}
-          onSave={data => dispatch({ type: 'clients/UPDATE_CLIENT', payload: data })}
-          accountManagers={accountManagers}
-          client={client}
-        />
-      </div>
+      <RestrictedPage action="UPDATE_CLIENT">
+        <div className={styles.addClients}>
+          <H2>Edit Client</H2>
+          <EditClientForm
+            loading={loading}
+            onSave={data => dispatch({ type: 'clients/UPDATE_CLIENT', payload: data })}
+            accountManagers={accountManagers}
+            client={client}
+          />
+        </div>
+      </RestrictedPage>
     );
   }
 }

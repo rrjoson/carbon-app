@@ -3,7 +3,7 @@ import { Input, Icon, Button, Row, Col, DatePicker, Radio, Modal } from 'antd';
 import moment from 'moment';
 
 import { generatePDF } from './../../../utils/pdf';
-import { Form, Select, Link, Typography } from './../../../components';
+import { Form, Select, Link, Typography, RestrictedComponent } from './../../../components';
 
 import styles from './styles.css';
 
@@ -366,14 +366,18 @@ class DynamicFieldSet extends Component {
 
         <div className={styles.divider} />
         <FormItem {...formItemLayoutWithOutLabel}>
-          <Button loading={this.props.loading} type="primary" style={{ marginRight: 8 }} htmlType="submit">
-            {!this.props.loading ? <Icon type="save" /> : null}
-            Save
-          </Button>
-          <Button style={{ marginRight: 8 }} onClick={this.exportToPDF}>
-            <Icon type="download" />
-            Export to PDF
-          </Button>
+          <RestrictedComponent action="UPDATE_ACTIVITY">
+            <Button loading={this.props.loading} type="primary" style={{ marginRight: 8 }} htmlType="submit">
+              {!this.props.loading ? <Icon type="save" /> : null}
+              Save
+            </Button>
+          </RestrictedComponent>
+          <RestrictedComponent action="EXPORT_ACTIVITY">
+            <Button style={{ marginRight: 8 }} onClick={this.exportToPDF}>
+              <Icon type="download" />
+              Export to PDF
+            </Button>
+          </RestrictedComponent>
           <Button>Cancel</Button>
         </FormItem>
       </Form>

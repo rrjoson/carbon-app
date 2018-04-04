@@ -126,24 +126,28 @@ class EditVendorsForm extends Component {
                     <H5>{vendor.label}</H5>
                   </div>
                   {formItems}
-                  <FormItem {...formItemLayoutWithOutLabel}>
-                    <Button onClick={() => this.add(vendor.name)} style={{ width: '132px' }}>
-                      <Icon type="plus" /> Add Vendor
-                    </Button>
-                  </FormItem>
+                  <RestrictedComponent action="ADD_VENDOR">
+                    <FormItem {...formItemLayoutWithOutLabel}>
+                      <Button onClick={() => this.add(vendor.name)} style={{ width: '132px' }}>
+                        <Icon type="plus" /> Add Vendor
+                      </Button>
+                    </FormItem>
+                  </RestrictedComponent>
                 </Col>
               );
             })
           }
         </Row>
-        <div className={styles.divider} />
-        <FormItem {...formItemLayoutWithOutLabel}>
-          <Button loading={this.props.loading} type="primary" style={{ marginRight: 8 }} htmlType="submit">
-            {!this.props.loading ? <Icon type="save" /> : null}
-            Save
-          </Button>
-          <Button>Cancel</Button>
-        </FormItem>
+        <RestrictedComponent action="EDIT_VENDOR">
+          <div className={styles.divider} />
+          <FormItem {...formItemLayoutWithOutLabel}>
+            <Button loading={this.props.loading} type="primary" style={{ marginRight: 8 }} htmlType="submit">
+              {!this.props.loading ? <Icon type="save" /> : null}
+              Save
+            </Button>
+            <Button>Cancel</Button>
+          </FormItem>
+        </RestrictedComponent>
       </Form>
     );
   }

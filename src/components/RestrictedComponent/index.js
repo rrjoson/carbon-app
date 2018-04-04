@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'dva';
 import { restrictions } from '../../utils/restrictions';
 
@@ -14,9 +14,9 @@ class RestrictedComponent extends Component {
     if (restrictions[user.position].includes(action)) return null;
 
     return (
-      <div>
+      <Fragment>
         {children}
-      </div>
+      </Fragment>
     );
   }
 }

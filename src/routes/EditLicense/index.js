@@ -5,6 +5,8 @@ import styles from './styles.css';
 import EditLicenseHeader from './EditLicenseHeader';
 import EditLicenseForm from './EditLicenseForm';
 
+import { RestrictedPage } from './../../components';
+
 class EditLicense extends Component {
   componentDidMount() {
     const {
@@ -36,18 +38,20 @@ class EditLicense extends Component {
     ) return null;
 
     return (
-      <div className={styles.addLicenseHeader}>
-        <EditLicenseHeader />
-        <EditLicenseForm
-          loading={loading}
-          selectedLicense={selectedLicense}
-          vendors={vendors}
-          products={products}
-          clients={clients}
-          onSelectVendor={data => dispatch({ type: 'products/FETCH_PRODUCTS_OF_VENDOR', payload: data })}
-          onSave={data => dispatch({ type: 'licenses/UPDATE_LICENSE', payload: data })}
-        />
-      </div>
+      <RestrictedPage action="UPDATE_LICENSE">
+        <div className={styles.addLicenseHeader}>
+          <EditLicenseHeader />
+          <EditLicenseForm
+            loading={loading}
+            selectedLicense={selectedLicense}
+            vendors={vendors}
+            products={products}
+            clients={clients}
+            onSelectVendor={data => dispatch({ type: 'products/FETCH_PRODUCTS_OF_VENDOR', payload: data })}
+            onSave={data => dispatch({ type: 'licenses/UPDATE_LICENSE', payload: data })}
+          />
+        </div>
+      </RestrictedPage>
     );
   }
 }

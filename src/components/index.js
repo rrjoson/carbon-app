@@ -16,6 +16,7 @@ import Select from './Select';
 import Expiration from './Expiration';
 import Loader from './Loader';
 import Restricted from './Restricted';
+import RestrictedPage from './RestrictedPage';
 
 export {
   Typography,
@@ -36,4 +37,5 @@ export {
   Expiration,
   Loader,
   Restricted,
+  RestrictedPage,
 };

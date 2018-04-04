@@ -4,7 +4,7 @@ import { connect } from 'dva';
 import AddUserHeader from './AddUserHeader';
 import AddUserForm from './AddUserForm';
 
-import { restrictions } from './../../utils/restrictions';
+import { RestrictedPage } from './../../components';
 
 import styles from './styles.css';
 
@@ -21,23 +21,18 @@ class AddUser extends Component {
     const {
       dispatch,
       loading,
-      user,
     } = this.props;
 
-    if (restrictions[user.position].includes('ADD_USER')) {
-      return (
-        <div className={styles.center}>Sorry, but you can't access this page.</div>
-      );
-    }
-
     return (
-      <div className={styles.addClients}>
-        <AddUserHeader />
-        <AddUserForm
-          loading={loading}
-          onSave={data => dispatch({ type: 'user/ADD_USER', payload: data })}
-        />
-      </div>
+      <RestrictedPage action="ADD_USER">
+        <div className={styles.addClients}>
+          <AddUserHeader />
+          <AddUserForm
+            loading={loading}
+            onSave={data => dispatch({ type: 'user/ADD_USER', payload: data })}
+          />
+        </div>
+      </RestrictedPage>
     );
   }
 }
@@ -45,7 +40,6 @@ class AddUser extends Component {
 function mapStateToProps(state) {
   return {
     loading: state.loading.effects['user/ADD_USER'],
-    user: state.user.data,
   };
 }
 

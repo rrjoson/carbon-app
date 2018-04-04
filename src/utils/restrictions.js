@@ -1,4 +1,5 @@
 export const restrictions = {
+  'Director': [],
   'Sales Manager': [
     'ADD_CASE',
     'EDIT_CASE',
@@ -13,6 +14,8 @@ export const restrictions = {
     'DELETE_ACTIVITY',
     'DELETE_PRODUCT',
     'DELETE_VENDOR',
+
+    'ADD_USER',
   ],
   'Account Manager': [
     'ADD_CASE',
@@ -28,6 +31,8 @@ export const restrictions = {
 
     'DELETE_PRODUCT',
     'DELETE_VENDOR',
+
+    'ADD_USER',
   ],
   'Technical Manager': [
     'DELETE_CASE',
@@ -50,6 +55,8 @@ export const restrictions = {
     'ADD_VENDOR',
     'EDIT_VENDOR',
     'DELETE_VENDOR',
+
+    'ADD_USER',
   ],
   'System Engineer': [
     'DELETE_CASE',
@@ -72,5 +79,7 @@ export const restrictions = {
     'ADD_VENDOR',
     'EDIT_VENDOR',
     'DELETE_VENDOR',
+
+    'ADD_USER',
   ],
 };

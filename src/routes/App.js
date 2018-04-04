@@ -121,7 +121,7 @@ function App(props) {
               pathname={location.pathname}
               type="default"
             />
-            <Content style={{ background: '#fff', padding: '28px 23px' }}>
+            <Content className={styles.content}>
               {children}
             </Content>
           </Layout>

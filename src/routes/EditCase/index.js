@@ -5,6 +5,8 @@ import styles from './styles.css';
 import EditCaseHeader from './EditCaseHeader';
 import EditCaseForm from './EditCaseForm';
 
+import { RestrictedPage } from './../../components';
+
 class EditCase extends Component {
   componentDidMount() {
     const {
@@ -51,20 +53,22 @@ class EditCase extends Component {
     ) return null;
 
     return (
-      <div>
-        <EditCaseHeader />
-        <EditCaseForm
-          loading={loading}
-          selectedCase={selectedCase}
-          products={products}
-          customers={customers}
-          clients={clients}
-          vendors={vendors}
-          engineers={engineers}
-          onSelectVendor={(data) => dispatch({ type: 'products/FETCH_PRODUCTS_OF_VENDOR', payload: data })}
-          onSave={(data) => dispatch({ type: 'cases/UPDATE_CASE', payload: data })}
-        />
-      </div>
+      <RestrictedPage action="EDIT_CASE">
+        <div>
+          <EditCaseHeader />
+          <EditCaseForm
+            loading={loading}
+            selectedCase={selectedCase}
+            products={products}
+            customers={customers}
+            clients={clients}
+            vendors={vendors}
+            engineers={engineers}
+            onSelectVendor={(data) => dispatch({ type: 'products/FETCH_PRODUCTS_OF_VENDOR', payload: data })}
+            onSave={(data) => dispatch({ type: 'cases/UPDATE_CASE', payload: data })}
+          />
+        </div>
+      </RestrictedPage>
     );
   }
 }

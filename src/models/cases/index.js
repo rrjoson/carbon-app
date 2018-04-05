@@ -7,6 +7,8 @@ import {
   fetchAllCases,
   fetchCasesByQuery,
   fetchCasesByFilter,
+  fetchCasesOfLoggedInUser,
+  fetchCasesOfLoggedInUserByFilter,
   fetchCase,
   createCase,
   updateCase,
@@ -58,10 +60,36 @@ export default {
       yield put({ type: 'SAVE', payload: { data } });
     },
 
+    *FETCH_CASES_OF_LOGGED_IN_USER_BY_FITLER({ payload }, { call, put, select }) {
+      const user = yield select(state => state.user.data);
+      const currentFilters = yield select(state => state.cases.filters);
+
+      const updatedFilters = { ...currentFilters, [payload.key]: payload.value };
+      yield put({ type: 'SAVE', payload: { filters: updatedFilters } });
+
+      const { data } = yield call(fetchCasesOfLoggedInUserByFilter, user.fullName, serialize(updatedFilters));
+      yield put({ type: 'SAVE', payload: { data } });
+    },
+
+    *FETCH_CASES_OF_LOGGED_IN_USER({ payload }, { call, put, select }) {
+      const user = yield select(state => state.user.data);
+
+      const { data } = yield call(fetchCasesOfLoggedInUser, user.fullName);
+      yield put({ type: 'SAVE', payload: { data } });
+    },
+
     *RESET_FILTERS({ payload }, { call, put }) {
       yield put({ type: 'SAVE', payload: { filters: {} } });
 
       const { data } = yield call(fetchAllCases);
+      yield put({ type: 'SAVE', payload: { data } });
+    },
+
+    *RESET_FILTERS_OF_CASES_OF_LOGGED_IN_USER({ payload }, { call, put, select }) {
+      const user = yield select(state => state.user.data);
+      yield put({ type: 'SAVE', payload: { filters: {} } });
+
+      const { data } = yield call(fetchCasesOfLoggedInUser, user.fullName);
       yield put({ type: 'SAVE', payload: { data } });
     },
 

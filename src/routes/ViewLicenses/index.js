@@ -5,8 +5,6 @@ import styles from './styles.css';
 import ViewLicensesHeader from './ViewLicensesHeader';
 import ViewLicensesTable from './ViewLicensesTable';
 
-
-
 class ViewCases extends Component {
   componentDidMount() {
     const {

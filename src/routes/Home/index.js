@@ -13,7 +13,7 @@ class Home extends Component {
       dispatch,
     } = this.props;
 
-    dispatch({ type: 'cases/FETCH_ALL_CASES' });
+    dispatch({ type: 'cases/FETCH_CASES_OF_LOGGED_IN_USER' });
     dispatch({ type: 'clients/FETCH_CLIENTS' });
     dispatch({ type: 'engineers/FETCH_ENGINEERS' });
     dispatch({ type: 'vendors/FETCH_VENDORS' });
@@ -35,8 +35,8 @@ class Home extends Component {
       <div className={styles.dashboard}>
         <HomeHeader />
         <HomeFilter
-          onFilterCases={data => dispatch({ type: 'cases/FETCH_CASES_BY_FITLER', payload: data })}
-          onResetFilters={() => dispatch({ type: 'cases/RESET_FILTERS' })}
+          onFilterCases={data => dispatch({ type: 'cases/FETCH_CASES_OF_LOGGED_IN_USER_BY_FITLER', payload: data })}
+          onResetFilters={() => dispatch({ type: 'cases/RESET_FILTERS_OF_CASES_OF_LOGGED_IN_USER' })}
           filters={filters}
           clients={clients}
           engineers={engineers}

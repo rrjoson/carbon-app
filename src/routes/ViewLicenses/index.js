@@ -21,8 +21,6 @@ class ViewCases extends Component {
       licenses,
     } = this.props;
 
-    if (!licenses.length) return null;
-
     return (
       <div className={styles.viewCases}>
         <ViewLicensesHeader />

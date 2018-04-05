@@ -19,8 +19,6 @@ class ViewCases extends Component {
       clients,
     } = this.props;
 
-    if (!clients.length) return null;
-
     return (
       <div className={styles.viewCases}>
         <ViewClientsHeader />

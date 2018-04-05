@@ -17,6 +17,7 @@ const Header = (props) => {
   const {
     pathname,
     onSearchCases,
+    onSearchClients,
     onSearchLicenses,
     user,
   } = props;
@@ -34,11 +35,11 @@ const Header = (props) => {
     if (path === '/vendors/edit') return 'Vendor';
     if (path === '/products/edit') return 'Product';
 
+    if (path === '/clients') return <Search onTextChange={text => onSearchClients(text)} placeholder="Search a client..." />;
     if (path.includes('/clients')) return 'Client';
 
     if (path === '/licenses') return <Search onTextChange={text => onSearchLicenses(text)} placeholder="Search a license..." />;
-    if (path.includes('licenses')) return 'License';
-
+    if (path.includes('/licenses')) return 'License';
 
     if (path.includes('users')) return 'Accounts';
 

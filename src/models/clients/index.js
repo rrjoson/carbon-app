@@ -4,6 +4,7 @@ import { restrictions } from './../../utils/restrictions';
 
 import {
   fetchClients,
+  fetchClientsByQuery,
   fetchClient,
   addClient,
   updateClient,
@@ -31,6 +32,11 @@ export default {
       const { data } = yield call(fetchClients);
       yield put({ type: 'SAVE', payload: { data } });
     },
+
+    FETCH_CLIENTS_BY_QUERY: [function* ({ payload }, { call, put }) {
+      const { data } = yield call(fetchClientsByQuery, payload);
+      yield put({ type: 'SAVE', payload: { data } });
+    }, { type: 'throttle', ms: 500 }],
 
     *FETCH_CLIENT({ payload }, { call, put }) {
       yield put({ type: 'SAVE', payload: { selected: null } });

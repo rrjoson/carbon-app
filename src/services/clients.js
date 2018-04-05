@@ -8,6 +8,9 @@ export function fetchClients() {
   return request.get(FETCH_CLIENTS);
 }
 
+export function fetchClientsByQuery(searchQuery) {
+  return request.get(`${FETCH_CLIENTS}?q=${searchQuery}`);
+}
 export function fetchClient(name) {
   return request.get(`${FETCH_CLIENTS}/${encodeURIComponent(name)}`);
 }

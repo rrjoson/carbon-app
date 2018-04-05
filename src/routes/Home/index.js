@@ -37,6 +37,7 @@ class Home extends Component {
         <HomeFilter
           onFilterCases={data => dispatch({ type: 'cases/FETCH_CASES_OF_LOGGED_IN_USER_BY_FITLER', payload: data })}
           onResetFilters={() => dispatch({ type: 'cases/RESET_FILTERS_OF_CASES_OF_LOGGED_IN_USER' })}
+          onSelectVendor={data => dispatch({ type: 'products/FETCH_PRODUCTS_OF_VENDOR', payload: data })}
           filters={filters}
           clients={clients}
           engineers={engineers}

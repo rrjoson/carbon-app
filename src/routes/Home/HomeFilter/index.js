@@ -11,6 +11,7 @@ function HomeFilter(props) {
     products,
     onFilterCases,
     onResetFilters,
+    onSelectVendor,
   } = props;
 
   return (
@@ -18,6 +19,7 @@ function HomeFilter(props) {
       <Filter
         onFilterCases={onFilterCases}
         onResetFilters={onResetFilters}
+        onSelectVendor={onSelectVendor}
         filters={filters}
         clients={clients}
         engineers={engineers}

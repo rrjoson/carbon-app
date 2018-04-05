@@ -19,6 +19,7 @@ function Filter(props) {
     products,
     onFilterCases,
     onResetFilters,
+    onSelectVendor,
   } = props;
 
   return (
@@ -123,7 +124,12 @@ function Filter(props) {
 
       <Dropdown
         overlay={
-          <Menu onClick={({ item }) => onFilterCases({ key: 'vendor', value: item.props.children })}>
+          <Menu
+            onClick={({ item }) => {
+              onSelectVendor(item.props.children);
+              onFilterCases({ key: 'vendor', value: item.props.children });
+            }}
+          >
             {
               vendors.map((vendor, index) => {
                 return <Menu.Item key={index}>{vendor.principal}</Menu.Item>;

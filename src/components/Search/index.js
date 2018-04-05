@@ -4,13 +4,13 @@ import { Input, Icon } from 'antd';
 import styles from './styles.css';
 
 const Search = (props) => {
-  const { onTextChange } = props;
+  const { onTextChange, placeholder } = props;
 
   return (
     <span className={styles.search}>
       <Icon type="search" />
       <Input
-        placeholder="Search a case..."
+        placeholder={placeholder}
         onChange={e => onTextChange(e.target.value)}
         style={{ width: 200 }}
       />

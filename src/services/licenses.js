@@ -15,6 +15,10 @@ export function fetchLicenses() {
   return request.get(ADD_LICENSE);
 }
 
+export function fetchLicensesByQuery(searchQuery) {
+  return request.get(`${ADD_LICENSE}?q=${searchQuery}`);
+}
+
 export function fetchLicense(licenseId) {
   return request.get(`${ADD_LICENSE}/${licenseId}`);
 }

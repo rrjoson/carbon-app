@@ -17,6 +17,7 @@ const Header = (props) => {
   const {
     pathname,
     onSearchCases,
+    onSearchLicenses,
     user,
   } = props;
 
@@ -24,7 +25,7 @@ const Header = (props) => {
   const getHeaderTitle = (path) => {
     if (path === '/home') return 'Home';
 
-    if (path === '/cases/all') return <Search onTextChange={text => onSearchCases(text)} />;
+    if (path === '/cases/all') return <Search onTextChange={text => onSearchCases(text)} placeholder="Search a case..." />;
     if (path === '/cases/add') return 'Cases';
 
     if (path.includes('/activities')) return 'Activity';
@@ -35,7 +36,9 @@ const Header = (props) => {
 
     if (path.includes('/clients')) return 'Client';
 
+    if (path === '/licenses') return <Search onTextChange={text => onSearchLicenses(text)} placeholder="Search a license..." />;
     if (path.includes('licenses')) return 'License';
+
 
     if (path.includes('users')) return 'Accounts';
 

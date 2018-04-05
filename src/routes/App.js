@@ -120,6 +120,7 @@ function App(props) {
             <Header
               user={user.data}
               onSearchCases={data => dispatch({ type: 'cases/FETCH_CASES_BY_QUERY', payload: data })}
+              onSearchLicenses={data => dispatch({ type: 'licenses/FETCH_LICENSES_BY_QUERY', payload: data })}
               pathname={location.pathname}
               type="default"
             />

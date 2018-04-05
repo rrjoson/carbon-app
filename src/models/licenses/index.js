@@ -5,6 +5,7 @@ import { restrictions } from './../../utils/restrictions';
 import {
   addLicense,
   fetchLicenses,
+  fetchLicensesByQuery,
   fetchLicense,
   updateLicense,
 } from './../../services/licenses';
@@ -32,6 +33,11 @@ export default {
       yield put({ type: 'SAVE', payload: { data } });
     },
 
+    FETCH_LICENSES_BY_QUERY: [function* ({ payload }, { call, put }) {
+      const { data } = yield call(fetchLicensesByQuery, payload);
+      yield put({ type: 'SAVE', payload: { data } });
+    }, { type: 'throttle', ms: 500 }],
+
     *FETCH_LICENSE({ payload }, { call, put }) {
       const { data } = yield call(fetchLicense, payload);
       yield put({ type: 'SAVE', payload: { selected: data } });
@@ -56,7 +62,6 @@ export default {
       notification['success']({ message: 'License updated.', duration: 2 });
     },
   },
-
 
   reducers: {
     SAVE(state, action) {

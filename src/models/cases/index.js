@@ -31,7 +31,12 @@ export default {
   subscriptions: {
     setup({ dispatch, history }) {
       return history.listen(({ pathname, search }) => {
-        if (pathname === '/home' || pathname === '/cases/all') {
+        if (pathname === '/home') {
+          // TODO: REFACTOR
+          dispatch({ type: 'RESET_FILTERS_OF_CASES_OF_LOGGED_IN_USER' });
+        }
+
+        if (pathname === '/cases/all') {
           // TODO: REFACTOR
           dispatch({ type: 'RESET_FILTERS' });
         }

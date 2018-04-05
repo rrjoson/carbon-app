@@ -3,6 +3,7 @@
   "scripts": {
     "start": "roadhog server",
     "build": "roadhog build",
+    "now-start": "serve --single ./dist",
     "lint": "eslint --ext .js src test"
   },
   "engines": {
@@ -23,7 +24,8 @@
     "react": "^16.2.0",
     "react-autobind": "^1.0.6",
     "react-dom": "^16.2.0",
-    "react-helmet": "^5.2.0"
+    "react-helmet": "^5.2.0",
+    "serve": "^6.5.3"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",

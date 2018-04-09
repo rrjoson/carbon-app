@@ -42,6 +42,7 @@ function HomeTable(props) {
       <Table
         columns={columns}
         dataSource={dataSource}
+        pagination={dataSource.length !== 1}
       />
     </div>
   );

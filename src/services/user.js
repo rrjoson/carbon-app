@@ -6,6 +6,8 @@ const LOGOUT_URL = `${BASE_URL}/auth/logout`;
 
 const ADD_USER_URL = `${BASE_URL}/auth/signup`;
 const ACCOUNT_URL = `${BASE_URL}/user`;
+const ACCOUNT_URL_ME = `${BASE_URL}/user`;
+const ACCOUNT_EDIT_URL = `${BASE_URL}/user/employee`;
 
 export function login(payload) {
   const headers = new Headers();
@@ -38,6 +40,15 @@ export function fetchAccounts(payload) {
   return request.get(ACCOUNT_URL);
 }
 
+export function fetchAccount(id) {
+  return request.get(`${ACCOUNT_URL_ME}/${id}`);
+}
+
 export function updateAccount(id, isActive) {
   return request.put(`${ACCOUNT_URL}/${id}`, { is_active: isActive });
 }
+
+export function updateUser(id, payload) {
+  return request.put(`${ACCOUNT_EDIT_URL}/${id}`, payload);
+}
+

@@ -7,6 +7,8 @@ import {
   logout,
   addUser,
   fetchAccounts,
+  fetchAccount,
+  updateUser,
   updateAccount,
 } from './../../services/user';
 
@@ -18,6 +20,7 @@ export default {
     data: JSON.parse(window.localStorage.getItem(`${config.prefix}-user`)) || {},
     administrator: [],
     employees: [],
+    user: {},
   },
 
   subscriptions: {
@@ -80,12 +83,24 @@ export default {
       yield put({ type: 'SAVE', payload: { administrator: [data[0]] } });
     },
 
+    *FETCH_ACCOUNT({ payload }, { call, put, select }) {
+      const { id } = yield select(state => state.user.data);
+      const { data } = yield call(fetchAccount, id);
+
+      yield put({ type: 'SAVE', payload: { user: data } });
+    },
+
     *UPDATE_ACCOUNT({ payload }, { call, put }) {
       yield call(updateAccount, payload.id, payload.isActive);
 
       const { data } = yield call(fetchAccounts);
       yield put({ type: 'SAVE', payload: { employees: data.splice(1) } });
       yield put({ type: 'SAVE', payload: { administrator: [data[0]] } });
+    },
+
+    *UPDATE_USER({ payload }, { call, put, select }) {
+      const { id } = yield select(state => state.user.data);
+      yield call(updateUser, id, payload);
     },
   },
 

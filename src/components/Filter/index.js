@@ -101,6 +101,30 @@ function Filter(props) {
         }
       </Dropdown>
 
+
+      <Dropdown
+        overlay={
+          <Menu onClick={({ item }) => onFilterCases({ key: 'systemsEngineerLead', value: item.props.children })}>
+            {
+              engineers.map((engineer, index) => {
+                return <Menu.Item key={index}>{engineer.fullName}</Menu.Item>;
+              })
+            }
+          </Menu>
+        }
+      >
+        {
+          (filters.systemsEngineerLead)
+          ? <Button style={{ marginLeft: 8 }} type="primary">
+            {/* HACK */}
+            {filters.systemsEngineerLead.replace(/[{()}]/g, '')} <Icon type="down" />
+          </Button>
+          : <Button style={{ marginLeft: 8 }}>
+            SE Lead <Icon type="down" />
+          </Button>
+        }
+      </Dropdown>
+
       <Dropdown
         overlay={
           <Menu onClick={({ item }) => onFilterCases({ key: 'severity', value: item.props.eventKey })}>

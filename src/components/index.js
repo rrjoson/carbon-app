@@ -17,6 +17,7 @@ import Expiration from './Expiration';
 import Loader from './Loader';
 import RestrictedComponent from './RestrictedComponent';
 import RestrictedPage from './RestrictedPage';
+import Switch from './Switch';
 
 export {
   Typography,
@@ -38,4 +39,5 @@ export {
   Loader,
   RestrictedComponent,
   RestrictedPage,
+  Switch,
 };

@@ -42,7 +42,7 @@ function HomeTable(props) {
     title: 'Last Updated',
     dataIndex: 'lastupdated',
     sorter: (a, b) => moment(a.lastupdated, 'YYYY-MM-DD').diff(moment(b.lastupdated, 'YYYY-MM-DD')),
-    render: date => moment(date, 'YYYY-MM-DD').format('DD/MM/YYYY'),
+    render: date => `${Math.abs(moment(date).diff(moment(), 'days'))} days`,
   }, {
     title: 'Actions',
     dataIndex: 'actions',

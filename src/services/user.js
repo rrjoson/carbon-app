@@ -5,6 +5,7 @@ const LOGIN_URL = `${BASE_URL}/auth/login`;
 const LOGOUT_URL = `${BASE_URL}/auth/logout`;
 
 const ADD_USER_URL = `${BASE_URL}/auth/signup`;
+const FETCH_ACCOUNT_URL = `${BASE_URL}/user`;
 
 export function login(payload) {
   const headers = new Headers();
@@ -32,3 +33,8 @@ export function logout() {
 export function addUser(payload) {
   return request.post(ADD_USER_URL, payload);
 }
+
+export function fetchAccounts(payload) {
+  return request.get(FETCH_ACCOUNT_URL);
+}
+

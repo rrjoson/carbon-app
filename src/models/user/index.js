@@ -6,6 +6,7 @@ import {
   login,
   logout,
   addUser,
+  fetchAccounts,
 } from './../../services/user';
 
 export default {
@@ -14,6 +15,8 @@ export default {
 
   state: {
     data: JSON.parse(window.localStorage.getItem(`${config.prefix}-user`)) || {},
+    administrator: [],
+    employees: [],
   },
 
   subscriptions: {
@@ -64,10 +67,16 @@ export default {
       }
     },
 
-
     *ADD_USER({ payload }, { call, put }) {
       const { data } = yield call(addUser, payload);
       notification['success']({ message: 'User added.', duration: 2 });
+    },
+
+    *FETCH_ACCOUNTS({ payload }, { call, put }) {
+      const { data } = yield call(fetchAccounts);
+
+      yield put({ type: 'SAVE', payload: { employees: data.splice(1) } });
+      yield put({ type: 'SAVE', payload: { administrator: [data[0]] } });
     },
   },
 

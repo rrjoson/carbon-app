@@ -23,10 +23,10 @@ class Dashboard extends Component {
 
     return (
       <div className={styles.dashboard}>
-        <Header>Administrator</Header>
+        <Header type="administrator" />
         <Table data={administrator} />
 
-        <Header>Glo-cal Employees</Header>
+        <Header type="employees" />
         <Table data={employees} />
       </div>
     );

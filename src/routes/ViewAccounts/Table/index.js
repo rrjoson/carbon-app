@@ -1,8 +1,7 @@
 import React from 'react';
-import moment from 'moment';
 
 import styles from './styles.css';
-import { Table, Link, Switch } from './../../../components';
+import { Table, Switch } from './../../../components';
 
 function HomeTable(props) {
   const columns = [{

@@ -4,6 +4,8 @@ import { connect } from 'dva';
 import Header from './Header';
 import Table from './Table';
 
+import { RestrictedPage } from './../../components';
+
 import styles from './styles.css';
 
 class Dashboard extends Component {
@@ -22,13 +24,15 @@ class Dashboard extends Component {
     } = this.props;
 
     return (
-      <div className={styles.dashboard}>
-        <Header type="administrator" />
-        <Table data={administrator} />
+      <RestrictedPage action="ADD_USER">
+        <div className={styles.dashboard}>
+          <Header type="administrator" />
+          <Table data={administrator} />
 
-        <Header type="employees" />
-        <Table data={employees} />
-      </div>
+          <Header type="employees" />
+          <Table data={employees} />
+        </div>
+      </RestrictedPage>
     );
   }
 }

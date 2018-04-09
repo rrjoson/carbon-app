@@ -68,8 +68,11 @@ const Routers = ({ history, app }) => {
       path: '/activities/:engineerName',
       component: () => import('./routes/ViewActivities'),
     }, {
-      path: '/users/add',
+      path: '/accounts',
       component: () => import('./routes/ViewAccounts'),
+    }, {
+      path: '/accounts/add',
+      component: () => import('./routes/AddAccount'),
     }, {
       path: '/login',
       component: () => import('./routes/Login'),

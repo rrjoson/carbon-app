@@ -44,7 +44,7 @@ const menuItems = [{
   icon: 'area-chart',
   label: 'Reports',
 }, {
-  url: '/users/add',
+  url: '/accounts',
   icon: 'team',
   label: 'Accounts',
 }];

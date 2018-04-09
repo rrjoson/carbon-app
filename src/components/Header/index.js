@@ -41,7 +41,7 @@ const Header = (props) => {
     if (path === '/licenses') return <Search onTextChange={text => onSearchLicenses(text)} placeholder="Search a license..." />;
     if (path.includes('/licenses')) return 'License';
 
-    if (path.includes('users')) return 'Accounts';
+    if (path.includes('accounts')) return 'Accounts';
 
     return '';
   };
@@ -63,7 +63,7 @@ const Header = (props) => {
 
     if (path.includes('licenses')) return '/cases/add';
 
-    if (path.includes('users')) return '/cases/add';
+    if (path.includes('accounts')) return '/cases/add';
 
     return '';
   };
@@ -85,7 +85,7 @@ const Header = (props) => {
 
     if (path.includes('licenses')) return 'New Case';
 
-    if (path.includes('users')) return 'New Case';
+    if (path.includes('accounts')) return 'New Case';
 
     return '';
   };

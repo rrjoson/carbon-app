@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 
-import AddUserHeader from './AddUserHeader';
-import AddUserForm from './AddUserForm';
+import Header from './Header';
+import Form from './Form';
 
 import { RestrictedPage } from './../../components';
 
@@ -26,8 +26,8 @@ class AddUser extends Component {
     return (
       <RestrictedPage action="ADD_USER">
         <div className={styles.addClients}>
-          <AddUserHeader />
-          <AddUserForm
+          <Header />
+          <Form
             loading={loading}
             onSave={data => dispatch({ type: 'user/ADD_USER', payload: data })}
           />

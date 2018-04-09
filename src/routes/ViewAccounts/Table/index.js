@@ -4,6 +4,8 @@ import styles from './styles.css';
 import { Table, Switch } from './../../../components';
 
 function HomeTable(props) {
+  const { onToggleStatus } = props;
+
   const columns = [{
     title: 'Name',
     dataIndex: 'name',
@@ -22,17 +24,19 @@ function HomeTable(props) {
     sorter: (a, b) => a.contactNumber[0][0] - b.contactNumber[0][0],
   }, {
     title: 'Status',
-    dataIndex: 'status',
-    render: () => <Switch defaultChecked onChange={() => {}} />,
+    dataIndex: 'isActive',
+    render: (isActive, record) => <Switch checked={isActive} onChange={() => onToggleStatus(record.id, !isActive)} />,
   }];
 
   const dataSource = props.data.map((item, index) => {
     return {
       key: index,
+      id: item.userid,
       name: item.fullName,
       position: item.position,
       email: item.email,
       contactNumber: item.contactNumber,
+      isActive: item.is_active,
     };
   });
 

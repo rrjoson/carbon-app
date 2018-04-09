@@ -7,6 +7,7 @@ import {
   logout,
   addUser,
   fetchAccounts,
+  updateAccount,
 } from './../../services/user';
 
 export default {
@@ -75,6 +76,14 @@ export default {
     *FETCH_ACCOUNTS({ payload }, { call, put }) {
       const { data } = yield call(fetchAccounts);
 
+      yield put({ type: 'SAVE', payload: { employees: data.splice(1) } });
+      yield put({ type: 'SAVE', payload: { administrator: [data[0]] } });
+    },
+
+    *UPDATE_ACCOUNT({ payload }, { call, put }) {
+      yield call(updateAccount, payload.id, payload.isActive);
+
+      const { data } = yield call(fetchAccounts);
       yield put({ type: 'SAVE', payload: { employees: data.splice(1) } });
       yield put({ type: 'SAVE', payload: { administrator: [data[0]] } });
     },

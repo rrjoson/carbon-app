@@ -19,6 +19,7 @@ class Dashboard extends Component {
 
   render() {
     const {
+      dispatch,
       administrator,
       employees,
     } = this.props;
@@ -27,10 +28,16 @@ class Dashboard extends Component {
       <RestrictedPage action="ADD_USER">
         <div className={styles.dashboard}>
           <Header type="administrator" />
-          <Table data={administrator} />
+          <Table
+            data={administrator}
+            onToggleStatus={(id, isActive) => dispatch({ type: 'user/UPDATE_ACCOUNT', payload: { id, isActive } })}
+          />
 
           <Header type="employees" />
-          <Table data={employees} />
+          <Table
+            data={employees}
+            onToggleStatus={(id, isActive) => dispatch({ type: 'user/UPDATE_ACCOUNT', payload: { id, isActive } })}
+          />
         </div>
       </RestrictedPage>
     );

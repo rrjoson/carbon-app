@@ -2,8 +2,8 @@ import React from 'react';
 import moment from 'moment';
 
 import styles from './styles.css';
-import { Table, Link, Status, Avatar } from './../../../components';
-import { getSeverityValue } from './../../../utils/data';
+import { Table, Link, Status, Avatar } from './../../../../components';
+import { getSeverityValue } from './../../../../utils/data';
 
 function HomeTable(props) {
   const columns = [{

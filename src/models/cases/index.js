@@ -7,6 +7,7 @@ import {
   fetchAllCases,
   fetchCasesByQuery,
   fetchCasesByFilter,
+  fetchCasesBySeverity,
   fetchCasesOfLoggedInUser,
   fetchCasesOfLoggedInUserByFilter,
   fetchCase,
@@ -23,6 +24,7 @@ export default {
 
   state: {
     data: [],
+    list: [[], [], [], []],
     filters: {},
     nextId: null,
     selected: null,
@@ -74,6 +76,14 @@ export default {
 
       const { data } = yield call(fetchCasesOfLoggedInUserByFilter, user.fullName, serialize(updatedFilters));
       yield put({ type: 'SAVE', payload: { data } });
+    },
+
+    *FETCH_CASES_BY_SEVERITY({ payload }, { call, put, select }) {
+      const list = yield select(state => state.cases.list);
+      const { data } = yield call(fetchCasesBySeverity, payload);
+
+      list[payload - 1] = data;
+      yield put({ type: 'SAVE', payload: { list } });
     },
 
     *FETCH_CASES_OF_LOGGED_IN_USER({ payload }, { call, put, select }) {

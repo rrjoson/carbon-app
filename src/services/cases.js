@@ -17,6 +17,10 @@ export function fetchCasesByQuery(searchQuery) {
   return request.get(`${FETCH_CASES_BY_QUERY}?q=${searchQuery}`);
 }
 
+export function fetchCasesBySeverity(severity) {
+  return request.get(`${FETCH_CASES_BY_FILTER}?severity=${severity}`);
+}
+
 export function fetchCasesOfLoggedInUser(user) {
   return request.get(`${FETCH_CASES_BY_USER}?user={${user}}`);
 }

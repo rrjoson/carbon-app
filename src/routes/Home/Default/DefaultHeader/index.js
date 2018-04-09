@@ -2,7 +2,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 
 import { Button } from 'antd';
-import { Link, Typography, RestrictedComponent } from './../../../components';
+import { Link, Typography, RestrictedComponent } from './../../../../components';
 
 import styles from './styles.css';
 

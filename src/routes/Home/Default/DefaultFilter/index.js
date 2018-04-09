@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './styles.css';
-import { Filter } from './../../../components';
+import { Filter } from './../../../../components';
 
 function HomeFilter(props) {
   const {

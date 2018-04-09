@@ -1,65 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 
-import HomeTable from './HomeTable';
-import HomeHeader from './HomeHeader';
-import HomeFilter from './HomeFilter';
+import Default from './Default';
+import Dashboard from './Dashboard';
 
 import styles from './styles.css';
 
 class Home extends Component {
-  componentDidMount() {
-    const {
-      dispatch,
-    } = this.props;
-
-    dispatch({ type: 'cases/FETCH_CASES_OF_LOGGED_IN_USER' });
-    dispatch({ type: 'clients/FETCH_CLIENTS' });
-    dispatch({ type: 'engineers/FETCH_ENGINEERS' });
-    dispatch({ type: 'vendors/FETCH_VENDORS' });
-    dispatch({ type: 'products/FETCH_PRODUCTS' });
-  }
-
   render() {
     const {
-      dispatch,
-      cases,
-      filters,
-      clients,
-      engineers,
-      vendors,
-      products,
+      user,
     } = this.props;
 
-    return (
-      <div className={styles.dashboard}>
-        <HomeHeader />
-        <HomeFilter
-          onFilterCases={data => dispatch({ type: 'cases/FETCH_CASES_OF_LOGGED_IN_USER_BY_FITLER', payload: data })}
-          onResetFilters={() => dispatch({ type: 'cases/RESET_FILTERS_OF_CASES_OF_LOGGED_IN_USER' })}
-          onSelectVendor={data => dispatch({ type: 'products/FETCH_PRODUCTS_OF_VENDOR', payload: data })}
-          filters={filters}
-          clients={clients}
-          engineers={engineers}
-          vendors={vendors}
-          products={products}
-        />
-        <HomeTable
-          data={cases}
-        />
-      </div>
-    );
+    if (user.position === 'Director' || user.position === 'Account Manager') {
+      return <Dashboard />;
+    }
+
+    return <Default />;
   }
 }
 
 function mapStateToProps(state) {
   return {
-    cases: state.cases.data,
-    filters: state.cases.filters,
-    clients: state.clients.data,
-    engineers: state.engineers.data,
-    vendors: state.vendors.data,
-    products: state.products.data,
+    user: state.user.data,
   };
 }
 

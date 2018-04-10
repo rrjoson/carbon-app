@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 
-import Header from './Header';
-import Table from './Table';
+import ViewAccountsHeader from './ViewAccountsHeader';
+import ViewAccountsTable from './ViewAccountsTable';
 
 import { RestrictedPage } from './../../components';
 
@@ -27,14 +27,14 @@ class Dashboard extends Component {
     return (
       <RestrictedPage action="ADD_USER">
         <div className={styles.dashboard}>
-          <Header type="administrator" />
-          <Table
+          <ViewAccountsHeader type="administrator" />
+          <ViewAccountsTable
             data={administrator}
             onToggleStatus={(id, isActive) => dispatch({ type: 'user/UPDATE_ACCOUNT', payload: { id, isActive } })}
           />
 
-          <Header type="employees" />
-          <Table
+          <ViewAccountsHeader type="employees" />
+          <ViewAccountsTable
             data={employees}
             onToggleStatus={(id, isActive) => dispatch({ type: 'user/UPDATE_ACCOUNT', payload: { id, isActive } })}
           />

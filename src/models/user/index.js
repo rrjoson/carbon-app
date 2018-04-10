@@ -21,7 +21,7 @@ export default {
     data: JSON.parse(window.localStorage.getItem(`${config.prefix}-user`)) || {},
     administrator: [],
     employees: [],
-    user: {},
+    selected: {},
   },
 
   subscriptions: {
@@ -85,10 +85,8 @@ export default {
     },
 
     *FETCH_ACCOUNT({ payload }, { call, put, select }) {
-      const { id } = yield select(state => state.user.data);
-      const { data } = yield call(fetchAccount, id);
-
-      yield put({ type: 'SAVE', payload: { user: data } });
+      const { data } = yield call(fetchAccount, payload);
+      yield put({ type: 'SAVE', payload: { selected: data } });
     },
 
     *UPDATE_ACCOUNT({ payload }, { call, put }) {
@@ -100,13 +98,13 @@ export default {
     },
 
     *UPDATE_USER({ payload }, { call, put, select }) {
-      const { id } = yield select(state => state.user.data);
+      const { id } = yield select(state => state.user.selected);
       yield call(updateUser, id, payload);
       notification['success']({ message: 'User updated.', duration: 2 });
     },
 
     *UPDATE_PASSWORD({ payload }, { call, put, select }) {
-      const { id } = yield select(state => state.user.data);
+      const { id } = yield select(state => state.user.selected);
       yield call(updatePassword, id, payload);
       notification['success']({ message: 'Password updated.', duration: 2 });
     },

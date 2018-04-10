@@ -13,9 +13,10 @@ class AddUser extends Component {
   componentDidMount() {
     const {
       dispatch,
+      match,
     } = this.props;
 
-    dispatch({ type: 'user/FETCH_ACCOUNT' });
+    dispatch({ type: 'user/FETCH_ACCOUNT', payload: match.params.id });
   }
 
   render() {
@@ -23,7 +24,7 @@ class AddUser extends Component {
       dispatch,
       isUpdatingUser,
       isUpdatingPassword,
-      user,
+      selectedUser,
     } = this.props;
 
     return (
@@ -32,7 +33,7 @@ class AddUser extends Component {
           <EditAccountHeader />
           <EditAccountForm
             loading={isUpdatingUser}
-            user={user}
+            user={selectedUser}
             onSave={data => dispatch({ type: 'user/UPDATE_USER', payload: data })}
           />
           <EditAccountPasswordForm
@@ -49,7 +50,7 @@ function mapStateToProps(state) {
   return {
     isUpdatingUser: state.loading.effects['user/UPDATE_USER'],
     isUpdatingPassword: state.loading.effects['user/UPDATE_PASSWORD'],
-    user: state.user.user,
+    selectedUser: state.user.selected,
   };
 }
 

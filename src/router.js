@@ -72,6 +72,9 @@ const Routers = ({ history, app }) => {
       component: () => import('./routes/ViewAccounts'),
     }, {
       path: '/accounts/add',
+      component: () => import('./routes/AddAccount'),
+    }, {
+      path: '/accounts/:id/edit',
       component: () => import('./routes/EditAccount'),
     }, {
       path: '/login',

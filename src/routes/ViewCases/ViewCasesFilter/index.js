@@ -11,6 +11,7 @@ function ViewCasesFilter(props) {
     products,
     onFilterCases,
     onResetFilters,
+    onRemoveFilter,
     onSelectVendor,
   } = props;
 
@@ -19,6 +20,7 @@ function ViewCasesFilter(props) {
       <Filter
         onFilterCases={onFilterCases}
         onResetFilters={onResetFilters}
+        onRemoveFilter={onRemoveFilter}
         onSelectVendor={onSelectVendor}
         filters={filters}
         clients={clients}

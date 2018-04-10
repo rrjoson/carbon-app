@@ -5,12 +5,14 @@
       "extraBabelPlugins": [
         "dva-hmr",
         "transform-runtime",
+        "jsx-control-statements",
         ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
       ]
     },
     "production": {
       "extraBabelPlugins": [
         "transform-runtime",
+        "jsx-control-statements",
         ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
       ]
     }

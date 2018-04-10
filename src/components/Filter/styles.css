@@ -1,8 +1,16 @@
 .filter {
+  margin: 36px 0 24px;
+}
+
+.row {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin: 36px 0 24px;
+  flex-wrap: wrap;
+}
+
+.row:first-child {
+  margin-bottom: 10px;
 }
 
 .title {

@@ -490,7 +490,7 @@ babel-code-frame@^6.16.0, babel-code-frame@^6.22.0, babel-code-frame@^6.26.0:
     esutils "^2.0.2"
     js-tokens "^3.0.2"
 
-babel-core@^6.20.0, babel-core@^6.26.0:
+babel-core@^6.1.2, babel-core@^6.20.0, babel-core@^6.26.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-6.26.0.tgz#af32f78b31a6fcef119c87b0fd8d9753f03a0bb8"
   dependencies:
@@ -696,6 +696,13 @@ babel-plugin-import@^1.6.3:
   dependencies:
     "@babel/helper-module-imports" "^7.0.0-beta.34"
 
+babel-plugin-jsx-control-statements@^3.2.8:
+  version "3.2.8"
+  resolved "https://registry.yarnpkg.com/babel-plugin-jsx-control-statements/-/babel-plugin-jsx-control-statements-3.2.8.tgz#6d2c265d51e82518b03cbbec3a57bd37ef955c7e"
+  dependencies:
+    babel-core "^6.1.2"
+    babel-plugin-syntax-jsx "^6.1.18"
+
 babel-plugin-react-require@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-react-require/-/babel-plugin-react-require-3.0.0.tgz#2e4e7b4496b93a654a1c80042276de4e4eeb20e3"
@@ -744,7 +751,7 @@ babel-plugin-syntax-function-bind@^6.8.0:
   version "6.13.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-function-bind/-/babel-plugin-syntax-function-bind-6.13.0.tgz#48c495f177bdf31a981e732f55adc0bdd2601f46"
 
-babel-plugin-syntax-jsx@^6.3.13, babel-plugin-syntax-jsx@^6.8.0:
+babel-plugin-syntax-jsx@^6.1.18, babel-plugin-syntax-jsx@^6.3.13, babel-plugin-syntax-jsx@^6.8.0:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-jsx/-/babel-plugin-syntax-jsx-6.18.0.tgz#0af32a9a6e13ca7a3fd5069e62d7b0f58d0d8946"
 

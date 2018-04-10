@@ -59,8 +59,7 @@ export default {
 
     *FETCH_CASES_BY_FITLER({ payload }, { call, put, select }) {
       const currentFilters = yield select(state => state.cases.filters);
-
-      const updatedFilters = { ...currentFilters, [payload.key]: payload.value };
+      const updatedFilters = { ...currentFilters, [payload.key]: [...(currentFilters[payload.key] ? currentFilters[payload.key] : []), payload.value] };
       yield put({ type: 'SAVE', payload: { filters: updatedFilters } });
 
       const { data } = yield call(fetchCasesByFilter, serialize(updatedFilters));
@@ -68,12 +67,11 @@ export default {
     },
 
     *FETCH_CASES_OF_LOGGED_IN_USER_BY_FITLER({ payload }, { call, put, select }) {
-      const user = yield select(state => state.user.data);
       const currentFilters = yield select(state => state.cases.filters);
-
-      const updatedFilters = { ...currentFilters, [payload.key]: payload.value };
+      const updatedFilters = { ...currentFilters, [payload.key]: [...(currentFilters[payload.key] ? currentFilters[payload.key] : []), payload.value] };
       yield put({ type: 'SAVE', payload: { filters: updatedFilters } });
 
+      const user = yield select(state => state.user.data);
       const { data } = yield call(fetchCasesOfLoggedInUserByFilter, user.fullName, serialize(updatedFilters));
       yield put({ type: 'SAVE', payload: { data } });
     },
@@ -97,6 +95,16 @@ export default {
       yield put({ type: 'SAVE', payload: { filters: {} } });
 
       const { data } = yield call(fetchAllCases);
+      yield put({ type: 'SAVE', payload: { data } });
+    },
+
+    *REMOVE_FILTER({ payload }, { call, put, select }) {
+      const currentFilters = yield select(state => state.cases.filters);
+      const updatedFilters = { ...currentFilters, [payload.key]: currentFilters[payload.key].filter(item => item !== payload.value) };
+
+      yield put({ type: 'SAVE', payload: { filters: updatedFilters } });
+
+      const { data } = yield call(fetchCasesByFilter, serialize(updatedFilters));
       yield put({ type: 'SAVE', payload: { data } });
     },
 

@@ -37,6 +37,7 @@ class ViewCases extends Component {
         <ViewCasesFilter
           onFilterCases={data => dispatch({ type: 'cases/FETCH_CASES_BY_FITLER', payload: data })}
           onResetFilters={() => dispatch({ type: 'cases/RESET_FILTERS' })}
+          onRemoveFilter={data => dispatch({ type: 'cases/REMOVE_FILTER', payload: data })}
           onSelectVendor={data => dispatch({ type: 'products/FETCH_PRODUCTS_OF_VENDOR', payload: data })}
           filters={filters}
           clients={clients}

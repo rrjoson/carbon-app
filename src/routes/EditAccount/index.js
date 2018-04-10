@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 
-import Header from './Header';
-import Form from './Form';
+import EditAccountHeader from './EditAccountHeader';
+import EditAccountForm from './EditAccountForm';
+import EditAccountPasswordForm from './EditAccountPasswordForm';
 
 import { RestrictedPage } from './../../components';
 
@@ -20,18 +21,23 @@ class AddUser extends Component {
   render() {
     const {
       dispatch,
-      loading,
+      isUpdatingUser,
+      isUpdatingPassword,
       user,
     } = this.props;
 
     return (
       <RestrictedPage action="ADD_USER">
         <div className={styles.addClients}>
-          <Header />
-          <Form
-            loading={loading}
+          <EditAccountHeader />
+          <EditAccountForm
+            loading={isUpdatingUser}
             user={user}
             onSave={data => dispatch({ type: 'user/UPDATE_USER', payload: data })}
+          />
+          <EditAccountPasswordForm
+            loading={isUpdatingPassword}
+            onSave={data => dispatch({ type: 'user/UPDATE_PASSWORD', payload: data })}
           />
         </div>
       </RestrictedPage>
@@ -41,7 +47,8 @@ class AddUser extends Component {
 
 function mapStateToProps(state) {
   return {
-    loading: state.loading.effects['user/ADD_USER'],
+    isUpdatingUser: state.loading.effects['user/UPDATE_USER'],
+    isUpdatingPassword: state.loading.effects['user/UPDATE_PASSWORD'],
     user: state.user.user,
   };
 }

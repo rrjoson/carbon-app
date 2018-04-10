@@ -146,7 +146,6 @@ class AddUserForm extends Component {
             {!this.props.loading ? <Icon type="save" /> : null}
             Save
           </Button>
-          <Button>Cancel</Button>
         </FormItem>
       </Form>
     );

@@ -52,3 +52,6 @@ export function updateUser(id, payload) {
   return request.put(`${ACCOUNT_EDIT_URL}/${id}`, payload);
 }
 
+export function updatePassword(id, payload) {
+  return request.put(`${ACCOUNT_URL_ME}/password/${id}`, payload);
+}

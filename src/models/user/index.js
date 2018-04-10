@@ -9,6 +9,7 @@ import {
   fetchAccounts,
   fetchAccount,
   updateUser,
+  updatePassword,
   updateAccount,
 } from './../../services/user';
 
@@ -101,6 +102,13 @@ export default {
     *UPDATE_USER({ payload }, { call, put, select }) {
       const { id } = yield select(state => state.user.data);
       yield call(updateUser, id, payload);
+      notification['success']({ message: 'User updated.', duration: 2 });
+    },
+
+    *UPDATE_PASSWORD({ payload }, { call, put, select }) {
+      const { id } = yield select(state => state.user.data);
+      yield call(updatePassword, id, payload);
+      notification['success']({ message: 'Password updated.', duration: 2 });
     },
   },
 

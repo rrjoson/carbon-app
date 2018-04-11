@@ -3,7 +3,9 @@ import { Icon } from 'antd';
 import { connect } from 'dva';
 import { restrictions } from '../../utils/restrictions';
 
-import { H3 } from './../../components/Typography';
+import forbidden from '../../assets/forbidden.svg';
+
+import { H1, H4 } from './../../components/Typography';
 
 import styles from './styles.css';
 
@@ -18,8 +20,11 @@ class RestrictedPage extends Component {
     if (restrictions[user.position].includes(action)) {
       return (
         <div className={styles.restrictedPage}>
-          <Icon type="frown-o" style={{ fontSize: 50 }} />
-          <H3>Sorry, but you can't access this page.</H3>
+          <img className={styles.image} src={forbidden} />
+          <div className={styles.text}>
+            <H1>403</H1>
+            <H4>Sorry, but you can't access this page.</H4>
+          </div>
         </div>
       );
     }

@@ -8,5 +8,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
+
+  color: #7f7f7f;
+}
+
+.text {
+  display: flex;
   flex-direction: column;
+}
+
+.image {
+  margin-right: 100px;
+  width: 300px;
 }

@@ -3,12 +3,17 @@ import { Icon } from 'antd';
 
 import styles from './styles.css';
 
-import { H3 } from './../../components/Typography';
+import notFound from '../../assets/not-found.svg';
+
+import { H1, H4 } from './../../components/Typography';
 
 const Error = () => (
   <div className={styles.error}>
-    <Icon type="frown-o" style={{ fontSize: 50 }} />
-    <H3>404 - Page not found</H3>
+    <img className={styles.image} src={notFound} />
+    <div className={styles.text}>
+      <H1>404</H1>
+      <H4>Page not found</H4>
+    </div>
   </div>
 );
 

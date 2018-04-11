@@ -89,7 +89,6 @@ class EditProductsForm extends Component {
       let found = false;
       let vendorIndex = null;
       for(let i = 0; i < vendors.length; i += 1) {
-        console.warn(product.vendor, vendors[i]['name'])
         if (product.vendor === vendors[i]['name']) {
           vendorIndex = i
           found = true;

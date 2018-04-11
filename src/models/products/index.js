@@ -37,7 +37,6 @@ export default {
     },
 
     *FETCH_PRODUCTS_OF_VENDOR({ payload }, { call, put }) {
-      console.warn(123)
       const { data } = yield call(fetchProductsOfVendor, payload);
       yield put({ type: 'SAVE', payload: { data } });
     },

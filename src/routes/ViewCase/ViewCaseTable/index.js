@@ -39,9 +39,10 @@ function HomeTable(props) {
     title: 'Product',
     dataIndex: 'productName',
   }, {
+    // TODO: REFACTOR
     title: 'Open',
     dataIndex: 'open',
-    render: date => `${Math.abs(moment(date).diff(moment(), 'days'))} days`,
+    render: (date, record) => `${Math.abs(moment(date).diff(record.date_resolved ? moment(record.date_resolved) : moment(), 'days'))} days`,
   }, {
     title: 'Date Raised',
     dataIndex: 'dateRaised',
@@ -69,6 +70,7 @@ function HomeTable(props) {
       severity: item.severity,
       productName: item.productName,
       open: item.dateRaised,
+      dateResolved: item.date_resolved,
       dateRaised: item.dateRaised,
       accountManager: item.accountManager,
     }

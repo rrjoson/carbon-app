@@ -34,10 +34,11 @@ function HomeTable(props) {
     dataIndex: 'productname',
     sorter: (a, b) => a.productname.length - b.productname.length,
   }, {
+    // TODO: REFACTOR
     title: 'Open',
     dataIndex: 'open',
     sorter: (a, b) => Math.abs(moment(a.open).diff(moment(), 'days')) - Math.abs(moment(b.open).diff(moment(), 'days')),
-    render: date => `${Math.abs(moment(date).diff(moment(), 'days'))} days`,
+    render: (date, record) => `${Math.abs(moment(date).diff(record.date_resolved ? moment(record.date_resolved) : moment(), 'days'))} days`,
   }, {
     title: 'Last Updated',
     dataIndex: 'lastupdated',
@@ -64,6 +65,7 @@ function HomeTable(props) {
       casetitle: item.caseTitle,
       productname: item.productName,
       open: item.dateRaised,
+      dateResolved: item.date_resolved,
       lastupdated: item.date_last_updated || item.dateRaised,
       dateraised: item.dateRaised,
       actions: ['View', 'Edit'],

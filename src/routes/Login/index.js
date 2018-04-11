@@ -6,7 +6,13 @@ import LoginForm from './LoginForm';
 import styles from './styles.css';
 
 class Login extends Component {
-  componentDidMount() {}
+  componentDidMount() {
+    const {
+      dispatch,
+    } = this.props;
+
+    dispatch({ type: 'user/CHECK_IF_USER_IS_LOGGED_IN' });
+  }
 
   render() {
     const {

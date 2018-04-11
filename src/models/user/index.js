@@ -65,6 +65,8 @@ export default {
 
       const { locationPathname } = yield select(state => state.app);
 
+      console.warn(isUserLoggedIn)
+
       if (!isUserLoggedIn) {
         yield put(routerRedux.push('/login'));
       } else if (locationPathname === '/login') {

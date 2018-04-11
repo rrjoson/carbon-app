@@ -5,8 +5,6 @@ import EditAccountHeader from './EditAccountHeader';
 import EditAccountForm from './EditAccountForm';
 import EditAccountPasswordForm from './EditAccountPasswordForm';
 
-import { RestrictedPage } from './../../components';
-
 import styles from './styles.css';
 
 class AddUser extends Component {
@@ -28,20 +26,18 @@ class AddUser extends Component {
     } = this.props;
 
     return (
-      <RestrictedPage action="ADD_USER">
-        <div className={styles.addClients}>
-          <EditAccountHeader />
-          <EditAccountForm
-            loading={isUpdatingUser}
-            user={selectedUser}
-            onSave={data => dispatch({ type: 'user/UPDATE_USER', payload: data })}
-          />
-          <EditAccountPasswordForm
-            loading={isUpdatingPassword}
-            onSave={data => dispatch({ type: 'user/UPDATE_PASSWORD', payload: data })}
-          />
-        </div>
-      </RestrictedPage>
+      <div className={styles.addClients}>
+        <EditAccountHeader />
+        <EditAccountForm
+          loading={isUpdatingUser}
+          user={selectedUser}
+          onSave={data => dispatch({ type: 'user/UPDATE_USER', payload: data })}
+        />
+        <EditAccountPasswordForm
+          loading={isUpdatingPassword}
+          onSave={data => dispatch({ type: 'user/UPDATE_PASSWORD', payload: data })}
+        />
+      </div>
     );
   }
 }

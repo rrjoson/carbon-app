@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Icon } from 'antd';
+import { Layout, Icon, Dropdown, Menu } from 'antd';
 import styles from './styles.css';
 
 import { H5 } from './../Typography';
@@ -102,12 +102,27 @@ const Header = (props) => {
               <Button>{getHeaderButtonText(pathname)}</Button>
             </Link>
           </RestrictedComponent>
-          <Link to="/logout">
-            <Button style={{ marginLeft: '5px' }}><Icon type="logout" /> Logout</Button>
-          </Link>
+
         </div>
         <span className={styles.headerAvatar}>
-          <Avatar>{user.fullName[0]}</Avatar>
+          <Dropdown
+            overlay={
+              <Menu className={styles.menu}>
+                <Menu.Item key="1">
+                  <Link to={`/accounts/${user.id}/edit`}>
+                    <Icon type="user" /> Edit Account
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="2">
+                  <Link to="/logout">
+                    <Icon type="logout" /> Logout
+                  </Link>
+                </Menu.Item>
+              </Menu>
+            }
+          >
+            <Avatar>{user.fullName[0]}</Avatar>
+          </Dropdown>
         </span>
       </div>
     </AntHeader>

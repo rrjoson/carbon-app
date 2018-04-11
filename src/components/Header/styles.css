@@ -19,4 +19,11 @@
 
 .headerAvatar {
   margin-left: 5px;
+  cursor: pointer;
+}
+
+.menu {
+  position: relative;
+  top: 10px;
+  width: 150px;
 }

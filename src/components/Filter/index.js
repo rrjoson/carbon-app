@@ -51,7 +51,7 @@ class Filter extends Component {
               <Menu onClick={({ item }) => onFilterCases({ key: 'customer', value: item.props.children })}>
                 {
                   clients.map((client, index) => {
-                    return <Menu.Item key={index}>{client.accountName}</Menu.Item>;
+                    return <Menu.Item disabled={filters.customer ? filters.customer.includes(client.accountName) : false} key={index}>{client.accountName}</Menu.Item>;
                   })
                 }
               </Menu>
@@ -65,10 +65,10 @@ class Filter extends Component {
           <Dropdown
             overlay={
               <Menu onClick={({ item }) => onFilterCases({ key: 'case_status', value: item.props.children })}>
-                <Menu.Item key="Ongoing">Ongoing</Menu.Item>
-                <Menu.Item key="Resolved">Resolved</Menu.Item>
-                <Menu.Item key="Pending (Client)">Pending (Client)</Menu.Item>
-                <Menu.Item key="Pending (Glo-cal)">Pending (Glo-cal)</Menu.Item>
+                <Menu.Item disabled={filters.case_status ? filters.case_status.includes('Ongoing') : false} key="Ongoing">Ongoing</Menu.Item>
+                <Menu.Item disabled={filters.case_status ? filters.case_status.includes('Resolved') : false} key="Resolved">Resolved</Menu.Item>
+                <Menu.Item disabled={filters.case_status ? filters.case_status.includes('Pending (Client)') : false} key="Pending (Client)">Pending (Client)</Menu.Item>
+                <Menu.Item disabled={filters.case_status ? filters.case_status.includes('Pending (Glo-cal)') : false} key="Pending (Glo-cal)">Pending (Glo-cal)</Menu.Item>
               </Menu>
             }
           >
@@ -82,7 +82,7 @@ class Filter extends Component {
               <Menu onClick={({ item }) => onFilterCases({ key: 'assignedSystemsEngineer', value: `{${item.props.children}}` })}>
                 {
                   engineers.map((engineer, index) => {
-                    return <Menu.Item key={index}>{engineer.fullName}</Menu.Item>;
+                    return <Menu.Item disabled={filters.assignedSystemsEngineer ? filters.assignedSystemsEngineer.includes(`{${engineer.fullName}}`) : false} key={index}>{engineer.fullName}</Menu.Item>;
                   })
                 }
               </Menu>
@@ -98,7 +98,7 @@ class Filter extends Component {
               <Menu onClick={({ item }) => onFilterCases({ key: 'systemsEngineerLead', value: item.props.children })}>
                 {
                   engineers.map((engineer, index) => {
-                    return <Menu.Item key={index}>{engineer.fullName}</Menu.Item>;
+                    return <Menu.Item disabled={filters.systemsEngineerLead ? filters.systemsEngineerLead.includes(engineer.fullName) : false} key={index}>{engineer.fullName}</Menu.Item>;
                   })
                 }
               </Menu>
@@ -112,10 +112,10 @@ class Filter extends Component {
           <Dropdown
             overlay={
               <Menu onClick={({ item }) => onFilterCases({ key: 'severity', value: item.props.eventKey })}>
-                <Menu.Item key={1}>1 - Emergency</Menu.Item>
-                <Menu.Item key={2}>2 - Critical</Menu.Item>
-                <Menu.Item key={3}>3 - Major</Menu.Item>
-                <Menu.Item key={4}>4 - Minor</Menu.Item>
+                <Menu.Item disabled={filters.severity ? filters.severity.includes('1') : false} key={1}>1 - Emergency</Menu.Item>
+                <Menu.Item disabled={filters.severity ? filters.severity.includes('2') : false} key={2}>2 - Critical</Menu.Item>
+                <Menu.Item disabled={filters.severity ? filters.severity.includes('3') : false} key={3}>3 - Major</Menu.Item>
+                <Menu.Item disabled={filters.severity ? filters.severity.includes('4') : false} key={4}>4 - Minor</Menu.Item>
               </Menu>
             }
           >
@@ -134,7 +134,7 @@ class Filter extends Component {
               >
                 {
                   vendors.map((vendor, index) => {
-                    return <Menu.Item key={index}>{vendor.principal}</Menu.Item>;
+                    return <Menu.Item disabled={filters.vendor ? filters.vendor.includes(vendor.principal) : false} key={index}>{vendor.principal}</Menu.Item>;
                   })
                 }
               </Menu>
@@ -150,7 +150,7 @@ class Filter extends Component {
               <Menu onClick={({ item }) => onFilterCases({ key: 'productName', value: item.props.children })}>
                 {
                   products.map((product, index) => {
-                    return <Menu.Item key={index}>{product.productName}</Menu.Item>;
+                    return <Menu.Item disabled={filters.productName ? filters.productName.includes(product.productName) : false} key={index}>{product.productName}</Menu.Item>;
                   })
                 }
               </Menu>

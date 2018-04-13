@@ -44,7 +44,7 @@ export default {
       yield put({ type: 'SAVE', payload: { selected: data[0] } });
     },
 
-    *ADD_CLIENT({ payload }, { call, put }) {
+    *ADD_CLIENT({ payload }, { call, put, select }) {
       const { position } = yield select(state => state.user.data);
       if (restrictions[position].includes('ADD_CLIENT')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
 
@@ -66,7 +66,6 @@ export default {
 
   reducers: {
     SAVE(state, action) {
-
       return { ...state, ...action.payload };
     },
   },

@@ -46,7 +46,7 @@ function HomeTable(props) {
   }, {
     title: 'Date Raised',
     dataIndex: 'dateRaised',
-    render: date => moment(date, 'YYYY-MM-DD').format('DD/MM/YYYY')
+    render: date => moment(date, 'YYYY-MM-DD').format('MM/DD/YYYY')
   }, {
     title: 'Assigned AM',
     dataIndex: 'accountManager',

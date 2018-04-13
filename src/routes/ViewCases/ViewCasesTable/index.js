@@ -65,7 +65,7 @@ function ViewCasesTable(props) {
     title: 'Date Raised',
     dataIndex: 'dateraised',
     sorter: (a, b) => moment(a.dateraised, 'YYYY-MM-DD').diff(moment(b.dateraised, 'YYYY-MM-DD')),
-    render: date => moment(date, "YYYY-MM-DD").format('DD/MM/YYYY')
+    render: date => moment(date, "YYYY-MM-DD").format('MM/DD/YYYY')
   }, {
     title: 'Actions',
     dataIndex: 'actions',

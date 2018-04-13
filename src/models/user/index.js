@@ -9,8 +9,10 @@ import {
   fetchAccounts,
   fetchAccount,
   updateUser,
-  updatePassword,
-  updateAccount,
+  updateOtherUser,
+  updateOwnPassword,
+  updateAccountPassword,
+  updateStatus,
 } from './../../services/user';
 
 export default {
@@ -89,8 +91,8 @@ export default {
       yield put({ type: 'SAVE', payload: { selected: data } });
     },
 
-    *UPDATE_ACCOUNT({ payload }, { call, put }) {
-      yield call(updateAccount, payload.id, payload.isActive);
+    *UPDATE_STATUS({ payload }, { call, put }) {
+      yield call(updateStatus, payload.id, payload.isActive);
 
       const { data } = yield call(fetchAccounts);
       yield put({ type: 'SAVE', payload: { employees: data.splice(1) } });
@@ -98,14 +100,28 @@ export default {
     },
 
     *UPDATE_USER({ payload }, { call, put, select }) {
-      const { id } = yield select(state => state.user.selected);
-      yield call(updateUser, id, payload);
+      const { userid } = yield select(state => state.user.selected);
+      const { position } = yield select(state => state.user.data);
+
+      if (position === 'Director') {
+        yield call(updateOtherUser, userid, payload);
+      } else {
+        yield call(updateUser, userid, payload);
+      }
+
       notification['success']({ message: 'User updated.', duration: 2 });
     },
 
     *UPDATE_PASSWORD({ payload }, { call, put, select }) {
-      const { id } = yield select(state => state.user.selected);
-      yield call(updatePassword, id, payload);
+      const { userid } = yield select(state => state.user.selected);
+      const { position } = yield select(state => state.user.data);
+
+      if (position === 'Director') {
+        yield call(updateAccountPassword, userid, payload);
+      } else {
+        yield call(updateOwnPassword, userid, payload);
+      }
+
       notification['success']({ message: 'Password updated.', duration: 2 });
     },
   },

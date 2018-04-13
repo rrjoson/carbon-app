@@ -30,13 +30,13 @@ class Dashboard extends Component {
           <ViewAccountsHeader type="administrator" />
           <ViewAccountsTable
             data={administrator}
-            onToggleStatus={(id, isActive) => dispatch({ type: 'user/UPDATE_ACCOUNT', payload: { id, isActive } })}
+            onToggleStatus={(id, isActive) => dispatch({ type: 'user/UPDATE_STATUS', payload: { id, isActive } })}
           />
 
           <ViewAccountsHeader type="employees" />
           <ViewAccountsTable
             data={employees}
-            onToggleStatus={(id, isActive) => dispatch({ type: 'user/UPDATE_ACCOUNT', payload: { id, isActive } })}
+            onToggleStatus={(id, isActive) => dispatch({ type: 'user/UPDATE_STATUS', payload: { id, isActive } })}
           />
         </div>
       </RestrictedPage>

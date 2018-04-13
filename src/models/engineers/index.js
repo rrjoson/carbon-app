@@ -37,7 +37,6 @@ export default {
     },
   },
 
-
   reducers: {
     SAVE(state, action) {
       return { ...state, ...action.payload };

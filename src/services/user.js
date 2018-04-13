@@ -8,6 +8,8 @@ const ADD_USER_URL = `${BASE_URL}/auth/signup`;
 const ACCOUNT_URL = `${BASE_URL}/user`;
 const ACCOUNT_URL_ME = `${BASE_URL}/user`;
 const ACCOUNT_EDIT_URL = `${BASE_URL}/user/employee`;
+const ACCOUNT_DIRECTOR_EDIT_URL = `${BASE_URL}/user/director`;
+const UPDATE_USER_STATUS_URL = `${BASE_URL}/user/director/status`;
 
 export function login(payload) {
   const headers = new Headers();
@@ -44,14 +46,22 @@ export function fetchAccount(id) {
   return request.get(`${ACCOUNT_URL_ME}/${id}`);
 }
 
-export function updateAccount(id, isActive) {
-  return request.put(`${ACCOUNT_URL}/${id}`, { is_active: isActive });
+export function updateStatus(id, isActive) {
+  return request.put(`${UPDATE_USER_STATUS_URL}/${id}`, { is_active: isActive });
 }
 
 export function updateUser(id, payload) {
   return request.put(`${ACCOUNT_EDIT_URL}/${id}`, payload);
 }
 
-export function updatePassword(id, payload) {
+export function updateOwnPassword(id, payload) {
   return request.put(`${ACCOUNT_URL_ME}/password/${id}`, payload);
+}
+
+export function updateAccountPassword(id, payload) {
+  return request.put(`${ACCOUNT_DIRECTOR_EDIT_URL}/password/${id}`, payload);
+}
+
+export function updateOtherUser(id, payload) {
+  return request.put(`${ACCOUNT_DIRECTOR_EDIT_URL}/${id}`, payload);
 }

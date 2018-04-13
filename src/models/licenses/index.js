@@ -43,7 +43,7 @@ export default {
       yield put({ type: 'SAVE', payload: { selected: data } });
     },
 
-    *ADD_LICENSE({ payload }, { call, put }) {
+    *ADD_LICENSE({ payload }, { call, put, select }) {
       const { position } = yield select(state => state.user.data);
       if (restrictions[position].includes('ADD_LICENSE')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
 

@@ -47,6 +47,10 @@ function ViewCasesTable(props) {
     dataIndex: 'casetitle',
     sorter: (a, b) => a.casetitle.length - b.casetitle.length,
   }, {
+    title: 'Vendor',
+    dataIndex: 'vendor',
+    sorter: (a, b) => a.vendor.length - b.vendor.length,
+  }, {
     title: 'Product',
     dataIndex: 'productname',
     sorter: (a, b) => a.productname.length - b.productname.length,
@@ -57,7 +61,7 @@ function ViewCasesTable(props) {
     sorter: (a, b) => Math.abs(moment(a.open).diff(moment(), 'days')) - Math.abs(moment(b.open).diff(moment(), 'days')),
     render: (date, record) => `${Math.abs(moment(date).diff(record.date_resolved ? moment(record.date_resolved) : moment(), 'days'))} days`,
   }, {
-    title: 'Last Updated',
+    title: 'Updated',
     dataIndex: 'lastupdated',
     sorter: (a, b) => moment(a.lastupdated, 'YYYY-MM-DD').diff(moment(b.lastupdated, 'YYYY-MM-DD')),
     render: date => `${Math.abs(moment(date).diff(moment(), 'days'))} days`,
@@ -66,6 +70,11 @@ function ViewCasesTable(props) {
     dataIndex: 'dateraised',
     sorter: (a, b) => moment(a.dateraised, 'YYYY-MM-DD').diff(moment(b.dateraised, 'YYYY-MM-DD')),
     render: date => moment(date, "YYYY-MM-DD").format('MM/DD/YYYY')
+  }, {
+    title: 'Date Resolved',
+    dataIndex: 'dateResolved',
+    sorter: (a, b) => moment(a.dateResolved, 'YYYY-MM-DD').diff(moment(b.dateResolved, 'YYYY-MM-DD')),
+    render: date => date ? moment(date, "YYYY-MM-DD").format('MM/DD/YYYY') : ''
   }, {
     title: 'Actions',
     dataIndex: 'actions',
@@ -89,6 +98,7 @@ function ViewCasesTable(props) {
       severity: item.severity,
       casetitle: item.caseTitle,
       productname: item.productName,
+      vendor: item.vendor,
       open: item.dateRaised,
       dateResolved: item.date_resolved,
       lastupdated: item.date_last_updated || item.dateRaised,
@@ -98,7 +108,7 @@ function ViewCasesTable(props) {
   ));
 
   return (
-    <div>
+    <div className={styles.viewCasesTable}>
       <Table
         columns={columns}
         dataSource={dataSource}

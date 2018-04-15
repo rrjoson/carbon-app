@@ -1,0 +1,9 @@
+.viewCasesTable :global a {
+  font-size: 11px;
+}
+
+.viewCasesTable :global .ant-table-thead > tr > th,
+.viewCasesTable :global .ant-table-tbody > tr > td {
+
+  font-size: 11px;
+}

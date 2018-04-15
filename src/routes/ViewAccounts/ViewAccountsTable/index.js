@@ -30,7 +30,7 @@ function HomeTable(props) {
     title: 'Status',
     dataIndex: 'isActive',
     width: '10%',
-    render: (isActive, record) => <Switch checked={isActive} onChange={() => onToggleStatus(record.id, !isActive)} />,
+    render: (isActive, record) => record.position !== 'Director' && <Switch checked={isActive} onChange={() => onToggleStatus(record.id, !isActive)} />,
   }, {
     title: 'Actions',
     dataIndex: 'actions',

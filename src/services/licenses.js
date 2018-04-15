@@ -1,24 +1,32 @@
 import { request } from '../utils/request';
 import { BASE_URL } from '../constants/api';
 
-const ADD_LICENSE = `${BASE_URL}/license`;
+const LICENSES_URL = `${BASE_URL}/license`;
 
 export function addLicense(payload) {
-  return request.post(ADD_LICENSE, payload);
+  return request.post(LICENSES_URL, payload);
 }
 
 export function updateLicense(licenseId, payload) {
-  return request.put(`${ADD_LICENSE}/${licenseId}`, payload);
+  return request.put(`${LICENSES_URL}/${licenseId}`, payload);
 }
 
-export function fetchLicenses() {
-  return request.get(ADD_LICENSE);
+export function fetchActiveLicenses() {
+  return request.get(LICENSES_URL);
 }
 
-export function fetchLicensesByQuery(searchQuery) {
-  return request.get(`${ADD_LICENSE}?q=${searchQuery}`);
+export function fetchExpiredLicenses() {
+  return request.get(`${LICENSES_URL}/expired`);
+}
+
+export function fetchActiveLicensesByQuery(searchQuery) {
+  return request.get(`${LICENSES_URL}?q=${searchQuery}`);
+}
+
+export function fetchExpiredLicensesByQuery(searchQuery) {
+  return request.get(`${LICENSES_URL}/expired?q=${searchQuery}`);
 }
 
 export function fetchLicense(licenseId) {
-  return request.get(`${ADD_LICENSE}/${licenseId}`);
+  return request.get(`${LICENSES_URL}/${licenseId}`);
 }

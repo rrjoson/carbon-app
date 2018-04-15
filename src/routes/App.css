@@ -1,3 +1,9 @@
+.layout {
+  min-width: 1370px;
+  width: 100%;
+  overflow: scroll;
+}
+
 .sider :global .ant-menu-item {
   margin: 0;
   height: 69px;

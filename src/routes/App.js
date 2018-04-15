@@ -116,12 +116,12 @@ function App(props) {
               }
             </Menu>
           </Sider>
-          <Layout>
+          <Layout className={styles.layout}>
             <Header
               user={user.data}
               onSearchCases={data => dispatch({ type: 'cases/FETCH_CASES_BY_QUERY', payload: data })}
               onSearchClients={data => dispatch({ type: 'clients/FETCH_CLIENTS_BY_QUERY', payload: data })}
-              onSearchLicenses={data => dispatch({ type: 'licenses/FETCH_LICENSES_BY_QUERY', payload: data })}
+              onSearchLicenses={data => dispatch({ type: 'licenses/FETCH_ACTIVE_AND_EXPIRED_LICENSES_BY_QUERY', payload: data })}
               pathname={location.pathname}
               type="default"
             />

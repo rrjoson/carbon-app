@@ -11,19 +11,25 @@ class ViewCases extends Component {
       dispatch,
     } = this.props;
 
-    dispatch({ type: 'licenses/FETCH_LICENSES' });
+    dispatch({ type: 'licenses/FETCH_ACTIVE_LICENSES' });
+    dispatch({ type: 'licenses/FETCH_EXPIRED_LICENSES' });
   }
 
   render() {
     const {
-      licenses,
+      activeLicenses,
+      expiredLicenses,
     } = this.props;
 
     return (
       <div className={styles.viewCases}>
-        <ViewLicensesHeader />
+        <ViewLicensesHeader type="active" />
         <ViewLicensesTable
-          data={licenses}
+          data={activeLicenses}
+        />
+        <ViewLicensesHeader type="expired" />
+        <ViewLicensesTable
+          data={expiredLicenses}
         />
       </div>
     );
@@ -32,7 +38,8 @@ class ViewCases extends Component {
 
 function mapStateToProps(state) {
   return {
-    licenses: state.licenses.data,
+    activeLicenses: state.licenses.active,
+    expiredLicenses: state.licenses.expired,
   };
 }
 

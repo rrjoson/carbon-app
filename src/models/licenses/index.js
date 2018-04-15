@@ -4,8 +4,10 @@ import { restrictions } from './../../utils/restrictions';
 
 import {
   addLicense,
-  fetchLicenses,
-  fetchLicensesByQuery,
+  fetchActiveLicenses,
+  fetchExpiredLicenses,
+  fetchActiveLicensesByQuery,
+  fetchExpiredLicensesByQuery,
   fetchLicense,
   updateLicense,
 } from './../../services/licenses';
@@ -16,6 +18,8 @@ export default {
 
   state: {
     data: [],
+    active: [],
+    expired: [],
     selected: null,
   },
 
@@ -28,14 +32,20 @@ export default {
   },
 
   effects: {
-    *FETCH_LICENSES({ payload }, { call, put }) {
-      const { data } = yield call(fetchLicenses);
-      yield put({ type: 'SAVE', payload: { data } });
+    *FETCH_ACTIVE_LICENSES({ payload }, { call, put }) {
+      const { data: active } = yield call(fetchActiveLicenses);
+      yield put({ type: 'SAVE', payload: { active } });
     },
 
-    FETCH_LICENSES_BY_QUERY: [function* ({ payload }, { call, put }) {
-      const { data } = yield call(fetchLicensesByQuery, payload);
-      yield put({ type: 'SAVE', payload: { data } });
+    *FETCH_EXPIRED_LICENSES({ payload }, { call, put }) {
+      const { data: expired } = yield call(fetchExpiredLicenses);
+      yield put({ type: 'SAVE', payload: { expired } });
+    },
+
+    FETCH_ACTIVE_AND_EXPIRED_LICENSES_BY_QUERY: [function* ({ payload }, { call, put }) {
+      const { data: active } = yield call(fetchActiveLicensesByQuery, payload);
+      const { data: expired } = yield call(fetchExpiredLicensesByQuery, payload);
+      yield put({ type: 'SAVE', payload: { active, expired } });
     }, { type: 'throttle', ms: 500 }],
 
     *FETCH_LICENSE({ payload }, { call, put }) {

@@ -168,10 +168,10 @@ class Filter extends Component {
               <div>
                 <If condition={this.state.isDatePickerOpen}>
                   <div>
-                    <DatePicker
+                    <DatePicker.RangePicker
                       open
                       allowClear={false}
-                      onChange={date => onFilterCases({ key: 'dateRaised', value: moment(date).format('MM/DD/YYYY') })}
+                      onChange={([to, from]) => onFilterCases({ key: 'dateRaised', value: [moment(from).format('MM/DD/YYYY'), moment(to).format('MM/DD/YYYY')] })}
                       onOpenChange={(isVisible) => this.setState({ isDatePickerOpen: isVisible })}
                       format={'MM/DD/YYYY'}
                     />
@@ -201,6 +201,9 @@ class Filter extends Component {
                     </When>
                     <When condition={entry[0] === 'severity'}>
                       <span>{getSeverityValue(item)}</span>
+                    </When>
+                    <When condition={entry[0] === 'dateRaised'}>
+                      <span>{item[0]} - {item[1]}</span>
                     </When>
                     <Otherwise>
                       <span>{item}</span>

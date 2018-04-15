@@ -5,7 +5,12 @@ export function serialize(data) {
   entries.forEach(([key, values], index) => {
     if (values && values.length !== 0) {
       values.forEach((value) => {
-        query = query.concat(`${key}=${value}&`);
+        // HACK
+        if (key === 'dateRaised') {
+          query = query.concat(`to=${value[0]}&from=${value[1]}&`);
+        } else {
+          query = query.concat(`${key}=${value}&`);
+        }
       });
     }
   });

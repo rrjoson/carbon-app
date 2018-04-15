@@ -50,7 +50,8 @@ export default {
       if (restrictions[position].includes('ADD_ACTIVITY')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
 
       const { data } = yield call(addActivity, payload);
-      yield put({ type: 'SAVE', payload: { serviceReportNumber: data.activity[0].activityNo } });
+      // HACK
+      yield put({ type: 'SAVE', payload: { serviceReportNumber: payload.typeOfActivity !== 'Remote' ? data.activity[0].service_report_no : null } });
     },
 
     *UPDATE_ACTIVITY({ payload }, { call, put, select }) {

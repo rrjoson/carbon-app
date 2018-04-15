@@ -14,7 +14,7 @@ export function fetchActivity(activityNo) {
 }
 
 export function fetchActivities(glocalId) {
-  return request.get(`${ACTIVITIES_BY_GLOCAL_ID_URL}/${glocalId}`);
+  return request.get(`${ACTIVITIES_BY_GLOCAL_ID_URL}?no=${glocalId}`);
 }
 
 export function fetchActivitiesByEngineerName(engineerName) {

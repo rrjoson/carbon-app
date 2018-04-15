@@ -2,7 +2,7 @@
   position: relative;
   overflow: hidden;
   max-height: 186px;
-  width: 610px;
+  width: 670px;
   box-shadow: 0 2px 4px 0 rgba(203, 203, 203, 0.5);
   margin-bottom: 25px;
   transition: all ease .1s;
@@ -72,6 +72,7 @@
 .activity__metaRight {
   display: flex;
   align-items: center;
+  flex-direction: column;
   padding-right: 24px;
 }
 

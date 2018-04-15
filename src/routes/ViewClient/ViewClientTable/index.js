@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styles from './styles.css';
-import { Table, Link, Avatar, Tooltip } from './../../../components';
+import { Table, Link, Avatar, Tooltip, RestrictedComponent } from './../../../components';
 
 function ViewClientTable(props) {
   const columns = [{
@@ -49,7 +49,9 @@ function ViewClientTable(props) {
     render: (text, record) => (
       <div>
         <Link to={`/clients/${record.client}`}>{text[0]} </Link>
-        <Link to={`/clients/${record.client}/edit`}>{text[1]}</Link>
+        <RestrictedComponent action="UPDATE_CLIENT">
+          <Link to={`/clients/${record.client}/edit`}>{text[1]}</Link>
+        </RestrictedComponent>
       </div>
     ),
   }];

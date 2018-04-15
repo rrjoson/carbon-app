@@ -3,6 +3,8 @@ import classnames from 'classnames';
 import moment from 'moment';
 import { Icon, Modal } from 'antd';
 
+import { generatePDF } from 'utils/pdf';
+
 import Avatar from '../Avatar';
 import Link from '../Link';
 import Tooltip from '../Tooltip';
@@ -83,6 +85,7 @@ const Activity = (props) => {
           {/* BUTTONS */}
           <div className={styles.activity__actions}>
             <Link to={`/cases/${glocalId}/activities/${item.activityNo}/edit`}>Edit</Link>
+            <Link onClick={() => generatePDF(item)} to="#">Export to PDF</Link>
             <Link onClick={() => showConfirmDeleteModal()} to="#">Delete</Link>
           </div>
         </div>

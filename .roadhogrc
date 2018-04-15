@@ -6,14 +6,36 @@
         "dva-hmr",
         "transform-runtime",
         "jsx-control-statements",
-        ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
+        ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }],
+        ["module-resolver", {
+          "alias": {
+            "assets": "./src/assets",
+            "components": "./src/components",
+            "constants": "./src/constants",
+            "models": "./src/models",
+            "routes": "./src/routes",
+            "services": "./src/services",
+            "utils": "./src/utils"
+          }
+        }]
       ]
     },
     "production": {
       "extraBabelPlugins": [
         "transform-runtime",
         "jsx-control-statements",
-        ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
+        ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }],
+        ["module-resolver", {
+          "alias": {
+            "assets": "./src/assets",
+            "components": "./src/components",
+            "constants": "./src/constants",
+            "models": "./src/models",
+            "routes": "./src/routes",
+            "services": "./src/services",
+            "utils": "./src/utils"
+          }
+        }]
       ]
     }
   }

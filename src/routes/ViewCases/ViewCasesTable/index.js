@@ -19,7 +19,18 @@ function ViewCasesTable(props) {
     title: 'Status',
     dataIndex: 'status',
     sorter: (a, b) => a.status.length - b.status.length,
-    render: status => <Status type={status} />,
+    render: (status, record) => {
+      if (status === 'Resolved') {
+        return (
+          <Tooltip title={moment(record.dateResolved, "YYYY-MM-DD").format('MM/DD/YYYY')}>
+            <Status type={status} />
+            {console.warn(123)}
+          </Tooltip>
+        );
+      } else {
+        return <Status type={status} />;
+      }
+    },
   }, {
     title: 'Assigned SE',
     dataIndex: 'assignedSystemsEngineer',
@@ -70,11 +81,6 @@ function ViewCasesTable(props) {
     dataIndex: 'dateraised',
     sorter: (a, b) => moment(a.dateraised, 'YYYY-MM-DD').diff(moment(b.dateraised, 'YYYY-MM-DD')),
     render: date => moment(date, "YYYY-MM-DD").format('MM/DD/YYYY')
-  }, {
-    title: 'Date Resolved',
-    dataIndex: 'dateResolved',
-    sorter: (a, b) => moment(a.dateResolved, 'YYYY-MM-DD').diff(moment(b.dateResolved, 'YYYY-MM-DD')),
-    render: date => date ? moment(date, "YYYY-MM-DD").format('MM/DD/YYYY') : ''
   }, {
     title: 'Actions',
     dataIndex: 'actions',

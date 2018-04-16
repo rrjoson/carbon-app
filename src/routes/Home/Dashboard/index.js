@@ -28,16 +28,16 @@ class Dashboard extends Component {
 
     return (
       <div className={styles.dashboard}>
-        <DashboardHeader>Severity 1</DashboardHeader>
+        <DashboardHeader>Severity 1 - Emergency</DashboardHeader>
         <DashboardTable data={emergency} />
 
-        <DashboardHeader>Severity 2</DashboardHeader>
+        <DashboardHeader>Severity 2 - Critical</DashboardHeader>
         <DashboardTable data={critical} />
 
-        <DashboardHeader>Severity 3</DashboardHeader>
+        <DashboardHeader>Severity 3 - Major</DashboardHeader>
         <DashboardTable data={major} />
 
-        <DashboardHeader>Severity 4</DashboardHeader>
+        <DashboardHeader>Severity 4 - Minor</DashboardHeader>
         <DashboardTable data={minor} />
       </div>
     );

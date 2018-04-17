@@ -3,7 +3,7 @@ import moment from 'moment';
 
 import styles from './styles.css';
 import { Table, Link, Status, Avatar, Tooltip } from './../../../components';
-import { getSeverityValue } from './../../../utils/data';
+import { getSeverityValue, getSystemsEngineers } from './../../../utils/data';
 
 function ViewCasesTable(props) {
   const columns = [{
@@ -24,7 +24,6 @@ function ViewCasesTable(props) {
         return (
           <Tooltip title={moment(record.dateResolved, "YYYY-MM-DD").format('MM/DD/YYYY')}>
             <Status type={status} />
-            {console.warn(123)}
           </Tooltip>
         );
       } else {
@@ -41,7 +40,7 @@ function ViewCasesTable(props) {
         return (
           <Tooltip title={systemsEngineer}>
             <Avatar>
-              <Link to={`/activities/${systemsEngineer}`}>{systemsEngineer[0][0]}</Link>
+              <Link to={`/activities/${systemsEngineer}`}>{systemsEngineer[0]}</Link>
             </Avatar>
           </Tooltip>
         );
@@ -98,9 +97,9 @@ function ViewCasesTable(props) {
       glocalid: item.glocalId,
       customer: item.customer,
       status: item.case_status,
-      assignedSystemsEngineer: item.assignedSystemsEngineer
-        ? [[item.systemsEngineerLead]].concat(...item.assignedSystemsEngineer)
-        : [[item.systemsEngineerLead]],
+      assignedSystemsEngineer: getSystemsEngineers(item.assignedsystemsengineer)
+        ? [item.systemsEngineerLead].concat(...getSystemsEngineers(item.assignedsystemsengineer))
+        : [item.systemsEngineerLead],
       severity: item.severity,
       casetitle: item.caseTitle,
       productname: item.productName,

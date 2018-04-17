@@ -47,11 +47,18 @@ export default {
 
     *ADD_ACTIVITY({ payload }, { call, put, select }) {
       const { position } = yield select(state => state.user.data);
+      const glocalId = yield select(state => state.cases.selected.glocalId);
+
       if (restrictions[position].includes('ADD_ACTIVITY')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
 
       const { data } = yield call(addActivity, payload);
-      // HACK
-      yield put({ type: 'SAVE', payload: { serviceReportNumber: payload.typeOfActivity !== 'Remote' ? data.activity[0].service_report_no : null } });
+
+      if (payload.typeOfActivity !== 'Remote') {
+        yield put({ type: 'SAVE', payload: { serviceReportNumber: data.reports[0].sr_number } });
+      } else {
+        yield put(routerRedux.push(`/cases/${glocalId}`));
+        notification.success({ message: 'Activity added.', duration: 2 });
+      }
     },
 
     *UPDATE_ACTIVITY({ payload }, { call, put, select }) {

@@ -3,7 +3,7 @@ import moment from 'moment';
 
 import styles from './styles.css';
 import { Table, Link, Status, Avatar, Tooltip } from './../../../components';
-import { getSeverityValue } from './../../../utils/data';
+import { getSeverityValue, getSystemsEngineers } from './../../../utils/data';
 
 function HomeTable(props) {
   const columns = [{
@@ -25,7 +25,7 @@ function HomeTable(props) {
         return (
           <Tooltip title={systemsEngineer}>
             <Avatar>
-              <Link to={`/activities/${systemsEngineer}`}>{systemsEngineer[0][0]}</Link>
+              <Link to={`/activities/${systemsEngineer}`}>{systemsEngineer[0]}</Link>
             </Avatar>
           </Tooltip>
         );
@@ -64,9 +64,9 @@ function HomeTable(props) {
       glocalId: item.glocalId,
       customer: item.customer,
       status: item.case_status,
-      assignedSystemsEngineer: item.assignedSystemsEngineer
-        ? [[item.systemsEngineerLead]].concat(...item.assignedSystemsEngineer)
-        : [[item.systemsEngineerLead]],
+      assignedSystemsEngineer: getSystemsEngineers(item.assignedsystemsengineer)
+        ? [item.systemsEngineerLead].concat(...getSystemsEngineers(item.assignedsystemsengineer))
+        : [item.systemsEngineerLead],
       severity: item.severity,
       productName: item.productName,
       open: item.dateRaised,

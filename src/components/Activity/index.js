@@ -76,7 +76,7 @@ const Activity = (props) => {
               </div>
             </div>
             <div className={styles.activity__metaRight}>
-              {item.typeOfActivity !== 'Remote' && `SR ${item.service_report_no}`}
+              {item.typeOfActivity !== 'Remote' && `SR ${item.sr_number}`}
               <Tag>
                 {item.typeOfActivity}
               </Tag>

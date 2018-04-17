@@ -6,3 +6,18 @@ export function getSeverityValue(data) {
 
   return 'N/A';
 }
+
+export function getSystemsEngineers(data) {
+  if (!data) return [];
+
+  const results = [];
+
+  const list = data.replace(/({|}|")/gi, '').split(",");
+  list.map((item) => {
+    if (!results.includes(item)) {
+      results.push(item)
+    }
+  });
+
+  return results;
+};

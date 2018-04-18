@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="62px" viewBox="0 0 50 62" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>files-64px-glyph_check</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="App" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Reports-Client" transform="translate(-535.000000, -232.000000)" fill="#4581F0" fill-rule="nonzero">
+            <g id="Group-Copy-9" transform="translate(497.000000, 194.000000)">
+                <g id="Group-4" transform="translate(38.000000, 38.000000)">
+                    <g id="files-64px-glyph_check">
+                        <path d="M50,13 C50,12.867 49.973,12.736 49.922,12.615 C49.972,12.734 50,12.864 50,13 Z" id="Shape"></path>
+                        <path d="M37,14 C36.448,14 36,13.552 36,13 L36,0 L2,0 C0.895,0 0,0.895 0,2 L0,60 C0,61.105 0.895,62 2,62 L48,62 C49.105,62 50,61.105 50,60 L50,14 L37,14 Z M37.707,23.707 L21.707,39.707 C21.512,39.902 21.256,40 21,40 C20.744,40 20.488,39.902 20.293,39.707 L12.293,31.707 C11.902,31.316 11.902,30.684 12.293,30.293 C12.684,29.902 13.316,29.902 13.707,30.293 L21,37.586 L36.293,22.293 C36.684,21.902 37.316,21.902 37.707,22.293 C38.098,22.684 38.098,23.316 37.707,23.707 Z" id="Shape"></path>
+                        <polygon id="Shape" points="49.414 12 38 0.586 38 12"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

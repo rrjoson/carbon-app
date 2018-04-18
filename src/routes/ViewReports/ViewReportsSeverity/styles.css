@@ -1,0 +1,45 @@
+.viewReportsSeverity {
+  padding: 30px;
+
+  width: 790px;
+  height: 300px;
+  border-radius: 6px;
+  background-color: #ffffff;
+  border: solid 1px #f0f0f0;
+  margin-left: 20px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  color: #6f7c87;
+  margin-bottom: 25px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 6px;
+}
+
+.label {
+  font-size: 20px;
+  letter-spacing: 0.1px;
+  text-align: center;
+  color: #000000;
+  margin-right: 30px;
+}
+
+.progress {
+  flex: 1;
+}
+
+.count {
+  font-size: 20px;
+  letter-spacing: 0.1px;
+  text-align: center;
+  color: #000000;
+  margin-left: 30px;
+}

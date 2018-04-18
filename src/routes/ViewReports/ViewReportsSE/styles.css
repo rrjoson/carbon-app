@@ -1,0 +1,35 @@
+.viewReportsSE {
+  padding: 30px;
+
+  width: 386px;
+  height: auto;
+  border-radius: 6px;
+  background-color: #ffffff;
+  border: solid 1px #f0f0f0;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  color: #6f7c87;
+  margin-bottom: 25px;
+}
+
+.item {
+  margin-bottom: 27px;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  color: #000000;
+}
+
+.count {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  color: #4a90e2;
+}

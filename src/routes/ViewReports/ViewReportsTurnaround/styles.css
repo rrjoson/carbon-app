@@ -1,0 +1,30 @@
+.viewReportsTurnaround {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 386px;
+  height: 140px;
+  border-radius: 6px;
+  background-color: #ffffff;
+  border: solid 1px #f0f0f0;
+  margin-left: 20px;
+}
+
+.content {
+  margin-left: 17px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  color: #6f7c87;
+  line-height: 36px;
+}
+
+.value {
+  font-size: 30px;
+  letter-spacing: 0.1px;
+  color: #676767;
+}

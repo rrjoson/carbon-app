@@ -1,31 +1,26 @@
 import { request } from '../utils/request';
-import {
-  ACTIVITIES_URL,
-  ACTIVITIES_BY_ENGINEER_NAME_URL,
-  ACTIVITIES_BY_GLOCAL_ID_URL,
-} from './../constants/api';
+import { BASE_URL } from '../constants/api';
 
 export function updateActivity(activityNo, payload) {
-  return request.put(`${ACTIVITIES_URL}/${activityNo}`, payload);
+  return request.put(`${BASE_URL}/activityNo/${activityNo}`, payload);
 }
 
 export function fetchActivity(activityNo) {
-  return request.get(`${ACTIVITIES_URL}/${activityNo}`);
+  return request.get(`${BASE_URL}/activityNo/${activityNo}`);
 }
 
 export function fetchActivities(glocalId) {
-  return request.get(`${ACTIVITIES_BY_GLOCAL_ID_URL}?no=${glocalId}`);
+  return request.get(`${BASE_URL}/sr-tracking/${glocalId}`);
 }
 
 export function fetchActivitiesByEngineerName(engineerName) {
-  return request.get(`${ACTIVITIES_BY_ENGINEER_NAME_URL}/{${engineerName}}`);
+  return request.get(`${BASE_URL}/engActivities/{${engineerName}}`);
 }
 
 export function addActivity(data) {
-  return request.post(ACTIVITIES_URL, data);
+  return request.post(`${BASE_URL}/activityNo`, data);
 }
 
 export function deleteActivity(activityNo) {
-  return request.delete(`${ACTIVITIES_URL}/${activityNo}`);
+  return request.delete(`${BASE_URL}/activityNo/${activityNo}`);
 }
-

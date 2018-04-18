@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="62px" height="62px" viewBox="0 0 62 62" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>education-64px-glyph_grammar-check</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="App" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Reports-Client" transform="translate(-125.000000, -233.000000)" fill="#4581F0" fill-rule="nonzero">
+            <g id="education-64px-glyph_grammar-check" transform="translate(125.000000, 233.000000)">
+                <path d="M42,10 C44.9,10 47.6,10.8 50,12.2 L50,1 C50,0.4 49.6,0 49,0 L1,0 C0.4,0 0,0.4 0,1 L0,61 C0,61.6 0.4,62 1,62 L49,62 C49.6,62 50,61.6 50,61 L50,39.8 C47.6,41.2 44.8,42 42,42 C33.2,42 26,34.8 26,26 C26,17.2 33.2,10 42,10 Z M11,16 L23,16 C23.6,16 24,16.4 24,17 C24,17.6 23.6,18 23,18 L11,18 C10.4,18 10,17.6 10,17 C10,16.4 10.4,16 11,16 Z M11,30 L22,30 C22.6,30 23,30.4 23,31 C23,31.6 22.6,32 22,32 L11,32 C10.4,32 10,31.6 10,31 C10,30.4 10.4,30 11,30 Z M32,44 C32.6,44 33,44.4 33,45 C33,45.6 32.6,46 32,46 L11,46 C10.4,46 10,45.6 10,45 C10,44.4 10.4,44 11,44 L32,44 Z" id="Shape"></path>
+                <path d="M61.7,44.3 L52.6,35.2 C54.7,32.7 56,29.5 56,26 C56,18.3 49.7,12 42,12 C34.3,12 28,18.3 28,26 C28,33.7 34.3,40 42,40 C45.5,40 48.7,38.7 51.2,36.6 L60.3,45.7 C60.5,45.9 60.8,46 61,46 C61.2,46 61.5,45.9 61.7,45.7 C62.1,45.3 62.1,44.7 61.7,44.3 Z M42,38 C35.7,38 30.6,33.1 30.1,27 L43,27 C43.6,27 44,26.6 44,26 C44,25.4 43.6,25 43,25 L30.1,25 C30.6,18.9 35.8,14 42,14 C48.6,14 54,19.4 54,26 C54,32.6 48.6,38 42,38 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

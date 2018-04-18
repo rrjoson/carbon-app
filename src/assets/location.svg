@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="62px" height="62px" viewBox="0 0 62 62" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>location-64px-glyph_route-open</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="App" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Reports-Client" transform="translate(-937.000000, -236.000000)" fill="#4581F0" fill-rule="nonzero">
+            <g id="location-64px-glyph_route-open" transform="translate(937.000000, 236.000000)">
+                <path d="M31,60 L16,60 C8.3,60 2,53.7 2,46 C2,38.9 7.3,33.1 14.1,32.2 C14.1,31.8 14,31.4 14,31 C14,30.7 14,30.4 14,30.1 C6.1,31.1 0,37.8 0,46 C0,54.8 7.2,62 16,62 L31,62 C31.6,62 32,61.6 32,61 C32,60.4 31.6,60 31,60 Z" id="Shape"></path>
+                <path d="M46,0 L31,0 C30.4,0 30,0.4 30,1 C30,1.6 30.4,2 31,2 L46,2 C53.7,2 60,8.3 60,16 C60,23.1 54.7,28.9 47.9,29.8 C47.9,30.2 48,30.6 48,31 C48,31.3 48,31.6 48,31.9 C55.9,30.9 62,24.2 62,16 C62,7.2 54.8,0 46,0 Z" id="Shape"></path>
+                <path d="M31,16 C22.7,16 16,22.7 16,31 C16,39.3 22.7,46 31,46 C39.3,46 46,39.3 46,31 C46,22.7 39.3,16 31,16 Z M37.7,27.7 L29.7,35.7 C29.5,35.9 29.3,36 29,36 C28.7,36 28.5,35.9 28.3,35.7 L24.3,31.7 C23.9,31.3 23.9,30.7 24.3,30.3 C24.7,29.9 25.3,29.9 25.7,30.3 L29,33.6 L36.3,26.3 C36.7,25.9 37.3,25.9 37.7,26.3 C38.1,26.7 38.1,27.3 37.7,27.7 Z" id="Shape"></path>
+                <path d="M25,2 L23,2 C22.4,2 22,1.6 22,1 C22,0.4 22.4,0 23,0 L25,0 C25.6,0 26,0.4 26,1 C26,1.6 25.6,2 25,2 Z" id="Shape"></path>
+                <path d="M39,62 L37,62 C36.4,62 36,61.6 36,61 C36,60.4 36.4,60 37,60 L39,60 C39.6,60 40,60.4 40,61 C40,61.6 39.6,62 39,62 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

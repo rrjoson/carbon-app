@@ -1,0 +1,17 @@
+.viewReportsCases {
+  padding: 30px;
+
+  width: 386px;
+  height: 396px;
+  border-radius: 6px;
+  background-color: #ffffff;
+  border: solid 1px #f0f0f0;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  color: #6f7c87;
+  margin-bottom: 25px;
+}

@@ -1,0 +1,16 @@
+.viewReportsSolution {
+  padding: 30px;
+
+	width: 790px;
+	height: 396px;
+  border: solid 1px #f0f0f0;
+  margin-left: 20px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  color: #6f7c87;
+  margin-bottom: 25px;
+}

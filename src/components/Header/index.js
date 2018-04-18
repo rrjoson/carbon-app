@@ -43,6 +43,8 @@ const Header = (props) => {
 
     if (path.includes('accounts')) return 'Accounts';
 
+    if (path.includes('reports')) return 'Reports';
+
     return '';
   };
 

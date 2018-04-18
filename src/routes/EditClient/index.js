@@ -39,6 +39,7 @@ class EditClient extends Component {
           <H2>Edit Client</H2>
           <EditClientForm
             loading={loading}
+            onDeleteClient={(data) => dispatch({ type: 'clients/DELETE_CLIENT', payload: data })}
             onSave={data => dispatch({ type: 'clients/UPDATE_CLIENT', payload: data })}
             accountManagers={accountManagers}
             client={client}

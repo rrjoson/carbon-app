@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Input, Icon, Button, Row, Col, Modal } from 'antd';
 
-import { Form, Link, Select } from './../../../components';
+import { Form, Link, Select, RestrictedComponent } from './../../../components';
 
 import styles from './styles.css';
 
@@ -19,7 +19,7 @@ let vendors = [
 
 let uuid = 1;
 
-class EditClientForm extends Component {
+class EditClientForm extends PureComponent {
   componentDidMount() {
     const { client } = this.props;
 
@@ -73,6 +73,18 @@ class EditClientForm extends Component {
       cancelText: 'Cancel',
       onOk: () => {
         this.remove(vendorName, k);
+      },
+    });
+  }
+
+  showConfirmDeleteCaseModal = () => {
+    Modal.confirm({
+      title: 'Are you sure you want to delete this?',
+      okText: 'Delete',
+      okType: 'danger',
+      cancelText: 'Cancel',
+      onOk: () => {
+        this.props.onDeleteClient(this.props.client.accountName);
       },
     });
   }
@@ -284,6 +296,9 @@ class EditClientForm extends Component {
             {!this.props.loading ? <Icon type="save" /> : null}
             Save
           </Button>
+          <RestrictedComponent action="DELETE_CLIENT">
+            <Button onClick={this.showConfirmDeleteCaseModal} type="danger" style={{ marginRight: 8 }}>Delete</Button>
+          </RestrictedComponent>
           <Button>Cancel</Button>
         </FormItem>
       </Form>

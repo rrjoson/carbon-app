@@ -8,6 +8,7 @@ import {
   fetchClient,
   addClient,
   updateClient,
+  deleteClient,
 } from './../../services/clients';
 
 export default {
@@ -60,6 +61,12 @@ export default {
       const accountName = yield select(state => state.clients.selected.accountName);
       const { data } = yield call(updateClient, accountName, payload);
       notification['success']({ message: 'Client updated.', duration: 2 });
+      yield put(routerRedux.push('/clients'));
+    },
+
+    *DELETE_CLIENT({ payload }, { call, put, select }) {
+      const { data } = yield call(deleteClient, payload);
+      notification['success']({ message: 'Client deleted.', duration: 2 });
       yield put(routerRedux.push('/clients'));
     },
   },

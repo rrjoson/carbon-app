@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import { Input, Icon, Button, Row, Col, DatePicker, Radio } from 'antd';
+import { Input, Icon, Button, Row, Col, DatePicker, Radio, Modal } from 'antd';
 
-import { Form, Typography, Divider, Select } from './../../../components';
+import { Form, Typography, Divider, Select, RestrictedComponent } from './../../../components';
 
 import styles from './styles.css';
 
@@ -29,6 +29,18 @@ class EditLicenseForm extends Component {
 
         this.props.onSave(data);
       }
+    });
+  }
+
+  showConfirmDeleteLicenseModal = () => {
+    Modal.confirm({
+      title: 'Are you sure you want to delete this?',
+      okText: 'Delete',
+      okType: 'danger',
+      cancelText: 'Cancel',
+      onOk: () => {
+        this.props.onDeleteLicense(this.props.selectedLicense.licenseId);
+      },
     });
   }
 
@@ -318,6 +330,9 @@ class EditLicenseForm extends Component {
             {!this.props.loading ? <Icon type="save" /> : null}
             Save
           </Button>
+          <RestrictedComponent action="DELETE_LICENSE">
+            <Button onClick={this.showConfirmDeleteLicenseModal} type="danger" style={{ marginRight: 8 }}>Delete</Button>
+          </RestrictedComponent>
           <Button>Cancel</Button>
         </FormItem>
       </Form>

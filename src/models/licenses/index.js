@@ -10,6 +10,7 @@ import {
   fetchExpiredLicensesByQuery,
   fetchLicense,
   updateLicense,
+  deleteLicense,
 } from './../../services/licenses';
 
 export default {
@@ -70,6 +71,12 @@ export default {
       const { data } = yield call(updateLicense, licenseId, payload);
       yield put(routerRedux.push('/licenses'));
       notification['success']({ message: 'License updated.', duration: 2 });
+    },
+
+    *DELETE_LICENSE({ payload }, { call, put, select }) {
+      const { data } = yield call(deleteLicense, payload);
+      notification['success']({ message: 'License deleted.', duration: 2 });
+      yield put(routerRedux.push('/licenses'));
     },
   },
 

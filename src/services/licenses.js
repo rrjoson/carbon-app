@@ -30,3 +30,7 @@ export function fetchExpiredLicensesByQuery(searchQuery) {
 export function fetchLicense(licenseId) {
   return request.get(`${LICENSES_URL}/${licenseId}`);
 }
+
+export function deleteLicense(licenseId) {
+  return request.delete(`${BASE_URL}/license/${licenseId}`);
+}

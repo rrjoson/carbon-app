@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Input, Icon, Button, Row, Col, DatePicker, Divider } from 'antd';
+import { Input, Icon, Button, Row, Col, DatePicker, Divider, Modal } from 'antd';
 import moment from 'moment';
 
-import { Form, Link, Select } from './../../../components';
+import { Form, Link, Select, RestrictedComponent } from './../../../components';
 
 import styles from './styles.css';
 
@@ -20,6 +20,18 @@ class DynamicFieldSet extends Component {
 
     this.props.form.validateFields((err, values) => {
       this.props.onSave(values);
+    });
+  }
+
+  showConfirmDeleteCaseModal = () => {
+    Modal.confirm({
+      title: 'Are you sure you want to delete this?',
+      okText: 'Delete',
+      okType: 'danger',
+      cancelText: 'Cancel',
+      onOk: () => {
+        this.props.onDeleteCase(this.props.selectedCase.glocalId);
+      },
     });
   }
 
@@ -248,6 +260,9 @@ class DynamicFieldSet extends Component {
             {!this.props.loading ? <Icon type="save" /> : null}
             Save
           </Button>
+          <RestrictedComponent action="DELETE_CASE">
+            <Button onClick={this.showConfirmDeleteCaseModal} type="danger" style={{ marginRight: 8 }}>Delete</Button>
+          </RestrictedComponent>
           <Link to="/cases/all">
             <Button>Cancel</Button>
           </Link>

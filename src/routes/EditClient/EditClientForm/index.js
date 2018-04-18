@@ -77,7 +77,7 @@ class EditClientForm extends PureComponent {
     });
   }
 
-  showConfirmDeleteCaseModal = () => {
+  showConfirmDeleteClientModal = () => {
     Modal.confirm({
       title: 'Are you sure you want to delete this?',
       okText: 'Delete',
@@ -297,7 +297,7 @@ class EditClientForm extends PureComponent {
             Save
           </Button>
           <RestrictedComponent action="DELETE_CLIENT">
-            <Button onClick={this.showConfirmDeleteCaseModal} type="danger" style={{ marginRight: 8 }}>Delete</Button>
+            <Button onClick={this.showConfirmDeleteClientModal} type="danger" style={{ marginRight: 8 }}>Delete</Button>
           </RestrictedComponent>
           <Button>Cancel</Button>
         </FormItem>

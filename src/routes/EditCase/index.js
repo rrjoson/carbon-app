@@ -65,6 +65,7 @@ class EditCase extends Component {
             vendors={vendors}
             engineers={engineers}
             onSelectVendor={(data) => dispatch({ type: 'products/FETCH_PRODUCTS_OF_VENDOR', payload: data })}
+            onDeleteCase={(data) => dispatch({ type: 'cases/DELETE_CASE', payload: data })}
             onSave={(data) => dispatch({ type: 'cases/UPDATE_CASE', payload: data })}
           />
         </div>

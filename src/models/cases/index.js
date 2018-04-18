@@ -15,6 +15,7 @@ import {
   updateCase,
   fetchNextId,
   updateCaseStatus,
+  deleteCase,
 } from './../../services/cases';
 
 
@@ -162,6 +163,12 @@ export default {
       const selectedCase = yield select(state => state.cases.selected);
       const data = yield call(updateCaseStatus, payload, selectedCase);
       notification['success']({ message: 'Status updated.', duration: 2 });
+    },
+
+    *DELETE_CASE({ payload }, { call, put, select }) {
+      const { data } = yield call(deleteCase, payload);
+      notification['success']({ message: 'Case deleted.', duration: 2 });
+      yield put(routerRedux.push('/cases/all'));
     },
   },
 

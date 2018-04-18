@@ -73,3 +73,6 @@ export function fetchNextId() {
   return request.get(FETCH_NEXT_ID);
 }
 
+export function deleteCase(glocalId) {
+  return request.delete(`${BASE_URL}/glocalid/${glocalId}`);
+}

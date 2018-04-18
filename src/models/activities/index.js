@@ -54,7 +54,8 @@ export default {
       const { data } = yield call(addActivity, payload);
 
       if (payload.typeOfActivity !== 'Remote') {
-        yield put({ type: 'SAVE', payload: { serviceReportNumber: data.reports[0].sr_number } });
+        const { data: activity } = yield call(fetchActivity, data.report[0].activityNo);
+        yield put({ type: 'SAVE', payload: { serviceReportNumber: activity[0].sr_number } });
       } else {
         yield put(routerRedux.push(`/cases/${glocalId}`));
         notification.success({ message: 'Activity added.', duration: 2 });

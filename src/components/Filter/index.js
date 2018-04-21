@@ -24,6 +24,7 @@ class Filter extends Component {
       filters,
       clients,
       engineers,
+      leads,
       vendors,
       products,
       onFilterCases,
@@ -97,8 +98,8 @@ class Filter extends Component {
             overlay={
               <Menu onClick={({ item }) => onFilterCases({ key: 'systemsEngineerLead', value: item.props.children })}>
                 {
-                  engineers.map((engineer, index) => {
-                    return <Menu.Item disabled={filters.systemsEngineerLead ? filters.systemsEngineerLead.includes(engineer.fullName) : false} key={index}>{engineer.fullName}</Menu.Item>;
+                  leads.map((lead, index) => {
+                    return <Menu.Item disabled={filters.systemsEngineerLead ? filters.systemsEngineerLead.includes(lead.systemsEngineerLead) : false} key={index}>{lead.systemsEngineerLead}</Menu.Item>;
                   })
                 }
               </Menu>

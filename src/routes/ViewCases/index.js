@@ -16,6 +16,7 @@ class ViewCases extends Component {
     dispatch({ type: 'cases/FETCH_ALL_CASES', payload: match.params.caseId });
     dispatch({ type: 'clients/FETCH_CLIENTS' });
     dispatch({ type: 'engineers/FETCH_ENGINEERS' });
+    dispatch({ type: 'engineers/FETCH_SE_LEADS' });
     dispatch({ type: 'vendors/FETCH_VENDORS' });
     dispatch({ type: 'products/FETCH_PRODUCTS' });
   }
@@ -27,6 +28,7 @@ class ViewCases extends Component {
       filters,
       clients,
       engineers,
+      leads,
       vendors,
       products,
     } = this.props;
@@ -42,6 +44,7 @@ class ViewCases extends Component {
           filters={filters}
           clients={clients}
           engineers={engineers}
+          leads={leads}
           vendors={vendors}
           products={products}
         />
@@ -59,6 +62,7 @@ function mapStateToProps(state) {
     filters: state.cases.filters,
     clients: state.clients.data,
     engineers: state.engineers.data,
+    leads: state.engineers.leads,
     vendors: state.vendors.data,
     products: state.products.data,
   };

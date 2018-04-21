@@ -11,6 +11,7 @@ export default {
   state: {
     data: [],
     selected: null,
+    leads: [],
   },
 
   subscriptions: {
@@ -28,8 +29,8 @@ export default {
 
   effects: {
     *FETCH_SE_LEADS({ payload }, { call, put }) {
-      const { data } = yield call(fetchSeLeads);
-      yield put({ type: 'SAVE', payload: { data } });
+      const { data: leads } = yield call(fetchSeLeads);
+      yield put({ type: 'SAVE', payload: { leads } });
     },
 
     *FETCH_ENGINEERS({ payload }, { call, put }) {

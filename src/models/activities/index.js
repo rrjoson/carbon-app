@@ -49,7 +49,7 @@ export default {
       const { position } = yield select(state => state.user.data);
       const glocalId = yield select(state => state.cases.selected.glocalId);
 
-      if (restrictions[position].includes('ADD_ACTIVITY')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
+      if (restrictions[position] && restrictions[position].includes('ADD_ACTIVITY')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
 
       const { data } = yield call(addActivity, payload);
 
@@ -64,7 +64,7 @@ export default {
 
     *UPDATE_ACTIVITY({ payload }, { call, put, select }) {
       const { position } = yield select(state => state.user.data);
-      if (restrictions[position].includes('UPDATE_ACTIVITY')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
+      if (restrictions[position] && restrictions[position].includes('UPDATE_ACTIVITY')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
 
       const glocalId = yield select(state => state.cases.selected.glocalId);
       const activityNo = yield select(state => state.activities.selected.activityNo);
@@ -77,7 +77,7 @@ export default {
 
     *DELETE_ACTIVITY({ payload }, { call, put, select }) {
       const { position } = yield select(state => state.user.data);
-      if (restrictions[position].includes('DELETE_ACTIVITY')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
+      if (restrictions[position] && restrictions[position].includes('DELETE_ACTIVITY')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
 
       const activities = yield select(state => state.activities.data);
       const data = activities.filter(item => item.activityNo !== payload);

@@ -1,6 +1,7 @@
 import {
   fetchEngineers,
   fetchEngineer,
+  fetchSeLeads
 } from './../../services/engineers';
 
 export default {
@@ -26,6 +27,11 @@ export default {
   },
 
   effects: {
+    *FETCH_SE_LEADS({ payload }, { call, put }) {
+      const { data } = yield call(fetchSeLeads);
+      yield put({ type: 'SAVE', payload: { data } });
+    },
+
     *FETCH_ENGINEERS({ payload }, { call, put }) {
       const { data } = yield call(fetchEngineers);
       yield put({ type: 'SAVE', payload: { data } });

@@ -56,7 +56,7 @@ export default {
 
     *ADD_LICENSE({ payload }, { call, put, select }) {
       const { position } = yield select(state => state.user.data);
-      if (restrictions[position].includes('ADD_LICENSE')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
+      if (restrictions[position] && restrictions[position].includes('ADD_LICENSE')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
 
       const { data } = yield call(addLicense, payload);
       yield put(routerRedux.push('/licenses'));
@@ -65,7 +65,7 @@ export default {
 
     *UPDATE_LICENSE({ payload }, { call, put, select }) {
       const { position } = yield select(state => state.user.data);
-      if (restrictions[position].includes('UPDATE_LICENSE')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
+      if (restrictions[position] && restrictions[position].includes('UPDATE_LICENSE')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
 
       const licenseId = yield select(state => state.licenses.selected.licenseId);
       const { data } = yield call(updateLicense, licenseId, payload);

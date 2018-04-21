@@ -16,7 +16,7 @@ class Cases extends Component {
     dispatch({ type: 'products/FETCH_PRODUCTS' });
     dispatch({ type: 'clients/FETCH_CLIENTS' });
     dispatch({ type: 'customers/FETCH_CUSTOMERS' });
-    dispatch({ type: 'engineers/FETCH_ENGINEERS' });
+    dispatch({ type: 'engineers/FETCH_SE_LEADS' });
   }
 
   render() {

@@ -47,7 +47,7 @@ export default {
 
     *ADD_CLIENT({ payload }, { call, put, select }) {
       const { position } = yield select(state => state.user.data);
-      if (restrictions[position].includes('ADD_CLIENT')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
+      if (restrictions[position] && restrictions[position].includes('ADD_CLIENT')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
 
       const { data } = yield call(addClient, payload);
       notification['success']({ message: 'Client added.', duration: 2 });
@@ -56,7 +56,7 @@ export default {
 
     *UPDATE_CLIENT({ payload }, { call, put, select }) {
       const { position } = yield select(state => state.user.data);
-      if (restrictions[position].includes('UPDATE_CLIENT')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
+      if (restrictions[position] && restrictions[position].includes('UPDATE_CLIENT')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
 
       const accountName = yield select(state => state.clients.selected.accountName);
       const { data } = yield call(updateClient, accountName, payload);

@@ -142,7 +142,7 @@ export default {
 
     *CREATE_CASE({ payload }, { call, put, select }) {
       const { position } = yield select(state => state.user.data);
-      if (restrictions[position].includes('ADD_CASE')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
+      if (restrictions[position] && restrictions[position].includes('ADD_CASE')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
 
       yield call(createCase, payload);
       yield put(routerRedux.push('/cases/all'));
@@ -151,7 +151,7 @@ export default {
 
     *UPDATE_CASE({ payload }, { call, put, select }) {
       const { position } = yield select(state => state.user.data);
-      if (restrictions[position].includes('EDIT_CASE')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
+      if (restrictions[position] && restrictions[position].includes('EDIT_CASE')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
 
       const selectedCase = yield select(state => state.cases.selected);
       yield call(updateCase, payload);

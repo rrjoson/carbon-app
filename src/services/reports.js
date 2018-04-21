@@ -40,5 +40,3 @@ export function fetchVendorLicenseCount() {
 export function fetchAverageTurnaround() {
   return request.get(`${BASE_URL}/turnaround`);
 }
-
-

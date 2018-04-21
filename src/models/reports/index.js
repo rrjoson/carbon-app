@@ -6,7 +6,7 @@ export default {
   namespace: 'reports',
 
   state: {
-    totalCases: {},
+    totalCases: [],
     severityCount: {},
     engineerActivitiesCount: {},
     mostCasesClientCount: {},
@@ -15,7 +15,7 @@ export default {
     caseProductCount: {},
     vendorCaseCount: {},
     vendorLicenseCount: {},
-    averageTurnaround: {},
+    averageTurnaround: null,
   },
 
   subscriptions: {
@@ -73,8 +73,8 @@ export default {
     },
 
     *FETCH_AVERAGE_TURNAROUND({ payload }, { call, put }) {
-      const { data: averageTurnaround } = yield call(services.fetchAverageTurnaround);
-      yield put({ type: 'SAVE', payload: { averageTurnaround } });
+      const { data } = yield call(services.fetchAverageTurnaround);
+      yield put({ type: 'SAVE', payload: { averageTurnaround: data[0].avg } });
     },
   },
 

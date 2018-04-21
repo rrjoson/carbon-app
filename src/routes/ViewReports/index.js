@@ -19,11 +19,11 @@ class Dashboard extends Component {
       dispatch,
     } = this.props;
 
-    // dispatch({ type: 'reports/FETCH_TOTAL_CASES' });
-    // dispatch({ type: 'reports/FETCH_SEVERITY_COUNT' });
-    // dispatch({ type: 'reports/FETCH_ENGINEER_ACTIVITIES_COUNT' });
     dispatch({ type: 'reports/FETCH_MOST_CASE_CLIENT_COUNT' });
     dispatch({ type: 'reports/FETCH_AVERAGE_TURNAROUND' });
+    dispatch({ type: 'reports/FETCH_TOTAL_CASES' });
+    // dispatch({ type: 'reports/FETCH_SEVERITY_COUNT' });
+    // dispatch({ type: 'reports/FETCH_ENGINEER_ACTIVITIES_COUNT' });
     // dispatch({ type: 'reports/FETCH_OPEN_CASE_CLIENT_COUNT' });
     // dispatch({ type: 'reports/FETCH_RESOLVED_CASE_CLIENT_COUNT' });
     // dispatch({ type: 'reports/FETCH_CASE_PRODUCT_COUNT' });
@@ -37,6 +37,7 @@ class Dashboard extends Component {
       reports,
       mostCasesClientCount,
       averageTurnaround,
+      totalCases,
     } = this.props;
 
     console.warn(reports)
@@ -49,7 +50,7 @@ class Dashboard extends Component {
           <ViewReportsTurnaround data={averageTurnaround} />
         </section>
         <section>
-          <ViewReportsCases />
+          <ViewReportsCases data={totalCases} />
           <ViewReportsSolution />
         </section>
         <section>
@@ -66,6 +67,7 @@ function mapStateToProps(state) {
     reports: state.reports,
     mostCasesClientCount: state.reports.mostCasesClientCount,
     averageTurnaround: state.reports.averageTurnaround,
+    totalCases: state.reports.totalCases,
   };
 }
 

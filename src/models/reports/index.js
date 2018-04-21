@@ -13,7 +13,7 @@ export default {
     openCaseClientCount: {},
     resolvedCaseClientCount: {},
     caseProductCount: {},
-    vendorCaseCount: {},
+    vendorCaseCount: [],
     vendorLicenseCount: {},
     averageTurnaround: null,
   },

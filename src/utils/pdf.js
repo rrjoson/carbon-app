@@ -33,7 +33,7 @@ export function generatePDF(data) {
   document.text('Client', 40, 133);
   document.text('Product Name', 116, 133);
   document.text('Type of Activity', 232, 133);
-  document.text('Assigned System Engineer', 334, 133);
+  document.text('Assigned Systems Engineer', 334, 133);
 
   document.setFontStyle('normal');
   document.text(data.client, 40, 149);

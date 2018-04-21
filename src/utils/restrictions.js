@@ -58,7 +58,7 @@ export const restrictions = {
 
     'ADD_USER',
   ],
-  'System Engineer': [
+  'Systems Engineer': [
     'DELETE_CASE',
 
     'UPDATE_ACTIVITY',

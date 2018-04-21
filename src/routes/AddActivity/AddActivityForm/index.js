@@ -89,7 +89,7 @@ class AddActivityForm extends Component {
 
     const vendors = [
       {
-        label: 'Assigned System Engineer',
+        label: 'Assigned Systems Engineer',
         name: 'assignedSystemsEngineer',
         products: [
           { name: this.props.engineers[0]['fullName'], id: 0 },

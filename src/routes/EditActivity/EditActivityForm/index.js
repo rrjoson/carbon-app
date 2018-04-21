@@ -15,7 +15,7 @@ let uuid = 1;
 
 let vendors = [
   {
-    label: 'Assigned System Engineer',
+    label: 'Assigned Systems Engineer',
     name: 'assignedSystemsEngineer',
     products: [],
   },

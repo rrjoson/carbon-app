@@ -132,7 +132,7 @@ class AddUserForm extends Component {
                 <Select disabled>
                   <Select.Option value={'Director'}>Director</Select.Option>
                   <Select.Option value={'Technical Manager'}>Technical Manager</Select.Option>
-                  <Select.Option value={'System Engineer'}>System Engineer</Select.Option>
+                  <Select.Option value={'Systems Engineer'}>Systems Engineer</Select.Option>
                   <Select.Option value={'Sales Manager'}>Sales Manager</Select.Option>
                   <Select.Option value={'Account Manager'}>Account Manager</Select.Option>
                 </Select>

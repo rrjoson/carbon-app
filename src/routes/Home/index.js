@@ -12,7 +12,7 @@ class Home extends Component {
       user,
     } = this.props;
 
-    if (user.position !== 'System Engineer') {
+    if (user.position !== 'Systems Engineer') {
       return <Dashboard />;
     }
 

@@ -13,7 +13,7 @@ export function fetchEngineerAcitivitesCount() {
   return request.get(`${BASE_URL}/eng-activities-count`);
 }
 
-export function fetchMostCaseClientCount() {
+export function fetchMostCasesClientCount() {
   return request.get(`${BASE_URL}/case-client-count/most`);
 }
 
@@ -37,7 +37,7 @@ export function fetchVendorLicenseCount() {
   return request.get(`${BASE_URL}/vendor-license-count`);
 }
 
-export function fetchTurnaround() {
+export function fetchAverageTurnaround() {
   return request.get(`${BASE_URL}/turnaround`);
 }
 

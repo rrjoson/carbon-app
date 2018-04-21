@@ -6,16 +6,16 @@ export default {
   namespace: 'reports',
 
   state: {
-    totalCases: null,
-    severityCount: null,
-    engineerActivitiesCount: null,
-    mostCaseClientCount: null,
-    openCaseClientCount: null,
-    resolvedCaseClientCount: null,
-    caseProductCount: null,
-    vendorCaseCount: null,
-    vendorLicenseCount: null,
-    turnaround: null,
+    totalCases: {},
+    severityCount: {},
+    engineerActivitiesCount: {},
+    mostCasesClientCount: {},
+    openCaseClientCount: {},
+    resolvedCaseClientCount: {},
+    caseProductCount: {},
+    vendorCaseCount: {},
+    vendorLicenseCount: {},
+    averageTurnaround: {},
   },
 
   subscriptions: {
@@ -43,8 +43,8 @@ export default {
     },
 
     *FETCH_MOST_CASE_CLIENT_COUNT({ payload }, { call, put }) {
-      const { data: mostCaseClientCount } = yield call(services.fetchMostCaseClientCount);
-      yield put({ type: 'SAVE', payload: { mostCaseClientCount } });
+      const { data: mostCasesClientCount } = yield call(services.fetchMostCasesClientCount);
+      yield put({ type: 'SAVE', payload: { mostCasesClientCount } });
     },
 
     *FETCH_OPEN_CASE_CLIENT_COUNT({ payload }, { call, put }) {
@@ -72,9 +72,9 @@ export default {
       yield put({ type: 'SAVE', payload: { vendorLicenseCount } });
     },
 
-    *FETCH_TURNAROUND({ payload }, { call, put }) {
-      const { data: turnaround } = yield call(services.fetchTurnaround);
-      yield put({ type: 'SAVE', payload: { turnaround } });
+    *FETCH_AVERAGE_TURNAROUND({ payload }, { call, put }) {
+      const { data: averageTurnaround } = yield call(services.fetchAverageTurnaround);
+      yield put({ type: 'SAVE', payload: { averageTurnaround } });
     },
   },
 

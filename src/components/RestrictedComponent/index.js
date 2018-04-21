@@ -11,7 +11,7 @@ class RestrictedComponent extends Component {
       action,
     } = this.props;
 
-    if (restrictions[user.position].includes(action)) return null;
+    if (restrictions[user.position] && restrictions[user.position].includes(action)) return null;
 
     return (
       <Fragment>

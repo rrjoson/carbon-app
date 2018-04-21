@@ -17,7 +17,7 @@ class RestrictedPage extends Component {
       action,
     } = this.props;
 
-    if (restrictions[user.position].includes(action)) {
+    if (restrictions[user.position] && restrictions[user.position].includes(action)) {
       return (
         <div className={styles.restrictedPage}>
           <img className={styles.image} src={forbidden} />

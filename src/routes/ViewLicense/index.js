@@ -3,7 +3,7 @@ import { connect } from 'dva';
 
 import styles from './styles.css';
 import ViewLicenseHeader from './ViewLicenseHeader';
-import ViewLicenseTable from './ViewLicenseTable';
+import ViewLicenseForm from './ViewLicenseForm';
 
 class ViewLicense extends Component {
   componentDidMount() {
@@ -27,8 +27,8 @@ class ViewLicense extends Component {
         <ViewLicenseHeader
           licenseId={selectedLicense.licenseId}
         />
-        <ViewLicenseTable
-          data={[selectedLicense]}
+        <ViewLicenseForm
+          selectedLicense={selectedLicense}
         />
       </div>
     );

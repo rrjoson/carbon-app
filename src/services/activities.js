@@ -17,6 +17,10 @@ export function updateActivity(activityNo, payload) {
   return request.put(`${BASE_URL}/activityNo/${activityNo}`, payload);
 }
 
+export function updateServiceReport(activityNo, serviceReportNo, payload) {
+  return request.put(`${BASE_URL}/service-reports/${activityNo}/${serviceReportNo}`, payload);
+}
+
 export function deleteActivity(activityNo) {
   return request.delete(`${BASE_URL}/activityNo/${activityNo}`);
 }

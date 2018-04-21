@@ -30,25 +30,27 @@ export function generatePDF(data) {
 
   document.setFontSize(10);
   document.setFontStyle('bold');
-  document.text('Client', 40, 133);
-  document.text('Product Name', 116, 133);
-  document.text('Type of Activity', 232, 133);
-  document.text('Assigned Systems Engineer', 334, 133);
+  document.text('Client:', 40, 133);
+  document.text('Product Name:', 40, 153);
+  document.text('Type of Activity:', 40, 173);
+  document.text('Assigned Systems Engineer:', 40, 193);
+  document.text('Point Person:', 40, 213);
 
   document.setFontStyle('normal');
-  document.text(data.client, 40, 149);
-  document.text(data.productName, 116, 149);
-  document.text(data.typeOfActivity, 232, 149);
-  document.text(data.assignedSystemsEngineer.join(', '), 334, 149);
+  document.text(data.client, 75, 133);
+  document.text(data.productName, 114, 153);
+  document.text(data.typeOfActivity, 120, 173);
+  document.text(data.assignedSystemsEngineer.join(', '), 182, 193);
+  document.text(data.point_person, 109, 213);
 
   document.setFillColor(240, 240, 240);
-  document.rect(40, 166, 520, 3, 'F');
+  document.rect(40, 228, 520, 1.5, 'F');
 
   document.setFontSize(14);
   document.setFontStyle('bold');
-  document.text('Purpose of Visit', 40, 210);
+  document.text('Purpose of Visit', 40, 253);
 
-  let height = 210 + 20;
+  let height = 253 + 20;
 
   const purposeOfVisit = data.purposeOfVisit || '';
   const formattedPurposeOfVisit = document.splitTextToSize(purposeOfVisit, 750);

@@ -5,6 +5,7 @@ import { restrictions } from './../../utils/restrictions';
 import {
   addActivity,
   updateActivity,
+  updateServiceReport,
   deleteActivity,
   fetchActivity,
   fetchActivities,
@@ -55,7 +56,7 @@ export default {
 
       if (payload.typeOfActivity !== 'Remote') {
         const { data: activity } = yield call(fetchActivity, data.report[0].activityNo);
-        yield put({ type: 'SAVE', payload: { serviceReportNumber: activity[0].sr_number } });
+        yield put({ type: 'SAVE', payload: { serviceReportNumber: activity[0].sr_number_year } });
       } else {
         yield put(routerRedux.push(`/cases/${glocalId}`));
         notification.success({ message: 'Activity added.', duration: 2 });
@@ -70,6 +71,11 @@ export default {
       const activityNo = yield select(state => state.activities.selected.activityNo);
 
       yield call(updateActivity, activityNo, payload);
+      if (payload.typeOfActivity !== 'Remote') {
+        const serviceReportNo = yield select(state => state.activities.selected.sr_number);
+        yield call(updateServiceReport, activityNo, serviceReportNo, payload);
+      }
+
       yield put(routerRedux.push(`/cases/${glocalId}`));
 
       notification.success({ message: 'Activity updated.', duration: 2 });

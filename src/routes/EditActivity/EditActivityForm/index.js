@@ -263,6 +263,22 @@ class DynamicFieldSet extends Component {
         </Row>
 
         <Row gutter={12}>
+          <Col span={5}>
+            <FormItem label="Point Person">
+              {getFieldDecorator('point_person', {
+                initialValue: this.props.selectedActivity.point_person,
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
+                <Input type="text" />
+              )}
+            </FormItem>
+          </Col>
+        </Row>
+
+        <Row gutter={12}>
           <Col span={24}>
             <FormItem label="Activity Performed">
               {getFieldDecorator('activityPerformed', {

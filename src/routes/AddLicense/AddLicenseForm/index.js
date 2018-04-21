@@ -178,6 +178,7 @@ class AddLicenseForm extends Component {
                   <Radio.Button value="24x7">24x7</Radio.Button>
                   <Radio.Button value="12x6">12x6</Radio.Button>
                   <Radio.Button value="Other">Other</Radio.Button>
+                  <Radio.Button value="NONE">None</Radio.Button>
                 </Radio.Group>
               )}
             </FormItem>

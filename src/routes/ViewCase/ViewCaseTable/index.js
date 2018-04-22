@@ -6,6 +6,7 @@ import { Table, Link, Status, Avatar, Tooltip } from './../../../components';
 import { getSeverityValue, getSystemsEngineers } from './../../../utils/data';
 
 function HomeTable(props) {
+  console.warn(props)
   const columns = [{
     title: 'ID',
     dataIndex: 'glocalId',
@@ -48,13 +49,8 @@ function HomeTable(props) {
     dataIndex: 'dateRaised',
     render: date => moment(date, 'YYYY-MM-DD').format('MM/DD/YYYY')
   }, {
-    title: 'Assigned AM',
-    dataIndex: 'accountManager',
-    render: accountManager => (
-      <Tooltip title={accountManager}>
-        <Avatar>{accountManager[0]}</Avatar>
-      </Tooltip>
-    ),
+    title: 'Vendor Case ID',
+    dataIndex: 'vendorCaseId',
   }];
 
   const dataSource = props.data.map((item, index) => {
@@ -73,7 +69,7 @@ function HomeTable(props) {
       open: item.dateRaised,
       dateResolved: item.date_resolved,
       dateRaised: item.dateRaised,
-      accountManager: item.accountManager,
+      vendorCaseId: item.vendorCaseId,
     }
     );
   });

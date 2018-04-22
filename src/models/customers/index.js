@@ -1,4 +1,4 @@
-import { fetchCustomers } from './../../services/customers';
+import { fetchCustomers, fetchCustomersByClient } from './../../services/customers';
 
 export default {
 
@@ -23,8 +23,12 @@ export default {
       const { data } = yield call(fetchCustomers);
       yield put({ type: 'SAVE', payload: { data } });
     },
-  },
 
+    *FETCH_CUSTOMERS_BY_CLIENT({ payload }, { call, put }) {
+      const { data } = yield call(fetchCustomersByClient, payload);
+      yield put({ type: 'SAVE', payload: { data } });
+    },
+  },
 
   reducers: {
     SAVE(state, action) {

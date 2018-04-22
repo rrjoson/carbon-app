@@ -28,6 +28,7 @@ class EditCase extends Component {
     if (nextProps.selectedCase !== this.props.selectedCase) {
       dispatch({ type: 'clients/FETCH_CLIENT', payload: nextProps.selectedCase.customer });
       dispatch({ type: 'products/FETCH_PRODUCTS_OF_VENDOR', payload: nextProps.selectedCase.vendor });
+      dispatch({ type: 'customers/FETCH_CUSTOMERS_BY_CLIENT', payload: nextProps.selectedCase.customer });
     }
   }
 
@@ -66,6 +67,7 @@ class EditCase extends Component {
             engineers={engineers}
             onSelectVendor={(data) => dispatch({ type: 'products/FETCH_PRODUCTS_OF_VENDOR', payload: data })}
             onDeleteCase={(data) => dispatch({ type: 'cases/DELETE_CASE', payload: data })}
+            onSelectClient={(data) => dispatch({ type: 'customers/FETCH_CUSTOMERS_BY_CLIENT', payload: data })}
             onSave={(data) => dispatch({ type: 'cases/UPDATE_CASE', payload: data })}
           />
         </div>

@@ -52,6 +52,7 @@ class Cases extends Component {
           vendors={vendors}
           engineers={engineers}
           onSelectVendor={(data) => dispatch({ type: 'products/FETCH_PRODUCTS_OF_VENDOR', payload: data })}
+          onSelectClient={(data) => dispatch({ type: 'customers/FETCH_CUSTOMERS_BY_CLIENT', payload: data })}
           onSave={(data) => dispatch({ type: 'cases/CREATE_CASE', payload: data })}
         />
       </div>

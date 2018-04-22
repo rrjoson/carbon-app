@@ -35,6 +35,12 @@ class DynamicFieldSet extends Component {
     });
   }
 
+  handleChangeClient = (data) => {
+    this.props.form.setFieldsValue({ contact_person: '' });
+    console.warn(data)
+    this.props.onSelectClient(data);
+  }
+
   render() {
     const { selectedCase } = this.props;
     const { getFieldDecorator, getFieldValue } = this.props.form;
@@ -219,13 +225,33 @@ class DynamicFieldSet extends Component {
                   message: 'This is a required field',
                 }],
               })(
-                <Select placeholder={this.props.clients[0]['accountName']}>
+                <Select onChange={this.handleChangeClient}>
                   {
                     this.props.clients.map((client) => {
                       return <Option value={client.accountName}>{client.accountName}</Option>
                     })
                   }
                 </Select>
+              )}
+            </FormItem>
+          </Col>
+
+          <Col span={5}>
+            <FormItem label="Customer Name">
+              {getFieldDecorator('contact_person', {
+                initialValue: selectedCase.contact_person,
+                rules: [{
+                  required: true,
+                  message: 'This is a required field',
+                }],
+              })(
+               <Select disabled={!getFieldValue('customer')}>
+                {
+                  this.props.customers && this.props.customers[0] && this.props.customers[0].customer_name && this.props.customers[0].customer_name[0].map((customer) => {
+                    return <Option value={customer}>{customer}</Option>
+                  })
+                }
+               </Select>
               )}
             </FormItem>
           </Col>

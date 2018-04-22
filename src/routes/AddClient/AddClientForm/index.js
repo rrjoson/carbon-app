@@ -12,7 +12,7 @@ const vendors = [
   {
     name: 'contact_details',
     items: [
-      { "Customer_Name": "", "Email": "", "Contact_Number": "" }
+      { "Customer_Name": "", "Email": "", "Contact_Number": "", "Position": "N/A" }
     ],
   },
 ];
@@ -32,7 +32,7 @@ class AddClientForm extends Component {
     const { form } = this.props;
     const keys = form.getFieldValue(`keys-${vendorName}`);
 
-    const nextKeys = keys.concat({ "Customer_Name": "", "Email": "", "Contact_Number": "" });
+    const nextKeys = keys.concat({ "Customer_Name": "", "Email": "", "Contact_Number": "", "Position": "N/A" });
 
     uuid += 1;
     form.setFieldsValue({ [`keys-${vendorName}`]: nextKeys });
@@ -44,18 +44,20 @@ class AddClientForm extends Component {
       if (!err) {
         const data = Object.assign({}, values);
 
-        data.contact_details = [[], [], []];
+        data.contact_details = [[], [], [], []];
 
         values['keys-contact_details'].forEach((item, index) => {
           data.contact_details[0].push(values[`contact_details-${index}-Customer_Name`]);
           data.contact_details[1].push(values[`contact_details-${index}-Email`]);
           data.contact_details[2].push(values[`contact_details-${index}-Contact_Number`]);
+          data.contact_details[3].push(values[`contact_details-${index}-Position`]);
         });
 
         values['keys-contact_details'].forEach((item, index) => {
           delete data[`contact_details-${index}-Customer_Name`]
           delete data[`contact_details-${index}-Email`]
           delete data[`contact_details-${index}-Contact_Number`]
+          delete data[`contact_details-${index}-Position`]
         });
 
         delete data['keys-contact_details'];
@@ -158,6 +160,26 @@ class AddClientForm extends Component {
                       >
                         {getFieldDecorator(`contact_details-${index}-Contact_Number`, {
                           initialValue: k['Contact_Number'],
+                          validateTrigger: ['onChange', 'onBlur'],
+                          rules: [{
+                            required: true,
+                            message: 'This is a required field',
+                          }],
+                        })(
+                          <Input type="text" />
+                        )}
+                      </FormItem>
+
+                    </Col>
+
+                    <Col span={4}>
+                      <FormItem
+                        label='Position'
+                        required={false}
+                        key={k}
+                      >
+                        {getFieldDecorator(`contact_details-${index}-Position`, {
+                          initialValue: k['Position'],
                           validateTrigger: ['onChange', 'onBlur'],
                           rules: [{
                             required: true,

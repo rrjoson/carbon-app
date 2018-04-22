@@ -25,6 +25,10 @@ export function deleteActivity(activityNo) {
   return request.delete(`${BASE_URL}/activityNo/${activityNo}`);
 }
 
+export function deleteServiceReport(activityNo, serviceReportNo, payload) {
+  return request.delete(`${BASE_URL}/service-reports/${activityNo}/${serviceReportNo}`);
+}
+
 export function fetchActivitiesByEngineerName(engineerName) {
   return request.get(`${BASE_URL}/engActivities/{${engineerName}}`);
 }

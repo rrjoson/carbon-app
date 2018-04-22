@@ -44,7 +44,7 @@ class ViewActivitiesList extends Component {
                 item={item}
                 glocalId={item.glocalId}
                 onClick={() => this.handleClick(item, index)}
-                onDelete={() => this.handleDelete(item.activityNo)}
+                onDelete={() => this.handleDelete(item)}
                 open={this.state.selected[index]}
               />
             );

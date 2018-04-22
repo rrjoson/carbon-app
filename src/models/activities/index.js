@@ -7,6 +7,7 @@ import {
   updateActivity,
   updateServiceReport,
   deleteActivity,
+  deleteServiceReport,
   fetchActivity,
   fetchActivities,
   fetchActivitiesByEngineerName,
@@ -82,13 +83,19 @@ export default {
     },
 
     *DELETE_ACTIVITY({ payload }, { call, put, select }) {
+
+      console.warn(payload, 12333)
       const { position } = yield select(state => state.user.data);
       if (restrictions[position] && restrictions[position].includes('DELETE_ACTIVITY')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
 
       const activities = yield select(state => state.activities.data);
-      const data = activities.filter(item => item.activityNo !== payload);
+      const data = activities.filter(item => item.activityNo !== payload.activityNo);
 
-      yield call(deleteActivity, payload);
+      yield call(deleteActivity, payload.activityNo);
+
+      if (payload.typeOfActivity !== 'Remote') {
+        yield call(deleteServiceReport, payload.activityNo, payload.sr_number);
+      }
       yield put({ type: 'SAVE', payload: { data } });
 
       notification.success({ message: 'Activity deleted.', duration: 2 });

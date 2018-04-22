@@ -34,7 +34,7 @@ class AddUserForm extends Component {
   }
 
   render() {
-    const { user } = this.props;
+    const { user, loggedInUser } = this.props;
     const { getFieldDecorator } = this.props.form;
 
     return (
@@ -129,7 +129,7 @@ class AddUserForm extends Component {
                   message: 'This is a required field',
                 }],
               })(
-                <Select disabled={user.position !== 'Managing Director'}>
+                <Select disabled={loggedInUser && loggedInUser.position !== 'Managing Director'}>
                   <Select.Option value={'Managing Director'}>Managing Director</Select.Option>
                   <Select.Option value={'Sales Director'}>Sales Director</Select.Option>
                   <Select.Option value={'Sales Manager'}>Sales Manager</Select.Option>

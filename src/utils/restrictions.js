@@ -1,7 +1,5 @@
 export const restrictions = {
-  'Managing Director': [
-    'EDIT_CASE',
-  ],
+  'Managing Director': [],
   'Sales Director': [
     'ADD_CASE',
     'EDIT_CASE',

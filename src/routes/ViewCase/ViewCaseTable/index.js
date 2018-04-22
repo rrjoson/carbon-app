@@ -9,7 +9,7 @@ function HomeTable(props) {
   const columns = [{
     title: 'ID',
     dataIndex: 'glocalId',
-    render: glocalId => <Link to={`/cases/${glocalId}`}>{glocalId}</Link>,
+    render: (glocalid, record) => <Link to={`/cases/${glocalid}`}>{record.glocal_id}</Link>,
   }, {
     title: 'Company',
     dataIndex: 'customer',
@@ -62,6 +62,7 @@ function HomeTable(props) {
     {
       key: index,
       glocalId: item.glocalId,
+      glocal_id: item.glocal_id,
       customer: item.customer,
       status: item.case_status,
       assignedSystemsEngineer: getSystemsEngineers(item.assignedsystemsengineer)

@@ -10,7 +10,7 @@ function ViewCasesTable(props) {
     title: 'ID',
     dataIndex: 'glocalid',
     sorter: (a, b) => a.glocalid - b.glocalid,
-    render: glocalid => <Link to={`/cases/${glocalid}`}>{glocalid}</Link>,
+    render: (glocalid, record) => <Link to={`/cases/${glocalid}`}>{record.glocal_id}</Link>,
   }, {
     title: 'Company',
     dataIndex: 'customer',
@@ -95,6 +95,7 @@ function ViewCasesTable(props) {
     {
       key: index,
       glocalid: item.glocalId,
+      glocal_id: item.glocal_id,
       customer: item.customer,
       status: item.case_status,
       assignedSystemsEngineer: getSystemsEngineers(item.assignedsystemsengineer)

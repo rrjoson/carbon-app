@@ -123,11 +123,21 @@ class AddUserForm extends Component {
                 }],
               })(
                 <Select>
-                  <Select.Option value={'Director'}>Director</Select.Option>
-                  <Select.Option value={'Technical Manager'}>Technical Manager</Select.Option>
-                  <Select.Option value={'Systems Engineer'}>Systems Engineer</Select.Option>
+                  <Select.Option value={'Managing Director'}>Managing Director</Select.Option>
+                  <Select.Option value={'Sales Director'}>Sales Director</Select.Option>
                   <Select.Option value={'Sales Manager'}>Sales Manager</Select.Option>
+                  <Select.Option value={'Senior Sales Consultant'}>Senior Sales Consultant</Select.Option>
+                  <Select.Option value={'Sales Consultant'}>Sales Consultant</Select.Option>
+                  <Select.Option value={'Senior Account Manager'}>Senior Account Manager</Select.Option>
                   <Select.Option value={'Account Manager'}>Account Manager</Select.Option>
+                  <Select.Option value={'Product Specialist'}>Product Specialist</Select.Option>
+                  <Select.Option value={'Business Development Director'}>Business Development Director</Select.Option>
+                  <Select.Option value={'Corporate Affairs Director'}>Corporate Affairs Director</Select.Option>
+                  <Select.Option value={'Project Manager'}>Project Manager</Select.Option>
+                  <Select.Option value={'Technical Manager'}>Technical Manager</Select.Option>
+                  <Select.Option value={'Team Lead'}>Team Lead</Select.Option>
+                  <Select.Option value={'Senior Systems Engineer'}>Senior Systems Engineer</Select.Option>
+                  <Select.Option value={'Systems Engineer'}>Systems Engineer</Select.Option>
                 </Select>
               )}
             </FormItem>

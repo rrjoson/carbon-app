@@ -8,6 +8,8 @@ import {
   addUser,
   fetchAccounts,
   fetchAccount,
+  fetchRegularAccounts,
+  fetchAdminAccounts,
   updateUser,
   updateOtherUser,
   updateOwnPassword,
@@ -80,10 +82,11 @@ export default {
     },
 
     *FETCH_ACCOUNTS({ payload }, { call, put }) {
-      const { data } = yield call(fetchAccounts);
+      const { data: employees } = yield call(fetchRegularAccounts);
+      const { data: administrator } = yield call(fetchAdminAccounts);
 
-      yield put({ type: 'SAVE', payload: { employees: data.splice(1) } });
-      yield put({ type: 'SAVE', payload: { administrator: [data[0]] } });
+      yield put({ type: 'SAVE', payload: { employees } });
+      yield put({ type: 'SAVE', payload: { administrator } });
     },
 
     *FETCH_ACCOUNT({ payload }, { call, put, select }) {

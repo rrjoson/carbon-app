@@ -23,6 +23,7 @@ class AddUser extends Component {
       isUpdatingUser,
       isUpdatingPassword,
       selectedUser,
+      loggedInUser,
     } = this.props;
 
     return (
@@ -34,6 +35,7 @@ class AddUser extends Component {
           onSave={data => dispatch({ type: 'user/UPDATE_USER', payload: data })}
         />
         <EditAccountPasswordForm
+          loggedInUser={loggedInUser}
           loading={isUpdatingPassword}
           onSave={data => dispatch({ type: 'user/UPDATE_PASSWORD', payload: data })}
         />
@@ -47,6 +49,7 @@ function mapStateToProps(state) {
     isUpdatingUser: state.loading.effects['user/UPDATE_USER'],
     isUpdatingPassword: state.loading.effects['user/UPDATE_PASSWORD'],
     selectedUser: state.user.selected,
+    loggedInUser: state.user.data,
   };
 }
 

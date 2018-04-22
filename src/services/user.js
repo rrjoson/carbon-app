@@ -42,6 +42,14 @@ export function fetchAccounts(payload) {
   return request.get(ACCOUNT_URL);
 }
 
+export function fetchAdminAccounts(payload) {
+  return request.get(`${BASE_URL}/position/admin`);
+}
+
+export function fetchRegularAccounts(payload) {
+  return request.get(`${BASE_URL}/position/others`);
+}
+
 export function fetchAccount(id) {
   return request.get(`${ACCOUNT_URL_ME}/${id}`);
 }

@@ -9,3 +9,8 @@ html, body, :global(#root) {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+:global .ant-dropdown-menu {
+  max-height: 200px;
+  overflow: scroll;
+}

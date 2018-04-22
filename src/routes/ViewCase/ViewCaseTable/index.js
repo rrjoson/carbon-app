@@ -51,6 +51,9 @@ function HomeTable(props) {
   }, {
     title: 'Vendor Case ID',
     dataIndex: 'vendorCaseId',
+  }, {
+    title: 'Contact Person',
+    dataIndex: 'contactPerson',
   }];
 
   const dataSource = props.data.map((item, index) => {
@@ -70,6 +73,7 @@ function HomeTable(props) {
       dateResolved: item.date_resolved,
       dateRaised: item.dateRaised,
       vendorCaseId: item.vendorCaseId,
+      contactPerson: item.contact_person,
     }
     );
   });

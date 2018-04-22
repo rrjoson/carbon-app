@@ -129,7 +129,7 @@ class AddUserForm extends Component {
                   message: 'This is a required field',
                 }],
               })(
-                <Select>
+                <Select disabled={user.position !== 'Managing Director'}>
                   <Select.Option value={'Managing Director'}>Managing Director</Select.Option>
                   <Select.Option value={'Sales Director'}>Sales Director</Select.Option>
                   <Select.Option value={'Sales Manager'}>Sales Manager</Select.Option>

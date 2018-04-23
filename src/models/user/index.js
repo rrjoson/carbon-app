@@ -97,9 +97,11 @@ export default {
     *UPDATE_STATUS({ payload }, { call, put }) {
       yield call(updateStatus, payload.id, payload.isActive);
 
-      const { data } = yield call(fetchAccounts);
-      yield put({ type: 'SAVE', payload: { employees: data.splice(1) } });
-      yield put({ type: 'SAVE', payload: { administrator: [data[0]] } });
+      const { data: employees } = yield call(fetchRegularAccounts);
+      const { data: administrator } = yield call(fetchAdminAccounts);
+
+      yield put({ type: 'SAVE', payload: { employees } });
+      yield put({ type: 'SAVE', payload: { administrator } });
     },
 
     *UPDATE_USER({ payload }, { call, put, select }) {

@@ -147,7 +147,9 @@ class AddUserForm extends Component {
 
         <FormItem>
           <RestrictedComponent action="ADD_USER">
-            <Button onClick={this.showConfirmDeleteModal} type="danger" style={{ marginRight: 8 }}>Delete</Button>
+            <If condition={user.position !== 'Managing Director'}>
+              <Button onClick={this.showConfirmDeleteModal} type="danger" style={{ marginRight: 8 }}>Delete</Button>
+            </If>
           </RestrictedComponent>
           <Button loading={this.props.loading} type="primary" style={{ marginRight: 8 }} htmlType="submit">
             {!this.props.loading ? <Icon type="save" /> : null}

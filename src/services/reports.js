@@ -29,6 +29,10 @@ export function fetchCaseProductCount() {
   return request.get(`${BASE_URL}/case-product-count`);
 }
 
+export function fetchCaseProductCountMost() {
+  return request.get(`${BASE_URL}/case-product-count/most`);
+}
+
 export function fetchVendorCaseCount() {
   return request.get(`${BASE_URL}/vendor-case-count`);
 }

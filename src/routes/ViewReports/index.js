@@ -23,10 +23,10 @@ class Dashboard extends Component {
     dispatch({ type: 'reports/FETCH_AVERAGE_TURNAROUND' });
     dispatch({ type: 'reports/FETCH_TOTAL_CASES' });
     dispatch({ type: 'reports/FETCH_VENDOR_CASE_COUNT' });
-    // dispatch({ type: 'reports/FETCH_SEVERITY_COUNT' });
     // dispatch({ type: 'reports/FETCH_ENGINEER_ACTIVITIES_COUNT' });
     // dispatch({ type: 'reports/FETCH_OPEN_CASE_CLIENT_COUNT' });
     // dispatch({ type: 'reports/FETCH_RESOLVED_CASE_CLIENT_COUNT' });
+    // dispatch({ type: 'reports/FETCH_SEVERITY_COUNT' });
     // dispatch({ type: 'reports/FETCH_CASE_PRODUCT_COUNT' });
     // dispatch({ type: 'reports/FETCH_VENDOR_LICENSE_COUNT' });
   }

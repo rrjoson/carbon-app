@@ -106,7 +106,7 @@ export default {
       const { userid } = yield select(state => state.user.selected);
       const { position } = yield select(state => state.user.data);
 
-      if (position === 'Director') {
+      if (position === 'Managing Director') {
         yield call(updateOtherUser, userid, payload);
       } else {
         yield call(updateUser, userid, payload);
@@ -119,7 +119,7 @@ export default {
       const { userid } = yield select(state => state.user.selected);
       const { position } = yield select(state => state.user.data);
 
-      if (position === 'Director') {
+      if (position === 'Managing Director') {
         yield call(updateAccountPassword, userid, payload);
       } else {
         yield call(updateOwnPassword, userid, payload);

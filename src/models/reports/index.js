@@ -13,6 +13,7 @@ export default {
     openCaseClientCount: {},
     resolvedCaseClientCount: {},
     caseProductCount: {},
+    caseProductCountMost: {},
     vendorCaseCount: [],
     vendorLicenseCount: {},
     averageTurnaround: null,
@@ -60,6 +61,11 @@ export default {
     *FETCH_CASE_PRODUCT_COUNT({ payload }, { call, put }) {
       const { data: caseProductCount } = yield call(services.fetchCaseProductCount);
       yield put({ type: 'SAVE', payload: { caseProductCount } });
+    },
+
+    *FETCH_CASE_PRODUCT_COUNT_MOST({ payload }, { call, put }) {
+      const { data: caseProductCountMost } = yield call(services.fetchCaseProductCountMost);
+      yield put({ type: 'SAVE', payload: { caseProductCountMost } });
     },
 
     *FETCH_VENDOR_CASE_COUNT({ payload }, { call, put }) {

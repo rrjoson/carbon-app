@@ -7,8 +7,9 @@ export default {
 
   state: {
     totalCases: [],
+    totalCasesCount: null,
     severityCount: {},
-    engineerActivitiesCount: {},
+    engineerActivitiesCount: [],
     mostCasesClientCount: {},
     openCaseClientCount: {},
     resolvedCaseClientCount: {},
@@ -17,6 +18,7 @@ export default {
     vendorCaseCount: [],
     vendorLicenseCount: {},
     averageTurnaround: null,
+    filters: {},
   },
 
   subscriptions: {
@@ -31,6 +33,11 @@ export default {
     *FETCH_TOTAL_CASES({ payload }, { call, put }) {
       const { data: totalCases } = yield call(services.fetchTotalCases);
       yield put({ type: 'SAVE', payload: { totalCases } });
+    },
+
+    *FETCH_TOTAL_CASES_COUNT({ payload }, { call, put }) {
+      const { data } = yield call(services.fetchTotalCasesCount);
+      yield put({ type: 'SAVE', payload: { totalCasesCount: data[0].total_cases } });
     },
 
     *FETCH_SEVERITY_COUNT({ payload }, { call, put }) {
@@ -81,6 +88,19 @@ export default {
     *FETCH_AVERAGE_TURNAROUND({ payload }, { call, put }) {
       const { data } = yield call(services.fetchAverageTurnaround);
       yield put({ type: 'SAVE', payload: { averageTurnaround: data[0].avg } });
+    },
+
+    *FETCH_REPORTS_BY_FILTER({ payload }, { call, put, select }) {
+      console.warn(payload)
+      const currentFilters = yield select(state => state.cases.filters);
+      const updatedFilters = { ...currentFilters, [payload.key]: [...(currentFilters[payload.key] ? currentFilters[payload.key] : []), payload.value] };
+      yield put({ type: 'SAVE', payload: { filters: updatedFilters } });
+      // const { data } = yield call(services.fetchAverageTurnaround);
+      // yield put({ type: 'SAVE', payload: { averageTurnaround: data[0].avg } });
+    },
+
+    *FETCH_REPORTS({ payload }, { call, put, select }) {
+      yield put({ type: 'SAVE', payload: { filters: {} } });
     },
   },
 

@@ -1,0 +1,15 @@
+.viewReportsFilter {
+  display: flex;
+}
+
+.timePeriodFilter {
+  width: 386px;
+  margin-right: 20px;
+}
+
+.title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #8b8b8b;
+  margin-bottom: 7px;
+}

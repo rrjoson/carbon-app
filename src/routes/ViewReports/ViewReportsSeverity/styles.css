@@ -36,6 +36,10 @@
   flex: 1;
 }
 
+.progress :global .ant-progress-status-success .ant-progress-bg {
+  background: #1890ff;
+}
+
 .count {
   font-size: 20px;
   letter-spacing: 0.1px;

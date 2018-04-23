@@ -3,20 +3,27 @@ import React from 'react';
 import styles from './styles.css';
 
 function ViewReportsSE(props) {
-  const { type } = props;
+  const { type, data } = props;
 
   return (
     <div className={styles.viewReportsSE}>
       <div className={styles.title}>TOP SE PERFORMERS</div>
       <div className={styles.list}>
-        <div className={styles.item}>
-          <div className={styles.name}>Richard</div>
-          <div className={styles.count}>15 Activities</div>
-        </div>
-        <div className={styles.item}>
-          <div className={styles.name}>Richard</div>
-          <div className={styles.count}>15 Activities</div>
-        </div>
+        <For each="item" of={data}>
+          <div className={styles.item}>
+            <div className={styles.name}>{item.assignedsystemsengineer}</div>
+            <div className={styles.count}>
+              <Choose>
+                <When condition={item.number_of_activities.length === 1}>
+                  {item.number_of_activities} Activity
+                </When>
+                <Otherwise>
+                  {item.number_of_activities} Activities
+                </Otherwise>
+              </Choose>
+            </div>
+          </div>
+        </For>
       </div>
     </div>
   );

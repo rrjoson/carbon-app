@@ -9,6 +9,10 @@ export function fetchSeverityCount() {
   return request.get(`${BASE_URL}/severity-count`);
 }
 
+export function fetchTotalCasesCount() {
+  return request.get(`${BASE_URL}/severity-count/all`);
+}
+
 export function fetchEngineerAcitivitesCount() {
   return request.get(`${BASE_URL}/eng-activities-count`);
 }

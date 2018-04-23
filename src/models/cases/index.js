@@ -59,8 +59,6 @@ export default {
     }, { type: 'throttle', ms: 500 }],
 
     *FETCH_CASES_BY_FITLER({ payload }, { call, put, select }) {
-
-      console.warn(payload)
       const currentFilters = yield select(state => state.cases.filters);
       const updatedFilters = { ...currentFilters, [payload.key]: [...(currentFilters[payload.key] ? currentFilters[payload.key] : []), payload.value] };
       yield put({ type: 'SAVE', payload: { filters: updatedFilters } });

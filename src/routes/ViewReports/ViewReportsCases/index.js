@@ -6,7 +6,6 @@ import styles from './styles.css';
 function ViewReportsCases(props) {
   const { type, data } = props;
 
-  console.warn(data)
 
   const seriesData = data.map((item) => {
     return (

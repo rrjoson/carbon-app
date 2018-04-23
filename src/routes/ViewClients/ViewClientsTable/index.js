@@ -36,6 +36,14 @@ function ViewCasesTable(props) {
       ));
     },
   }, {
+    title: 'Position',
+    dataIndex: 'position',
+    render: (item) => {
+      return item[0].map((text) => (
+        <div>{text}</div>
+      ));
+    },
+  }, {
     title: 'Company Address',
     dataIndex: 'companyAddress',
     sorter: (a, b) => a.companyAddress.length - b.companyAddress.length,
@@ -70,6 +78,7 @@ function ViewCasesTable(props) {
       email: item.email,
       contactNumber: item.contact_number,
       companyAddress: item.company_address,
+      position: item.position,
       accountManager: item.accountManager,
       actions: ['View', 'Edit'],
     }

@@ -12,7 +12,7 @@ const vendors = [
   {
     name: 'contact_details',
     items: [
-      { "Customer_Name": "", "Email": "", "Contact_Number": "", "Position": "N/A" }
+      { "Customer_Name": "N/A", "Email": "N/A", "Contact_Number": "N/A", "Position": "N/A" }
     ],
   },
 ];
@@ -32,7 +32,7 @@ class AddClientForm extends Component {
     const { form } = this.props;
     const keys = form.getFieldValue(`keys-${vendorName}`);
 
-    const nextKeys = keys.concat({ "Customer_Name": "", "Email": "", "Contact_Number": "", "Position": "N/A" });
+    const nextKeys = keys.concat({ "Customer_Name": "N/A", "Email": "N/A", "Contact_Number": "N/A", "Position": "N/A" });
 
     uuid += 1;
     form.setFieldsValue({ [`keys-${vendorName}`]: nextKeys });

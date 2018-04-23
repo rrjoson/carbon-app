@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Input, Icon, Button, Row, Col, DatePicker, Radio } from 'antd';
+import { Input, Icon, Button, Row, Col, DatePicker, Radio, Modal } from 'antd';
 
-import { Select, Typography, Form, Divider } from './../../../components';
+import { Select, Typography, Form, Divider, RestrictedComponent } from './../../../components';
 
 import styles from './styles.css';
 
@@ -26,10 +26,20 @@ class AddUserForm extends Component {
           delete data.on_site_other;
         }
 
-        console.warn(data)
-
         this.props.onSave(data);
       }
+    });
+  }
+
+  showConfirmDeleteModal = () => {
+    Modal.confirm({
+      title: 'Are you sure you want to delete this?',
+      okText: 'Delete',
+      okType: 'danger',
+      cancelText: 'Cancel',
+      onOk: () => {
+        this.props.onDelete(this.props.user.userid);
+      },
     });
   }
 
@@ -55,7 +65,6 @@ class AddUserForm extends Component {
           </Col>
         </Row>
 
-
         <Row>
           <Col span={5}>
             <FormItem label="Username">
@@ -71,21 +80,6 @@ class AddUserForm extends Component {
             </FormItem>
           </Col>
         </Row>
-
-        {/* <Row>
-          <Col span={5}>
-            <FormItem label="Password">
-              {getFieldDecorator('password', {
-                rules: [{
-                  required: true,
-                  message: 'This is a required field',
-                }],
-              })(
-                <Input type="password" />
-              )}
-            </FormItem>
-          </Col>
-        </Row> */}
 
         <Row>
           <Col span={5}>
@@ -152,6 +146,9 @@ class AddUserForm extends Component {
         </Row>
 
         <FormItem>
+          <RestrictedComponent action="ADD_USER">
+            <Button onClick={this.showConfirmDeleteModal} type="danger" style={{ marginRight: 8 }}>Delete</Button>
+          </RestrictedComponent>
           <Button loading={this.props.loading} type="primary" style={{ marginRight: 8 }} htmlType="submit">
             {!this.props.loading ? <Icon type="save" /> : null}
             Save

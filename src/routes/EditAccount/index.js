@@ -33,9 +33,9 @@ class AddUser extends Component {
           loading={isUpdatingUser}
           user={selectedUser}
           onSave={data => dispatch({ type: 'user/UPDATE_USER', payload: data })}
+          onDelete={data => dispatch({ type: 'user/DELETE_USER', payload: data })}
         />
         <EditAccountPasswordForm
-          loggedInUser={loggedInUser}
           loading={isUpdatingPassword}
           onSave={data => dispatch({ type: 'user/UPDATE_PASSWORD', payload: data })}
         />

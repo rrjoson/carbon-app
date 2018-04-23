@@ -26,8 +26,6 @@ class AddUserForm extends Component {
           delete data.on_site_other;
         }
 
-        console.warn(data)
-
         this.props.onSave(data);
       }
     });

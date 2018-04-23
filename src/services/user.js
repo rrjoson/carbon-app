@@ -73,3 +73,7 @@ export function updateAccountPassword(id, payload) {
 export function updateOtherUser(id, payload) {
   return request.put(`${ACCOUNT_DIRECTOR_EDIT_URL}/${id}`, payload);
 }
+
+export function deleteUser(id) {
+  return request.delete(`${BASE_URL}/user/${id}`);
+}

@@ -6,6 +6,7 @@ import {
   login,
   logout,
   addUser,
+  deleteUser,
   fetchAccounts,
   fetchAccount,
   fetchRegularAccounts,
@@ -115,6 +116,12 @@ export default {
       }
 
       notification['success']({ message: 'User updated.', duration: 2 });
+    },
+
+    *DELETE_USER({ payload }, { call, put, select }) {
+      yield call(deleteUser, payload);
+      yield put(routerRedux.push('/accounts'));
+      notification['success']({ message: 'User deleted.', duration: 2 });
     },
 
     *UPDATE_PASSWORD({ payload }, { call, put, select }) {

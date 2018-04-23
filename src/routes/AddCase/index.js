@@ -15,7 +15,6 @@ class Cases extends Component {
     dispatch({ type: 'vendors/FETCH_VENDORS' });
     dispatch({ type: 'products/FETCH_PRODUCTS' });
     dispatch({ type: 'clients/FETCH_CLIENTS' });
-    dispatch({ type: 'customers/FETCH_CUSTOMERS' });
     dispatch({ type: 'engineers/FETCH_ENGINEERS' });
   }
 
@@ -36,7 +35,6 @@ class Cases extends Component {
       !vendors.length ||
       !products.length ||
       !clients.length ||
-      !customers.length ||
       !engineers.length
     ) return null;
 

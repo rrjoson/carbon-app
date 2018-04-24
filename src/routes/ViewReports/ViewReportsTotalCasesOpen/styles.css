@@ -1,4 +1,4 @@
-.viewReportsProduct {
+.viewReportsClient {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -8,7 +8,6 @@
   border-radius: 6px;
   background-color: #ffffff;
   border: solid 1px #f0f0f0;
-  margin-right: 20px;
 }
 
 .content {
@@ -20,7 +19,6 @@
   font-weight: 600;
   letter-spacing: 0.1px;
   color: #6f7c87;
-
   line-height: 36px;
 }
 

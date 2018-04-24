@@ -4,6 +4,11 @@ import { connect } from 'dva';
 import ViewReportsFilter from './ViewReportsFilter';
 import ViewReportsHeader from './ViewReportsHeader';
 
+import ViewReportsTotalCasesOpen from './ViewReportsTotalCasesOpen';
+import ViewReportsTotalCasesResolved from './ViewReportsTotalCasesResolved';
+import ViewReportsSEUtilization from './ViewReportsSEUtilization';
+import ViewReportsProductUtilization from './ViewReportsProductUtilization';
+
 import ViewReportsClient from './ViewReportsClient';
 import ViewReportsProduct from './ViewReportsProduct';
 import ViewReportsTurnaround from './ViewReportsTurnaround';
@@ -75,7 +80,22 @@ class Dashboard extends Component {
 
         <Choose>
           <When condition={filters && filters.customer && filters.customer.length}>
-            HELLO WORLD
+            <section>
+              <ViewReportsTotalCasesOpen data={mostCasesClientCount} />
+              <ViewReportsTotalCasesResolved data={caseProductCountMost} />
+              <ViewReportsTurnaround data={averageTurnaround} />
+            </section>
+            <section>
+              <ViewReportsCases data={totalCases} />
+              <ViewReportsSEUtilization data={engineerActivitiesCount} />
+              <ViewReportsProductUtilization data={engineerActivitiesCount} />
+            </section>
+            <section>
+              <ViewReportsSeverity
+                severityCount={severityCount}
+                totalCasesCount={totalCasesCount}
+              />
+            </section>
           </When>
 
           <Otherwise>

@@ -12,8 +12,9 @@ function ViewReportsFilter(props) {
       <div className={styles.timePeriodFilter}>
         <div className={styles.title}>SELECT TIME PERIOD</div>
         <DatePicker.RangePicker
+          defaultValue={[moment().subtract(12, 'month').add(1, 'day'), moment()]}
           allowClear={false}
-          onChange={([to, from]) => onFilter({ key: 'timePeriod', value: [moment(from).format('MM/DD/YYYY'), moment(to).format('MM/DD/YYYY')] })}
+          onChange={([from, to]) => onFilter({ key: 'timePeriod', value: [moment(from).format('MM/DD/YYYY'), moment(to).format('MM/DD/YYYY')] })}
           format={'MM/DD/YYYY'}
         />
       </div>
@@ -22,7 +23,7 @@ function ViewReportsFilter(props) {
         <div className={styles.title}>FILTERS</div>
         <div className={styles.filters}>
           {
-            (Object.entries(filters).length)
+            (filters.customer && filters.customer.length)
             ? <Button onClick={() => onResetFilters()}>All</Button>
             : <Button onClick={() => onResetFilters()} type="primary">All</Button>
           }

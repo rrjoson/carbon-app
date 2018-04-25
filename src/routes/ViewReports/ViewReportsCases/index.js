@@ -49,7 +49,6 @@ function ViewReportsCases(props) {
           notMerge={true}
           lazyUpdate={true}
           className={styles.chart}
-          theme={"theme_name"}
         />
       </If>
     </div>

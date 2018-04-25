@@ -32,7 +32,6 @@ function ViewReportsSolution(props) {
           opts={{renderer: 'svg'}}
           notMerge={true}
           lazyUpdate={true}
-          theme={"theme_name"}
         />
       </If>
     </div>

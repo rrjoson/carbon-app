@@ -99,7 +99,7 @@
 
 .activity__sectionContent {
   margin-bottom: 15px;
-  white-space: pre;
+  white-space: pre-wrap;
 }
 
 .activity__button {

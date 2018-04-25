@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './styles.css';
 
-function ViewReportsSE(props) {
+function ViewReportsProductUtilization(props) {
   const { type, data } = props;
 
   return (
@@ -11,14 +11,14 @@ function ViewReportsSE(props) {
       <div className={styles.list}>
         <For each="item" of={data}>
           <div className={styles.item}>
-            <div className={styles.name}>{item.assignedsystemsengineer}</div>
+            <div className={styles.name}>{item.productName}</div>
             <div className={styles.count}>
               <Choose>
-                <When condition={item.number_of_activities.length === 1}>
-                  {item.number_of_activities} Activity
+                <When condition={item.number_of_cases.length === 1}>
+                  {item.number_of_cases} Activity
                 </When>
                 <Otherwise>
-                  {item.number_of_activities} Activities
+                  {item.number_of_cases} Activities
                 </Otherwise>
               </Choose>
             </div>
@@ -29,6 +29,6 @@ function ViewReportsSE(props) {
   );
 }
 
-ViewReportsSE.propTypes = {};
+ViewReportsProductUtilization.propTypes = {};
 
-export default ViewReportsSE;
+export default ViewReportsProductUtilization;

@@ -1,4 +1,5 @@
 import { notification } from 'antd';
+import { serialize } from './../../utils/query';
 import * as services from './../../services/reports';
 
 export default {
@@ -6,18 +7,19 @@ export default {
   namespace: 'reports',
 
   state: {
+    clientWithMostCases: '',
+    productWithMostCases: '',
+    averageTurnaroundTime: 0,
+    openCaseClientCount: 0,
+
+
     totalCases: [],
-    totalCasesCount: null,
-    severityCount: {},
+    totalCasesCount: 0,
     engineerActivitiesCount: [],
-    mostCasesClientCount: {},
-    openCaseClientCount: {},
-    resolvedCaseClientCount: {},
-    caseProductCount: {},
-    caseProductCountMost: {},
+    resolvedCaseClientCount: 0,
+    severityCount: [],
+    caseProductCount: [],
     vendorCaseCount: [],
-    vendorLicenseCount: {},
-    averageTurnaround: null,
     filters: {},
   },
 
@@ -30,8 +32,37 @@ export default {
   },
 
   effects: {
-    *FETCH_TOTAL_CASES({ payload }, { call, put }) {
-      const { data: totalCases } = yield call(services.fetchTotalCases);
+    *FETCH_REPORTS({ payload }, { call, put }) {
+      yield put({ type: 'SAVE', payload: { filters: {} } });
+
+      yield put({ type: 'FETCH_CLIENT_WITH_MOST_CASES' });
+      yield put({ type: 'FETCH_PRODUCT_WITH_MOST_CASES' });
+      yield put({ type: 'FETCH_AVERAGE_TURNAROUND_TIME' });
+      yield put({ type: 'FETCH_TOTAL_CASES' });
+      yield put({ type: 'FETCH_VENDOR_CASE_COUNT' });
+      yield put({ type: 'FETCH_ENGINEER_ACTIVITIES_COUNT' });
+      yield put({ type: 'FETCH_SEVERITY_COUNT' });
+    },
+
+    *FETCH_CLIENT_WITH_MOST_CASES({ payload }, { call, put }) {
+      const { data } = yield call(services.fetchClientWithMostCases);
+      yield put({ type: 'SAVE', payload: { clientWithMostCases: data.customer } });
+    },
+
+    *FETCH_PRODUCT_WITH_MOST_CASES({ payload }, { call, put }) {
+      const { data } = yield call(services.fetchProductWithMostCases);
+      yield put({ type: 'SAVE', payload: { productWithMostCases: data.productName } });
+    },
+
+    *FETCH_AVERAGE_TURNAROUND_TIME({ payload }, { call, put, select }) {
+      const { filters } = yield select(state => state.reports);
+      const { data } = yield call(services.fetchAverageTurnaround, serialize(filters));
+      yield put({ type: 'SAVE', payload: { averageTurnaroundTime: data[0] ? data[0].avg : 0 } });
+    },
+
+    *FETCH_TOTAL_CASES({ payload }, { call, put, select }) {
+      const { filters } = yield select(state => state.reports);
+      const { data: totalCases } = yield call(services.fetchTotalCases, serialize(filters));
       yield put({ type: 'SAVE', payload: { totalCases } });
     },
 
@@ -40,39 +71,34 @@ export default {
       yield put({ type: 'SAVE', payload: { totalCasesCount: data[0].total_cases } });
     },
 
-    *FETCH_SEVERITY_COUNT({ payload }, { call, put }) {
-      const { data: severityCount } = yield call(services.fetchSeverityCount);
+    *FETCH_SEVERITY_COUNT({ payload }, { call, put, select }) {
+      const { filters } = yield select(state => state.reports);
+      const { data: severityCount } = yield call(services.fetchSeverityCount, serialize(filters));
       yield put({ type: 'SAVE', payload: { severityCount } });
     },
 
-    *FETCH_ENGINEER_ACTIVITIES_COUNT({ payload }, { call, put }) {
-      const { data: engineerActivitiesCount } = yield call(services.fetchEngineerAcitivitesCount);
+    *FETCH_ENGINEER_ACTIVITIES_COUNT({ payload }, { call, put, select }) {
+      const { filters } = yield select(state => state.reports);
+      const { data: engineerActivitiesCount } = yield call(services.fetchEngineerAcitivitesCount, serialize(filters));
       yield put({ type: 'SAVE', payload: { engineerActivitiesCount } });
     },
 
-    *FETCH_MOST_CASE_CLIENT_COUNT({ payload }, { call, put }) {
-      const { data: mostCasesClientCount } = yield call(services.fetchMostCasesClientCount);
-      yield put({ type: 'SAVE', payload: { mostCasesClientCount } });
+    *FETCH_OPEN_CASE_CLIENT_COUNT({ payload }, { call, put, select }) {
+      const { filters } = yield select(state => state.reports);
+      const { data } = yield call(services.fetchOpenCaseClientCount, serialize(filters));
+      yield put({ type: 'SAVE', payload: { openCaseClientCount: data[0] ? data[0].number_of_cases : 0 } });
     },
 
-    *FETCH_OPEN_CASE_CLIENT_COUNT({ payload }, { call, put }) {
-      const { data: openCaseClientCount } = yield call(services.fetchOpenCaseClientCount);
-      yield put({ type: 'SAVE', payload: { openCaseClientCount } });
+    *FETCH_RESOLVED_CASE_CLIENT_COUNT({ payload }, { call, put, select }) {
+      const { filters } = yield select(state => state.reports);
+      const { data } = yield call(services.fetchResolvedCaseClientCount, serialize(filters));
+      yield put({ type: 'SAVE', payload: { resolvedCaseClientCount: data[0] ? data[0].number_of_cases : 0 } });
     },
 
-    *FETCH_RESOLVED_CASE_CLIENT_COUNT({ payload }, { call, put }) {
-      const { data: resolvedCaseClientCount } = yield call(services.fetchResolvedCaseClientCount);
-      yield put({ type: 'SAVE', payload: { resolvedCaseClientCount } });
-    },
-
-    *FETCH_CASE_PRODUCT_COUNT({ payload }, { call, put }) {
-      const { data: caseProductCount } = yield call(services.fetchCaseProductCount);
+    *FETCH_CASE_PRODUCT_COUNT({ payload }, { call, put, select }) {
+      const { filters } = yield select(state => state.reports);
+      const { data: caseProductCount } = yield call(services.fetchCaseProductCount, serialize(filters));
       yield put({ type: 'SAVE', payload: { caseProductCount } });
-    },
-
-    *FETCH_CASE_PRODUCT_COUNT_MOST({ payload }, { call, put }) {
-      const { data: caseProductCountMost } = yield call(services.fetchCaseProductCountMost);
-      yield put({ type: 'SAVE', payload: { caseProductCountMost } });
     },
 
     *FETCH_VENDOR_CASE_COUNT({ payload }, { call, put }) {
@@ -80,27 +106,18 @@ export default {
       yield put({ type: 'SAVE', payload: { vendorCaseCount } });
     },
 
-    *FETCH_VENDOR_LICENSE_COUNT({ payload }, { call, put }) {
-      const { data: vendorLicenseCount } = yield call(services.fetchVendorLicenseCount);
-      yield put({ type: 'SAVE', payload: { vendorLicenseCount } });
-    },
-
-    *FETCH_AVERAGE_TURNAROUND({ payload }, { call, put }) {
-      const { data } = yield call(services.fetchAverageTurnaround);
-      yield put({ type: 'SAVE', payload: { averageTurnaround: data[0].avg } });
-    },
-
     *FETCH_REPORTS_BY_FILTER({ payload }, { call, put, select }) {
-      console.warn(payload)
       const currentFilters = yield select(state => state.cases.filters);
       const updatedFilters = { ...currentFilters, [payload.key]: [...(currentFilters[payload.key] ? currentFilters[payload.key] : []), payload.value] };
       yield put({ type: 'SAVE', payload: { filters: updatedFilters } });
-      // const { data } = yield call(services.fetchAverageTurnaround);
-      // yield put({ type: 'SAVE', payload: { averageTurnaround: data[0].avg } });
-    },
 
-    *FETCH_REPORTS({ payload }, { call, put, select }) {
-      yield put({ type: 'SAVE', payload: { filters: {} } });
+      yield put({ type: 'FETCH_OPEN_CASE_CLIENT_COUNT' });
+      yield put({ type: 'FETCH_RESOLVED_CASE_CLIENT_COUNT' });
+      yield put({ type: 'FETCH_AVERAGE_TURNAROUND_TIME' });
+      yield put({ type: 'FETCH_TOTAL_CASES' });
+      yield put({ type: 'FETCH_ENGINEER_ACTIVITIES_COUNT' });
+      yield put({ type: 'FETCH_CASE_PRODUCT_COUNT' });
+      yield put({ type: 'FETCH_SEVERITY_COUNT' });
     },
   },
 

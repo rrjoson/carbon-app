@@ -1,22 +1,24 @@
 import React from 'react';
-import techSvg from 'assets/tech.svg';
+import checkSvg from 'assets/check.svg';
 
 import styles from './styles.css';
 
-function ViewReportsProduct(props) {
+function viewReportsTotalCasesResolved(props) {
   const { type, data } = props;
+
+  console.warn(data)
 
   return (
     <div className={styles.viewReportsProduct}>
-      <img src={techSvg} width="62" height="62" />
+      <img src={checkSvg} width="62" height="62" />
       <div className={styles.content}>
-        <div className={styles.title}>PRODUCT WITH MOST CASES</div>
-        <div className={styles.value}>{data.productName}</div>
+        <div className={styles.title}>TOTAL CASES RESOLVED</div>
+        <div className={styles.value}>{data}</div>
       </div>
     </div>
   );
 }
 
-ViewReportsProduct.propTypes = {};
+viewReportsTotalCasesResolved.propTypes = {};
 
-export default ViewReportsProduct;
+export default viewReportsTotalCasesResolved;

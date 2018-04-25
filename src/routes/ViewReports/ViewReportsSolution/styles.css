@@ -5,6 +5,7 @@
 	height: 396px;
   border: solid 1px #f0f0f0;
   margin-right: 20px;
+  position: relative;
 }
 
 .title {

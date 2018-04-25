@@ -6,7 +6,6 @@ import styles from './styles.css';
 function ViewReportsCases(props) {
   const { type, data } = props;
 
-
   const seriesData = data.map((item) => {
     return (
       { name: item.case_status, value: item.number_of_cases }
@@ -43,13 +42,16 @@ function ViewReportsCases(props) {
   return (
     <div className={styles.viewReportsCases}>
       <div className={styles.title}>SUMMARY OF CASE STATUS</div>
-      <ReactEcharts
-        option={option}
-        opts={{renderer: 'svg'}}
-        notMerge={true}
-        lazyUpdate={true}
-        theme={"theme_name"}
-      />
+      <If condition={data.length}>
+        <ReactEcharts
+          option={option}
+          opts={{renderer: 'svg'}}
+          notMerge={true}
+          lazyUpdate={true}
+          className={styles.chart}
+          theme={"theme_name"}
+        />
+      </If>
     </div>
   );
 }

@@ -27,36 +27,25 @@ class Dashboard extends Component {
       dispatch,
     } = this.props;
 
-    dispatch({ type: 'reports/FETCH_MOST_CASE_CLIENT_COUNT' });
-    dispatch({ type: 'reports/FETCH_AVERAGE_TURNAROUND' });
-    dispatch({ type: 'reports/FETCH_TOTAL_CASES' });
-    dispatch({ type: 'reports/FETCH_VENDOR_CASE_COUNT' });
-    dispatch({ type: 'reports/FETCH_ENGINEER_ACTIVITIES_COUNT' });
-    dispatch({ type: 'reports/FETCH_SEVERITY_COUNT' });
-    dispatch({ type: 'reports/FETCH_TOTAL_CASES_COUNT' });
-    dispatch({ type: 'reports/FETCH_CASE_PRODUCT_COUNT_MOST' });
-
-
-
-    // dispatch({ type: 'reports/FETCH_OPEN_CASE_CLIENT_COUNT' });
-    // dispatch({ type: 'reports/FETCH_RESOLVED_CASE_CLIENT_COUNT' });
-    // dispatch({ type: 'reports/FETCH_CASE_PRODUCT_COUNT' });
-    // dispatch({ type: 'reports/FETCH_VENDOR_LICENSE_COUNT' });
-
+    dispatch({ type: 'reports/FETCH_REPORTS' });
     dispatch({ type: 'clients/FETCH_CLIENTS' });
+    dispatch({ type: 'reports/FETCH_TOTAL_CASES_COUNT' });
   }
 
   render() {
     const {
       dispatch,
-      mostCasesClientCount,
-      averageTurnaround,
+      clientWithMostCases,
+      productWithMostCases,
+      averageTurnaroundTime,
       totalCases,
       totalCasesCount,
       severityCount,
       vendorCaseCount,
-      caseProductCountMost,
       engineerActivitiesCount,
+      caseProductCount,
+      openCaseClientCount,
+      resolvedCaseClientCount,
       clients,
       filters,
     } = this.props;
@@ -81,14 +70,14 @@ class Dashboard extends Component {
         <Choose>
           <When condition={filters && filters.customer && filters.customer.length}>
             <section>
-              <ViewReportsTotalCasesOpen data={mostCasesClientCount} />
-              <ViewReportsTotalCasesResolved data={caseProductCountMost} />
-              <ViewReportsTurnaround data={averageTurnaround} />
+              <ViewReportsTotalCasesOpen data={openCaseClientCount} />
+              <ViewReportsTotalCasesResolved data={resolvedCaseClientCount} />
+              <ViewReportsTurnaround data={averageTurnaroundTime} />
             </section>
             <section>
               <ViewReportsCases data={totalCases} />
               <ViewReportsSEUtilization data={engineerActivitiesCount} />
-              <ViewReportsProductUtilization data={engineerActivitiesCount} />
+              <ViewReportsProductUtilization data={caseProductCount} />
             </section>
             <section>
               <ViewReportsSeverity
@@ -100,9 +89,9 @@ class Dashboard extends Component {
 
           <Otherwise>
             <section>
-              <ViewReportsClient data={mostCasesClientCount} />
-              <ViewReportsProduct data={caseProductCountMost} />
-              <ViewReportsTurnaround data={averageTurnaround} />
+              <ViewReportsClient data={clientWithMostCases} />
+              <ViewReportsProduct data={productWithMostCases} />
+              <ViewReportsTurnaround data={averageTurnaroundTime} />
             </section>
             <section>
               <ViewReportsCases data={totalCases} />
@@ -125,14 +114,17 @@ class Dashboard extends Component {
 function mapStateToProps(state) {
   return {
     reports: state.reports,
-    mostCasesClientCount: state.reports.mostCasesClientCount,
-    averageTurnaround: state.reports.averageTurnaround,
+    clientWithMostCases: state.reports.clientWithMostCases,
+    productWithMostCases: state.reports.productWithMostCases,
+    averageTurnaroundTime: state.reports.averageTurnaroundTime,
     totalCases: state.reports.totalCases,
     totalCasesCount: state.reports.totalCasesCount,
     vendorCaseCount: state.reports.vendorCaseCount,
     severityCount: state.reports.severityCount,
-    caseProductCountMost: state.reports.caseProductCountMost,
+    caseProductCount: state.reports.caseProductCount,
+    resolvedCaseClientCount: state.reports.resolvedCaseClientCount,
     engineerActivitiesCount: state.reports.engineerActivitiesCount,
+    openCaseClientCount: state.reports.openCaseClientCount,
     clients: state.clients.data,
     filters: state.reports.filters,
   };

@@ -148,16 +148,19 @@ class DynamicFieldSet extends Component {
             </FormItem>
           </Col>
 
+          {console.warn(this.props)}
+
           <Col span={5}>
             <FormItem label="Time In">
               {getFieldDecorator('timeIn', {
-                initialValue: moment(this.props.selectedActivity.timeIn, 'YYYY-MM-DD'),
+                initialValue: moment(this.props.selectedActivity.timeIn),
                 rules: [{
                   required: true,
                   message: 'This is a required field',
                 }],
               })(
                 <DatePicker
+                  disabled
                   style={{ width: '270px' }}
                   showTime={{use12Hours: true, format: 'HH:mm'}}
                   placeholder="Select date and time"
@@ -170,13 +173,14 @@ class DynamicFieldSet extends Component {
           <Col span={5}>
             <FormItem label="Time Out">
               {getFieldDecorator('timeOuts', {
-                initialValue: moment(this.props.selectedActivity.timeOuts, 'YYYY-MM-DD'),
+                initialValue: moment(this.props.selectedActivity.timeOuts),
                 rules: [{
                   required: true,
                   message: 'This is a required field',
                 }],
               })(
                 <DatePicker
+                  disabled
                   style={{ width: '270px' }}
                   showTime={{use12Hours: true, format: 'HH:mm'}}
                   placeholder="Select date and time"

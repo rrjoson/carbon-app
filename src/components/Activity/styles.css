@@ -9,7 +9,7 @@
 }
 
 .activity--open {
-  max-height: 1000px;
+  max-height: 9999px;
   transition: all ease 1s;
 }
 

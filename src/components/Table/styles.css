@@ -1,3 +1,7 @@
+.table :global .ant-table-body {
+  overflow: scroll;
+}
+
 .table :global .ant-table-pagination.ant-pagination {
   display: block;
   float: none;

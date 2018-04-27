@@ -100,6 +100,12 @@ const Activity = (props) => {
             {item.activityPerformed}
           </div>
           <div className={styles.activity__sectionTitle}>
+            Next Activity
+          </div>
+          <div className={styles.activity__sectionContent}>
+            {item.nextActivity}
+          </div>
+          <div className={styles.activity__sectionTitle}>
             Recommendation
           </div>
           <div className={styles.activity__sectionContent}>

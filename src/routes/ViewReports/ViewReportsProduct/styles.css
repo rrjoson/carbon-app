@@ -4,7 +4,7 @@
   justify-content: center;
 
   width: 386px;
-  height: 140px;
+  padding: 38px;
   border-radius: 6px;
   background-color: #ffffff;
   border: solid 1px #f0f0f0;
@@ -22,6 +22,7 @@
   color: #6f7c87;
 
   line-height: 36px;
+  white-space: nowrap;
 }
 
 .value {

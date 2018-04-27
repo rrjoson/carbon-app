@@ -45,6 +45,8 @@ const Header = (props) => {
 
     if (path.includes('reports')) return 'Reports';
 
+    if (path.includes('se-list')) return 'SE List';
+
     return '';
   };
 

@@ -40,6 +40,10 @@ const menuItems = [{
   icon: 'safety',
   label: 'Licenses',
 }, {
+  url: '/se-list',
+  icon: 'profile',
+  label: 'SE List',
+}, {
   url: '/reports',
   icon: 'area-chart',
   label: 'Reports',

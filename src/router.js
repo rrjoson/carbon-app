@@ -80,6 +80,9 @@ const Routers = ({ history, app }) => {
       path: '/accounts/:id/edit',
       component: () => import('./routes/EditAccount'),
     }, {
+      path: '/se-list',
+      component: () => import('./routes/ViewSE'),
+    }, {
       path: '/login',
       component: () => import('./routes/Login'),
     }, {

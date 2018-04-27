@@ -20,7 +20,8 @@ function ViewReportsSolution(props) {
     series: [{
       data: seriesData,
       type: 'bar'
-    }]
+    }],
+    color: ['#4a90e2']
   };
 
   return (

@@ -21,6 +21,7 @@ function ViewReportsCases(props) {
         trigger: 'item',
         formatter: "{a} <br/>{b} : {c} ({d}%)"
     },
+    color: ['#ffbc74', '#7cb5ec', '#90ed7d', '#434348'],
     series : [
         {
             name: '',

@@ -73,7 +73,7 @@ function ViewCasesTable(props) {
   }, {
     title: 'Updated',
     dataIndex: 'lastupdated',
-    sorter: (a, b) => moment(a.lastupdated, 'YYYY-MM-DD').diff(moment(b.lastupdated, 'YYYY-MM-DD')),
+    sorter: (a, b) => Math.abs(moment(a.lastupdated).diff(moment(), 'days')) - Math.abs(moment(b.lastupdated).diff(moment(), 'days')),
     render: date => `${Math.abs(moment(date).diff(moment(), 'days'))} days`,
   }, {
     title: 'Date Raised',

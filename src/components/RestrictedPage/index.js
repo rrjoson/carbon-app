@@ -11,13 +11,12 @@ import styles from './styles.css';
 
 class RestrictedPage extends Component {
   render() {
-    const {
-      user,
-      children,
-      action,
-    } = this.props;
+    const { user, children, action } = this.props;
 
-    if (restrictions[user.position] && restrictions[user.position].includes(action)) {
+    if (
+      restrictions[user.position] &&
+      restrictions[user.position].includes(action)
+    ) {
       return (
         <div className={styles.restrictedPage}>
           <img className={styles.image} src={forbidden} />
@@ -29,11 +28,7 @@ class RestrictedPage extends Component {
       );
     }
 
-    return (
-      <Fragment>
-        {children}
-      </Fragment>
-    );
+    return <Fragment>{children}</Fragment>;
   }
 }
 

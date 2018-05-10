@@ -19,13 +19,13 @@ import ViewReportsSolution from './ViewReportsSolution';
 import ViewReportsSE from './ViewReportsSE';
 import ViewReportsSeverity from './ViewReportsSeverity';
 
+import { RestrictedPage } from './../../components';
+
 import styles from './styles.css';
 
 class Dashboard extends Component {
   componentDidMount() {
-    const {
-      dispatch,
-    } = this.props;
+    const { dispatch } = this.props;
 
     dispatch({ type: 'reports/FETCH_REPORTS' });
     dispatch({ type: 'clients/FETCH_CLIENTS' });
@@ -51,24 +51,29 @@ class Dashboard extends Component {
     } = this.props;
 
     return (
-      <div>
+      <RestrictedPage action="VIEW_REPORTS">
         <section>
           <ViewReportsFilter
             filters={filters}
             clients={clients}
-            onFilter={data => dispatch({ type: 'reports/FETCH_REPORTS_BY_FILTER', payload: data })}
+            onFilter={data =>
+              dispatch({
+                type: 'reports/FETCH_REPORTS_BY_FILTER',
+                payload: data,
+              })
+            }
             onResetFilters={() => dispatch({ type: 'reports/FETCH_REPORTS' })}
           />
         </section>
 
         <section>
-          <ViewReportsHeader
-            filters={filters}
-          />
+          <ViewReportsHeader filters={filters} />
         </section>
 
         <Choose>
-          <When condition={filters && filters.customer && filters.customer.length}>
+          <When
+            condition={filters && filters.customer && filters.customer.length}
+          >
             <section>
               <ViewReportsTotalCasesOpen data={openCaseClientCount} />
               <ViewReportsTotalCasesResolved data={resolvedCaseClientCount} />
@@ -106,7 +111,7 @@ class Dashboard extends Component {
             </section>
           </Otherwise>
         </Choose>
-      </div>
+      </RestrictedPage>
     );
   }
 }

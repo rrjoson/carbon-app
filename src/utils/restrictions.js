@@ -50,6 +50,8 @@ export const restrictions = {
     'DELETE_VENDOR',
 
     'ADD_USER',
+
+    'VIEW_REPORTS',
   ],
   'Senior Sales Consultant': [
     'ADD_CASE',
@@ -76,6 +78,8 @@ export const restrictions = {
     'DELETE_VENDOR',
 
     'ADD_USER',
+
+    'VIEW_REPORTS',
   ],
   'Sales Consultant': [
     'ADD_CASE',
@@ -102,6 +106,8 @@ export const restrictions = {
     'DELETE_VENDOR',
 
     'ADD_USER',
+
+    'VIEW_REPORTS',
   ],
   'Senior Account Manager': [
     'ADD_CASE',
@@ -128,6 +134,8 @@ export const restrictions = {
     'DELETE_VENDOR',
 
     'ADD_USER',
+
+    'VIEW_REPORTS',
   ],
   'Account Manager': [
     'ADD_CASE',
@@ -154,6 +162,8 @@ export const restrictions = {
     'DELETE_VENDOR',
 
     'ADD_USER',
+
+    'VIEW_REPORTS',
   ],
   'Product Specialist': [
     'ADD_CASE',
@@ -176,6 +186,8 @@ export const restrictions = {
     'DELETE_VENDOR',
 
     'ADD_USER',
+
+    'VIEW_REPORTS',
   ],
   'Business Development Manager': [
     'ADD_CASE',
@@ -227,6 +239,8 @@ export const restrictions = {
     'DELETE_VENDOR',
 
     'ADD_USER',
+
+    'VIEW_REPORTS',
   ],
   'Project Manager': [
     'ADD_CASE',
@@ -326,6 +340,8 @@ export const restrictions = {
     'DELETE_VENDOR',
 
     'ADD_USER',
+
+    'VIEW_REPORTS',
   ],
   'Systems Engineer': [
     'DELETE_CASE',
@@ -350,5 +366,7 @@ export const restrictions = {
     'DELETE_VENDOR',
 
     'ADD_USER',
+
+    'VIEW_REPORTS',
   ],
 };

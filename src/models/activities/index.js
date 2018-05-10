@@ -14,7 +14,6 @@ import {
 } from './../../services/activities';
 
 export default {
-
   namespace: 'activities',
 
   state: {
@@ -25,9 +24,7 @@ export default {
 
   subscriptions: {
     setup({ dispatch, history }) {
-      return history.listen(({ pathname, search }) => {
-
-      });
+      return history.listen(({ pathname, search }) => {});
     },
   },
 
@@ -51,13 +48,26 @@ export default {
       const { position } = yield select(state => state.user.data);
       const glocalId = yield select(state => state.cases.selected.glocalId);
 
-      if (restrictions[position] && restrictions[position].includes('ADD_ACTIVITY')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
+      if (
+        restrictions[position] &&
+        restrictions[position].includes('ADD_ACTIVITY')
+      )
+        return Modal.error({
+          title: 'Error',
+          content: "You don't have permission to do this action.",
+        });
 
       const { data } = yield call(addActivity, payload);
 
       if (payload.typeOfActivity !== 'Remote') {
-        const { data: activity } = yield call(fetchActivity, data.report[0].activityNo);
-        yield put({ type: 'SAVE', payload: { serviceReportNumber: activity[0].sr_number_year } });
+        const { data: activity } = yield call(
+          fetchActivity,
+          data.report[0].activityNo,
+        );
+        yield put({
+          type: 'SAVE',
+          payload: { serviceReportNumber: activity[0].sr_number_year },
+        });
       } else {
         yield put(routerRedux.push(`/cases/${glocalId}`));
         notification.success({ message: 'Activity added.', duration: 2 });
@@ -66,14 +76,25 @@ export default {
 
     *UPDATE_ACTIVITY({ payload }, { call, put, select }) {
       const { position } = yield select(state => state.user.data);
-      if (restrictions[position] && restrictions[position].includes('UPDATE_ACTIVITY')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
+      if (
+        restrictions[position] &&
+        restrictions[position].includes('UPDATE_ACTIVITY')
+      )
+        return Modal.error({
+          title: 'Error',
+          content: "You don't have permission to do this action.",
+        });
 
       const glocalId = yield select(state => state.cases.selected.glocalId);
-      const activityNo = yield select(state => state.activities.selected.activityNo);
+      const activityNo = yield select(
+        state => state.activities.selected.activityNo,
+      );
 
       yield call(updateActivity, activityNo, payload);
       if (payload.typeOfActivity !== 'Remote') {
-        const serviceReportNo = yield select(state => state.activities.selected.sr_number);
+        const serviceReportNo = yield select(
+          state => state.activities.selected.sr_number,
+        );
         yield call(updateServiceReport, activityNo, serviceReportNo, payload);
       }
 
@@ -83,13 +104,21 @@ export default {
     },
 
     *DELETE_ACTIVITY({ payload }, { call, put, select }) {
-
-      console.warn(payload, 12333)
+      console.warn(payload, 12333);
       const { position } = yield select(state => state.user.data);
-      if (restrictions[position] && restrictions[position].includes('DELETE_ACTIVITY')) return Modal.error({ title: 'Error', content: 'You don\'t have permission to do this action.' });
+      if (
+        restrictions[position] &&
+        restrictions[position].includes('DELETE_ACTIVITY')
+      )
+        return Modal.error({
+          title: 'Error',
+          content: "You don't have permission to do this action.",
+        });
 
       const activities = yield select(state => state.activities.data);
-      const data = activities.filter(item => item.activityNo !== payload.activityNo);
+      const data = activities.filter(
+        item => item.activityNo !== payload.activityNo,
+      );
 
       yield call(deleteActivity, payload.activityNo);
 

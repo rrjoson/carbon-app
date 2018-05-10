@@ -28,6 +28,7 @@ export const restrictions = {
   'Sales Manager': [
     'ADD_CASE',
     'EDIT_CASE',
+    'EDIT_CASE_STATUS',
     'DELETE_CASE',
 
     'ADD_ASSIGNED_SE',
@@ -53,6 +54,7 @@ export const restrictions = {
   'Senior Sales Consultant': [
     'ADD_CASE',
     'EDIT_CASE',
+    'EDIT_CASE_STATUS',
     'DELETE_CASE',
 
     'ADD_ASSIGNED_SE',
@@ -78,6 +80,7 @@ export const restrictions = {
   'Sales Consultant': [
     'ADD_CASE',
     'EDIT_CASE',
+    'EDIT_CASE_STATUS',
     'DELETE_CASE',
 
     'ADD_ASSIGNED_SE',
@@ -103,6 +106,7 @@ export const restrictions = {
   'Senior Account Manager': [
     'ADD_CASE',
     'EDIT_CASE',
+    'EDIT_CASE_STATUS',
     'DELETE_CASE',
 
     'ADD_ASSIGNED_SE',
@@ -128,6 +132,7 @@ export const restrictions = {
   'Account Manager': [
     'ADD_CASE',
     'EDIT_CASE',
+    'EDIT_CASE_STATUS',
     'DELETE_CASE',
 
     'ADD_ASSIGNED_SE',
@@ -153,6 +158,7 @@ export const restrictions = {
   'Product Specialist': [
     'ADD_CASE',
     'EDIT_CASE',
+    'EDIT_CASE_STATUS',
     'DELETE_CASE',
 
     'ADD_ASSIGNED_SE',
@@ -171,7 +177,7 @@ export const restrictions = {
 
     'ADD_USER',
   ],
-  'Business Development Director': [
+  'Business Development Manager': [
     'ADD_CASE',
     'EDIT_CASE',
     'DELETE_CASE',
@@ -344,5 +350,5 @@ export const restrictions = {
     'DELETE_VENDOR',
 
     'ADD_USER',
-  ]
+  ],
 };

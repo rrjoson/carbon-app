@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
-// import PropTypes from 'prop-types';
+import { restrictions } from '../../utils/restrictions';
 
 import ViewCaseHeader from './ViewCaseHeader';
 import ViewCaseTable from './ViewCaseTable';
@@ -11,10 +11,7 @@ import styles from './styles.css';
 
 class ViewCase extends Component {
   componentDidMount() {
-    const {
-      dispatch,
-      match,
-    } = this.props;
+    const { dispatch, match } = this.props;
 
     dispatch({ type: 'cases/FETCH_CASE', payload: match.params.caseId });
   }
@@ -23,16 +20,15 @@ class ViewCase extends Component {
     const { dispatch } = this.props;
 
     if (nextProps.selectedCase !== this.props.selectedCase) {
-      dispatch({ type: 'activities/FETCH_ACTIVITIES', payload: nextProps.selectedCase.glocalId });
+      dispatch({
+        type: 'activities/FETCH_ACTIVITIES',
+        payload: nextProps.selectedCase.glocalId,
+      });
     }
   }
 
   render() {
-    const {
-      dispatch,
-      selectedCase,
-      activities,
-    } = this.props;
+    const { dispatch, selectedCase, activities, user } = this.props;
 
     if (!selectedCase || !activities) return null;
 
@@ -43,17 +39,23 @@ class ViewCase extends Component {
           caseTitle={selectedCase.caseTitle}
           caseDescription={selectedCase.caseDescription}
         />
-        <ViewCaseTable
-          data={[selectedCase]}
-        />
+        <ViewCaseTable data={[selectedCase]} />
         <ViewCaseSelectStatus
           status={selectedCase.case_status}
-          onSelectChange={data => dispatch({ type: 'cases/UPDATE_STATUS', payload: data })}
+          onSelectChange={data =>
+            dispatch({ type: 'cases/UPDATE_STATUS', payload: data })
+          }
+          disabled={
+            restrictions[user.position] &&
+            restrictions[user.position].includes('EDIT_CASE_STATUS')
+          }
         />
         <ViewCaseActivities
           data={activities}
           glocalId={selectedCase.glocalId}
-          onDelete={data => dispatch({ type: 'activities/DELETE_ACTIVITY', payload: data })}
+          onDelete={data =>
+            dispatch({ type: 'activities/DELETE_ACTIVITY', payload: data })
+          }
         />
       </div>
     );
@@ -64,6 +66,7 @@ function mapStateToProps(state) {
   return {
     selectedCase: state.cases.selected,
     activities: state.activities.data,
+    user: state.user.data,
   };
 }
 

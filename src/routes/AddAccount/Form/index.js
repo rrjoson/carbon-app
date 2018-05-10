@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { Input, Icon, Button, Row, Col, DatePicker, Radio } from "antd";
+import React, { Component } from 'react';
+import { Input, Icon, Button, Row, Col, DatePicker, Radio } from 'antd';
 
-import { Select, Typography, Form, Divider } from "./../../../components";
+import { Select, Typography, Form, Divider } from './../../../components';
 
-import styles from "./styles.css";
+import styles from './styles.css';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -11,7 +11,7 @@ const { H3 } = Typography;
 
 class AddUserForm extends Component {
   handleChangeVendor = data => {
-    this.props.form.setFieldsValue({ productName: "" });
+    this.props.form.setFieldsValue({ productName: '' });
     this.props.onSelectVendor(data);
   };
 
@@ -39,13 +39,13 @@ class AddUserForm extends Component {
         <Row>
           <Col span={5}>
             <FormItem label="Full name">
-              {getFieldDecorator("fullName", {
+              {getFieldDecorator('fullName', {
                 rules: [
                   {
                     required: true,
-                    message: "This is a required field"
-                  }
-                ]
+                    message: 'This is a required field',
+                  },
+                ],
               })(<Input />)}
             </FormItem>
           </Col>
@@ -53,13 +53,13 @@ class AddUserForm extends Component {
         <Row>
           <Col span={5}>
             <FormItem label="Username">
-              {getFieldDecorator("username", {
+              {getFieldDecorator('username', {
                 rules: [
                   {
                     required: true,
-                    message: "This is a required field"
-                  }
-                ]
+                    message: 'This is a required field',
+                  },
+                ],
               })(<Input />)}
             </FormItem>
           </Col>
@@ -68,17 +68,17 @@ class AddUserForm extends Component {
         <Row>
           <Col span={5}>
             <FormItem label="Password">
-              {getFieldDecorator("password", {
+              {getFieldDecorator('password', {
                 rules: [
                   {
                     required: true,
-                    message: "This is a required field"
+                    message: 'This is a required field',
                   },
                   {
                     min: 6,
-                    message: "Password must be at least 6 characters long"
-                  }
-                ]
+                    message: 'Password must be at least 6 characters long',
+                  },
+                ],
               })(<Input type="password" />)}
             </FormItem>
           </Col>
@@ -87,13 +87,13 @@ class AddUserForm extends Component {
         <Row>
           <Col span={5}>
             <FormItem label="Email">
-              {getFieldDecorator("email", {
+              {getFieldDecorator('email', {
                 rules: [
                   {
                     required: true,
-                    message: "This is a required field"
-                  }
-                ]
+                    message: 'This is a required field',
+                  },
+                ],
               })(<Input />)}
             </FormItem>
           </Col>
@@ -102,13 +102,13 @@ class AddUserForm extends Component {
         <Row>
           <Col span={5}>
             <FormItem label="Contact Number">
-              {getFieldDecorator("contactNumber", {
+              {getFieldDecorator('contactNumber', {
                 rules: [
                   {
                     required: true,
-                    message: "This is a required field"
-                  }
-                ]
+                    message: 'This is a required field',
+                  },
+                ],
               })(<Input />)}
             </FormItem>
           </Col>
@@ -117,60 +117,60 @@ class AddUserForm extends Component {
         <Row>
           <Col span={5}>
             <FormItem label="Position">
-              {getFieldDecorator("position", {
-                initialValue: "Director",
+              {getFieldDecorator('position', {
+                initialValue: 'Director',
                 rules: [
                   {
                     required: true,
-                    message: "This is a required field"
-                  }
-                ]
+                    message: 'This is a required field',
+                  },
+                ],
               })(
                 <Select>
-                  <Select.Option value={"Managing Director"}>
+                  <Select.Option value={'Managing Director'}>
                     Managing Director
                   </Select.Option>
-                  <Select.Option value={"Sales Director"}>
+                  <Select.Option value={'Sales Director'}>
                     Sales Director
                   </Select.Option>
-                  <Select.Option value={"Sales Manager"}>
+                  <Select.Option value={'Sales Manager'}>
                     Sales Manager
                   </Select.Option>
-                  <Select.Option value={"Senior Sales Consultant"}>
+                  <Select.Option value={'Senior Sales Consultant'}>
                     Senior Sales Consultant
                   </Select.Option>
-                  <Select.Option value={"Sales Consultant"}>
+                  <Select.Option value={'Sales Consultant'}>
                     Sales Consultant
                   </Select.Option>
-                  <Select.Option value={"Senior Account Manager"}>
+                  <Select.Option value={'Senior Account Manager'}>
                     Senior Account Manager
                   </Select.Option>
-                  <Select.Option value={"Account Manager"}>
+                  <Select.Option value={'Account Manager'}>
                     Account Manager
                   </Select.Option>
-                  <Select.Option value={"Product Specialist"}>
+                  <Select.Option value={'Product Specialist'}>
                     Product Specialist
                   </Select.Option>
-                  <Select.Option value={"Business Development Director"}>
-                    Business Development Director
+                  <Select.Option value={'Business Development Manager'}>
+                    Business Development Manager
                   </Select.Option>
-                  <Select.Option value={"Corporate Affairs Director"}>
+                  <Select.Option value={'Corporate Affairs Director'}>
                     Corporate Affairs Director
                   </Select.Option>
-                  <Select.Option value={"Project Manager"}>
+                  <Select.Option value={'Project Manager'}>
                     Project Manager
                   </Select.Option>
-                  <Select.Option value={"Technical Manager"}>
+                  <Select.Option value={'Technical Manager'}>
                     Technical Manager
                   </Select.Option>
-                  <Select.Option value={"Team Lead"}>Team Lead</Select.Option>
-                  <Select.Option value={"Senior Systems Engineer"}>
+                  <Select.Option value={'Team Lead'}>Team Lead</Select.Option>
+                  <Select.Option value={'Senior Systems Engineer'}>
                     Senior Systems Engineer
                   </Select.Option>
-                  <Select.Option value={"Systems Engineer"}>
+                  <Select.Option value={'Systems Engineer'}>
                     Systems Engineer
                   </Select.Option>
-                </Select>
+                </Select>,
               )}
             </FormItem>
           </Col>

@@ -368,5 +368,6 @@ export const restrictions = {
     'ADD_USER',
 
     'VIEW_REPORTS',
+    'VIEW_CLIENTS',
   ],
 };

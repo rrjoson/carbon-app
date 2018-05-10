@@ -5,27 +5,23 @@ import styles from './styles.css';
 import ViewClientsHeader from './ViewClientsHeader';
 import ViewClientsTable from './ViewClientsTable';
 
+import { RestrictedPage } from './../../components';
+
 class ViewCases extends Component {
   componentDidMount() {
-    const {
-      dispatch,
-    } = this.props;
+    const { dispatch } = this.props;
 
     dispatch({ type: 'clients/FETCH_CLIENTS' });
   }
 
   render() {
-    const {
-      clients,
-    } = this.props;
+    const { clients } = this.props;
 
     return (
-      <div className={styles.viewCases}>
+      <RestrictedPage action="VIEW_CLIENTS">
         <ViewClientsHeader />
-        <ViewClientsTable
-          data={clients}
-        />
-      </div>
+        <ViewClientsTable data={clients} />
+      </RestrictedPage>
     );
   }
 }

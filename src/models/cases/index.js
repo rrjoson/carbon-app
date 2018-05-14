@@ -10,12 +10,15 @@ import {
   fetchCasesBySeverity,
   fetchCasesOfLoggedInUser,
   fetchCasesOfLoggedInUserByFilter,
+  fetchCasesOfAccountManager,
+  fetchCasesOfAccountManagerByFilter,
   fetchCase,
   createCase,
   updateCase,
   fetchNextId,
   updateCaseStatus,
   deleteCase,
+  fetchCasesOfAccountManagerBySeverity,
 } from './../../services/cases';
 
 
@@ -58,6 +61,21 @@ export default {
       yield put({ type: 'SAVE', payload: { data } });
     }, { type: 'throttle', ms: 500 }],
 
+    *FETCH_CASES_OF_ACCOUNT_MANAGER({ payload }, { call, put, select }) {
+      const { data } = yield call(fetchCasesOfAccountManager, payload);
+      yield put({ type: 'SAVE', payload: { data } });
+    },
+
+    *FETCH_CASES_OF_ACCOUNT_MANAGER_BY_FILTER({ payload }, { call, put, select }) {
+      const currentFilters = yield select(state => state.cases.filters);
+      const updatedFilters = { ...currentFilters, [payload.key]: [...(currentFilters[payload.key] ? currentFilters[payload.key] : []), payload.value] };
+      yield put({ type: 'SAVE', payload: { filters: updatedFilters } });
+
+      const user = yield select(state => state.user.data);
+      const { data } = yield call(fetchCasesOfAccountManagerByFilter, user.fullName, serialize(updatedFilters));
+      yield put({ type: 'SAVE', payload: { data } });
+    },
+
     *FETCH_CASES_BY_FITLER({ payload }, { call, put, select }) {
       const currentFilters = yield select(state => state.cases.filters);
       const updatedFilters = { ...currentFilters, [payload.key]: [...(currentFilters[payload.key] ? currentFilters[payload.key] : []), payload.value] };
@@ -85,6 +103,15 @@ export default {
       yield put({ type: 'SAVE', payload: { list } });
     },
 
+    *FETCH_CASES_OF_ACCOUNT_MANAGER_BY_SEVERITY({ payload }, { call, put, select }) {
+      const list = yield select(state => state.cases.list);
+      const user = yield select(state => state.user.data);
+      const { data } = yield call(fetchCasesOfAccountManagerBySeverity, user.fullName, payload);
+
+      list[payload - 1] = data;
+      yield put({ type: 'SAVE', payload: { list } });
+    },
+
     *FETCH_CASES_OF_LOGGED_IN_USER({ payload }, { call, put, select }) {
       const user = yield select(state => state.user.data);
 
@@ -107,6 +134,14 @@ export default {
       yield put({ type: 'SAVE', payload: { data } });
     },
 
+    *RESET_FILTERS_OF_CASES_OF_ACCOUNT_MANAGER({ payload }, { call, put, select }) {
+      const user = yield select(state => state.user.data);
+      yield put({ type: 'SAVE', payload: { filters: {} } });
+
+      const { data } = yield call(fetchCasesOfAccountManager, user.fullName);
+      yield put({ type: 'SAVE', payload: { data } });
+    },
+
     *REMOVE_FILTER({ payload }, { call, put, select }) {
       const currentFilters = yield select(state => state.cases.filters);
       const updatedFilters = { ...currentFilters, [payload.key]: currentFilters[payload.key].filter(item => item !== payload.value) };
@@ -125,6 +160,17 @@ export default {
 
       const user = yield select(state => state.user.data);
       const { data } = yield call(fetchCasesOfLoggedInUserByFilter, user.fullName, serialize(updatedFilters));
+      yield put({ type: 'SAVE', payload: { data } });
+    },
+
+    *REMOVE_FILTER_OF_CASES_OF_ACCOUNT_MANAGER({ payload }, { call, put, select }) {
+      const currentFilters = yield select(state => state.cases.filters);
+      const updatedFilters = { ...currentFilters, [payload.key]: currentFilters[payload.key].filter(item => item !== payload.value) };
+
+      yield put({ type: 'SAVE', payload: { filters: updatedFilters } });
+
+      const user = yield select(state => state.user.data);
+      const { data } = yield call(fetchCasesOfAccountManagerByFilter, user.fullName, serialize(updatedFilters));
       yield put({ type: 'SAVE', payload: { data } });
     },
 

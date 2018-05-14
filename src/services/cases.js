@@ -1,48 +1,52 @@
 import { request } from '../utils/request';
 import { BASE_URL } from '../constants/api';
 
-const FETCH_ALL_CASES = `${BASE_URL}/glocalid`;
-const FETCH_CASE = `${BASE_URL}/glocalid`;
-const CREATE_CASE = `${BASE_URL}/glocalid`;
-const FETCH_CASES_BY_QUERY = `${BASE_URL}/glocalid`;
-const FETCH_CASES_BY_USER = `${BASE_URL}/userSE`;
-const FETCH_CASES_BY_FILTER = `${BASE_URL}/glocalid`;
-const FETCH_NEXT_ID = `${BASE_URL}/nextid`;
-
 export function fetchAllCases() {
-  return request.get(FETCH_ALL_CASES);
+  return request.get(`${BASE_URL}/glocalid`);
 }
 
 export function fetchCasesByQuery(searchQuery) {
-  return request.get(`${FETCH_CASES_BY_QUERY}?q=${searchQuery}`);
+  return request.get(`${BASE_URL}/glocalid?q=${searchQuery}`);
+}
+
+export function fetchCasesOfAccountManager(accountManager) {
+  return request.get(`${BASE_URL}/glocalid?accountManager=${accountManager}`);
+}
+
+export function fetchCasesOfAccountManagerByFilter(accountManager, filterQuery) {
+  return request.get(`${BASE_URL}/glocalid?accountManager=${accountManager}&${filterQuery}`);
 }
 
 export function fetchCasesBySeverity(severity) {
-  return request.get(`${FETCH_CASES_BY_FILTER}?severity=${severity}`);
+  return request.get(`${BASE_URL}/glocalid?severity=${severity}`);
+}
+
+export function fetchCasesOfAccountManagerBySeverity(accountManager, severity) {
+  return request.get(`${BASE_URL}/glocalid?accountManager=${accountManager}&severity=${severity}`);
 }
 
 export function fetchCasesOfLoggedInUser(user) {
-  return request.get(`${FETCH_CASES_BY_USER}?user={${user}}`);
+  return request.get(`${BASE_URL}/userSE?user={${user}}`);
 }
 
 export function fetchCasesOfLoggedInUserByFilter(user, filterQuery) {
-  return request.get(`${FETCH_CASES_BY_USER}?user={${user}}&${filterQuery}`);
+  return request.get(`${BASE_URL}/userSE?user={${user}}&${filterQuery}`);
 }
 
 export function fetchCasesByFilter(filterQuery) {
-  return request.get(`${FETCH_CASES_BY_FILTER}?${filterQuery}`);
+  return request.get(`${BASE_URL}/glocalid?${filterQuery}`);
 }
 
 export function fetchCase(glocalId) {
-  return request.get(`${FETCH_CASE}/${glocalId}`);
+  return request.get(`${BASE_URL}/glocalid/${glocalId}`);
 }
 
 export function createCase(data) {
-  return request.post(CREATE_CASE, data);
+  return request.post(`${BASE_URL}/glocalid`, data);
 }
 
 export function updateCase(payload) {
-  return request.put(`${CREATE_CASE}/${payload.glocalId}`, payload);
+  return request.put(`${BASE_URL}/glocalid/${payload.glocalId}`, payload);
 }
 
 export function updateCaseStatus(payload, selectedCase) {
@@ -66,11 +70,11 @@ export function updateCaseStatus(payload, selectedCase) {
     case_status: payload,
   };
 
-  return request.put(`${CREATE_CASE}/${selectedCase.glocalId}`, updatedCase);
+  return request.put(`${BASE_URL}/glocalid/${selectedCase.glocalId}`, updatedCase);
 }
 
 export function fetchNextId() {
-  return request.get(FETCH_NEXT_ID);
+  return request.get(`${BASE_URL}/nextid`);
 }
 
 export function deleteCase(glocalId) {

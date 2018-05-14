@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
+import { restrictions } from './../../../utils/restrictions';
 
 import DashboardHeader from './DashboardHeader';
 import DashboardTable from './DashboardTable';
@@ -10,12 +11,20 @@ class Dashboard extends Component {
   componentDidMount() {
     const {
       dispatch,
+      user,
     } = this.props;
 
-    dispatch({ type: 'cases/FETCH_CASES_BY_SEVERITY', payload: 1 });
-    dispatch({ type: 'cases/FETCH_CASES_BY_SEVERITY', payload: 2 });
-    dispatch({ type: 'cases/FETCH_CASES_BY_SEVERITY', payload: 3 });
-    dispatch({ type: 'cases/FETCH_CASES_BY_SEVERITY', payload: 4 });
+    if (restrictions[user.position] && restrictions[user.position].includes('VIEW_ALL_CASES')) {
+      dispatch({ type: 'cases/FETCH_CASES_OF_ACCOUNT_MANAGER_BY_SEVERITY', payload: 1 });
+      dispatch({ type: 'cases/FETCH_CASES_OF_ACCOUNT_MANAGER_BY_SEVERITY', payload: 2 });
+      dispatch({ type: 'cases/FETCH_CASES_OF_ACCOUNT_MANAGER_BY_SEVERITY', payload: 3 });
+      dispatch({ type: 'cases/FETCH_CASES_OF_ACCOUNT_MANAGER_BY_SEVERITY', payload: 4 });
+    } else {
+      dispatch({ type: 'cases/FETCH_CASES_BY_SEVERITY', payload: 1 });
+      dispatch({ type: 'cases/FETCH_CASES_BY_SEVERITY', payload: 2 });
+      dispatch({ type: 'cases/FETCH_CASES_BY_SEVERITY', payload: 3 });
+      dispatch({ type: 'cases/FETCH_CASES_BY_SEVERITY', payload: 4 });
+    }
   }
 
   render() {
@@ -50,6 +59,7 @@ function mapStateToProps(state) {
     critical: state.cases.list[1],
     major: state.cases.list[2],
     minor: state.cases.list[3],
+    user: state.user.data,
   };
 }
 

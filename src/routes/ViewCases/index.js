@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
+import { restrictions } from './../../utils/restrictions';
 
 import styles from './styles.css';
 import ViewCasesHeader from './ViewCasesHeader';
@@ -8,17 +9,49 @@ import ViewCasesTable from './ViewCasesTable';
 
 class ViewCases extends Component {
   componentDidMount() {
-    const {
-      dispatch,
-      match,
-    } = this.props;
+    const { dispatch, match, user } = this.props;
 
-    dispatch({ type: 'cases/FETCH_ALL_CASES', payload: match.params.caseId });
+    if (restrictions[user.position] && restrictions[user.position].includes('VIEW_ALL_CASES')) {
+      dispatch({ type: 'cases/FETCH_CASES_OF_ACCOUNT_MANAGER', payload: user.fullName })
+    } else {
+      dispatch({ type: 'cases/FETCH_ALL_CASES' });
+    }
+
     dispatch({ type: 'clients/FETCH_CLIENTS' });
     dispatch({ type: 'engineers/FETCH_ENGINEERS' });
     dispatch({ type: 'engineers/FETCH_SE_LEADS' });
     dispatch({ type: 'vendors/FETCH_VENDORS' });
     dispatch({ type: 'products/FETCH_PRODUCTS' });
+  }
+
+  handleFilterCases = (data) => {
+    const { user, dispatch } = this.props;
+
+    if (restrictions[user.position] && restrictions[user.position].includes('VIEW_ALL_CASES')) {
+      dispatch({ type: 'cases/FETCH_CASES_OF_ACCOUNT_MANAGER_BY_FILTER', payload: data })
+    } else {
+      dispatch({ type: 'cases/FETCH_CASES_BY_FITLER', payload: data })
+    }
+  }
+
+  handleRemoveFilter = (data) => {
+    const { user, dispatch } = this.props;
+
+    if (restrictions[user.position] && restrictions[user.position].includes('VIEW_ALL_CASES')) {
+      dispatch({ type: 'cases/REMOVE_FILTER_OF_CASES_OF_ACCOUNT_MANAGER', payload: data })
+    } else {
+      dispatch({ type: 'cases/REMOVE_FILTER', payload: data })
+    }
+  }
+
+  handleResetFilters = (data) => {
+    const { user, dispatch } = this.props;
+
+    if (restrictions[user.position] && restrictions[user.position].includes('VIEW_ALL_CASES')) {
+      dispatch({ type: 'cases/RESET_FILTERS_OF_CASES_OF_ACCOUNT_MANAGER', payload: data })
+    } else {
+      dispatch({ type: 'cases/RESET_FILTERS' })
+    }
   }
 
   render() {
@@ -37,10 +70,15 @@ class ViewCases extends Component {
       <div className={styles.viewCases}>
         <ViewCasesHeader />
         <ViewCasesFilter
-          onFilterCases={data => dispatch({ type: 'cases/FETCH_CASES_BY_FITLER', payload: data })}
-          onResetFilters={() => dispatch({ type: 'cases/RESET_FILTERS' })}
-          onRemoveFilter={data => dispatch({ type: 'cases/REMOVE_FILTER', payload: data })}
-          onSelectVendor={data => dispatch({ type: 'products/FETCH_PRODUCTS_OF_VENDOR', payload: data })}
+          onFilterCases={this.handleFilterCases}
+          onResetFilters={this.handleResetFilters}
+          onRemoveFilter={this.handleRemoveFilter}
+          onSelectVendor={data =>
+            dispatch({
+              type: 'products/FETCH_PRODUCTS_OF_VENDOR',
+              payload: data,
+            })
+          }
           filters={filters}
           clients={clients}
           engineers={engineers}
@@ -48,9 +86,7 @@ class ViewCases extends Component {
           vendors={vendors}
           products={products}
         />
-        <ViewCasesTable
-          data={cases}
-        />
+        <ViewCasesTable data={cases} />
       </div>
     );
   }
@@ -65,6 +101,7 @@ function mapStateToProps(state) {
     leads: state.engineers.leads,
     vendors: state.vendors.data,
     products: state.products.data,
+    user: state.user.data,
   };
 }
 

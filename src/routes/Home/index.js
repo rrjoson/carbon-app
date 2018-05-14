@@ -8,9 +8,7 @@ import styles from './styles.css';
 
 class Home extends Component {
   render() {
-    const {
-      user,
-    } = this.props;
+    const { user } = this.props;
 
     if (user.position !== 'Systems Engineer') {
       return <Dashboard />;

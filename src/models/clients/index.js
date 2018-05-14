@@ -4,6 +4,7 @@ import { restrictions } from './../../utils/restrictions';
 
 import {
   fetchClients,
+  fetchClientsOfAccountManager,
   fetchClientsByQuery,
   fetchClient,
   addClient,
@@ -31,6 +32,11 @@ export default {
   effects: {
     *FETCH_CLIENTS({ payload }, { call, put }) {
       const { data } = yield call(fetchClients);
+      yield put({ type: 'SAVE', payload: { data } });
+    },
+
+    *FETCH_CLIENTS_OF_ACCOUNT_MANAGER({ payload }, { call, put }) {
+      const { data } = yield call(fetchClientsOfAccountManager, payload);
       yield put({ type: 'SAVE', payload: { data } });
     },
 

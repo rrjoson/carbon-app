@@ -53,6 +53,7 @@ export const restrictions = {
 
     'VIEW_REPORTS',
     'VIEW_ALL_CASES',
+    'VIEW_ALL_CLIENTS',
   ],
   'Senior Sales Consultant': [
     'ADD_CASE',
@@ -82,6 +83,7 @@ export const restrictions = {
 
     'VIEW_REPORTS',
     'VIEW_ALL_CASES',
+    'VIEW_ALL_CLIENTS',
   ],
   'Sales Consultant': [
     'ADD_CASE',
@@ -111,6 +113,7 @@ export const restrictions = {
 
     'VIEW_REPORTS',
     'VIEW_ALL_CASES',
+    'VIEW_ALL_CLIENTS',
   ],
   'Senior Account Manager': [
     'ADD_CASE',
@@ -140,6 +143,7 @@ export const restrictions = {
 
     'VIEW_REPORTS',
     'VIEW_ALL_CASES',
+    'VIEW_ALL_CLIENTS',
   ],
   'Account Manager': [
     'ADD_CASE',
@@ -169,6 +173,7 @@ export const restrictions = {
 
     'VIEW_REPORTS',
     'VIEW_ALL_CASES',
+    'VIEW_ALL_CLIENTS',
   ],
   'Product Specialist': [
     'ADD_CASE',
@@ -194,6 +199,7 @@ export const restrictions = {
 
     'VIEW_REPORTS',
     'VIEW_ALL_CASES',
+    'VIEW_ALL_CLIENTS',
   ],
   'Business Development Manager': [
     'ADD_CASE',

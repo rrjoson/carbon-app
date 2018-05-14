@@ -5,6 +5,10 @@ export function fetchClients() {
   return request.get(`${BASE_URL}/client`);
 }
 
+export function fetchClientsOfAccountManager(accountManager) {
+  return request.get(`${BASE_URL}/client?accountManager=${accountManager}`);
+}
+
 export function fetchClientsByQuery(searchQuery) {
   return request.get(`${BASE_URL}/client?q=${searchQuery}`);
 }

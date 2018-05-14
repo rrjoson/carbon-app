@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
+import { restrictions } from './../../utils/restrictions';
 
 import styles from './styles.css';
 import ViewClientsHeader from './ViewClientsHeader';
@@ -9,9 +10,13 @@ import { RestrictedPage } from './../../components';
 
 class ViewCases extends Component {
   componentDidMount() {
-    const { dispatch } = this.props;
+    const { dispatch, user } = this.props;
 
-    dispatch({ type: 'clients/FETCH_CLIENTS' });
+    if (restrictions[user.position] && restrictions[user.position].includes('VIEW_ALL_CLIENTS')) {
+      dispatch({ type: 'clients/FETCH_CLIENTS_OF_ACCOUNT_MANAGER', payload: user.fullName })
+    } else {
+      dispatch({ type: 'clients/FETCH_CLIENTS' });
+    }
   }
 
   render() {
@@ -29,6 +34,7 @@ class ViewCases extends Component {
 function mapStateToProps(state) {
   return {
     clients: state.clients.data,
+    user: state.user.data,
   };
 }
 

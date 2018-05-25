@@ -72,7 +72,7 @@ const Activity = (props) => {
               </div>
               <div className={styles.activity__time}>
                 {/* TODO: REFACTOR */}
-                {moment(item.timeIn).format('YYYY-MM-DD • hh:mma')} • {Math.floor(moment.duration(moment(item.timeOuts).diff(moment(item.timeIn))).asHours())} hours
+                {moment(item.timeIn).format('YYYY-MM-DD • hh:mma')} • {moment.duration(moment(item.timeOuts).diff(moment(item.timeIn))).asHours().toFixed(2)} hours
               </div>
             </div>
             <div className={styles.activity__metaRight}>

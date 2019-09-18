@@ -11,3 +11,10 @@ Start server.
 
 ```bash
 $ npm start
+
+## Screenshots
+- Login
+
+- Dashboard
+
+- Reports

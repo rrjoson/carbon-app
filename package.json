@@ -25,7 +25,7 @@
     "query-string": "^5.1.0",
     "react": "^16.2.0",
     "react-autobind": "^1.0.6",
-    "react-dom": "^16.2.0",
+    "react-dom": "^16.2.1",
     "react-helmet": "^5.2.0",
     "recompose": "^0.26.0",
     "serve": "^6.5.3"

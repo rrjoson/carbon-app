@@ -28,7 +28,7 @@
     "react-dom": "^16.2.0",
     "react-helmet": "^5.2.0",
     "recompose": "^0.26.0",
-    "serve": "^6.5.3"
+    "serve": "^10.1.2"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
